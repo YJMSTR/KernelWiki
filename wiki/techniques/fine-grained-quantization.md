@@ -2,7 +2,7 @@
 id: technique-fine-grained-quantization
 title: Fine-grained FP8/FP4 scaling
 type: technique
-architectures: [sm100, sm90]
+architectures: [sm100, sm103, sm90]
 tags: [fine-grained-quantization, fp8, fp4, nvfp4, block-scale]
 confidence: source-reported
 reproducibility: snippet

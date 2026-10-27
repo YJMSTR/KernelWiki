@@ -2,7 +2,7 @@
 id: technique-kernel-fusion
 title: Kernel fusion
 type: technique
-architectures: [sm100, sm90]
+architectures: [sm100, sm103, sm90]
 tags: [kernel-fusion, fused-kernel, tmem]
 confidence: source-reported
 reproducibility: snippet

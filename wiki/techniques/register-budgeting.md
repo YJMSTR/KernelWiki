@@ -2,7 +2,7 @@
 id: technique-register-budgeting
 title: Register budgeting
 type: technique
-architectures: [sm100, sm90]
+architectures: [sm100, sm103, sm90]
 tags: [register-budgeting, register-reuse]
 confidence: source-reported
 reproducibility: snippet

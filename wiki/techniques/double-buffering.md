@@ -2,7 +2,7 @@
 id: technique-double-buffering
 title: "Double/Multi-Buffering Patterns"
 type: technique
-architectures: [sm100, sm90]
+architectures: [sm100, sm103, sm90]
 tags: [double-buffering, tmem, pipeline-stages]
 confidence: source-reported
 reproducibility: snippet

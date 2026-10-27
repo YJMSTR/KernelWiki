@@ -6,7 +6,7 @@ tags: [triton, attention, moe, gated-delta-net]
 related: [kernel-nsa, kernel-gated-delta-net, kernel-fused-moe, lang-cute-dsl]
 sources: [doc-triton-3.6-blackwell, pr-vllm-34597, pr-sglang-22079, pr-sglang-21019]
 reproducibility: snippet
-architectures: [sm100, sm90]
+architectures: [sm100, sm103, sm90]
 confidence: verified
 evidence_basis:
   - evidence_type: official-doc

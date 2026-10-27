@@ -2,7 +2,7 @@
 id: technique-ping-pong-scheduling
 title: Ping-Pong Scheduling
 type: technique
-architectures: [sm100]
+architectures: [sm100, sm103]
 tags: [ping-pong-scheduling, warp-specialization, tmem, pipeline-stages]
 confidence: source-reported
 reproducibility: snippet

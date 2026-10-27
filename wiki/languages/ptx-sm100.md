@@ -6,7 +6,7 @@ tags: [ptx, tcgen05, tmem, tma, clc, mbarrier, nvfp4]
 related: [hw-tcgen05-mma, hw-tmem, hw-clc, lang-cuda-cpp]
 sources: [doc-ptx-isa-sm100]
 reproducibility: snippet
-architectures: [sm100, sm100a]
+architectures: [sm100, sm103, sm100a, sm103a]
 confidence: source-reported
 ---
 

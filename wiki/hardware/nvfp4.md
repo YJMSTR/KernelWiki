@@ -2,7 +2,7 @@
 id: hw-nvfp4
 title: NVFP4 and block-scaled narrow precision
 type: hardware
-architectures: [sm100, sm100a]
+architectures: [sm100, sm103, sm100a, sm103a]
 tags: [nvfp4, fp4, block-scale, fp8, fp6]
 confidence: source-reported
 related: [technique-fine-grained-quantization, kernel-nvfp4-gemm, kernel-nvfp4-gemv, hw-tcgen05-mma]

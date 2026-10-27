@@ -2,7 +2,7 @@
 id: technique-persistent-kernels
 title: Persistent Kernels with Cluster Launch Control
 type: technique
-architectures: [sm100]
+architectures: [sm100, sm103]
 tags: [persistent-kernel, clc, tile-scheduling]
 confidence: source-reported
 reproducibility: snippet

@@ -2,7 +2,7 @@
 id: hw-pdl-gdc
 title: "Programmatic Dependent Launch / Grid Dependency Control"
 type: hardware
-architectures: [sm90, sm100, sm120]
+architectures: [sm90, sm100, sm103, sm120]
 tags: [pdl, gdc]
 confidence: source-reported
 related: [technique-persistent-kernels, hw-clc]

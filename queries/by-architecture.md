@@ -988,7 +988,33 @@ Source-PR pages whose validated evidence review found no family-level or exact a
 | [[Perf] FP8 FlashInfer Attn for ViT](../sources/prs/vllm/PR-38065.md) | `sources/prs/vllm/PR-38065.md` |
 | [[MLA] Optimize mla indexer prepare uniform decode for MTP > 1](../sources/prs/vllm/PR-39458.md) | `sources/prs/vllm/PR-39458.md` |
 | [[DSV4]   Fuse norm and router for low latency scenario](../sources/prs/vllm/PR-41263.md) | `sources/prs/vllm/PR-41263.md` |
+| [Two-CTA Cooperative MMA](../wiki/hardware/2sm-cooperative.md) | `wiki/hardware/2sm-cooperative.md` |
 | [Cluster Launch Control (CLC)](../wiki/hardware/clc.md) | `wiki/hardware/clc.md` |
+| [mbarrier (Memory Barrier Primitives)](../wiki/hardware/mbarrier.md) | `wiki/hardware/mbarrier.md` |
+| [NVFP4 and block-scaled narrow precision](../wiki/hardware/nvfp4.md) | `wiki/hardware/nvfp4.md` |
+| [Programmatic Dependent Launch / Grid Dependency Control](../wiki/hardware/pdl-gdc.md) | `wiki/hardware/pdl-gdc.md` |
+| [tcgen05.mma — Fifth-Generation Tensor Core MMA](../wiki/hardware/tcgen05-mma.md) | `wiki/hardware/tcgen05-mma.md` |
+| [Tensor Memory Accelerator (TMA)](../wiki/hardware/tma.md) | `wiki/hardware/tma.md` |
+| [Tensor Memory (TMEM)](../wiki/hardware/tmem.md) | `wiki/hardware/tmem.md` |
+| [CUDA C++ for Blackwell Kernels](../wiki/languages/cuda-cpp.md) | `wiki/languages/cuda-cpp.md` |
+| [CuTe DSL for Blackwell](../wiki/languages/cute-dsl.md) | `wiki/languages/cute-dsl.md` |
+| [PTX for SM100](../wiki/languages/ptx-sm100.md) | `wiki/languages/ptx-sm100.md` |
+| [Triton on Blackwell](../wiki/languages/triton-blackwell.md) | `wiki/languages/triton-blackwell.md` |
+| [PTX Cache Policy Differentiation](../wiki/techniques/cache-policy.md) | `wiki/techniques/cache-policy.md` |
+| [CCCL CUB SM100 Scan Tuning](../wiki/techniques/cccl-memory-primitives.md) | `wiki/techniques/cccl-memory-primitives.md` |
+| [Double/Multi-Buffering Patterns](../wiki/techniques/double-buffering.md) | `wiki/techniques/double-buffering.md` |
+| [Epilogue fusion](../wiki/techniques/epilogue-fusion.md) | `wiki/techniques/epilogue-fusion.md` |
+| [Fine-grained FP8/FP4 scaling](../wiki/techniques/fine-grained-quantization.md) | `wiki/techniques/fine-grained-quantization.md` |
+| [Kernel fusion](../wiki/techniques/kernel-fusion.md) | `wiki/techniques/kernel-fusion.md` |
+| [Persistent Kernels with Cluster Launch Control](../wiki/techniques/persistent-kernels.md) | `wiki/techniques/persistent-kernels.md` |
+| [Ping-Pong Scheduling](../wiki/techniques/ping-pong-scheduling.md) | `wiki/techniques/ping-pong-scheduling.md` |
+| [Software Pipelining and Multi-Stage Buffering](../wiki/techniques/pipeline-stages.md) | `wiki/techniques/pipeline-stages.md` |
+| [Register budgeting](../wiki/techniques/register-budgeting.md) | `wiki/techniques/register-budgeting.md` |
+| [Software-Emulated Exponential](../wiki/techniques/software-exp.md) | `wiki/techniques/software-exp.md` |
+| [Shared Memory Swizzling](../wiki/techniques/swizzling.md) | `wiki/techniques/swizzling.md` |
+| [Tile Scheduling Strategies](../wiki/techniques/tile-scheduling.md) | `wiki/techniques/tile-scheduling.md` |
+| [Wide Vectorized Loads and Cache Policies](../wiki/techniques/vectorized-loads.md) | `wiki/techniques/vectorized-loads.md` |
+| [Warp Specialization on Hopper and Blackwell](../wiki/techniques/warp-specialization.md) | `wiki/techniques/warp-specialization.md` |
 
 ### `sm103a`
 
@@ -1005,6 +1031,15 @@ Source-PR pages whose validated evidence review found no family-level or exact a
 | [[NVIDIA] Add new SMs support for Spark & Thor](../sources/prs/sglang/PR-11287.md) | `sources/prs/sglang/PR-11287.md` |
 | [support cutlass fp4 kernel in sm120](../sources/prs/sglang/PR-11737.md) | `sources/prs/sglang/PR-11737.md` |
 | [Make fp4_quantize kernels work on sm103](../sources/prs/sglang/PR-9807.md) | `sources/prs/sglang/PR-9807.md` |
+| [Two-CTA Cooperative MMA](../wiki/hardware/2sm-cooperative.md) | `wiki/hardware/2sm-cooperative.md` |
+| [mbarrier (Memory Barrier Primitives)](../wiki/hardware/mbarrier.md) | `wiki/hardware/mbarrier.md` |
+| [NVFP4 and block-scaled narrow precision](../wiki/hardware/nvfp4.md) | `wiki/hardware/nvfp4.md` |
+| [tcgen05.mma — Fifth-Generation Tensor Core MMA](../wiki/hardware/tcgen05-mma.md) | `wiki/hardware/tcgen05-mma.md` |
+| [Tensor Memory Accelerator (TMA)](../wiki/hardware/tma.md) | `wiki/hardware/tma.md` |
+| [Tensor Memory (TMEM)](../wiki/hardware/tmem.md) | `wiki/hardware/tmem.md` |
+| [CUDA C++ for Blackwell Kernels](../wiki/languages/cuda-cpp.md) | `wiki/languages/cuda-cpp.md` |
+| [CuTe DSL for Blackwell](../wiki/languages/cute-dsl.md) | `wiki/languages/cute-dsl.md` |
+| [PTX for SM100](../wiki/languages/ptx-sm100.md) | `wiki/languages/ptx-sm100.md` |
 
 ### `sm110`
 

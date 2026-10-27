@@ -2,7 +2,7 @@
 id: technique-epilogue-fusion
 title: Epilogue fusion
 type: technique
-architectures: [sm100, sm90]
+architectures: [sm100, sm103, sm90]
 tags: [epilogue-fusion, tmem, warp-specialization]
 confidence: source-reported
 reproducibility: snippet

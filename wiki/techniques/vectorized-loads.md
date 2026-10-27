@@ -2,7 +2,7 @@
 id: technique-vectorized-loads
 title: "Wide Vectorized Loads and Cache Policies"
 type: technique
-architectures: [sm100, sm90]
+architectures: [sm100, sm103, sm90]
 tags: [vectorized-loads, cache-policy, register-budgeting]
 confidence: source-reported
 reproducibility: snippet

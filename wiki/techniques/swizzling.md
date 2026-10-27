@@ -2,7 +2,7 @@
 id: technique-swizzling
 title: "Shared Memory Swizzling"
 type: technique
-architectures: [sm100, sm90]
+architectures: [sm100, sm103, sm90]
 tags: [swizzling, shared-memory-optimization, tma]
 confidence: source-reported
 reproducibility: snippet

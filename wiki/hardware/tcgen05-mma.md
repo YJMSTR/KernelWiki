@@ -2,7 +2,7 @@
 id: hw-tcgen05-mma
 title: "tcgen05.mma — Fifth-Generation Tensor Core MMA"
 type: hardware
-architectures: [sm100, sm100a]
+architectures: [sm100, sm103, sm100a, sm103a]
 tags: [tcgen05, tmem, mbarrier]
 confidence: source-reported
 related: [hw-tmem, hw-2sm-cooperative, technique-warp-specialization]

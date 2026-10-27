@@ -2,7 +2,7 @@
 id: technique-cccl-memory-primitives
 title: CCCL CUB SM100 Scan Tuning
 type: technique
-architectures: [sm100]
+architectures: [sm100, sm103]
 tags: [cuda-cpp, parallel-scan, vectorized-loads, tile-scheduling]
 confidence: source-reported
 reproducibility: snippet

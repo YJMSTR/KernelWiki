@@ -6,7 +6,7 @@ tags: [cuda-cpp, ptx, tcgen05, tmem]
 related: [lang-ptx, hw-tcgen05-mma, hw-tmem, blog-tcgen05-tutorial]
 sources: [doc-ptx-isa-sm100, doc-nvidia-tuning-guide, doc-cutlass-cute-dsl]
 reproducibility: snippet
-architectures: [sm100, sm100a]
+architectures: [sm100, sm103, sm100a, sm103a]
 confidence: source-reported
 ---
 

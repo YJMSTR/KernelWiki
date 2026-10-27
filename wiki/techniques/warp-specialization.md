@@ -2,7 +2,7 @@
 id: technique-warp-specialization
 title: Warp Specialization on Hopper and Blackwell
 type: technique
-architectures: [sm100, sm90]
+architectures: [sm100, sm103, sm90]
 tags: [warp-specialization, tcgen05, tmem]
 confidence: source-reported
 reproducibility: snippet

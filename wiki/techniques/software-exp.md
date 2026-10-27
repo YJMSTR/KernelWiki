@@ -2,7 +2,7 @@
 id: technique-software-exp
 title: "Software-Emulated Exponential"
 type: technique
-architectures: [sm100]
+architectures: [sm100, sm103]
 tags: [software-exp, attention]
 confidence: source-reported
 reproducibility: snippet

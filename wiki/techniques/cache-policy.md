@@ -2,7 +2,7 @@
 id: technique-cache-policy
 title: "PTX Cache Policy Differentiation"
 type: technique
-architectures: [sm100, sm90]
+architectures: [sm100, sm103, sm90]
 tags: [cache-policy, vectorized-loads]
 confidence: source-reported
 reproducibility: snippet

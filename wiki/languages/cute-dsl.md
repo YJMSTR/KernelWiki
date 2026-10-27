@@ -6,7 +6,7 @@ tags: [cute-dsl, tcgen05, tmem, tma]
 related: [hw-tcgen05-mma, hw-tmem, kernel-flash-attention-4, doc-cutlass-blackwell, doc-cutlass-cute-dsl]
 sources: [doc-cutlass-blackwell, doc-cutlass-cute-dsl, blog-colfax-cutlass, blog-flash-attention-4]
 reproducibility: snippet
-architectures: [sm100, sm100a]
+architectures: [sm100, sm103, sm100a, sm103a]
 confidence: source-reported
 ---
 

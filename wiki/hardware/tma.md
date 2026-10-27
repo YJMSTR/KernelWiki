@@ -2,7 +2,7 @@
 id: hw-tma
 title: "Tensor Memory Accelerator (TMA)"
 type: hardware
-architectures: [sm100, sm100a, sm90, sm90a]
+architectures: [sm100, sm103, sm100a, sm103a, sm90, sm90a]
 tags: [tma, mbarrier]
 confidence: source-reported
 related: [hw-tcgen05-mma, technique-pipeline-stages, technique-swizzling]

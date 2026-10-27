@@ -2,7 +2,7 @@
 id: hw-tmem
 title: "Tensor Memory (TMEM)"
 type: hardware
-architectures: [sm100, sm100a]
+architectures: [sm100, sm103, sm100a, sm103a]
 tags: [tmem, tcgen05]
 confidence: source-reported
 related: [hw-tcgen05-mma, technique-double-buffering, pattern-register-pressure]

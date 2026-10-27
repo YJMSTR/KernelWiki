@@ -2,7 +2,7 @@
 id: hw-mbarrier
 title: "mbarrier (Memory Barrier Primitives)"
 type: hardware
-architectures: [sm100, sm100a, sm90, sm90a, sm80]
+architectures: [sm100, sm103, sm100a, sm103a, sm90, sm90a, sm80]
 tags: [mbarrier, tma]
 confidence: source-reported
 related: [hw-tma, hw-tcgen05-mma, technique-warp-specialization, technique-pipeline-stages]

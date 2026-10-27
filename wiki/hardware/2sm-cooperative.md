@@ -2,7 +2,7 @@
 id: hw-2sm-cooperative
 title: "Two-CTA Cooperative MMA"
 type: hardware
-architectures: [sm100, sm100a]
+architectures: [sm100, sm103, sm100a, sm103a]
 tags: [2sm-cooperative, tcgen05, cluster]
 confidence: source-reported
 related: [hw-tcgen05-mma, hw-tmem, technique-warp-specialization]
