@@ -4,10 +4,48 @@
 
 <a id="dao-ailabflash-attention"></a>
 ## Dao-AILab/flash-attention
-33 PRs
+75 PRs
 
 | PR | Title | Date | Techniques | Tags |
 |-----|-------|------|------------|------|
+| [#3071](../sources/prs/flash-attention/PR-3071.md) | [CuTe] Bound ragged K/V TMA loads with per-CTA descriptor updates instead of a wrap-around descriptor | 2026-10-22 |  | gemm, grouped-gemm, mla |
+| [#3034](../sources/prs/flash-attention/PR-3034.md) | [CuTe, SM100] Fix 2CTA CLC tile coords and make forward work-tile coordinates logical | 2026-10-18 | tile-scheduling | clc, mla, tma |
+| [#3012](../sources/prs/flash-attention/PR-3012.md) | [CuTe, Bwd, SM100] Bound the K/V TMA loads by seqlen_k so unused rows cannot poison dQ (packed varlen and dense seqused_k) | 2026-10-17 | pipeline-stages | tma |
+| [#3013](../sources/prs/flash-attention/PR-3013.md) | [CuTe, SM90] Bound the K/V TMA loads by seqlen_k (fwd + bwd, packed varlen and dense seqused_k) | 2026-10-17 | pipeline-stages | tma |
+| [#2983](../sources/prs/flash-attention/PR-2983.md) | [CuTe, Fwd, SM100] Prevent NaN contamination from unused V cache entries | 2026-10-08 | pipeline-stages | attention, flash-attention, fp8 |
+| [#2960](../sources/prs/flash-attention/PR-2960.md) | [Cute, Sm100] bwd postprocess: load 2-CTA dQaccum directly into registers | 2026-10-04 |  | tmem |
+| [#2962](../sources/prs/flash-attention/PR-2962.md) | [CuTe, SM100] Unify hd256 forward and recover the remaining stack | 2026-10-04 | pipeline-stages | mla, tma, tmem |
+| [#2964](../sources/prs/flash-attention/PR-2964.md) | [CuTe, SM100] Unify hd256 backward (1/5): tests first, named 2CTA schedules and TMEM widths | 2026-10-04 | pipeline-stages | tmem |
+| [#2965](../sources/prs/flash-attention/PR-2965.md) | [CuTe, SM100] Unify hd256 backward (2/5): 64-row KV tile per CTA (M=64 TMEM layout) with GQA, varlen and deterministic support | 2026-10-04 | pipeline-stages, swizzling | tcgen05, tma, tmem |
+| [#2966](../sources/prs/flash-attention/PR-2966.md) | [CuTe, SM100] Unify hd256 backward (3/5): hdim 256 on FlashAttentionBackwardSm100 (opt-in) | 2026-10-04 | pipeline-stages, swizzling | reduction, tmem |
+| [#2967](../sources/prs/flash-attention/PR-2967.md) | [CuTe, SM100] Unify hd256 backward (4/7): pack the query heads of a KV head into the Q tile (GQA) | 2026-10-04 | tile-scheduling | mla, quantization, tma |
+| [#2938](../sources/prs/flash-attention/PR-2938.md) | [Cute, Sm100] 1CTA MLA forward (dense + sparse top-k), MLA dispatch heuristic, sparse MLA backward at any head count | 2026-09-29 | pipeline-stages, swizzling, tile-scheduling | attention, clc, fp8 |
+| [#2923](../sources/prs/flash-attention/PR-2923.md) | [CuTe, SM100] Chunk hd256 SplitKV output to retain two KV stages | 2026-09-27 |  | tma, tmem |
+| [#2928](../sources/prs/flash-attention/PR-2928.md) | [CuTe, SM100] S/P ping-pong to overlap QK with softmax in decode | 2026-09-27 | pipeline-stages | attention, flash-attention, gemm |
+| [#2916](../sources/prs/flash-attention/PR-2916.md) | [CuTe, SM100] SplitKV for the hd256 2CTA forward kernel | 2026-09-25 |  | clc |
+| [#2917](../sources/prs/flash-attention/PR-2917.md) | [CuTe, SM100] hd256 fwd: derive lengths and KV ranges from BlockInfo/SeqlenInfoQK | 2026-09-25 | pipeline-stages | clc |
+| [#2906](../sources/prs/flash-attention/PR-2906.md) | [CuTe, SM100] Write real zeros for block-sparse empty tiles | 2026-09-22 |  | attention, gemm, tcgen05 |
+| [#2907](../sources/prs/flash-attention/PR-2907.md) | [CuTe, SM100] Sparse MLA training fwd: exact running softmax max | 2026-09-22 |  | attention, fp8, mla |
+| [#2908](../sources/prs/flash-attention/PR-2908.md) | [CuTe, SM100] Sparse MLA training: dpsum from an O residual | 2026-09-22 | pipeline-stages | attention, mla, tma |
+| [#2893](../sources/prs/flash-attention/PR-2893.md) | [CuTe, SM100] Sparse MLA bwd: keep P normalization and dS product in fp32 | 2026-09-16 |  | mla, tmem, topk |
+| [#2883](../sources/prs/flash-attention/PR-2883.md) | [CuTe, SM100] Support 1..128 Q heads in sparse MLA via in-kernel TMA padding | 2026-09-12 | pipeline-stages | attention, gemm, mla |
+| [#2880](../sources/prs/flash-attention/PR-2880.md) | [CuTe, SM100] Preserve hd256 output alignment for vectorized stores | 2026-09-11 | pipeline-stages | attention |
+| [#2867](../sources/prs/flash-attention/PR-2867.md) | One more deprecation; | 2026-09-08 |  |  |
+| [#2816](../sources/prs/flash-attention/PR-2816.md) | [CuTe, SM100] Sparse MLA bwd: in-kernel recompute-P + token-chunked backward | 2026-08-24 | pipeline-stages, swizzling | gemm, mbarrier, mla |
+| [#2807](../sources/prs/flash-attention/PR-2807.md) | [CuTe, SM100, HD256] optimize SM100 HD256 varlen scheduling and epilogues | 2026-08-18 | tile-scheduling | attention, flash-attention, tma |
+| [#2775](../sources/prs/flash-attention/PR-2775.md) | [CuTe, Fwd] Fix PackGQA predication for padded head dimensions | 2026-08-09 |  | tma |
+| [#2763](../sources/prs/flash-attention/PR-2763.md) | [CuTe, SM80/SM120] Guard invalid varlen forward tiles | 2026-08-07 |  |  |
+| [#2768](../sources/prs/flash-attention/PR-2768.md) | Add an Attention Sink to Flash MLA for SM100 | 2026-08-07 |  | attention, fp8, mla |
+| [#2755](../sources/prs/flash-attention/PR-2755.md) | [CuTe, SM100] Sparse MLA bwd: don't scatter dK/dV at -1 sentinel indices | 2026-08-04 |  | mla, reduction, topk |
+| [#2745](../sources/prs/flash-attention/PR-2745.md) | [CuTe] Fix forward dynamic-shape correctness | 2026-07-29 | persistent-kernel | tma |
+| [#2698](../sources/prs/flash-attention/PR-2698.md) | [CuTe,Bwd,Sm100] Support head_dim not a multiple of 32 in backward | 2026-07-09 |  | tcgen05, tma, tmem |
+| [#2696](../sources/prs/flash-attention/PR-2696.md) | add tcgen.ld.red support to sm103a arch | 2026-07-06 |  | attention, flash-attention, fp4 |
+| [#2692](../sources/prs/flash-attention/PR-2692.md) | add linearize scheduling to combine kernel for full cudagraph | 2026-07-01 | tile-scheduling | attention, flash-attention |
+| [#2656](../sources/prs/flash-attention/PR-2656.md) | [NVIDIA][CuTe,Fwd,sm120] Implement Pack-GQA on SM120 (+ graceful SplitKV fallback) | 2026-06-15 |  |  |
+| [#2621](../sources/prs/flash-attention/PR-2621.md) | [Cute,Bwd,Sm100] add sparse MLA (Deepseek v4) backward kernels | 2026-06-03 | pipeline-stages, swizzling, tile-scheduling | attention, clc, gemm |
+| [#2558](../sources/prs/flash-attention/PR-2558.md) | [CuTe,Fwd,Sm100] refactor mla sm100 forward and add page table | 2026-05-13 |  | attention, flash-attention, mla |
+| [#2559](../sources/prs/flash-attention/PR-2559.md) | [CuTe,Sm100] Varlen Dynamic Persistent scheduler and metadata | 2026-05-13 | persistent-kernel, pipeline-stages, swizzling | attention, clc, flash-attention |
+| [#2536](../sources/prs/flash-attention/PR-2536.md) | Enable split-kv for blocksparse tensors | 2026-05-04 |  |  |
 | [#2497](../sources/prs/flash-attention/PR-2497.md) | [FA4][hd256] Backward TMA bulk-store epilogue + LSE/dpsum coalesce | 2026-04-27 |  | clc, tcgen05, tma |
 | [#2488](../sources/prs/flash-attention/PR-2488.md) | [hd256] Improve forward kernel with exp2 FMA emulation (3% to 9% performance gain) | 2026-04-23 | pipeline-stages | attention, flash-attention, quantization |
 | [#2489](../sources/prs/flash-attention/PR-2489.md) | [hd256] Add TMA paged KV support to SM100 2CTA forward kernel | 2026-04-23 |  | quantization, tma |
@@ -23,6 +61,7 @@
 | [#2085](../sources/prs/flash-attention/PR-2085.md) | Add blocksparse support for bwd on blackwell | 2025-12-17 | pipeline-stages | attention, tma |
 | [#2070](../sources/prs/flash-attention/PR-2070.md) | Add score-mod bwd support  | 2025-12-15 |  | tmem |
 | [#2043](../sources/prs/flash-attention/PR-2043.md) | [Cute,Fwd] Extend score_mod to variable sequence length | 2025-12-03 |  |  |
+| [#2035](../sources/prs/flash-attention/PR-2035.md) | [Cute] Fix head dim 64 bwd | 2025-11-26 | swizzling | attention, flash-attention |
 | [#2033](../sources/prs/flash-attention/PR-2033.md) | [Cute,Bwd,Sm100] enable deterministic mode for sm100 bwd and fix race conditions | 2025-11-24 | tile-scheduling | tcgen05, tmem |
 | [#2014](../sources/prs/flash-attention/PR-2014.md) | [Cute,Sm100,Fwd] use correction warps for epi when not using TMA | 2025-11-15 | tile-scheduling | tma |
 | [#1999](../sources/prs/flash-attention/PR-1999.md) | [Cute,Fwd,Sm100] Support paged attention | 2025-11-11 | pipeline-stages | attention, flash-attention, tma |
@@ -30,6 +69,7 @@
 | [#1945](../sources/prs/flash-attention/PR-1945.md) | Blackwell FlashAttention-BWD (v1.0) | 2025-10-19 | pipeline-stages, swizzling, tile-scheduling | flash-attention, gemm, tcgen05 |
 | [#1940](../sources/prs/flash-attention/PR-1940.md) | [Cute,Fwd,Sm100] Implement SplitKV | 2025-10-15 | persistent-kernel, tile-scheduling | attention, gemm, tcgen05 |
 | [#1934](../sources/prs/flash-attention/PR-1934.md) | feat: Adding varlen support to cute-dsl sm80 bwd | 2025-10-13 | tile-scheduling | attention, flash-attention |
+| [#1925](../sources/prs/flash-attention/PR-1925.md) | [CuteDSL] Explicitly cast for Flash Combine | 2025-10-07 |  | attention, flash-attention |
 | [#1893](../sources/prs/flash-attention/PR-1893.md) | Improve causal backward determinism perf with SPT schedule | 2025-09-17 | swizzling, tile-scheduling |  |
 | [#1823](../sources/prs/flash-attention/PR-1823.md) | Add sorting and head swizzle to varlen scheduler | 2025-08-19 | swizzling, tile-scheduling | sort |
 | [#1604](../sources/prs/flash-attention/PR-1604.md) | Support hdimQK != hdimV backward | 2025-04-21 |  |  |
@@ -41,14 +81,93 @@
 | [#1173](../sources/prs/flash-attention/PR-1173.md) | FA3 FP8 qkv descales + restore max offset for h128 causal + added sync for producer WG | 2024-08-23 |  | fp8, gemm |
 | [#1100](../sources/prs/flash-attention/PR-1100.md) | Fp8 kernel with "in-kernel" transpose of V in producer | 2024-07-26 | pipeline-stages, swizzling, tile-scheduling | attention, fp8, gemm |
 | [#1072](../sources/prs/flash-attention/PR-1072.md) | Add var-seq-len to FA3 fp16 / bf16 fwd | 2024-07-19 |  | tma |
+| [#970](../sources/prs/flash-attention/PR-970.md) | Support unpadded LSE layout | 2024-05-28 |  | attention, flash-attention |
+| [#852](../sources/prs/flash-attention/PR-852.md) | Add in Macros  for defining __grid_constant__ | 2024-02-25 |  | attention, flash-attention |
 
-<a id="nvidiatensorrt-llm"></a>
-## NVIDIA/TensorRT-LLM
-88 PRs
+<a id="dao-ailabquack"></a>
+## Dao-AILab/quack
+4 PRs
 
 | PR | Title | Date | Techniques | Tags |
 |-----|-------|------|------------|------|
+| [#181](../sources/prs/quack/PR-181.md) | Revert electone clean up in PR-#164 | 2026-07-23 |  |  |
+| [#170](../sources/prs/quack/PR-170.md) | [GEMM] Full blockscaled MXFP4/6/8 QMMA and MXFP4/NVFP4 OMMA support for SM100 GEMM | 2026-07-10 |  | block-scale, fp4, fp6 |
+| [#158](../sources/prs/quack/PR-158.md) | [GEMM] Add SplitK Serial,Parallel,Separate modes to all GEMM classes and dtypes | 2026-06-16 | pipeline-stages, stream-k, tile-scheduling | block-scale, clc, fp8 |
+| [#138](../sources/prs/quack/PR-138.md) | [RMSNorm] Support autotuning of RMSNorm{Fwd|Bwd} via config classes | 2026-05-14 |  | reduction, tma |
+
+<a id="hazyresearchthunderkittens"></a>
+## HazyResearch/ThunderKittens
+6 PRs
+
+| PR | Title | Date | Techniques | Tags |
+|-----|-------|------|------------|------|
+| [#210](../sources/prs/ThunderKittens/PR-210.md) | Add FP8-output and FP4-output Vera Rubin GEMMs | 2026-09-12 | pipeline-stages, swizzling | block-scale, clc, fp4 |
+| [#208](../sources/prs/ThunderKittens/PR-208.md) | Add SM107 support and Vera Rubin FP8/NVFP4 GEMMs | 2026-09-10 | swizzling | block-scale, clc, fp4 |
+| [#201](../sources/prs/ThunderKittens/PR-201.md) | Add SM103 NVFP4 K96 tcgen05 support and B300 GEMM sample | 2026-06-05 | pipeline-stages, swizzling | block-scale, clc, fp4 |
+| [#161](../sources/prs/ThunderKittens/PR-161.md) | ThunderKittens 2.0 | 2025-11-19 | pipeline-stages, swizzling | attention, block-scale, clc |
+| [#144](../sources/prs/ThunderKittens/PR-144.md) | Fix Clang frontend parsing errors for ThunderKittens CUDA Headers  | 2025-08-20 |  |  |
+| [#78](../sources/prs/ThunderKittens/PR-78.md) | Improve TK's custom kernel binding utilities | 2025-01-02 |  |  |
+
+<a id="nvidiatensorrt-llm"></a>
+## NVIDIA/TensorRT-LLM
+144 PRs
+
+| PR | Title | Date | Techniques | Tags |
+|-----|-------|------|------------|------|
+| [#20924](../sources/prs/TensorRT-LLM/PR-20924.md) | [TRTLLM-17123][feat] Gather cached MLA KV for Helix prefill | 2026-10-24 |  | attention, fp8, mla |
+| [#20929](../sources/prs/TensorRT-LLM/PR-20929.md) | [TRTLLM-14961][refactor] Give the CuteDSL grouped-GEMM MoE implementations canonical identities | 2026-10-24 | kernel-fusion, persistent-kernel, swizzling | block-scale, fp4, fp8 |
+| [#20844](../sources/prs/TensorRT-LLM/PR-20844.md) | [None][feat] Muse Spark Open modeling_v2 TEP target: mid-high-concurrency optimizations for Vera Rubin | 2026-10-22 | swizzling | attention, flash-attention, fp4 |
+| [#20720](../sources/prs/TensorRT-LLM/PR-20720.md) | [None][feat] FLUX.3 VC-Attention support | 2026-10-21 | double-buffering, pipeline-stages | attention, block-scale, flash-attention |
+| [#20741](../sources/prs/TensorRT-LLM/PR-20741.md) | [TRTLLM-14960][refactor] Give the CUTLASS MoE implementations canonical identities | 2026-10-21 | pipeline-stages | block-scale, fp4, fp8 |
+| [#20653](../sources/prs/TensorRT-LLM/PR-20653.md) | [None][perf] Integrate FlashInfer KDA prefill with fused convolution | 2026-10-20 |  | attention, block-scale, fp4 |
+| [#20576](../sources/prs/TensorRT-LLM/PR-20576.md) | [None][feat] Kimi K3: DWDP fabric gather and TCPStore rendezvous, KVCM-managed KDA replay buffers | 2026-10-19 | double-buffering | attention, fp4, gemm |
+| [#20452](../sources/prs/TensorRT-LLM/PR-20452.md) | [TRTLLM-17204][feat] Add First-N/Last-N mixed-precision KV caching using native SWA in KVCM V2 | 2026-10-16 |  | attention, fp4, fp8 |
+| [#20454](../sources/prs/TensorRT-LLM/PR-20454.md) | [TRTLLM-16480][perf] Speed up GLM-5.3-Flash sparse attention | 2026-10-16 |  | attention, block-scale, fp4 |
+| [#20387](../sources/prs/TensorRT-LLM/PR-20387.md) | [https://nvbugs/6913951][fix] Support FP8 custom-mask context attention | 2026-10-15 |  | attention, fp4, fp8 |
+| [#20390](../sources/prs/TensorRT-LLM/PR-20390.md) | [None][perf] GLM-5.3-Flash C++ kernel speedups: vectorized FP8 1x128 quant and 288-expert router GEMM | 2026-10-15 | pipeline-stages | block-scale, fp8, gemm |
+| [#20405](../sources/prs/TensorRT-LLM/PR-20405.md) | [TRTLLM-17109][perf] Reduce Gemma multimodal attention mask construction peak memory | 2026-10-15 |  | attention, flash-attention |
+| [#20415](../sources/prs/TensorRT-LLM/PR-20415.md) | [https://nvbugs/6862662][fix] Bound FP8 MLA page-table loads for partial tiles | 2026-10-15 |  | attention, fp8, mla |
+| [#20271](../sources/prs/TensorRT-LLM/PR-20271.md) | [https://nvbugs/6905381][fix] Fix CUDA-core GEMM launch for wide FP8 outputs | 2026-10-14 |  | fp8, gemm |
+| [#20209](../sources/prs/TensorRT-LLM/PR-20209.md) | [None][feat] Add the PrimTS native sparse MLA FMHA for DeepSeek-V4 generation and enable it by default on SM100 | 2026-10-13 | double-buffering, persistent-kernel, pipeline-stages | attention, block-scale, clc |
+| [#20214](../sources/prs/TensorRT-LLM/PR-20214.md) | [TRTLLM-15864][chore] Consolidate the VisualGen attention domain under _torch/visual_gen/attention/ | 2026-10-13 | pipeline-stages | attention, flash-attention, sparse-attention |
+| [#20223](../sources/prs/TensorRT-LLM/PR-20223.md) | [None][fix] Size the Blackwell spec-dec tree mask for the SwapsMmaAb kernel layout | 2026-10-13 | pipeline-stages | attention, flash-attention |
+| [#20224](../sources/prs/TensorRT-LLM/PR-20224.md) | [None][feat] Support PrimsTS SageAttention for VisualGen VSA and SOL | 2026-10-13 | pipeline-stages | attention, flash-attention, fp8 |
+| [#20100](../sources/prs/TensorRT-LLM/PR-20100.md) | [None][feat] Deterministic mode for the self-sampling GVR V2 top-K decode (fp32) | 2026-10-11 |  | attention, sort, sparse-attention |
+| [#20106](../sources/prs/TensorRT-LLM/PR-20106.md) | [None][perf] optimize gvr v2 under large batchsize and small seqlen | 2026-10-11 | pipeline-stages | topk |
+| [#20084](../sources/prs/TensorRT-LLM/PR-20084.md) | [None][perf] Avoid cuBLAS's fallback in the KDA prefill projection | 2026-10-10 |  | fp8, gemm, tma |
+| [#19960](../sources/prs/TensorRT-LLM/PR-19960.md) | [None][feat] Kimi K3 optimizations on Rubin | 2026-10-08 | double-buffering, kernel-fusion | attention, fp4, fp8 |
+| [#19976](../sources/prs/TensorRT-LLM/PR-19976.md) | [None][perf] Port the DKG paged MQA logits kernel improvements and default the DSA indexer to CuTe DSL | 2026-10-08 | persistent-kernel | attention, block-scale, flash-attention |
+| [#19829](../sources/prs/TensorRT-LLM/PR-19829.md) | [None][fix] Kimi K3 attn_res kernels: order the ws_stats reads and fence the slot releases | 2026-10-02 | double-buffering, kernel-fusion, persistent-kernel | attention, mbarrier, tma |
+| [#19727](../sources/prs/TensorRT-LLM/PR-19727.md) | [TRTLLM-16621][feat] Support DeepSeek-V4.1-Flash | 2026-09-30 |  | attention, fp4, fp8 |
+| [#19581](../sources/prs/TensorRT-LLM/PR-19581.md) | [None][fix] wait for K1 readers before reusing KDA prefill stages | 2026-09-23 |  | tma |
+| [#19548](../sources/prs/TensorRT-LLM/PR-19548.md) | [None][feat] Add the Blackwell (SM100/SM103) MXFP8 fused FC12 MoE kernel to CuteDslFusedMoE on feat/rl_rc | 2026-09-22 | kernel-fusion, persistent-kernel, swizzling | block-scale, fp8, gemm |
+| [#19446](../sources/prs/TensorRT-LLM/PR-19446.md) | [None][perf] PDL on the missing decode edges | 2026-09-20 |  | gemm, tma |
+| [#19338](../sources/prs/TensorRT-LLM/PR-19338.md) | [None][feat] Upgrade Blackwell cuteDSL MLA kernel for packed q heads and compact input | 2026-09-17 |  | attention, fp8, mla |
+| [#19361](../sources/prs/TensorRT-LLM/PR-19361.md) | [None][fix] Add SM107 (Rubin) to SM100-family support statements; gate W4A8 NVFP4 FP8 MoE to SM100/103 | 2026-09-17 |  | attention, flash-attention, fp4 |
+| [#19184](../sources/prs/TensorRT-LLM/PR-19184.md) | [None][feat] Rubin kernels & attention: DSV4/DSA, CuteDSL GEMM | 2026-09-15 | pipeline-stages | attention, flash-attention, fp4 |
+| [#19217](../sources/prs/TensorRT-LLM/PR-19217.md) | [TRTLLM-16404][fix] support post-SiLU clamp in CUTLASS MoE | 2026-09-15 |  | fp8, moe |
+| [#19138](../sources/prs/TensorRT-LLM/PR-19138.md) | [None][feat] enable the GVR Top-K and MTP draft-loop index reuse for the QSA indexer | 2026-09-14 |  | attention, fp4, fp8 |
+| [#19142](../sources/prs/TensorRT-LLM/PR-19142.md) | [None][fix] Reject unsupported SM100 sync-object factories | 2026-09-14 | pipeline-stages |  |
+| [#19150](../sources/prs/TensorRT-LLM/PR-19150.md) | [None][fix] Pass alpha through SM107 scaled_mm compilation | 2026-09-14 |  | gemm, tcgen05 |
+| [#19094](../sources/prs/TensorRT-LLM/PR-19094.md) | [TRTLLM-14329][perf] Enable fused DSA metadata by default | 2026-09-12 |  | attention, fp4, fp8 |
+| [#19061](../sources/prs/TensorRT-LLM/PR-19061.md) | [TRTLLM-16184][refactor] Consolidate the C++ MoE kernels, thop ops and gtests under moe/ directories | 2026-09-11 | pipeline-stages | fp8, moe |
+| [#19070](../sources/prs/TensorRT-LLM/PR-19070.md) | [None][feat] Add FP4 MLA attention backend | 2026-09-11 | pipeline-stages, swizzling | attention, flash-attention, fp4 |
+| [#18843](../sources/prs/TensorRT-LLM/PR-18843.md) | [TRTLLM-16303][refactor] modularize Mamba cache managers | 2026-09-07 | kernel-fusion, pipeline-stages | attention, flash-attention, fp8 |
+| [#18702](../sources/prs/TensorRT-LLM/PR-18702.md) | [None][feat] Self-sampling GVR V2 prefill indexer top-K | 2026-09-04 | pipeline-stages | attention, flash-attention, fp4 |
+| [#18723](../sources/prs/TensorRT-LLM/PR-18723.md) | [None][feat] Enable NVFP4 KV for DSV4 | 2026-09-04 | pipeline-stages | attention, fp4, fp8 |
+| [#18496](../sources/prs/TensorRT-LLM/PR-18496.md) | [TRTLLM-16040][feat] Refresh SM90 SageAttention onto the per-thread-quantized kernel, Integrate to VisualGen | 2026-09-01 | swizzling, warp-specialization | attention, flash-attention, fp8 |
+| [#18546](../sources/prs/TensorRT-LLM/PR-18546.md) | [None][feat] Add SM107 quantized dense and DSV4 CuTe DSL kernels | 2026-09-01 | pipeline-stages, swizzling, tile-scheduling | block-scale, clc, fp4 |
+| [#18396](../sources/prs/TensorRT-LLM/PR-18396.md) | [None][feat] FLUX.1-dev NVFP4 Static Quant with per-tensor FP8 quantized MHA (sm103 CUTEDSL) | 2026-08-29 | pipeline-stages | attention, flash-attention, fp4 |
+| [#18329](../sources/prs/TensorRT-LLM/PR-18329.md) | [TRTLLM-15917][feat] Integrate Sol-Attn sparse attention into VisualGen | 2026-08-28 | pipeline-stages, swizzling | attention, flash-attention, gemm |
+| [#18331](../sources/prs/TensorRT-LLM/PR-18331.md) | [TRTLLM-15316][feat] Fix fused mHC Phase-4 coherence and support uneven split-K | 2026-08-28 |  | tcgen05, tma |
+| [#18391](../sources/prs/TensorRT-LLM/PR-18391.md) | [TRTLLM-14575][perf] Batch DSA cross-layer index remap into one kernel launch per indexer group | 2026-08-28 |  | attention, mla, reduction |
+| [#18268](../sources/prs/TensorRT-LLM/PR-18268.md) | [TRTLLM-14575][perf] Fuse DSA decode metadata into a single Triton kernel | 2026-08-26 | kernel-fusion | attention, fp4, fp8 |
+| [#17956](../sources/prs/TensorRT-LLM/PR-17956.md) | [None][perf] update MegaMoE kernels for Blackwell and Rubin | 2026-08-19 | kernel-fusion, persistent-kernel, pipeline-stages | block-scale, fp4, fp8 |
+| [#17968](../sources/prs/TensorRT-LLM/PR-17968.md) | [TRTLLM-14558][chore] Consolidate the Attention domain: modules, backends and unit tests | 2026-08-19 |  | attention, flash-attention, mla |
+| [#17681](../sources/prs/TensorRT-LLM/PR-17681.md) | [None][feat] Add NVFP4 KV cache support for DSA | 2026-08-14 |  | attention, block-scale, fp4 |
+| [#16799](../sources/prs/TensorRT-LLM/PR-16799.md) | [None][perf] Optimize Blackwell fused MHC half-MMA kernel | 2026-07-23 | pipeline-stages | reduction, tcgen05, tma |
 | [#14291](../sources/prs/TensorRT-LLM/PR-14291.md) | [None][feat] Update the logic of FMHA JIT path | 2026-05-19 | pipeline-stages, swizzling, tile-scheduling | attention, clc, flash-attention |
+| [#14306](../sources/prs/TensorRT-LLM/PR-14306.md) | [None][perf] Fuse sigmoid+mul+add shared-expert combine into one Trit… | 2026-05-19 | kernel-fusion | attention, fp4, moe |
 | [#14219](../sources/prs/TensorRT-LLM/PR-14219.md) | [None][feat] DSv4: enable GVR Heuristic Top-K for compress_ratio=4 | 2026-05-17 |  | attention, mla, reduction |
 | [#14134](../sources/prs/TensorRT-LLM/PR-14134.md) | [None][feat] Add chunked prefill support for Gemma4 (text + vision multimodal) | 2026-05-14 |  | attention, moe |
 | [#13975](../sources/prs/TensorRT-LLM/PR-13975.md) | [None][perf] Add CUDA q_b norm for DeepSeek V4 | 2026-05-11 |  |  |
@@ -124,7 +243,9 @@
 | [#9838](../sources/prs/TensorRT-LLM/PR-9838.md) | [https://nvbugs/5726962][feat] Apply fusion for W4AFP8_AWQ MoE | 2025-12-09 | epilogue-fusion, pipeline-stages | block-scale, fp4, fp8 |
 | [#9852](../sources/prs/TensorRT-LLM/PR-9852.md) | [None][feat] Fused kernels (qknormrope + moe routing) and two-model MTP support for glm4moe | 2025-12-09 | kernel-fusion, pipeline-stages | attention, fp4, moe |
 | [#9854](../sources/prs/TensorRT-LLM/PR-9854.md) | [None][feat] Port fp4 quantization kernel optimization from FlashInfer | 2025-12-09 | pipeline-stages, swizzling | block-scale, fp4, quantization |
+| [#9687](../sources/prs/TensorRT-LLM/PR-9687.md) | [https://nvbugs/5456493][feat] Add fp8 bmm on sm120 | 2025-12-04 | pipeline-stages | attention, fp8, gemm |
 | [#9618](../sources/prs/TensorRT-LLM/PR-9618.md) | [TRTLLM-9685] [feat] Add gather fc1 kernel by cuteDSL | 2025-12-02 | pipeline-stages | block-scale, fp4, gemm |
+| [#9174](../sources/prs/TensorRT-LLM/PR-9174.md) | [https://nvbugs/5456493][feat] add fp8 dense for sm120 | 2025-11-14 | pipeline-stages, swizzling | block-scale, fp8, gemm |
 | [#9175](../sources/prs/TensorRT-LLM/PR-9175.md) | [None][feat] TRT-LLM Gen MoE optimize DeepSeek Fp8 activation kernel | 2025-11-14 | pipeline-stages | block-scale, fp8, moe |
 | [#9087](../sources/prs/TensorRT-LLM/PR-9087.md) | [None][fix] support topk autotuner input for expert slot per group larger than 32 | 2025-11-12 | pipeline-stages | block-scale, fp4, moe |
 | [#8620](../sources/prs/TensorRT-LLM/PR-8620.md) | [None][feat] Enable nvfp4 cuda core for sm120 | 2025-10-23 | pipeline-stages | fp4, gemm, nvfp4 |
@@ -135,14 +256,113 @@
 | [#7761](../sources/prs/TensorRT-LLM/PR-7761.md) | [TRTLLM-8637][feat] Optimize the routing kernel for DeepseekV3 (MoE CUTLASS backend); Add support for 384 experts (MoE TRTLLM backend) | 2025-09-16 | pipeline-stages | block-scale, moe, reduction |
 | [#7524](../sources/prs/TensorRT-LLM/PR-7524.md) | [None][chore] Fix kernel launch param and add TRTLLM MoE backend test | 2025-09-04 | pipeline-stages | block-scale, fp4, fp8 |
 | [#6809](../sources/prs/TensorRT-LLM/PR-6809.md) | [OMNIML-2336][feat] Add NVFP4 x FP8 | 2025-08-12 | pipeline-stages, swizzling | fp4, fp8, gemm |
+| [#6538](../sources/prs/TensorRT-LLM/PR-6538.md) | [None][feat] Use Separate QKV Input Layout for Context MLA | 2025-08-01 | pipeline-stages | attention, flash-attention, fp4 |
 | [#4867](../sources/prs/TensorRT-LLM/PR-4867.md) | feat: Add w4a8_mxfp4_fp8 quantization recipe. | 2025-06-03 | persistent-kernel, pipeline-stages, tile-scheduling | fp4, gemm, quantization |
 
 <a id="nvidiacccl"></a>
 ## NVIDIA/cccl
-60 PRs
+160 PRs
 
 | PR | Title | Date | Techniques | Tags |
 |-----|-------|------|------------|------|
+| [#12156](../sources/prs/cccl/PR-12156.md) | [CUB] Make DeviceScan implementation helpers private | 2026-10-22 |  |  |
+| [#12163](../sources/prs/cccl/PR-12163.md) | [CUB] Only vectorize BlockLoad/BlockStore for matching value types | 2026-10-22 |  |  |
+| [#12167](../sources/prs/cccl/PR-12167.md) | [CUB] Propagate launcher errors from kernel launches in dispatch layers | 2026-10-22 |  | scan |
+| [#12186](../sources/prs/cccl/PR-12186.md) | [CUB] Reject empty inputs in the unseeded cub::ThreadReduce overload | 2026-10-22 |  | reduction |
+| [#12190](../sources/prs/cccl/PR-12190.md) | [CUB] Add std::formatter specialization for cub::ScanByKeyAlgorithm | 2026-10-22 |  |  |
+| [#12111](../sources/prs/cccl/PR-12111.md) | [CUB] Apply clang-tidy `misc-include-cleaner` to `cub/device/dispatch` | 2026-10-21 |  |  |
+| [#12093](../sources/prs/cccl/PR-12093.md) | [CUB] Fix tuning policy docs for DeviceMergeSort, DeviceTransform and DeviceSegmentedSort | 2026-10-20 |  |  |
+| [#12109](../sources/prs/cccl/PR-12109.md) | Fix cub::DeviceReduce::ReduceByKey key comparisons with lossy key output type | 2026-10-20 |  |  |
+| [#12110](../sources/prs/cccl/PR-12110.md) | [CUB] Simplify Thrust dependencies for `triple_chevron_launch` | 2026-10-20 |  |  |
+| [#12071](../sources/prs/cccl/PR-12071.md) | Respect CCCL_AVOID_SORT_UNROLL in all sort/merge unroll defaults | 2026-10-19 |  | sort |
+| [#12076](../sources/prs/cccl/PR-12076.md) | [CUB][Refactor] Moves shared top-k radix-pass helpers into `cub/detail/topk_helpers.cuh` | 2026-10-19 |  | sort, topk |
+| [#12077](../sources/prs/cccl/PR-12077.md) | [QA Agent] Fix `WarpScan` regression with `cuda::std::pair` | 2026-10-19 |  | scan |
+| [#12079](../sources/prs/cccl/PR-12079.md) | [QA Agent] Fix `cub::DeviceFind::LowerBoundSortedValues` large input values | 2026-10-19 |  |  |
+| [#12084](../sources/prs/cccl/PR-12084.md) | Remove CUDA runtime headers | 2026-10-19 |  |  |
+| [#12085](../sources/prs/cccl/PR-12085.md) | [CUB] Fix two CUB header inclusion cycles | 2026-10-19 |  |  |
+| [#12060](../sources/prs/cccl/PR-12060.md) | Recoups performance for `+/-0.0` float normalization in `DeviceBatchedTopK` | 2026-10-18 |  | sort, topk |
+| [#12063](../sources/prs/cccl/PR-12063.md) | Reject unsupported `tie_break` requests in `cub::DeviceTopK` | 2026-10-18 |  |  |
+| [#12052](../sources/prs/cccl/PR-12052.md) | Tune deterministic DeviceReduce for sm100 with 64-bit offsets | 2026-10-16 |  |  |
+| [#12053](../sources/prs/cccl/PR-12053.md) | Tune DeviceRadixSort pairs for sm100 with 64-bit keys, values and offsets | 2026-10-16 |  |  |
+| [#12013](../sources/prs/cccl/PR-12013.md) | [CUB] Refactor `cub::DeviceHistogram` to always take an environment  | 2026-10-15 |  |  |
+| [#12001](../sources/prs/cccl/PR-12001.md) | cccl-modernize-type-trait | 2026-10-14 |  |  |
+| [#12004](../sources/prs/cccl/PR-12004.md) | Reenable HW warp redux min/max f32 | 2026-10-14 |  |  |
+| [#11995](../sources/prs/cccl/PR-11995.md) | [Cub] Modularize util_type | 2026-10-13 | double-buffering | scan, sort |
+| [#11964](../sources/prs/cccl/PR-11964.md) | Selectively merge Thrust's reduce_by_key default tuning into CUB | 2026-10-09 |  |  |
+| [#11974](../sources/prs/cccl/PR-11974.md) | Optimize `WarpReduce` for floating-point types (Min/Max) | 2026-10-09 |  | reduction |
+| [#11943](../sources/prs/cccl/PR-11943.md) | Consolidate and remove various overlaping type-trait implementations | 2026-10-08 |  |  |
+| [#11951](../sources/prs/cccl/PR-11951.md) | `warp_redux` uses `is_integer` instead of `is_integral` | 2026-10-08 |  |  |
+| [#11914](../sources/prs/cccl/PR-11914.md) | [CUB] Rename phaseInOutW to phaseInOutL in warpspeed scan | 2026-10-07 |  |  |
+| [#11923](../sources/prs/cccl/PR-11923.md) | [cub] Fix scan reduction for `AccumT` without identity element | 2026-10-07 |  | reduction |
+| [#11891](../sources/prs/cccl/PR-11891.md) | Add cub::detail::DeviceSetOps pairs APIs | 2026-10-06 |  |  |
+| [#11860](../sources/prs/cccl/PR-11860.md) | Include device_segmented_scan.cuh in cub/cub.cuh | 2026-10-05 |  |  |
+| [#11878](../sources/prs/cccl/PR-11878.md) | Use vote instructions in `WarpReduce` | 2026-10-05 |  | reduction |
+| [#11835](../sources/prs/cccl/PR-11835.md) | Treat -0.0 and +0.0 as equal in DeviceBatchedTopK ranking | 2026-10-03 |  | topk |
+| [#11808](../sources/prs/cccl/PR-11808.md) | Retune sm107 lookahead scan tuning for i128 inputs | 2026-10-02 |  |  |
+| [#11826](../sources/prs/cccl/PR-11826.md) | Tune the sm100 lookahead scan for int64 | 2026-10-02 |  |  |
+| [#11827](../sources/prs/cccl/PR-11827.md) | Optimize WarpReduce for large integers (Min/Max) | 2026-10-02 |  | reduction |
+| [#11804](../sources/prs/cccl/PR-11804.md) | Move the bulk store of the warpspeed scan into a dedicated store squad | 2026-10-01 |  | scan, tma |
+| [#11768](../sources/prs/cccl/PR-11768.md) | [cudax] Add simple groups example | 2026-09-30 |  | reduction |
+| [#11741](../sources/prs/cccl/PR-11741.md) | Allow `baseline_topk_policy` to hold a variable number of worker policies | 2026-09-29 |  | sort |
+| [#11682](../sources/prs/cccl/PR-11682.md) | Combine load and sched squad in warpspeed scan | 2026-09-28 |  |  |
+| [#11645](../sources/prs/cccl/PR-11645.md) | Fix [QA Agent] Cooperative reduction - Warp | 2026-09-24 |  | reduction |
+| [#11646](../sources/prs/cccl/PR-11646.md) | Fix [QA Agent] Cooperative reduction - Block | 2026-09-24 |  | reduction |
+| [#11623](../sources/prs/cccl/PR-11623.md) | Optimize `WarpReduce` for large integers (Sum) | 2026-09-23 |  | reduction |
+| [#11640](../sources/prs/cccl/PR-11640.md) | Add support for device-resident problem sizes in device-scan for lookback algorithm | 2026-09-23 |  | reduction, scan |
+| [#11581](../sources/prs/cccl/PR-11581.md) | [CUB]: Move more logic into `cub::detail::log_dispatch` | 2026-09-22 |  |  |
+| [#11584](../sources/prs/cccl/PR-11584.md) | [CUB] Add `_CUB_LOG_KERNEL_LAUNCH` macro and migrate kernel-launch logging | 2026-09-22 |  | scan |
+| [#11587](../sources/prs/cccl/PR-11587.md) | [CUB] Refactor `cub::DeviceMergeSort` to always take an environment | 2026-09-22 |  | sort |
+| [#11589](../sources/prs/cccl/PR-11589.md) | [CUB] Refactor `cub::DeviceMerge` to always take an environment | 2026-09-22 |  |  |
+| [#11590](../sources/prs/cccl/PR-11590.md) | [CUB] Refactor `cub::DeviceMemcpy` to always take an environment | 2026-09-22 |  |  |
+| [#11555](../sources/prs/cccl/PR-11555.md) | Re-enable RTX 5090 fill tuning for 8-byte stores | 2026-09-21 |  |  |
+| [#11479](../sources/prs/cccl/PR-11479.md) | [CUB] Compare input values in ArgMin and ArgMax | 2026-09-18 |  |  |
+| [#11506](../sources/prs/cccl/PR-11506.md) | [CUB] Thread-level Pairwise Sorting Networks | 2026-09-18 |  | sort, topk |
+| [#11332](../sources/prs/cccl/PR-11332.md) | Add IKET annotations to lookback scan | 2026-09-10 |  |  |
+| [#11344](../sources/prs/cccl/PR-11344.md) | C2H cuda::buffer support | 2026-09-10 |  |  |
+| [#11283](../sources/prs/cccl/PR-11283.md) | Disambiguate arg-extremum reductions in the reduce tuning policy selector | 2026-09-09 |  | reduction |
+| [#11284](../sources/prs/cccl/PR-11284.md) | Add key type classification to the TopK policy selector | 2026-09-09 |  | topk |
+| [#11257](../sources/prs/cccl/PR-11257.md) | Add IKET annotations to warpspeed scan | 2026-09-08 |  |  |
+| [#11263](../sources/prs/cccl/PR-11263.md) | [CUB] `misc-const-correctness` | 2026-09-08 |  |  |
+| [#11264](../sources/prs/cccl/PR-11264.md) | [CUB tests] `misc-const-correctness` | 2026-09-08 |  |  |
+| [#11275](../sources/prs/cccl/PR-11275.md) | [CUB] Plumb value/offset types into the TopK policy selector | 2026-09-08 |  | topk |
+| [#11279](../sources/prs/cccl/PR-11279.md) | Optimize `WarpReduce` for bitwise operators | 2026-09-08 |  | reduction |
+| [#11238](../sources/prs/cccl/PR-11238.md) | Simplify radix sort agent a bit | 2026-09-07 |  | sort |
+| [#11197](../sources/prs/cccl/PR-11197.md) | Add sm107 tunings for DevicePartition::Flagged | 2026-09-04 |  |  |
+| [#11199](../sources/prs/cccl/PR-11199.md) | Topk tuning/b300 keys cluster | 2026-09-04 |  | topk |
+| [#11170](../sources/prs/cccl/PR-11170.md) | Add sm107 tunings for DeviceRunLengthEncode::NonTrivialRuns | 2026-09-03 |  |  |
+| [#11174](../sources/prs/cccl/PR-11174.md) | Add sm107 tuning for Reduce::ByKey | 2026-09-03 |  |  |
+| [#11155](../sources/prs/cccl/PR-11155.md) | `misc-anonymous-namespace-in-header` | 2026-09-02 |  |  |
+| [#11079](../sources/prs/cccl/PR-11079.md) | Segmented Topk tuning on B200 `keys.cluster` | 2026-09-01 |  | topk |
+| [#11080](../sources/prs/cccl/PR-11080.md) | Segmented TopK tuning on B300 `indexed.cluster` | 2026-09-01 |  | topk |
+| [#11084](../sources/prs/cccl/PR-11084.md) | Add sm107 tunings for DeviceRadixSort::SortKeys | 2026-09-01 |  |  |
+| [#11092](../sources/prs/cccl/PR-11092.md) | Add sm107 tunings for DeviceRadixSort::Pairs | 2026-09-01 |  |  |
+| [#11093](../sources/prs/cccl/PR-11093.md) | Add sm107 tunings for DevicePartition::If three-way | 2026-09-01 |  |  |
+| [#11100](../sources/prs/cccl/PR-11100.md) | Add Warp `redux` min/max for Rubin | 2026-09-01 |  | reduction |
+| [#11102](../sources/prs/cccl/PR-11102.md) | Add sm107 tunings for `DeviceSelect::If/Unique` | 2026-09-01 |  |  |
+| [#11060](../sources/prs/cccl/PR-11060.md) | Reduces the latency of air-based block-level top-k | 2026-08-30 | double-buffering | sort, topk |
+| [#11043](../sources/prs/cccl/PR-11043.md) | Lookahead RunLengthEncode should write the last key of the run to be consistent with ReduceByKey | 2026-08-27 | swizzling |  |
+| [#10992](../sources/prs/cccl/PR-10992.md) | Add sm107 tunings for lookahead scan | 2026-08-25 |  |  |
+| [#10996](../sources/prs/cccl/PR-10996.md) | [CUB] Fix HistogramEven bin arithmetic for level ranges wider than the common type | 2026-08-25 |  |  |
+| [#10812](../sources/prs/cccl/PR-10812.md) | Implement sorted outputs for segmented TopK | 2026-08-14 | kernel-fusion | sort, topk |
+| [#10751](../sources/prs/cccl/PR-10751.md) | Add sm107 tunings for DeviceScan::*ByKey | 2026-08-11 |  |  |
+| [#10752](../sources/prs/cccl/PR-10752.md) | Add sm107 tunings for DeviceReduce::Sum | 2026-08-11 |  |  |
+| [#10730](../sources/prs/cccl/PR-10730.md) | Use `mbarrier_arrive_expect_tx` with `sem_relaxed_t` in DeviceTransform when available | 2026-08-09 |  |  |
+| [#10731](../sources/prs/cccl/PR-10731.md) | Add `cub::DeviceReduce::ArgMin[Last]Max` | 2026-08-09 |  | reduction |
+| [#10570](../sources/prs/cccl/PR-10570.md) | [cub] Always set smem limit to max for lookahead scan | 2026-07-31 |  | scan |
+| [#10519](../sources/prs/cccl/PR-10519.md) | Add tunable prefetching to DeviceSelect::Flagged | 2026-07-28 |  | scan |
+| [#9868](../sources/prs/cccl/PR-9868.md) | [cudax][cuco] Migrate host and device find APIs for fixed_capacity_map | 2026-07-14 |  |  |
+| [#9829](../sources/prs/cccl/PR-9829.md) | Remove _CCCL_GRID_CONSTANT from merge sort kernel parameters | 2026-07-13 |  | sort |
+| [#9801](../sources/prs/cccl/PR-9801.md) | Segmented Topk tuning on B200 `indexed.cluster` | 2026-07-11 |  | topk |
+| [#9751](../sources/prs/cccl/PR-9751.md) | [CUB] warpspeed kernel: make scan_resources_t copy | 2026-07-08 |  |  |
+| [#9565](../sources/prs/cccl/PR-9565.md) | warpspeed run_to_run deterministic scan for SM90 using atomic global counter | 2026-06-23 |  | reduction |
+| [#9481](../sources/prs/cccl/PR-9481.md) | Vectorize output store in ublkcp DeviceTransform kernel | 2026-06-16 |  |  |
+| [#9490](../sources/prs/cccl/PR-9490.md) | Ensure warpspeed scan uses <= 256 threads for NVHPC | 2026-06-16 |  |  |
+| [#9471](../sources/prs/cccl/PR-9471.md) | use `__ballot_sync` in warpspeed lookahead  | 2026-06-15 |  | scan |
+| [#9263](../sources/prs/cccl/PR-9263.md) | run to run scan warpspeed impl sm100+ | 2026-06-04 |  | reduction |
+| [#9224](../sources/prs/cccl/PR-9224.md) | Implement Segmented TopK using Thread-Block-Clusters | 2026-06-03 | pipeline-stages | mbarrier, reduction, scan |
+| [#9210](../sources/prs/cccl/PR-9210.md) | [Tile] tile DeviceTransform port | 2026-06-01 |  |  |
+| [#9127](../sources/prs/cccl/PR-9127.md) | Hardcode `DeviceTransform` `OffsetT` to `int64` | 2026-05-26 |  |  |
+| [#9101](../sources/prs/cccl/PR-9101.md) | Implement parallel final reduction in BlockReduceWarp | 2026-05-21 |  | reduction |
 | [#9056](../sources/prs/cccl/PR-9056.md) | Vectorize contiguous iterators in `cub::BlockLoad`/`Store` | 2026-05-18 |  |  |
 | [#9019](../sources/prs/cccl/PR-9019.md) | [libcu++] Always suppress C++ extensions warnings in prologue | 2026-05-15 |  |  |
 | [#8905](../sources/prs/cccl/PR-8905.md) | [STF] Add per-handle exec_place stream resources | 2026-05-12 |  | reduction |
@@ -184,6 +404,7 @@
 | [#7795](../sources/prs/cccl/PR-7795.md) | Add env SegmentedReduce (non fixed-size overloads) | 2026-02-25 |  | reduction |
 | [#7718](../sources/prs/cccl/PR-7718.md) | Optimize non fixed size segmented reduce for small segments using max_segment_size | 2026-02-19 |  |  |
 | [#7669](../sources/prs/cccl/PR-7669.md) | Implement the new tuning API for `DeviceRleDispatch` | 2026-02-13 |  | scan |
+| [#7449](../sources/prs/cccl/PR-7449.md) | Support `cp_async_bulk_ignore_oob` in DeviceTransform | 2026-02-02 |  |  |
 | [#7384](../sources/prs/cccl/PR-7384.md) | Radix-selection based `BlockTopK` specialization | 2026-01-27 |  | scan, sort, topk |
 | [#7346](../sources/prs/cccl/PR-7346.md) | Implement the new tuning API for deterministic (rfa) reduce dispatch | 2026-01-25 |  | reduction |
 | [#7114](../sources/prs/cccl/PR-7114.md) | Two-phase reduction for fixed size segmented reduction for very large segment sizes | 2026-01-08 |  | reduction |
@@ -198,6 +419,7 @@
 | [#5314](../sources/prs/cccl/PR-5314.md) | CUB - Add internal integer utils and tests (Split `WarpReduce` PR) | 2025-07-18 |  |  |
 | [#4961](../sources/prs/cccl/PR-4961.md) | Add nondeterministic reduce that uses atomics | 2025-06-11 |  | reduction |
 | [#4716](../sources/prs/cccl/PR-4716.md) | Split Optimize Warp Reduce PR - CUB part | 2025-05-15 |  |  |
+| [#3719](../sources/prs/cccl/PR-3719.md) | [Backport branch/2.8.x] Add b200 tunings for scan.exclusive.by_key | 2025-02-06 |  |  |
 | [#3691](../sources/prs/cccl/PR-3691.md) | Fix SM100 histogram tunings | 2025-02-05 |  |  |
 | [#3559](../sources/prs/cccl/PR-3559.md) | Add b200 tunings for scan.exclusive.sum | 2025-01-28 |  |  |
 | [#3517](../sources/prs/cccl/PR-3517.md) | Fix the vectorized loading of BlockLoad | 2025-01-24 |  | topk |
@@ -206,20 +428,40 @@
 
 <a id="nvidiacutlass"></a>
 ## NVIDIA/cutlass
-36 PRs
+56 PRs
 
 | PR | Title | Date | Techniques | Tags |
 |-----|-------|------|------------|------|
+| [#3610](../sources/prs/cutlass/PR-3610.md) | [GitHub CI] Add CUTLASS test infrastructure and CuTeDSL/C++ coverage | 2026-09-11 |  |  |
+| [#3611](../sources/prs/cutlass/PR-3611.md) | Restore TMEM allocator class constants for backward compatibility | 2026-09-11 |  | tmem |
+| [#3556](../sources/prs/cutlass/PR-3556.md) | Update Blackwell CuTeDSL helpers for Rubin compatibility | 2026-08-27 | double-buffering, persistent-kernel, pipeline-stages | block-scale, fp8, gemm |
+| [#3427](../sources/prs/cutlass/PR-3427.md) | Fix ScaledBasis equality for mismatched bases, add SM120 sparse metadata K assert | 2026-07-31 |  | block-scale, gemm, tma |
+| [#3400](../sources/prs/cutlass/PR-3400.md) | fix fmha regression | 2026-07-21 |  | attention, flash-attention |
+| [#3387](../sources/prs/cutlass/PR-3387.md) | quick fix for fmha regression | 2026-07-14 |  | attention, flash-attention |
+| [#3381](../sources/prs/cutlass/PR-3381.md) | SM100 GEMM AR, GEMM RS Update | 2026-07-13 | pipeline-stages, swizzling, tile-scheduling | block-scale, gemm, tcgen05 |
+| [#3378](../sources/prs/cutlass/PR-3378.md) | [Hopper CuTeDSL] Add FP8 GEMM with GELU epilogues | 2026-07-09 | persistent-kernel, pipeline-stages, swizzling | fp8, gemm, tma |
+| [#3370](../sources/prs/cutlass/PR-3370.md) | [CuTeDSL] Gate Blackwell example tuning by CUDA backend | 2026-07-07 |  | attention, fp8, gemm |
+| [#3309](../sources/prs/cutlass/PR-3309.md) | quick fix for fmha_bwd regressions | 2026-06-09 |  | attention, flash-attention |
+| [#3295](../sources/prs/cutlass/PR-3295.md) | [CLI] quick fix for fmha compile options | 2026-06-03 |  | attention, flash-attention |
+| [#3291](../sources/prs/cutlass/PR-3291.md) | [CLI] Recover fmha perf | 2026-06-02 |  | attention, flash-attention |
+| [#3283](../sources/prs/cutlass/PR-3283.md) | Enable tcgen05 blockscaled ops on Thor SM110 | 2026-05-28 |  | block-scale, fp4, moe |
+| [#3280](../sources/prs/cutlass/PR-3280.md) | [SM120] Add ptr-array TMA collective for tensor/token-scaled FP8 grouped GEMM | 2026-05-27 | pipeline-stages | block-scale, fp8, gemm |
+| [#3272](../sources/prs/cutlass/PR-3272.md) | Add Blackwell GeForce blockscaled GEMM examples | 2026-05-25 | persistent-kernel, pipeline-stages, swizzling | block-scale, fp4, fp6 |
+| [#3251](../sources/prs/cutlass/PR-3251.md) | [CLI] Update FMHA & improve perf | 2026-05-20 | pipeline-stages | attention, flash-attention, fp8 |
+| [#3224](../sources/prs/cutlass/PR-3224.md) | [CuTeDSL] fix MLA decode support for thor | 2026-05-11 |  | attention, mla |
 | [#3176](../sources/prs/cutlass/PR-3176.md) | Small Tile N BlockScaled GEMM + Grouped GEMM on SM12x | 2026-04-19 | pipeline-stages | block-scale, gemm, grouped-gemm |
 | [#3130](../sources/prs/cutlass/PR-3130.md) | Update blackwell tutorial to be compatible with 4.5-dev version | 2026-03-25 |  | gemm |
+| [#3124](../sources/prs/cutlass/PR-3124.md) | [CuTeDSL] Add SM103 grouped block-scaled GEMM kernel and tests | 2026-03-23 | persistent-kernel, pipeline-stages | block-scale, fp4, gemm |
 | [#3106](../sources/prs/cutlass/PR-3106.md) | [CLI] add cutedsl fp16 gemm tutorial from 2 to 6 | 2026-03-13 | pipeline-stages, swizzling, tile-scheduling | clc, gemm, quantization |
 | [#3092](../sources/prs/cutlass/PR-3092.md) | Support for Group GEMM in CUTLASS Profiler for GeForce and Spark | 2026-03-07 | pipeline-stages | gemm |
 | [#3091](../sources/prs/cutlass/PR-3091.md) | [Hopper CuTeDSL] Add grouped GEMM kernel example | 2026-03-06 | pipeline-stages, swizzling, tile-scheduling | fp8, gemm, grouped-gemm |
 | [#3055](../sources/prs/cutlass/PR-3055.md) | Replace std::min with cute::min in sm120 blockwise scaling device functions | 2026-02-23 |  | gemm |
+| [#3043](../sources/prs/cutlass/PR-3043.md) | add fp4_x2 example | 2026-02-19 |  |  |
 | [#3021](../sources/prs/cutlass/PR-3021.md) | [Cute-DSL] Add option for issue_clc_query without multicast | 2026-02-11 | swizzling | clc |
 | [#2995](../sources/prs/cutlass/PR-2995.md) | [CuTeDSL] Fix: SM100 block-scale gemm overlapping accumulator | 2026-02-03 | pipeline-stages | block-scale, gemm, tmem |
 | [#2965](../sources/prs/cutlass/PR-2965.md) | [Bug Fix]Set NumSplitsM to 1 when TileShapeM < 128 in sm90 fp8 blockwise scaling CollectiveMma | 2026-01-19 |  | fp8, gemm |
 | [#2921](../sources/prs/cutlass/PR-2921.md) | Fix incorrect tensor layout strides in Blackwell MMA tutorial comments | 2026-01-03 |  |  |
+| [#2917](../sources/prs/cutlass/PR-2917.md) | New RMS Norm example with unit tests | 2026-01-01 | pipeline-stages | mbarrier, reduction |
 | [#2881](../sources/prs/cutlass/PR-2881.md) | new example with TMA prefetch feature targeting for DRAM latency boun… | 2025-12-16 | pipeline-stages, swizzling, tile-scheduling | fp8, gemm, quantization |
 | [#2875](../sources/prs/cutlass/PR-2875.md) | [cute] Add constexpr specifier to make_tiled_copy | 2025-12-12 |  |  |
 | [#2865](../sources/prs/cutlass/PR-2865.md) | [Bug Fix]Bypass launch grids for SM120 Kernel with SM90 Mainloop & SM100 TileScheduler | 2025-12-09 | tile-scheduling | block-scale, gemm |
@@ -249,11 +491,28 @@
 
 <a id="deepseek-aideepgemm"></a>
 ## deepseek-ai/DeepGEMM
-8 PRs
+25 PRs
 
 | PR | Title | Date | Techniques | Tags |
 |-----|-------|------|------------|------|
+| [#471](../sources/prs/DeepGEMM/PR-471.md) | Public release 10/14 | 2026-10-14 | pipeline-stages | fp8, gemm, moe |
+| [#462](../sources/prs/DeepGEMM/PR-462.md) | Public release 26/09/30 | 2026-09-30 | persistent-kernel, pipeline-stages | fp4, fp8, gemm |
+| [#459](../sources/prs/DeepGEMM/PR-459.md) | Sparse MQA logits follow-ups for nv_dev: 16-byte paged KV stride, workspace reuse under graph capture | 2026-09-23 |  | attention, sparse-attention |
+| [#447](../sources/prs/DeepGEMM/PR-447.md) | Integrate main APIs and SM120 kernels while preserving nv_dev features | 2026-09-15 | double-buffering, pipeline-stages, swizzling | attention, block-scale, fp4 |
+| [#441](../sources/prs/DeepGEMM/PR-441.md) | Fix Mega MoE task info slot release ordering | 2026-09-14 |  | moe |
+| [#432](../sources/prs/DeepGEMM/PR-432.md) | Public Release 26/09 | 2026-09-10 | epilogue-fusion, pipeline-stages, swizzling | block-scale, fp4, fp8 |
+| [#409](../sources/prs/DeepGEMM/PR-409.md) | Add SM100 NVFP4 MegaMoE with fused BF16 shared experts | 2026-08-17 |  | block-scale, fp4, fp8 |
+| [#396](../sources/prs/DeepGEMM/PR-396.md) | feat: add SiTU support to FP8/FP4 Mega MoE | 2026-07-30 |  | fp4, fp8, moe |
+| [#384](../sources/prs/DeepGEMM/PR-384.md) | Sync nv_dev with upstream #377 | 2026-07-17 | pipeline-stages, swizzling | attention, block-scale, fp4 |
+| [#383](../sources/prs/DeepGEMM/PR-383.md) | [SM90] Add FP8 MegaMoE support | 2026-07-16 |  | fp8 |
+| [#377](../sources/prs/DeepGEMM/PR-377.md) | Public release 26/07 | 2026-07-14 | pipeline-stages, swizzling | block-scale, fp4, fp8 |
+| [#369](../sources/prs/DeepGEMM/PR-369.md) | support indexer_n_heads = 16 | 2026-06-26 |  | tma, tmem |
+| [#364](../sources/prs/DeepGEMM/PR-364.md) | Multiple updates and refactorings | 2026-06-23 | pipeline-stages, swizzling | block-scale, fp4, fp8 |
+| [#347](../sources/prs/DeepGEMM/PR-347.md) | Multiple updates and refactorings | 2026-06-01 | swizzling | attention, fp4, fp8 |
+| [#349](../sources/prs/DeepGEMM/PR-349.md) | Sync nv_dev with upstream #347 | 2026-06-01 | swizzling | fp4, fp8, moe |
+| [#343](../sources/prs/DeepGEMM/PR-343.md) | Fix a race condition in contiguous k-grouped GEMM where in-flight tensormaps are updated in-place | 2026-05-29 |  | gemm, grouped-gemm, mbarrier |
 | [#328](../sources/prs/DeepGEMM/PR-328.md) | Sync nv_dev with upstream #316 (Mega MoE optimizations & benchmarks) | 2026-05-07 |  | attention, moe, tcgen05 |
+| [#324](../sources/prs/DeepGEMM/PR-324.md) | feat: add sm120 support for DeepGEMM  | 2026-05-01 | double-buffering, persistent-kernel, pipeline-stages | block-scale, fp4, fp8 |
 | [#304](../sources/prs/DeepGEMM/PR-304.md) | [Public release 26/04] Introducing Mega MoE, FP4 Indexer and other features/fixes | 2026-04-16 | pipeline-stages, swizzling | block-scale, fp4, fp8 |
 | [#193](../sources/prs/DeepGEMM/PR-193.md) | Fix multicast bug and optimize masked GEMM | 2025-09-12 |  | gemm |
 | [#168](../sources/prs/DeepGEMM/PR-168.md) | Fix performance issue of m-grouped contiguous GEMMs. | 2025-08-20 |  | gemm |
@@ -264,10 +523,179 @@
 
 <a id="flashinfer-aiflashinfer"></a>
 ## flashinfer-ai/flashinfer
-322 PRs
+493 PRs
 
 | PR | Title | Date | Techniques | Tags |
 |-----|-------|------|------------|------|
+| [#7519](../sources/prs/flashinfer/PR-7519.md) | perf(cake_tinygemm2_tcgen05): swap-AB accumulator tile, early tensor-memory free, M=64 tiles and retuned windows | 2026-10-27 | pipeline-stages | gemm, mbarrier, tcgen05 |
+| [#7528](../sources/prs/flashinfer/PR-7528.md) | perf(cake_batch_deepgemm_fp8): new masked BLOCK_N and two-CTA large-N/K builds | 2026-10-27 | pipeline-stages | block-scale, fp8, gemm |
+| [#7537](../sources/prs/flashinfer/PR-7537.md) | deslop(cake_blackwell_msa): fold near-duplicate sources into shared TUs selected by -D | 2026-10-27 |  | fp4, fp8, mbarrier |
+| [#7552](../sources/prs/flashinfer/PR-7552.md) | perf(cake_minimax_h3): faster SM120 NVFP4 pre-attention GEMM tile order | 2026-10-27 |  | attention, fp4, fp8 |
+| [#7385](../sources/prs/flashinfer/PR-7385.md) | perf(cake_nvfp4_mla_decode): QK-ahead decode for long SM100 plans and a faster split-KV combine | 2026-10-26 |  | fp4, mla, nvfp4 |
+| [#7418](../sources/prs/flashinfer/PR-7418.md) | perf(cake_nvfp4_mla_decode): short-unit decode and general split-KV combine on SM100 / SM103 | 2026-10-26 |  | fp4, mla, nvfp4 |
+| [#7419](../sources/prs/flashinfer/PR-7419.md) | perf(cake_blackwell_bf16_fp4): faster tcgen05 and small-M programs on SM100/SM103 | 2026-10-26 | pipeline-stages | block-scale, fp4, mbarrier |
+| [#7422](../sources/prs/flashinfer/PR-7422.md) | perf(cake_kimi_k3_vision_tower): faster vision tower programs on SM100 / SM103 | 2026-10-26 | pipeline-stages | attention, gemm, mbarrier |
+| [#7425](../sources/prs/flashinfer/PR-7425.md) | perf(cake_batch_deepgemm_fp8): faster masked batched FP8 GEMM on SM100 / SM103 | 2026-10-26 | pipeline-stages | block-scale, fp8, gemm |
+| [#7428](../sources/prs/flashinfer/PR-7428.md) | fix(cake_stepfun_moe): proxy fence before the MXFP8 tile-256 FC1 tcgen05.cp scale reads | 2026-10-26 | pipeline-stages | fp4, fp8, mbarrier |
+| [#7430](../sources/prs/flashinfer/PR-7430.md) | fix(cake_nvfp4_attention): add the async-proxy fences before the SM120 attention TMA stores | 2026-10-26 |  | attention, fp4, fp8 |
+| [#7433](../sources/prs/flashinfer/PR-7433.md) | fix(moe): preserve FP16 NVFP4 subnormal scales on SM120 | 2026-10-26 |  | block-scale, fp4, moe |
+| [#7434](../sources/prs/flashinfer/PR-7434.md) | perf(cake_minimax_h3): faster NVFP4 pre-attention on SM100 / SM103 | 2026-10-26 |  | attention, block-scale, fp4 |
+| [#7437](../sources/prs/flashinfer/PR-7437.md) | fix(cake_minimax_h3): fence the stage release of the SM120 out-projection CTA-epilogue programs | 2026-10-26 |  | fp4, fp8, gemm |
+| [#7439](../sources/prs/flashinfer/PR-7439.md) | perf(cake_kimi_k3_mla): late-trigger row tiles and pre-wait split-KV reducers for sm_100a and sm_103a | 2026-10-26 | pipeline-stages | attention, fp8, mbarrier |
+| [#7455](../sources/prs/flashinfer/PR-7455.md) | fix(cake_minimax_h3): order the SM120 MLP ring-stage reads before the TMA refill with a proxy fence | 2026-10-26 |  | fp4, fp8, gemm |
+| [#7458](../sources/prs/flashinfer/PR-7458.md) | perf(cake_minimax_h3): faster NVFP4 pre-attention norm stage for four destinations on SM103 | 2026-10-26 |  | attention, fp4, fp8 |
+| [#7463](../sources/prs/flashinfer/PR-7463.md) | perf(cake_blackwell_bf16_fp4): relaxed tcgen05 entry cluster arrive and a leaner 8-CTA split-K reduce-scatter cell | 2026-10-26 |  | block-scale, fp4, mbarrier |
+| [#7487](../sources/prs/flashinfer/PR-7487.md) | perf(cake_minimax_h3): faster SM120 NVFP4 varlen attention with overlapped pre-processing | 2026-10-26 |  | attention, fp4, fp8 |
+| [#7512](../sources/prs/flashinfer/PR-7512.md) | feat(cake_fmha): add 20 paged context attention programs (BF16, FP8, NVFP4 KV) for sm_100a and sm_103a | 2026-10-26 |  | attention, fp4, fp8 |
+| [#7206](../sources/prs/flashinfer/PR-7206.md) | perf(cake_rubin_mla_nvfp4_decode): eight-warp split-KV merge and one-tile wave fill for Rubin (sm_107a) | 2026-10-25 |  | fp4, mla, nvfp4 |
+| [#7210](../sources/prs/flashinfer/PR-7210.md) | perf(cake_mxfp8_megamoe_ep16): CTA-scope weight-tile publication and deeper rings | 2026-10-25 | kernel-fusion, pipeline-stages | mbarrier, moe, tcgen05 |
+| [#7212](../sources/prs/flashinfer/PR-7212.md) | feat(moe): extend grouped Frost decode to FP8 and block-FP8 on Hopper and SM120 | 2026-10-25 | pipeline-stages | block-scale, fp8, gemm |
+| [#7275](../sources/prs/flashinfer/PR-7275.md) | perf(cake_mhc): four-stream mHC (hidden size 4096) with grad keeps its speed next to a resident side kernel on SM100 / SM103 (#7046) | 2026-10-25 |  | gemm |
+| [#7277](../sources/prs/flashinfer/PR-7277.md) | perf(cake_softmax): faster Blackwell cached-cluster softmax and a persistent many-row route | 2026-10-25 | pipeline-stages | fp8, mbarrier |
+| [#7279](../sources/prs/flashinfer/PR-7279.md) | perf(cake_minimax_h3): fused MXFP8 QKV GEMM pre-attention on SM100 / SM103 | 2026-10-25 | pipeline-stages | attention, block-scale, fp4 |
+| [#7282](../sources/prs/flashinfer/PR-7282.md) | perf(cake_blackwell_bf16_fp4): faster SM100/SM103 BF16 x FP4 GEMM kernels for small and large M | 2026-10-25 | pipeline-stages | block-scale, fp4, gemm |
+| [#7284](../sources/prs/flashinfer/PR-7284.md) | feat(cake_qsa_nvfp4): tcgen05 decode programs for SM107 | 2026-10-25 |  | fp4, nvfp4, tcgen05 |
+| [#7292](../sources/prs/flashinfer/PR-7292.md) | perf(cake_warp_decode): retune SM100/SM103 schedule selection | 2026-10-25 |  | fp4, moe, nvfp4 |
+| [#7300](../sources/prs/flashinfer/PR-7300.md) | perf(cake_mega_moe): staging kernel, arrive-only barriers and route-in-dispatch for the BF16 rank-major EP8 layer | 2026-10-25 |  | fp4, gemm, mbarrier |
+| [#7302](../sources/prs/flashinfer/PR-7302.md) | feat(cake_tinygemm2_tcgen05): add tcgen05 tinygemm_bf16 programs for sm_100a/103a/107a | 2026-10-25 | pipeline-stages | gemm, mbarrier, tcgen05 |
+| [#7306](../sources/prs/flashinfer/PR-7306.md) | perf(cake_nvfp4_mla_decode): faster SM100 / SM103 decode with a native E2M1 x E4M3 dequant multiply and a shorter softmax chain | 2026-10-25 |  | attention, fp4, mla |
+| [#7308](../sources/prs/flashinfer/PR-7308.md) | perf(cake_softmax): shared-tile Blackwell cached-cluster softmax for wide multi-wave rows | 2026-10-25 | pipeline-stages | mbarrier |
+| [#7311](../sources/prs/flashinfer/PR-7311.md) | perf(cake_blackwell_bf16_fp4): faster tcgen05 M128 pair programs on SM100/SM103 | 2026-10-25 |  | block-scale, fp4, tcgen05 |
+| [#7313](../sources/prs/flashinfer/PR-7313.md) | feat(cake_qsa_nvfp4): mma.sync decode programs and the merge for SM120 | 2026-10-25 |  | attention, fp4, nvfp4 |
+| [#7315](../sources/prs/flashinfer/PR-7315.md) | feat(cake_fused_moe): BF16 × NVFP4 W4A16 split fused-MoE kernels for sm_100a/sm_103a | 2026-10-25 | pipeline-stages | fp4, mbarrier, moe |
+| [#7329](../sources/prs/flashinfer/PR-7329.md) | perf(cake_rubin_mla_nvfp4_decode): two epilogue staging tiles per correction warp for Rubin (sm_107a) | 2026-10-25 | pipeline-stages | fp4, mla, nvfp4 |
+| [#7335](../sources/prs/flashinfer/PR-7335.md) | perf(cake_nvfp4_sparse_mla_decode): tcgen05 programs for sm_100a and sm_103a | 2026-10-25 |  | fp4, mla, nvfp4 |
+| [#7343](../sources/prs/flashinfer/PR-7343.md) | perf(cake_nvfp4_mla_decode): faster SM100 / SM103 decode with a paced dequant transform and a shorter start chain | 2026-10-25 |  | attention, fp4, mla |
+| [#7345](../sources/prs/flashinfer/PR-7345.md) | feat(cake_qsa_nvfp4): the SM120 whole-tile decode, selected by the per-CTA tile stream | 2026-10-25 |  | attention, fp4, nvfp4 |
+| [#7347](../sources/prs/flashinfer/PR-7347.md) | perf(cake_minimax_h3): faster FP8 / NVFP4 pre-attention on SM120 | 2026-10-25 |  | attention, fp4, fp8 |
+| [#7348](../sources/prs/flashinfer/PR-7348.md) | perf(cake_mega_moe): flag-in-data path for up to 32 rows, pushed route codes and post-wait unpermute reads for the BF16 rank-major EP8 layer | 2026-10-25 |  | fp4, tma, topk |
+| [#7351](../sources/prs/flashinfer/PR-7351.md) | perf(cake_bf16_bmm_swap_ab): tcgen05 swap-AB programs for decode-row bmm_bf16 on SM100/SM103 | 2026-10-25 | pipeline-stages | gemm, mbarrier, tcgen05 |
+| [#7353](../sources/prs/flashinfer/PR-7353.md) | feat(cake_qsa_nvfp4): the persistent walk serves compute capability 10.7 within a three-wave bound | 2026-10-25 |  | attention, block-scale, fp4 |
+| [#7359](../sources/prs/flashinfer/PR-7359.md) | perf(cake_softmax): per-tile turnover ring for the Blackwell persistent softmax | 2026-10-25 |  | reduction |
+| [#7362](../sources/prs/flashinfer/PR-7362.md) | feat(cake_nvfp4_attention): add Cake NVFP4 attention for SM100, SM103 and SM120 | 2026-10-25 |  | attention, flash-attention, fp4 |
+| [#7370](../sources/prs/flashinfer/PR-7370.md) | perf(cake_tinygemm2_tcgen05): unroll narrow tile and retune its windows | 2026-10-25 | pipeline-stages | gemm, mbarrier, tcgen05 |
+| [#7373](../sources/prs/flashinfer/PR-7373.md) | feat(cake_fp8_attention): add Cake INT8 / FP8 attention for SM90 | 2026-10-25 | pipeline-stages | attention, flash-attention, fp4 |
+| [#7146](../sources/prs/flashinfer/PR-7146.md) | perf(cake_deepgemm_mega_mhc): evict-first y_bf16 stores in the hidden-4096 programs | 2026-10-24 |  | fp4, fp8, nvfp4 |
+| [#7160](../sources/prs/flashinfer/PR-7160.md) | perf(cake_msa): add L2 evict-first paged BF16 decode for Blackwell MSA | 2026-10-24 |  | attention, fp8, sparse-attention |
+| [#7162](../sources/prs/flashinfer/PR-7162.md) | feat(moe): add per-tensor FP8 and Hopper FMA to Frost | 2026-10-24 | pipeline-stages | fp4, fp8, gemm |
+| [#7186](../sources/prs/flashinfer/PR-7186.md) | feat(moe): extend Frost weight-only decode to FP16 | 2026-10-24 | pipeline-stages | fp4, fp8, moe |
+| [#7204](../sources/prs/flashinfer/PR-7204.md) | feat(moe): extend grouped Frost decode to SM80 and typed activations | 2026-10-24 | pipeline-stages, swizzling | gemm, moe, quantization |
+| [#7205](../sources/prs/flashinfer/PR-7205.md) | feat(cake_qsa_nvfp4): tcgen05 decode programs for SM100 / SM103 | 2026-10-24 |  | attention, block-scale, fp4 |
+| [#7114](../sources/prs/flashinfer/PR-7114.md) | feat(cake_deepgemm_mega_mhc): FP8 group-128 and NVFP4 output variants of the hidden-4096 fused mHC step on SM107 | 2026-10-23 |  | fp4, fp8, nvfp4 |
+| [#7120](../sources/prs/flashinfer/PR-7120.md) | feat(cake_tp_moe_finalize_rmsnorm): add optimized backend | 2026-10-23 |  | moe |
+| [#7122](../sources/prs/flashinfer/PR-7122.md) | deslop(cake_blackwell_softmax): drop 3 unreachable kernels, fold clones | 2026-10-23 |  | topk |
+| [#7123](../sources/prs/flashinfer/PR-7123.md) | perf(cake_deepgemm_mega_mhc): weight-staging tailpipe program for the hidden-4096 BF16 route at many task waves | 2026-10-23 |  | fp4, fp8, nvfp4 |
+| [#6973](../sources/prs/flashinfer/PR-6973.md) | deslop(cake_mega_gate, cake_mega_mhc, cake_mega_moe_v3): share bindings and arg plans, fold 40-split kernels | 2026-10-22 | pipeline-stages | fp4, fp8, moe |
+| [#6974](../sources/prs/flashinfer/PR-6974.md) | deslop(cake_trtllm_mla_blackwell, cake_kimi_k3_mla): share bindings, fold kernels, drop dead selector | 2026-10-22 |  | attention, clc, fp8 |
+| [#7001](../sources/prs/flashinfer/PR-7001.md) | Add standard Blackwell MegaMoE to the next CuTe DSL backend | 2026-10-22 | persistent-kernel, pipeline-stages, swizzling | block-scale, clc, fp4 |
+| [#7004](../sources/prs/flashinfer/PR-7004.md) | perf(cake_rubin_mla_nvfp4_decode): faster NVFP4 MLA paged decode for Rubin (sm_107a) | 2026-10-22 | pipeline-stages | block-scale, fp4, mbarrier |
+| [#7017](../sources/prs/flashinfer/PR-7017.md) | deslop(cake_device_helpers): resolve three families' helpers from the repository headers and drop three dead ones | 2026-10-22 |  | attention, fp4, fp8 |
+| [#7019](../sources/prs/flashinfer/PR-7019.md) | perf(prims-ts): prefetch page IDs for FP8 2CTA dense MLA K/V loaders | 2026-10-22 |  | attention, fp8, mla |
+| [#7022](../sources/prs/flashinfer/PR-7022.md) | deslop(cake_mla_varq_dcp_decode): fold the kernel and binding clones, drop dead preprocessor arms | 2026-10-22 |  | fp4, fp8, mla |
+| [#7023](../sources/prs/flashinfer/PR-7023.md) | perf(cake_kda): faster packed KDA chunked grad on SM100 / SM103 / SM107 | 2026-10-22 | pipeline-stages | mbarrier, tcgen05, tmem |
+| [#7037](../sources/prs/flashinfer/PR-7037.md) | perf(cake_stepfun_moe): add tile-128 MXFP8 FC1 and FC2 kernels for the StepFun fused MoE (sm_100a, sm_103a) | 2026-10-22 | pipeline-stages, swizzling | fp4, fp8, mbarrier |
+| [#7048](../sources/prs/flashinfer/PR-7048.md) | perf(cake_deepgemm_dense_mqa): rebind 32-head FP8 routes, extend 64-head KV-split tier to Q<=1536 | 2026-10-22 | pipeline-stages, tile-scheduling | block-scale, fp4, fp8 |
+| [#7053](../sources/prs/flashinfer/PR-7053.md) | feat(moe): extend Frost low-latency to NVFP4 and typed MX activations | 2026-10-22 | pipeline-stages | fp4, moe, nvfp4 |
+| [#7056](../sources/prs/flashinfer/PR-7056.md) | feat(cake_qsa_nvfp4): Cake QSA NVFP4 sparse paged decode attention for SM80 and SM90 | 2026-10-22 |  | attention, block-scale, fp4 |
+| [#7060](../sources/prs/flashinfer/PR-7060.md) | feat(cake_fmha): aligned hd128 q1 paged decode programs for sm_100a / sm_103a | 2026-10-22 | pipeline-stages, swizzling | attention, fp4, fp8 |
+| [#7064](../sources/prs/flashinfer/PR-7064.md) | perf(gemm): SM107 SMEM and split-K 8 for the BF16 cluster split-K GEMM | 2026-10-22 | pipeline-stages | gemm |
+| [#6902](../sources/prs/flashinfer/PR-6902.md) | refactor(cake_nvfp4_attention): ship the experimental NVFP4 attention as a self-contained vendorable package | 2026-10-21 | tile-scheduling | attention, fp4, nvfp4 |
+| [#6920](../sources/prs/flashinfer/PR-6920.md) | deslop(cake_deepgemm): share the host header, fold kgroup bindings and kernel bodies, hoist the TMA encoders | 2026-10-21 | swizzling | fp4, fp8, gemm |
+| [#6926](../sources/prs/flashinfer/PR-6926.md) | perf(cake_deepgemm_dense_mqa): v12 re-export with FP4 L2 prefetch and 64-head tile-schedule routes | 2026-10-21 | pipeline-stages, tile-scheduling | fp4, fp8, mbarrier |
+| [#6927](../sources/prs/flashinfer/PR-6927.md) | refactor(cake_deepgemm_fp8_gemm): ship the DeepGEMM-derived FP8 1D1D GEMM as a self-contained vendorable package | 2026-10-21 |  | fp8, gemm, mbarrier |
+| [#6928](../sources/prs/flashinfer/PR-6928.md) | refactor(cake_deepgemm_batched_gemm): ship the DeepGEMM-derived batched projection GEMM as a self-contained vendorable package | 2026-10-21 | pipeline-stages | block-scale, fp8, gemm |
+| [#6931](../sources/prs/flashinfer/PR-6931.md) | feat(cake_rubin_mla_nvfp4_decode): NVFP4 MLA paged decode for Rubin (sm_107a) from cake | 2026-10-21 |  | fp4, mla, nvfp4 |
+| [#6933](../sources/prs/flashinfer/PR-6933.md) | refactor(cake_nvfp4_sparse_mla_decode): ship the NVFP4 sparse MLA decode programs as a self-contained package | 2026-10-21 |  | fp4, mla, nvfp4 |
+| [#6934](../sources/prs/flashinfer/PR-6934.md) | perf(cake_stepfun_moe): pair-raster BF16 FC1 and two-CTA per-token NVFP4 FC2 for the StepFun fused MoE (sm_100a, sm_103a) | 2026-10-21 | pipeline-stages, swizzling | block-scale, fp4, fp8 |
+| [#6936](../sources/prs/flashinfer/PR-6936.md) | feat(cake_minimax_h3): opt-in NVFP4-QK / FP8-PV packed-varlen attention for MiniMax-H3 SM120 | 2026-10-21 |  | attention, fp4, fp8 |
+| [#6937](../sources/prs/flashinfer/PR-6937.md) | perf(prims-ts): shorter Keeps softmax chain and grouped-Q paged selection for decode | 2026-10-21 |  | attention, fp8, quantization |
+| [#6950](../sources/prs/flashinfer/PR-6950.md) | feat(moe): unfused (deterministic) finalize path for the Rubin CuTe DSL fused MoE | 2026-10-21 |  | block-scale, fp4, gemm |
+| [#6963](../sources/prs/flashinfer/PR-6963.md) | refactor(cake_concat_mla_k): re-export the MLA K concatenation through the in-tree program loader, one self-contained unit pair per program | 2026-10-21 |  | mla |
+| [#6823](../sources/prs/flashinfer/PR-6823.md) | feat(mla): add SM90 BF16 DOTS3 sliding-window decode | 2026-10-20 | swizzling, warp-specialization | attention, gemm, mbarrier |
+| [#6827](../sources/prs/flashinfer/PR-6827.md) | deslop(cake_sage_block_sparse_attention): one SM120 kernel source, drop degenerate modules and dead device code | 2026-10-20 |  | attention, fp8, mbarrier |
+| [#6842](../sources/prs/flashinfer/PR-6842.md) | perf(cake_rmsnorm): faster H1536 / H4096 grad (SM100 / SM103 / SM107) | 2026-10-20 | pipeline-stages | mbarrier, reduction |
+| [#6862](../sources/prs/flashinfer/PR-6862.md) | deslop(cake_fp8_gemm): table-driven batch routing, shared headers, mxfp8 and grouped source folds, dead host text | 2026-10-20 | pipeline-stages, swizzling | fp8, gemm, grouped-gemm |
+| [#6873](../sources/prs/flashinfer/PR-6873.md) | perf(cake_msa): speed up Blackwell MSA kernels, add K-major prefill | 2026-10-20 | pipeline-stages | attention, fp4, fp8 |
+| [#6878](../sources/prs/flashinfer/PR-6878.md) | perf(cake_nvfp4_svdquant): converge the Cake NVFP4 SVDQuant GEMM backend and ship it as a vendorable package | 2026-10-20 | pipeline-stages | block-scale, fp4, gemm |
+| [#6774](../sources/prs/flashinfer/PR-6774.md) | feat(prims-ts): support D192 sparse and sliding-window attention | 2026-10-19 | pipeline-stages | attention, flash-attention, fp8 |
+| [#6793](../sources/prs/flashinfer/PR-6793.md) | feat(moe): MXFP8 x MXFP8 mode for the CuTe-DSL fused MoE (for Nemotron models) | 2026-10-19 | swizzling | block-scale, fp4, fp8 |
+| [#6801](../sources/prs/flashinfer/PR-6801.md) | feat(cake_stepfun): StepFun SwiGLU fused MoE Cake backend in the cake-build form (SM100a, SM103a) | 2026-10-19 | pipeline-stages | block-scale, fp4, fp8 |
+| [#6804](../sources/prs/flashinfer/PR-6804.md) | feat(qsa_nvfp4): add NVFP4 QSA sparse paged attention | 2026-10-19 |  | attention, block-scale, fp4 |
+| [#6718](../sources/prs/flashinfer/PR-6718.md) | fix(cake_mla): skip empty KV splits in the FP8 page-64 MLA decode producer | 2026-10-18 | pipeline-stages | attention, fp8, mbarrier |
+| [#6725](../sources/prs/flashinfer/PR-6725.md) | perf(cake_msa): persistent heavy-first union prefill, streaming Top-K merge/scan (rounds 11-15 re-export) | 2026-10-18 |  | attention, fp8, sort |
+| [#6733](../sources/prs/flashinfer/PR-6733.md) | deslop(cake_deepgemm_mqa): fold SM120 and dense paged clones, share the host helper, drop unread catalog data | 2026-10-18 |  | fp4, fp8, tcgen05 |
+| [#6740](../sources/prs/flashinfer/PR-6740.md) | fix(cake_kimi_k3_attn_res): drain tcgen05.ld with tcgen05.wait::ld before the TMEM dealloc (persistent programs) | 2026-10-18 |  | attention, tcgen05, tmem |
+| [#6744](../sources/prs/flashinfer/PR-6744.md) | fix(cake_kimi_k3_attn_res): drain tcgen05.ld with tcgen05.wait::ld before the TMEM dealloc (native programs) | 2026-10-18 |  | attention, tcgen05, tmem |
+| [#6745](../sources/prs/flashinfer/PR-6745.md) | deslop(cake_bgmv_moe): drop 30 never-launched kernels, fold hidden/rank/FMA clones, gate per target | 2026-10-18 | pipeline-stages | moe |
+| [#6750](../sources/prs/flashinfer/PR-6750.md) | perf(cake_deepgemm_kgroup_gemm): host-built LPT tile order for seven three-group keys (M = 5120 / N = 2304 and M = 4608 / N = 5120 across bf16 / fp32 / fp32-accumulate output modes) on the N256 and BM240 schedules on SM100a and SM103a | 2026-10-18 | pipeline-stages, swizzling | fp4, gemm, grouped-gemm |
+| [#6753](../sources/prs/flashinfer/PR-6753.md) | perf(cake_quant_lora_gemm): hoisted stage wait in the SM90 FP8 LoRA GEMM | 2026-10-18 |  | fp4, fp8, gemm |
+| [#6614](../sources/prs/flashinfer/PR-6614.md) | feat(cake_bf16_fp4_gemm): faster SM100/SM103 BF16 x FP4 GEMM kernels for the blackwell-native and blackwell-tiled backends | 2026-10-17 | pipeline-stages | block-scale, fp4, gemm |
+| [#6616](../sources/prs/flashinfer/PR-6616.md) | feat(mla): read DeepSeek-V4.1 inline-scale KV records natively on SM120 | 2026-10-17 | pipeline-stages | attention, fp4, fp8 |
+| [#6622](../sources/prs/flashinfer/PR-6622.md) | perf(cake_fused_moe): Kimi-K3 NVFP4 SiTU experts SM100 8192-token row: fused quantization + reset and 512-pair routing CTAs | 2026-10-17 | pipeline-stages | fp4, moe, nvfp4 |
+| [#6626](../sources/prs/flashinfer/PR-6626.md) | feat(moe): add unified Frost low-latency MoE backend | 2026-10-17 | persistent-kernel, pipeline-stages, swizzling | block-scale, fp4, fp8 |
+| [#6628](../sources/prs/flashinfer/PR-6628.md) | perf(cake_fused_moe): Kimi-K3 NVFP4 SiTU experts SM100 8- and 16-token rows with evict-first weight-stream loads | 2026-10-17 | pipeline-stages | block-scale, fp4, mbarrier |
+| [#6704](../sources/prs/flashinfer/PR-6704.md) | deslop(cake_fmha): caller-LSE fix, fold the kernel clones and per-arch copies into one source per family, dedupe host code, add the fp8 decode GPU test | 2026-10-17 | pipeline-stages | attention, block-scale, clc |
+| [#6573](../sources/prs/flashinfer/PR-6573.md) | [Experimental] Qwen 3.5 gated attention block (FROST, cuDNN Frontend) for Rubin | 2026-10-16 | persistent-kernel, pipeline-stages, swizzling | attention, block-scale, clc |
+| [#6574](../sources/prs/flashinfer/PR-6574.md) | perf(attention): e4m3-query FA2 tensor-core decode on SM120 | 2026-10-16 | swizzling | attention, flash-attention, fp8 |
+| [#6579](../sources/prs/flashinfer/PR-6579.md) | perf(cake_deepgemm_dense_mqa): v11 re-export on the folded catalog, withdrawn paged points | 2026-10-16 | pipeline-stages | block-scale, fp4, fp8 |
+| [#6580](../sources/prs/flashinfer/PR-6580.md) | feat(cake_msa_icp_indexer): add world-2 exchange-merge geometries (8,8), (4,8), (2,8), (2,6), (1,6) for sm_100a and sm_103a | 2026-10-16 |  | fp4, moe, nvfp4 |
+| [#6581](../sources/prs/flashinfer/PR-6581.md) | feat(cake_quant_lora_gemm): prepared NVFP4 LoRA adapter (SVDQuant-equivalent fold) and re-export of the fused quantized-base GEMM + runtime BF16 LoRA kernels | 2026-10-16 | pipeline-stages | fp4, fp8, gemm |
+| [#6508](../sources/prs/flashinfer/PR-6508.md) | feat(gemm): SM107 CuTe-DSL blockwise FP8 GEMM backend for gemm_fp8_nt_groupwise | 2026-10-15 | pipeline-stages, swizzling, tile-scheduling | block-scale, fp8, gemm |
+| [#6525](../sources/prs/flashinfer/PR-6525.md) | perf(cake_deepgemm_mixed_gemm): cooperative mbarrier initialisation, early load start, and a split-K route for the 148-SM M = 16 / N = 4608 / K = 5120 swap-AB configuration (SM100a, SM103a; shipped programs bitwise unchanged, split-K output deterministic) | 2026-10-15 | pipeline-stages | block-scale, fp4, fp8 |
+| [#6526](../sources/prs/flashinfer/PR-6526.md) | perf(cake_deepgemm_batched_gemm): evict-first B-operand loads on the swap-AB batched FP8 GEMM programs (SM100a, SM103a; outputs bitwise unchanged) | 2026-10-15 |  | block-scale, fp4, fp8 |
+| [#6529](../sources/prs/flashinfer/PR-6529.md) | feat(prims-ts): cache attention kernels and enable FP8-to-BF16 decode | 2026-10-15 |  | attention, fp4, fp8 |
+| [#6530](../sources/prs/flashinfer/PR-6530.md) | perf(cake_deepgemm): SM120 paged MQA-logits indexer: batch-aware Q-atom programs, DeepGEMM block-table cache, num_heads metadata kwarg | 2026-10-15 | pipeline-stages | fp8, mbarrier, tma |
+| [#6546](../sources/prs/flashinfer/PR-6546.md) | perf(moe): split the topK reduction in small-batch trtllm-gen MoE finalize | 2026-10-15 |  | block-scale, fp4, fp8 |
+| [#6552](../sources/prs/flashinfer/PR-6552.md) | perf(cake_kimi_k3_fp8_projection): round 11 — static / grid-stride GEMM schedules, PDL-after-weights loader, 19 table adoptions (SM100a, SM103a) | 2026-10-15 | pipeline-stages, stream-k, tile-scheduling | block-scale, clc, fp8 |
+| [#6565](../sources/prs/flashinfer/PR-6565.md) | add-new-decoding-pipeline-for-blackwell-megamoe | 2026-10-15 | persistent-kernel, pipeline-stages, swizzling | block-scale, clc, fp4 |
+| [#6471](../sources/prs/flashinfer/PR-6471.md) | perf(attention): Enable multi-token NVFP4 KV token/head grouping | 2026-10-14 |  | attention, flash-attention, fp4 |
+| [#6397](../sources/prs/flashinfer/PR-6397.md) | perf(cake_msa): faster Blackwell MSA decode programs (FP16 flat ring, per-arch uniform-FP8 stages, FP8-KV q1 prefetch) | 2026-10-13 | pipeline-stages, swizzling | attention, fp4, fp8 |
+| [#6403](../sources/prs/flashinfer/PR-6403.md) | feat(moe): thread the explicit NVFP4 4over6 recipe into TRT-LLM gen and CUTLASS fused MoE | 2026-10-13 |  | fp4, gemm, moe |
+| [#6410](../sources/prs/flashinfer/PR-6410.md) | perf(cake_msa): faster Blackwell MSA Top-K select programs (keq fold, 32-query instance, plan refit; bit-identical indices) | 2026-10-13 |  | attention, fp4, fp8 |
+| [#6427](../sources/prs/flashinfer/PR-6427.md) | perf(cake_deepgemm_mega_gate): deterministic small-M route on a cta_group::2 split-1 template -- one exported template for M <= 16 deterministic calls (SM100a, SM103a) | 2026-10-13 | pipeline-stages | gemm, mbarrier, moe |
+| [#6428](../sources/prs/flashinfer/PR-6428.md) | perf(cake_deepgemm_kgroup_gemm): n256 schedule tier for the FP32-accumulate l2 geometry on 152-SM devices, and a rotated tile order for its M = 5120 / N = 2304 / 3-group FP32-accumulate key on both devices (SM100a, SM103a) | 2026-10-13 | pipeline-stages, swizzling | block-scale, fp4, fp8 |
+| [#6433](../sources/prs/flashinfer/PR-6433.md) | perf(cake_kimi_k3_fp8_projection): round 10 — cluster split-K pair GEMM, prefetched stream-K, 128×384 pair-tile GEMM, interleaved confirm protocol and dispatch-table re-tune (SM100a, SM103a) | 2026-10-13 | pipeline-stages, stream-k | block-scale, clc, fp8 |
+| [#6442](../sources/prs/flashinfer/PR-6442.md) | perf(cake_fused_moe): Kimi-K3 NVFP4 SiTU experts SM100 16384-token row with per-CTA privatized routing | 2026-10-13 |  | block-scale, fp4, moe |
+| [#6340](../sources/prs/flashinfer/PR-6340.md) | perf(cake_fused_moe): Kimi-K3 NVFP4 SiTU experts SM100 single-token row with the fused quantization + routing FC1 | 2026-10-12 | pipeline-stages | fp4, mbarrier, moe |
+| [#6341](../sources/prs/flashinfer/PR-6341.md) | perf(cake_fused_moe): Kimi-K3 NVFP4 SiTU experts SM100 large rows with the 8-bit per-tile FC2 partial | 2026-10-12 |  | fp4, moe, nvfp4 |
+| [#6357](../sources/prs/flashinfer/PR-6357.md) | perf(cake_dsv4): overlap the next tile's V transform with PV in the NVFP4 sparse-MLA decode persistent member (SM100/SM103) | 2026-10-12 | double-buffering | attention, fp4, mbarrier |
+| [#6374](../sources/prs/flashinfer/PR-6374.md) | feat(moe): support swiglu_limit in the SM107 CuTe DSL NVFP4 MoE | 2026-10-12 |  | block-scale, fp4, gemm |
+| [#6331](../sources/prs/flashinfer/PR-6331.md) | perf(trtllm-gen): opt-in multi-wave KV split for decode when one wave gives <= 2 splits | 2026-10-11 |  | attention, flash-attention, fp8 |
+| [#6279](../sources/prs/flashinfer/PR-6279.md) | feat(moe): extend moe_utils to all supported arches and add more activation types for cuDNN grouped-GEMM MoE backends | 2026-10-09 |  | fp8, gemm, grouped-gemm |
+| [#6296](../sources/prs/flashinfer/PR-6296.md) | feat(prims-ts): PrimsTS VC-attention-QK16 for dense FMHA context | 2026-10-09 | double-buffering, pipeline-stages | attention, flash-attention, fp8 |
+| [#6180](../sources/prs/flashinfer/PR-6180.md) | feat(cake_deepgemm): SM120 paged FP8 MQA lightning-indexer logits for RTX PRO 6000 / RTX 5090 (experimental generated-program export) | 2026-10-07 | pipeline-stages, swizzling | attention, flash-attention, fp4 |
+| [#6111](../sources/prs/flashinfer/PR-6111.md) | perf(cake_fmha): uniform-gated per-item L2 stream hints for the balanced q1 decode kernels (SM100a, SM103a) | 2026-10-06 |  | attention, mbarrier |
+| [#6119](../sources/prs/flashinfer/PR-6119.md) | perf(cake_fmha): plan-free static one-wave program for the E4M3 head_dim-128 balanced DCP decode family (SM100a, SM103a) | 2026-10-06 |  | attention, fp8 |
+| [#6122](../sources/prs/flashinfer/PR-6122.md) | perf(cake_fmha): whole-tile static one-wave program for the BF16 head_dim-128 balanced DCP decode family (SM100a, SM103a) | 2026-10-06 |  | attention, gemm |
+| [#6061](../sources/prs/flashinfer/PR-6061.md) | fix(cake_fmha): cake fmha smallm hang and graph launch | 2026-10-05 |  | attention, flash-attention, mbarrier |
+| [#6062](../sources/prs/flashinfer/PR-6062.md) | perf(cake_minimax_h3_varlen_attention): round-2/3 BF16 varlen attention schedule and segment plan cache (SM100a, SM103a) | 2026-10-05 | pipeline-stages | attention, block-scale, flash-attention |
+| [#6043](../sources/prs/flashinfer/PR-6043.md) | refactor(cake_dcp): one program per split-KV variant, batch size as a kernel argument | 2026-10-04 | pipeline-stages | attention, flash-attention, fp4 |
+| [#6044](../sources/prs/flashinfer/PR-6044.md) | feat(cake_gemm): masked grouped FP8 batch DeepGEMM MoE GEMM backend for SM100 / SM103 (backend="cake") | 2026-10-04 | pipeline-stages | attention, block-scale, flash-attention |
+| [#6014](../sources/prs/flashinfer/PR-6014.md) | perf(prims-ts): tune the block-sparse/sage kernel for SM103 | 2026-10-03 | pipeline-stages | attention, fp8, quantization |
+| [#5900](../sources/prs/flashinfer/PR-5900.md) | perf(prims-ts): qk-bf16/pv-fp8 and all-fp8 dense fmha context perf bringup | 2026-10-02 | swizzling | attention, flash-attention, fp8 |
+| [#5913](../sources/prs/flashinfer/PR-5913.md) | perf(cake_fmha): round-5 E4M3 head_dim 128 balanced DCP programs and the hd64 / hd256 uniform-batch fast path on SM100/SM103 | 2026-10-02 | double-buffering, pipeline-stages | attention, flash-attention, fp4 |
+| [#5922](../sources/prs/flashinfer/PR-5922.md) | refactor(cake_mxfp8_megamoe_ep16): one fused source behind a return-protocol flag, admit SM100 (SM100 / SM103) | 2026-10-02 | pipeline-stages | attention, flash-attention, fp4 |
+| [#5933](../sources/prs/flashinfer/PR-5933.md) | refactor(cake_fmha): drop unreachable members and merge one-line per-arch copies | 2026-10-02 |  | attention, flash-attention, fp4 |
+| [#5934](../sources/prs/flashinfer/PR-5934.md) | refactor(cake_fmha): remove unreachable request-ordered decode modules and benchmark-row routing | 2026-10-02 |  | attention, flash-attention, fp4 |
+| [#5968](../sources/prs/flashinfer/PR-5968.md) | refactor(cake_mla): regenerate the Blackwell MLA decode programs as runtime-shape families | 2026-10-02 |  | attention, clc, flash-attention |
+| [#5855](../sources/prs/flashinfer/PR-5855.md) | perf(cake_fmha): round-4 balanced DCP E4M3 bodies and deterministic packed-MTP fold on SM100/SM103 | 2026-10-01 |  | attention, flash-attention, fp4 |
+| [#5743](../sources/prs/flashinfer/PR-5743.md) | feat(moe): add PowLU activation to the CUTLASS fused-MoE backend | 2026-09-30 |  | fp4, fp8, moe |
+| [#5750](../sources/prs/flashinfer/PR-5750.md) | perf(cake_gqa): serve BF16/page-16 and E4M3/page-64 (head_dim 128/256) DCP speculative decode on SM100/SM103 with the on-device load-balanced programs | 2026-09-30 | pipeline-stages | attention, flash-attention, fp4 |
+| [#5696](../sources/prs/flashinfer/PR-5696.md) | feat(moe): fuse tanh-clamped squared relu in CUTLASS epilogues | 2026-09-29 | epilogue-fusion | block-scale, fp8, gemm |
+| [#5709](../sources/prs/flashinfer/PR-5709.md) | perf(mla): prefetch split partials in the CuTe DSL MLA decode reducer | 2026-09-29 | pipeline-stages | attention, fp8, mla |
+| [#5496](../sources/prs/flashinfer/PR-5496.md) | feat(cake_backend): add MiniMax-H3 NVFP4 (W4A4) pre-attention for SM100a/SM103a | 2026-09-23 | swizzling | attention, block-scale, flash-attention |
+| [#5499](../sources/prs/flashinfer/PR-5499.md) | feat(cake_minimax_h3): experimental MiniMax-H3 packed-varlen BF16 + NVFP4 attention (SM100/SM103) | 2026-09-23 | pipeline-stages | attention, flash-attention, fp4 |
+| [#5463](../sources/prs/flashinfer/PR-5463.md) | feat(mla): MLA SM100 auto mode | 2026-09-22 |  | attention, flash-attention, mla |
+| [#5475](../sources/prs/flashinfer/PR-5475.md) | perf(prims-ts): bf16 dense fmha context perf bringup | 2026-09-22 | pipeline-stages | attention, flash-attention, fp8 |
+| [#5369](../sources/prs/flashinfer/PR-5369.md) | feat(cake_fmha): add BF16 head-dim-256 small-M speculative decode route | 2026-09-21 | double-buffering, pipeline-stages | attention, block-scale, flash-attention |
+| [#5283](../sources/prs/flashinfer/PR-5283.md) | feat(cake_nvfp4_attn): add experimental NVFP4 attention on SM103 | 2026-09-17 |  | attention, block-scale, flash-attention |
+| [#5228](../sources/prs/flashinfer/PR-5228.md) | feat(gemm): add CUTLASS NVFP4 SVDQuant support for SM120 | 2026-09-15 | stream-k, swizzling | fp4, gemm, nvfp4 |
+| [#5083](../sources/prs/flashinfer/PR-5083.md) | fix(cake_sage_attention): support non-contiguous Sage attention with partial KV tiles | 2026-09-10 |  | attention, flash-attention, fp4 |
+| [#5052](../sources/prs/flashinfer/PR-5052.md) | feat(cake_gqa): Add an experimental SM110 GQA decode kernel | 2026-09-09 | pipeline-stages | attention, flash-attention, fp4 |
+| [#5027](../sources/prs/flashinfer/PR-5027.md) | feat(comm): add allocation-stable head-chunk Ulysses primitives | 2026-09-08 | pipeline-stages | attention, fp8 |
+| [#4980](../sources/prs/flashinfer/PR-4980.md) | feat(cake_fmha): add sm100/103 paged-attention | 2026-09-04 |  | attention, block-scale, flash-attention |
+| [#4905](../sources/prs/flashinfer/PR-4905.md) | feat: integrate TRTLLM-Gen sliding-window FMHA | 2026-09-02 |  | attention, flash-attention, mla |
+| [#3838](../sources/prs/flashinfer/PR-3838.md) | fix(attention): correct SM120 NVFP4 qk_correction layout, row-sum reduction, and lse | 2026-07-04 |  | attention, flash-attention, fp4 |
 | [#3324](../sources/prs/flashinfer/PR-3324.md) | checkpointing_ssu kernel: fused replay + conditional state-write for Mamba2 | 2026-05-14 | double-buffering, pipeline-stages, swizzling | attention, block-scale, fp8 |
 | [#3328](../sources/prs/flashinfer/PR-3328.md) | feat(cute_dsl/moe): add `moe_output_memset_inplace` dense memset wrapper | 2026-05-14 |  | gemm, moe |
 | [#3286](../sources/prs/flashinfer/PR-3286.md) | feat(cute_dsl/moe): deterministic balanced autotune profile inputs | 2026-05-11 |  | fp4, fp8, moe |
@@ -280,6 +708,7 @@
 | [#3237](../sources/prs/flashinfer/PR-3237.md) | perf: optimize per-token nvfp4 quantization kernel. | 2026-05-05 | swizzling | fp4, nvfp4, quantization |
 | [#3216](../sources/prs/flashinfer/PR-3216.md) | fix(cute_dsl/moe): make autotuner bucket configuration adapt to runtime input | 2026-05-01 |  | gemm, moe |
 | [#3191](../sources/prs/flashinfer/PR-3191.md) | fix(sm12x): fix micro-kernel workspace sizing when routed_rows > num_local_experts | 2026-04-27 |  | moe, topk |
+| [#3193](../sources/prs/flashinfer/PR-3193.md) | perf(moe): optimize SM120 b12x MoE short decode | 2026-04-27 |  | fp4, moe, quantization |
 | [#3181](../sources/prs/flashinfer/PR-3181.md) | cute-dsl fmha prefill (cubin integration): remove front-padding, add attention_sink, and pdl support | 2026-04-26 |  | attention, flash-attention, fp8 |
 | [#3185](../sources/prs/flashinfer/PR-3185.md) | feat: enable glm5 router gemm | 2026-04-26 |  | gemm, moe |
 | [#3151](../sources/prs/flashinfer/PR-3151.md) | perf: Add no-bias path for tinygemm_bf16 | 2026-04-23 |  | gemm |
@@ -470,6 +899,7 @@
 | [#1571](../sources/prs/flashinfer/PR-1571.md) | bugfix: fix cuda version guard macros | 2025-08-25 |  |  |
 | [#1573](../sources/prs/flashinfer/PR-1573.md) | update trtllm-gen fp4 autotuner and routing | 2025-08-25 |  | fp4 |
 | [#1559](../sources/prs/flashinfer/PR-1559.md) | bugfix: fix persistent attention kernel correctness on blackwell | 2025-08-24 |  | attention |
+| [#1562](../sources/prs/flashinfer/PR-1562.md) | Bugfix: some typos in Persistent kernel  | 2025-08-24 | persistent-kernel | attention |
 | [#1565](../sources/prs/flashinfer/PR-1565.md) | fix: separate out fp4 lib into sm90 and sm100 versions, add oob checking in fused moe | 2025-08-24 |  | fp4, moe, quantization |
 | [#1547](../sources/prs/flashinfer/PR-1547.md) | perf: replace cudaGetDeviceProperties with cudaDeviceGetAttribute | 2025-08-22 |  |  |
 | [#1530](../sources/prs/flashinfer/PR-1530.md) | bugfix: Fix compile error for undefined swizzle enum. | 2025-08-21 | swizzling | quantization |
@@ -593,10 +1023,11 @@
 
 <a id="pytorchpytorch"></a>
 ## pytorch/pytorch
-4 PRs
+5 PRs
 
 | PR | Title | Date | Techniques | Tags |
 |-----|-------|------|------------|------|
+| [#193836](../sources/prs/pytorch/PR-193836.md) | [pytorch][PR] Migrate fastAtomicAdd to headeronly (#193176) (#193604) | 2026-08-17 |  |  |
 | [#152967](../sources/prs/pytorch/PR-152967.md) | [ATen][CUDA] Optimize 128 bit vectorization | 2025-05-06 |  |  |
 | [#150676](../sources/prs/pytorch/PR-150676.md) | [CUDA][avgpool2d] Fix backward launch bounds again for `sm100`, `sm120` | 2025-04-04 |  |  |
 | [#150705](../sources/prs/pytorch/PR-150705.md) | [CUDA] Only use vec128 if CUDA version is newer than 12.8 | 2025-04-04 |  |  |
@@ -604,10 +1035,52 @@
 
 <a id="sgl-projectsglang"></a>
 ## sgl-project/sglang
-169 PRs
+213 PRs
 
 | PR | Title | Date | Techniques | Tags |
 |-----|-------|------|------------|------|
+| [#46457](../sources/prs/sglang/PR-46457.md) | [Perf] paged-experts: fuse slot lookup into decide | 2026-10-25 |  | fp4, fp8, moe |
+| [#46464](../sources/prs/sglang/PR-46464.md) | [Perf] [NVIDIA] kimi-k3: FP32 warp split-K GEMM for the MoE front projection on SM107 | 2026-10-25 |  | gemm, mbarrier, moe |
+| [#46468](../sources/prs/sglang/PR-46468.md) | [Perf] [NVIDIA] kimi-k3: Route draft/dense bf16 GEMMs to TGV and narrow the MLA output gate vector | 2026-10-25 |  | fp4, mla, nvfp4 |
+| [#46228](../sources/prs/sglang/PR-46228.md) | [Perf] diffusion: Fuse Wan's q/k RMSNorm with its interleaved RoPE | 2026-10-24 |  | attention, reduction |
+| [#45934](../sources/prs/sglang/PR-45934.md) | [Perf] dsv4: Write V4.1 K rows with one warp per token in the fused k-norm-rope store | 2026-10-23 |  | fp4, fp8, reduction |
+| [#45938](../sources/prs/sglang/PR-45938.md) | [Perf] dsv4: Map V4.1 prefill index selections to pool slots in one kernel | 2026-10-23 |  | attention, topk |
+| [#46135](../sources/prs/sglang/PR-46135.md) | [Perf] minimax-sparse: Speed up MiniMax-M3 sparse attention on Hopper | 2026-10-23 |  | attention, fp8, sparse-attention |
+| [#46141](../sources/prs/sglang/PR-46141.md) | [Feat] attention: Add the MSA-v1 sparse backend and NVFP4 KV pool | 2026-10-23 |  | attention, fp4, fp8 |
+| [#46176](../sources/prs/sglang/PR-46176.md) | [Perf] dsv41: Trim per-step DSpark decode overhead | 2026-10-23 |  | attention, reduction |
+| [#45743](../sources/prs/sglang/PR-45743.md) | [Fix] moe: Preserve CUTLASS routing metadata and execution budgets | 2026-10-22 |  | block-scale, gemm, gemv |
+| [#45754](../sources/prs/sglang/PR-45754.md) | [Refactor] moe: Share GGUF vector kernels across CUDA entries | 2026-10-22 |  | gemv, moe, quantization |
+| [#45787](../sources/prs/sglang/PR-45787.md) | [Feat] paged-experts: AWQ, compressed-tensors, MXFP4, NVFP4, W8A8 and block-INT8 experts | 2026-10-22 |  | fp4, fp8, moe |
+| [#45805](../sources/prs/sglang/PR-45805.md) | [Fix] moe: Validate LoRA routing before grouped alignment arithmetic | 2026-10-22 |  | moe |
+| [#45814](../sources/prs/sglang/PR-45814.md) | Reduce checked CUTLASS MoE launch overhead | 2026-10-22 |  | moe, reduction |
+| [#45821](../sources/prs/sglang/PR-45821.md) | Reuse complete route preparation for CUTLASS W4A8 MoE | 2026-10-22 |  | fp8, moe |
+| [#45893](../sources/prs/sglang/PR-45893.md) | [Perf] dsv41: Serve token-interleaved V4.1 KV caches with sgl-flash-mla | 2026-10-22 |  | attention, mla, quantization |
+| [#45916](../sources/prs/sglang/PR-45916.md) | [Fix] gguf: Preserve MoE routing, weighting and allocation budgets | 2026-10-22 |  | gemv, moe, quantization |
+| [#45917](../sources/prs/sglang/PR-45917.md) | [Fix] moe: Preserve CUTLASS routing metadata and execution budgets | 2026-10-22 |  | block-scale, fp4, fp8 |
+| [#45508](../sources/prs/sglang/PR-45508.md) | [Perf] [KDA] muse_spark: Run the one-token router GEMV on CuTe DSL | 2026-10-21 |  | fp4, gemm, gemv |
+| [#45566](../sources/prs/sglang/PR-45566.md) | [Fix] gguf: Preserve MoE routing, weighting and allocation budgets | 2026-10-21 |  | gemm, gemv, moe |
+| [#45681](../sources/prs/sglang/PR-45681.md) | [Fix] lora: Preserve MoE projection identity and routing lifetimes | 2026-10-21 |  | fp8, moe, reduction |
+| [#45304](../sources/prs/sglang/PR-45304.md) | [Fix] [AMD] diffusion: Enable `--quantization fp8` on gfx1250 (torch.compile lowering + per-channel weight scales) | 2026-10-20 |  | attention, fp8, gemm |
+| [#45462](../sources/prs/sglang/PR-45462.md) | [Perf] moe: Preserve Marlin workspace and route-count budgets | 2026-10-20 |  | gemm, moe, reduction |
+| [#45179](../sources/prs/sglang/PR-45179.md) | [Perf] diffusion/minimax-h3: Batch the video VAE decoder tiles and fuse the output chain | 2026-10-19 |  | attention, gemm |
+| [#45219](../sources/prs/sglang/PR-45219.md) | [Perf] mlp: Fuse dense SwiGLU with block-FP8 quantization on decode | 2026-10-19 |  | fp8, gemm, moe |
+| [#44969](../sources/prs/sglang/PR-44969.md) | [Refactor] attention: Separate decode metadata from pool ownership | 2026-10-18 | kernel-fusion | attention, flash-attention, mla |
+| [#44973](../sources/prs/sglang/PR-44973.md) | [Perf] attention: Capture translated FA4 verify metadata for DSPARK | 2026-10-18 |  | attention, fp4, nvfp4 |
+| [#44994](../sources/prs/sglang/PR-44994.md) | [Refactor] moe: Derive routing inputs from the layer and active forward | 2026-10-18 |  | fp8, moe, quantization |
+| [#44554](../sources/prs/sglang/PR-44554.md) | [Perf] [NVIDIA] muse-spark-open: Fuse pre-expert RMSNorm with static-scale NVFP4 quantization | 2026-10-15 |  | attention, fp4, fp8 |
+| [#44580](../sources/prs/sglang/PR-44580.md) | [Fix] attention: Opt FlashMLA scheduler into dynamic shared memory | 2026-10-15 |  | attention |
+| [#43823](../sources/prs/sglang/PR-43823.md) | [Feat] VSA-H3: support sm80 (A100) with a raw-pointer Triton load path | 2026-10-12 | pipeline-stages | attention, sparse-attention, tcgen05 |
+| [#43838](../sources/prs/sglang/PR-43838.md) | [Perf] DeepSeek-V4.1: Run the small-batch decode fusions at TP2 | 2026-10-12 | swizzling | attention, quantization |
+| [#43262](../sources/prs/sglang/PR-43262.md) | [Perf] dsv41: Integrate DeepGEMM MegaGate routing | 2026-10-09 |  | gemm, quantization, topk |
+| [#42659](../sources/prs/sglang/PR-42659.md) | perf(mla): use native SATFINITE FP8 conversion in MLA KV/Q preparation | 2026-10-05 |  | fp8, mla, tma |
+| [#42489](../sources/prs/sglang/PR-42489.md) | [Perf] Improve GLM-5.3-Flash DFlash decoding on B300 | 2026-10-04 |  | attention, fp8, moe |
+| [#42175](../sources/prs/sglang/PR-42175.md) | [Performance] Optimize Qwen3.8-Flash-Next BF16 decode on Blackwell | 2026-10-02 |  | attention, moe, reduction |
+| [#42239](../sources/prs/sglang/PR-42239.md) | [Perf] Accelerate DiffusionGemma with FA4 and CUDA graphs on Blackwell | 2026-10-02 |  | attention, gemm, mla |
+| [#42273](../sources/prs/sglang/PR-42273.md) | [Dsv4.1] Bounded replay with sparse mla path | 2026-10-02 |  | attention, mla |
+| [#41887](../sources/prs/sglang/PR-41887.md) | Add blackwell dual gemm fusion support for MLP | 2026-09-30 | kernel-fusion, pipeline-stages, warp-specialization | fp8, gemm, quantization |
+| [#41344](../sources/prs/sglang/PR-41344.md) | [VLM] Introduce FA4 into ViT for SM100/SM103 | 2026-09-26 |  | attention, fp8, reduction |
+| [#41251](../sources/prs/sglang/PR-41251.md) | [Perf] Optimize DeepSeek V4.1 Flash Hopper paths and Blackwell prefill selection | 2026-09-25 |  | fp4, fp8, gemm |
+| [#41020](../sources/prs/sglang/PR-41020.md) | dsv4.1-amd: gfx950 sparse decode attention and sorted top-k | 2026-09-24 |  | attention, fp4, fp8 |
 | [#25821](../sources/prs/sglang/PR-25821.md) | [Refactor] Rename NSA → DSA: user-facing aliases, file/class/import rename | 2026-05-19 |  | attention, sparse-attention |
 | [#25554](../sources/prs/sglang/PR-25554.md) | amd/deepseek_v4 27/N [fix] Reduce Triton autotune configs for faster first-time server launch | 2026-05-18 | kernel-fusion | attention, fp8, mla |
 | [#25695](../sources/prs/sglang/PR-25695.md) | fix (jit kernel): elementwise activation C++ error | 2026-05-18 |  |  |
@@ -625,6 +1098,7 @@
 | [#23961](../sources/prs/sglang/PR-23961.md) | [feat] Init true on policy with qwen_dense | 2026-04-28 |  | attention, moe, reduction |
 | [#23965](../sources/prs/sglang/PR-23965.md) | Enable PDL for various kernels in DSV32/GLM5 | 2026-04-28 |  | gemm |
 | [#23686](../sources/prs/sglang/PR-23686.md) | Deepseek_v4 support w4(mxfp4)a16 on hopper | 2026-04-25 |  | fp4, fp8, moe |
+| [#23707](../sources/prs/sglang/PR-23707.md) | [MoE] Deprecate act_and_mul_triton; fold filter_expert into JIT silu/gelu_and_mul | 2026-04-25 |  | moe, tma |
 | [#22931](../sources/prs/sglang/PR-22931.md) | [Fix/Kernel] Add JIT rmsnorm_hf kernel to fix transformers backend MMLU accuracy regression  | 2026-04-16 |  | quantization, reduction |
 | [#22814](../sources/prs/sglang/PR-22814.md) | diffusion: add HunyuanVideo GroupNorm+SiLU fast path | 2026-04-14 |  |  |
 | [#22064](../sources/prs/sglang/PR-22064.md) | [Diffusion] Fix weight scale swizzle and add large-M kernel config for FLUX.2-dev-NVFP4 | 2026-04-03 | swizzling | fp4, gemm, nvfp4 |
@@ -647,6 +1121,7 @@
 | [#20012](../sources/prs/sglang/PR-20012.md) | [JIT Kernel] Reland NVFP4 kernels to JIT | 2026-03-06 | swizzling | attention, fp4, gemm |
 | [#19945](../sources/prs/sglang/PR-19945.md) | [AMD] Tilelang sparse fwd for dsv32 mi355/mi300 | 2026-03-05 | pipeline-stages | attention, gemm, sort |
 | [#19725](../sources/prs/sglang/PR-19725.md) | [SGLang-Diffusion] Fix custom op fake impl missing eps default for torch.compile | 2026-03-03 | pipeline-stages | flash-attention |
+| [#19770](../sources/prs/sglang/PR-19770.md) | [Docs] Add docstrings to JIT kernel include headers | 2026-03-03 |  | fp8 |
 | [#19794](../sources/prs/sglang/PR-19794.md) | Add compile-time 256-bit vector guard for pre-Blackwell | 2026-03-03 |  |  |
 | [#19652](../sources/prs/sglang/PR-19652.md) | [Feature] NVFP4 Marlin fallback for non-Blackwell GPUs (SM75+) | 2026-03-02 |  | fp4, fp8, gemm |
 | [#19549](../sources/prs/sglang/PR-19549.md) | [diffusion][llm] macOS support | 2026-02-28 | pipeline-stages | attention, quantization |
@@ -780,18 +1255,62 @@
 
 <a id="tile-aitilelang"></a>
 ## tile-ai/tilelang
-19 PRs
+66 PRs
 
 | PR | Title | Date | Techniques | Tags |
 |-----|-------|------|------------|------|
+| [#3649](../sources/prs/tilelang/PR-3649.md) | [BugFix] Allocate out_idx outputs on the caller-supplied launch stream | 2026-10-25 |  |  |
+| [#3576](../sources/prs/tilelang/PR-3576.md) | [CuTeDSL][Scan] Handle participating thread offsets | 2026-10-20 |  |  |
+| [#3577](../sources/prs/tilelang/PR-3577.md) | [Ascend][DeepGEMM] Align GEMM heuristics and epilogues | 2026-10-20 |  | block-scale, fp4, fp8 |
+| [#3474](../sources/prs/tilelang/PR-3474.md) | [Ascend] Allow selecting target for examples | 2026-10-10 |  |  |
+| [#3439](../sources/prs/tilelang/PR-3439.md) | [BugFix][CUDA] Gate fp8 T.gemm on SM89 instead of trapping at launch | 2026-10-07 |  | fp8, gemm, tcgen05 |
+| [#3430](../sources/prs/tilelang/PR-3430.md) | [CUDA] Enable SM120 block-scaled MMA on SM121 | 2026-10-05 |  | block-scale, fp4, nvfp4 |
+| [#3414](../sources/prs/tilelang/PR-3414.md) | [BugFix] Preserve parameter identity in NVRTC and CuTeDSL wrappers | 2026-10-02 |  | gemm, tma |
+| [#3359](../sources/prs/tilelang/PR-3359.md) | [BugFix][CUDA] Honor tensor-device streams in NVRTC and CuTeDSL | 2026-10-01 |  |  |
+| [#3304](../sources/prs/tilelang/PR-3304.md) | [Example] Add DeepSelect Top-K | 2026-09-29 |  | reduction, sort, tma |
+| [#3308](../sources/prs/tilelang/PR-3308.md) | [Public Release 9/30] Introduce Ascend 950 backend | 2026-09-29 | pipeline-stages, swizzling | attention, block-scale, flash-attention |
+| [#3286](../sources/prs/tilelang/PR-3286.md) | [CUDA] SM120 block-scaled register-A GEMM: unroll K atoms and load scales once per atom | 2026-09-27 | pipeline-stages, warp-specialization | block-scale, fp4, gemm |
+| [#3257](../sources/prs/tilelang/PR-3257.md) | [CUDA] Support SM120 block-scaled GEMM fragments and odd warp atom grids | 2026-09-20 |  | block-scale, gemm |
+| [#3254](../sources/prs/tilelang/PR-3254.md) | [ROCm] Add GLM-5.3 k-pool Top-K transform | 2026-09-19 | pipeline-stages | attention, fp8, gemm |
+| [#3237](../sources/prs/tilelang/PR-3237.md) | [Do not review][Op][Language][CUDA] Add common block-scaled GEMM semantics and backend dispatch | 2026-09-16 | swizzling, warp-specialization | block-scale, gemm, mbarrier |
+| [#3238](../sources/prs/tilelang/PR-3238.md) | [Transform][CUDA] Plan atomic vector widths from destination addresses | 2026-09-16 |  |  |
+| [#3224](../sources/prs/tilelang/PR-3224.md) | [Example] FP8 sparse MLA forward for DeepSeek V3.2 on Hopper | 2026-09-14 | pipeline-stages, swizzling | attention, flash-attention, fp8 |
+| [#3185](../sources/prs/tilelang/PR-3185.md) | [Refactor] [CUDA] Rename `AutoSchedule` to `AutoWarpSpecialization` | 2026-09-09 |  | gemm |
+| [#3171](../sources/prs/tilelang/PR-3171.md) | [Layout] Consider scalar reducer plans in register-count search | 2026-09-06 |  | reduction |
+| [#3156](../sources/prs/tilelang/PR-3156.md) | [ROCm] Support DeepSeek mHC pre and post kernels | 2026-09-03 |  | gemm |
+| [#3158](../sources/prs/tilelang/PR-3158.md) | [Refactor][CUDA] Replace per-lane-count vector constructors with variadic packers | 2026-09-03 |  | fp4, fp8, nvfp4 |
+| [#3106](../sources/prs/tilelang/PR-3106.md) | [CUDA] Unify TMA copy lowering on CuTe algebra | 2026-08-28 | swizzling | tma |
+| [#3104](../sources/prs/tilelang/PR-3104.md) | [ROCm] Preserve FP8 bits in warp shuffles | 2026-08-27 |  | fp8 |
+| [#3089](../sources/prs/tilelang/PR-3089.md) | [Bugfix] Make TMA layouts region-aware to keep slices contiguous | 2026-08-26 | pipeline-stages, warp-specialization | tma |
+| [#3059](../sources/prs/tilelang/PR-3059.md) | [Feature] [CUDA] Role-based automatic warp specialization | 2026-08-20 | double-buffering, pipeline-stages, swizzling | flash-attention, gemm, reduction |
+| [#2965](../sources/prs/tilelang/PR-2965.md) | [BugFix][Hopper][Blackwell] Read the WGMMA/UMMA K-panel stride from the layout instead of the operand extent | 2026-08-14 | swizzling | block-scale, gemm, tcgen05 |
+| [#2960](../sources/prs/tilelang/PR-2960.md) | [Layout][Inference] Add IO-aware cost model for free-mode selection | 2026-08-13 | pipeline-stages, swizzling | fp8, reduction |
+| [#2892](../sources/prs/tilelang/PR-2892.md) | [Feature] Warp specialization schedules and materialization | 2026-08-05 | pipeline-stages, swizzling, tile-scheduling | flash-attention, gemm, mbarrier |
+| [#2871](../sources/prs/tilelang/PR-2871.md) | [CuTeDSL] Port backend intrinsics to CUTLASS DSL primitives | 2026-08-04 | swizzling | block-scale, fp4, mbarrier |
+| [#2846](../sources/prs/tilelang/PR-2846.md) | [CUDA][TMA] Separate atomic-add dtype support from layout encoding | 2026-08-02 | swizzling | gemm, tma |
+| [#2836](../sources/prs/tilelang/PR-2836.md) | [CUDA] Adopt multi-staged buffers in examples | 2026-08-01 | pipeline-stages | attention, flash-attention, fp4 |
+| [#2781](../sources/prs/tilelang/PR-2781.md) | [Enhancement] More compile-time guards for architecture-specific CUDA intrinsics | 2026-07-27 |  | block-scale, clc, tcgen05 |
+| [#2785](../sources/prs/tilelang/PR-2785.md) | [CUDA] Support arbitrary TMEM layouts | 2026-07-27 | pipeline-stages, warp-specialization | block-scale, clc, gemm |
+| [#2499](../sources/prs/tilelang/PR-2499.md) | [FEATURE] Add block-causal attention for dLLM example | 2026-06-30 | pipeline-stages | attention, gemm |
+| [#2474](../sources/prs/tilelang/PR-2474.md) | [CUDA] Reduce template include overhead | 2026-06-29 |  | attention, gemm, mbarrier |
+| [#2452](../sources/prs/tilelang/PR-2452.md) | [Backend] [CUDA] Support GMMA/UMMA lowering for sliced SMEM layout (actually arbitrary layout) | 2026-06-24 | pipeline-stages, swizzling, warp-specialization | attention, block-scale, flash-attention |
+| [#2445](../sources/prs/tilelang/PR-2445.md) | [CUDA] Remove `__shfl_sync` from `tl_shuffle_elect` | 2026-06-23 | warp-specialization | mbarrier, tma |
+| [#2417](../sources/prs/tilelang/PR-2417.md) | [Feature] Support stmatrix m16n8 on Blackwell | 2026-06-18 |  |  |
+| [#2392](../sources/prs/tilelang/PR-2392.md) | [CUDA] Add SM75 MMA dispatchers for FP16 accumulation and UINT8 | 2026-06-13 |  | gemm |
+| [#2380](../sources/prs/tilelang/PR-2380.md) | [Backend] Support TMA lowering for arbitrary (swizzled) SMEM layout | 2026-06-11 | swizzling | attention, sort, tma |
+| [#2364](../sources/prs/tilelang/PR-2364.md) | [CUDA] Add SM120 NVF4 block-scale MMA support | 2026-06-09 | pipeline-stages, swizzling, warp-specialization | block-scale, fp4, gemm |
+| [#2289](../sources/prs/tilelang/PR-2289.md) | [BugFix][CuTeDSL] Support TileKernels backend cases | 2026-05-28 | pipeline-stages | tma |
 | [#2216](../sources/prs/tilelang/PR-2216.md) | [TIR][IR] Update to use tirx | 2026-05-18 | pipeline-stages | attention |
 | [#2218](../sources/prs/tilelang/PR-2218.md) | [Python] Drop Python 3.9 support | 2026-05-18 |  |  |
+| [#2220](../sources/prs/tilelang/PR-2220.md) | [CuTeDSL] Add PDL codegen and launcher support | 2026-05-18 | swizzling |  |
+| [#2195](../sources/prs/tilelang/PR-2195.md) | [BugFix] Vendor HIP headers and build fat CUDA+ROCm linux wheels | 2026-05-13 | pipeline-stages | reduction |
 | [#2198](../sources/prs/tilelang/PR-2198.md) | [CUDA] Add native SM75 MMA GEMM support for FP16, INT8 and INT4 | 2026-05-13 |  | gemm |
 | [#2153](../sources/prs/tilelang/PR-2153.md) | [codex] Split GEMM implementations by backend | 2026-05-06 |  | gemm, tcgen05, tmem |
 | [#2112](../sources/prs/tilelang/PR-2112.md) | feat: auto-vectorize bf16/fp16 reduce with packed add2 intrinsics | 2026-04-28 |  | reduction |
 | [#2073](../sources/prs/tilelang/PR-2073.md) | [CUDA] Improve int4 GEMM lowering and packed codegen support | 2026-04-21 |  | gemm |
 | [#2063](../sources/prs/tilelang/PR-2063.md) | [CUDA] Support int4 `T.gemm` | 2026-04-19 | pipeline-stages | gemm |
 | [#2048](../sources/prs/tilelang/PR-2048.md) | [Backend] Refactor gemm_sp | 2026-04-16 |  | gemm, wgmma |
+| [#2024](../sources/prs/tilelang/PR-2024.md) | Re-enable deprecated `TL_DISABLE_TMA_LOWER` pass config for TMA store | 2026-04-09 |  | tma |
 | [#2003](../sources/prs/tilelang/PR-2003.md) | [Transform] Add InjectTcgen05Fence pass | 2026-03-31 |  | mbarrier, tcgen05, tmem |
 | [#1981](../sources/prs/tilelang/PR-1981.md) | [Feature] Support TMA store in T.tma_copy() | 2026-03-27 | pipeline-stages | gemm, mbarrier, tma |
 | [#1945](../sources/prs/tilelang/PR-1945.md) | [Feature] Block-scaled GEMM support for MXFP8 on Blackwell | 2026-03-18 | pipeline-stages, swizzling | block-scale, fp8, gemm |
@@ -799,17 +1318,112 @@
 | [#1882](../sources/prs/tilelang/PR-1882.md) | [Feature] 2-SM support for TMA, TMEM and TCGEN5MMA on Blackwell | 2026-02-27 | swizzling, warp-specialization | fp8, gemm, tcgen05 |
 | [#1874](../sources/prs/tilelang/PR-1874.md) | [Feature] Support cluster launch, query, synchronization and barrier operations | 2026-02-24 |  |  |
 | [#1866](../sources/prs/tilelang/PR-1866.md) | [CUDA] Support tcgen5mma gemm ts | 2026-02-22 | pipeline-stages | attention, flash-attention, gemm |
+| [#1839](../sources/prs/tilelang/PR-1839.md) | [CUDA][Feature] Add packed FP32x2 math intrinsics and auto vectorized support | 2026-02-11 |  |  |
+| [#1762](../sources/prs/tilelang/PR-1762.md) | [Feature] Hierarchical reduction and warp reduction intrinsics support | 2026-01-31 |  | reduction |
 | [#1736](../sources/prs/tilelang/PR-1736.md) | Add swizzle layout detection and automatic merging for layout conflicts | 2026-01-27 | swizzling | attention, flash-attention, gemm |
+| [#1717](../sources/prs/tilelang/PR-1717.md) | [Enhancement] Add explicit global memory load/store intrinsics (ldg/stg 32/64/128) | 2026-01-22 | pipeline-stages | fp8 |
 | [#1667](../sources/prs/tilelang/PR-1667.md) | [Feature] Support `cp.reduce.async.bulk.tensor` | 2026-01-13 | swizzling | attention, flash-attention, tma |
 | [#1327](../sources/prs/tilelang/PR-1327.md) | [Enhancement] add more dtype and fix mma.ws for fp16 for tcgen05 | 2025-11-24 | pipeline-stages | fp8, gemm, tcgen05 |
 | [#1229](../sources/prs/tilelang/PR-1229.md) | [WIP] support more dtypes for tcgen05 | 2025-11-11 | pipeline-stages | fp8, gemm, tcgen05 |
 
-<a id="vllm-projectvllm"></a>
-## vllm-project/vllm
-205 PRs
+<a id="triton-langtriton"></a>
+## triton-lang/triton
+59 PRs
 
 | PR | Title | Date | Techniques | Tags |
 |-----|-------|------|------------|------|
+| [#12446](../sources/prs/triton/PR-12446.md) | [triton_kernels] Reduce single-slice metadata and encoded scale conversion overhead | 2026-10-22 | swizzling | fp8, gemm |
+| [#12338](../sources/prs/triton/PR-12338.md) | [GSan] Add memory access profiler | 2026-10-16 |  | tma |
+| [#12285](../sources/prs/triton/PR-12285.md) | [KERNELS] Absorb NVFP4 row scales during MXFP8 conversion | 2026-10-14 |  | block-scale, fp4, nvfp4 |
+| [#12213](../sources/prs/triton/PR-12213.md) | [triton_kernels] Support four-column Blackwell activation scale alignment | 2026-10-09 | swizzling |  |
+| [#12135](../sources/prs/triton/PR-12135.md) | [KERNELS] Support NVFP4 activations with MXFP4 weights by upcasting via MXFP8 | 2026-10-06 | swizzling | block-scale, fp4, fp8 |
+| [#12129](../sources/prs/triton/PR-12129.md) | [Standard] Add any/all reductions | 2026-10-05 |  |  |
+| [#12041](../sources/prs/triton/PR-12041.md) | [triton_kernels] Support tiled storage for persistent ragged-K matmul | 2026-09-30 | persistent-kernel, swizzling | tma |
+| [#12000](../sources/prs/triton/PR-12000.md) | [Gluon][NVIDIA] Support L2 cache policies on TMA transfers | 2026-09-28 | warp-specialization | reduction, tma |
+| [#11973](../sources/prs/triton/PR-11973.md) | [BACKEND] Reject TCGen05 ops on unsupported targets | 2026-09-26 |  | tcgen05 |
+| [#11918](../sources/prs/triton/PR-11918.md) | [Gluon] Skip unsupported cluster sizes in Gluon tests | 2026-09-23 |  | tcgen05 |
+| [#11928](../sources/prs/triton/PR-11928.md) | [triton_kernels] Fix gathered activation scale indexing | 2026-09-23 |  | tma |
+| [#11914](../sources/prs/triton/PR-11914.md) | Fix FP4 TMA Alignment | 2026-09-22 |  | fp4, tma, tmem |
+| [#11862](../sources/prs/triton/PR-11862.md) | [KERNELS] Don't take the TMA scatter path on sm_12x | 2026-09-18 |  | tma |
+| [#11652](../sources/prs/triton/PR-11652.md) | [KERNELS] Support unscaled FP8 E4M3 matmul with FP16/BF16 | 2026-09-09 | persistent-kernel, pipeline-stages | fp4, fp8, reduction |
+| [#11668](../sources/prs/triton/PR-11668.md) | [triton_kernels] Add explicit nearest-even NVFP4 scale rounding | 2026-09-09 |  | block-scale, fp4, fp8 |
+| [#11648](../sources/prs/triton/PR-11648.md) | [KERNELS] Correct shared-memory budgeting for FP4 reduction epilogues | 2026-09-08 | pipeline-stages, swizzling, warp-specialization | fp4, nvfp4, reduction |
+| [#11624](../sources/prs/triton/PR-11624.md) | [Triton] Fix E8M0 scale decoding | 2026-09-07 | persistent-kernel, pipeline-stages | block-scale, fp4, fp8 |
+| [#11618](../sources/prs/triton/PR-11618.md) | [KERNELS] Keep scale layout shape calculations in integer arithmetic | 2026-09-06 |  |  |
+| [#11619](../sources/prs/triton/PR-11619.md) | [KERNELS] Add broadcastable MX scale pointer helpers | 2026-09-06 | swizzling |  |
+| [#11563](../sources/prs/triton/PR-11563.md) | [KERNELS] Convert between Blackwell FP4 layouts directly | 2026-09-03 | swizzling | fp4 |
+| [#11565](../sources/prs/triton/PR-11565.md) | [KERNELS] Accelerate Blackwell and Hopper layout conversions | 2026-09-03 | swizzling | fp4, fp8 |
+| [#11576](../sources/prs/triton/PR-11576.md) | [KERNELS] Consolidate Blackwell FP4 layout metadata and tests | 2026-09-03 |  | fp4, reduction, tma |
+| [#11495](../sources/prs/triton/PR-11495.md) | [KERNELS] Fuse forward FP4 layout conversion | 2026-08-28 | swizzling | fp4 |
+| [#11496](../sources/prs/triton/PR-11496.md) | [KERNELS] Fuse compact Hopper FP4 inverse layout conversion | 2026-08-28 |  | fp4 |
+| [#11504](../sources/prs/triton/PR-11504.md) | [KERNELS] Allow layout conversion into existing storage | 2026-08-28 | swizzling | fp4, fp8 |
+| [#11481](../sources/prs/triton/PR-11481.md) | [Membar] Schedule thread synchronization with Membar analysis | 2026-08-27 | warp-specialization | tma, wgmma |
+| [#11464](../sources/prs/triton/PR-11464.md) | [MEMBAR] Schedule`tcgen05_wait::{ld,st}` | 2026-08-26 |  | attention, tcgen05, tmem |
+| [#11387](../sources/prs/triton/PR-11387.md) | [KERNELS] Convert Hopper and Blackwell FP4 directly to strided layouts | 2026-08-20 | swizzling | fp4 |
+| [#11347](../sources/prs/triton/PR-11347.md) | Add matmul tuning constraints for swap_xw, group_m and use_output_tma | 2026-08-18 |  | clc, fp4, nvfp4 |
+| [#11286](../sources/prs/triton/PR-11286.md) | [triton_kernels] add FP4 matmul metadata | 2026-08-13 |  | fp4, fp8 |
+| [#11176](../sources/prs/triton/PR-11176.md) | Add CLC mode to triton_kernels matmul | 2026-08-05 | persistent-kernel, warp-specialization | clc, tma |
+| [#11122](../sources/prs/triton/PR-11122.md) | [PROTON] Intra kernel async event profiling | 2026-07-31 | pipeline-stages, warp-specialization | tcgen05, tma |
+| [#11124](../sources/prs/triton/PR-11124.md) | [NVIDIA] Add core Triton CLC support | 2026-07-31 | warp-specialization | clc, tma, tmem |
+| [#11116](../sources/prs/triton/PR-11116.md) |  [NVWS][CLC] Add warp-specilaization to CLC | 2026-07-30 | warp-specialization | block-scale, clc, fp8 |
+| [#10941](../sources/prs/triton/PR-10941.md) | [Rubin] Misc MMA enhancement and `mbarrier.arrive.multicast` support | 2026-07-18 |  | fp4, mbarrier, nvfp4 |
+| [#10931](../sources/prs/triton/PR-10931.md) | [frontend] Validate 16-byte stride alignment in make_tensor_descriptor | 2026-07-17 |  | tma |
+| [#10936](../sources/prs/triton/PR-10936.md) | [NVIDIA] Initial support for Rubin | 2026-07-17 |  | block-scale, fp4, fp8 |
+| [#10650](../sources/prs/triton/PR-10650.md) | Tensor scales in matmul. | 2026-06-17 |  | block-scale, fp4, nvfp4 |
+| [#10634](../sources/prs/triton/PR-10634.md) | float64 matmul support | 2026-06-16 |  | fp4 |
+| [#10551](../sources/prs/triton/PR-10551.md) | [Blackwell] Add pass to combine TMEM load followed by row reduction for sm103+ | 2026-06-09 | warp-specialization | attention, fp8, reduction |
+| [#10405](../sources/prs/triton/PR-10405.md) | [FRONTEND] Add descriptive messages to bare asserts | 2026-05-28 |  |  |
+| [#10316](../sources/prs/triton/PR-10316.md) | Enable microscaled lhs with dense FP16/BF16 matmul weights | 2026-05-14 | swizzling | block-scale, fp4, tmem |
+| [#10219](../sources/prs/triton/PR-10219.md) | [Gluon] Unwrap constexpr bool in dot_scaled and associative_scan | 2026-05-04 |  |  |
+| [#10060](../sources/prs/triton/PR-10060.md) | [BACKEND] Extend support for small MMAv2 FP64: single 8x8x4 instructions. | 2026-04-16 |  |  |
+| [#9717](../sources/prs/triton/PR-9717.md) | [Tools][Translator] Add AMD backend support for Triton-to-Gluon translator | 2026-03-13 | swizzling | tma |
+| [#9546](../sources/prs/triton/PR-9546.md) | [GLUON][EXAMPLE] Two CTA matmul on blackwell | 2026-02-23 | warp-specialization | clc, mbarrier, tcgen05 |
+| [#9514](../sources/prs/triton/PR-9514.md) | [Hopper] Add dummy mov before RS WGMMA to fix synchronization | 2026-02-19 |  | wgmma |
+| [#9361](../sources/prs/triton/PR-9361.md) | [Gluon] Add Cluster Launch Control (CLC) support for Blackwell GPUs | 2026-02-03 | persistent-kernel, swizzling | clc, mbarrier, tma |
+| [#9152](../sources/prs/triton/PR-9152.md) | [WGMMA] Limit rs-dot splitting to only 2 splits | 2026-01-06 |  | fp4, moe, wgmma |
+| [#8997](../sources/prs/triton/PR-8997.md) | [Reapply][BACKEND] Add missing waits in WGMMA rhs in register pipelining | 2025-12-15 |  | fp4, wgmma |
+| [#8964](../sources/prs/triton/PR-8964.md) | [BACKEND] Add missing waits in WGMMA rhs in register pipelining | 2025-12-11 | pipeline-stages | sort, wgmma |
+| [#8917](../sources/prs/triton/PR-8917.md) | [Kernels] Support hopper hbm swizzling in persistent matmul | 2025-12-05 | persistent-kernel, swizzling | fp4 |
+| [#8684](../sources/prs/triton/PR-8684.md) | [BACKEND] Gluon multicta + 2cta support | 2025-11-10 |  | mbarrier, tcgen05 |
+| [#8653](../sources/prs/triton/PR-8653.md) | [BACKEND] Set 2CTA mode as a global flag | 2025-11-06 |  | block-scale, mbarrier, tcgen05 |
+| [#7708](../sources/prs/triton/PR-7708.md) | [TritonNvidiaGPU] Tighten WGMMA verifiers | 2025-07-30 |  | wgmma |
+| [#7712](../sources/prs/triton/PR-7712.md) | [ConSan] Support for WGMMA. Checks on non-async shmem and tmem accesses | 2025-07-30 | pipeline-stages | tma, tmem, wgmma |
+| [#6420](../sources/prs/triton/PR-6420.md) | [Feature] Support different packing formats in dot_scaled op | 2025-04-08 |  | fp4, tcgen05 |
+| [#5813](../sources/prs/triton/PR-5813.md) | [Blackwell][TUTORIALS] Add tutorial 10-block-scaled-matmul.py | 2025-02-05 |  | block-scale, fp4, fp8 |
+| [#5726](../sources/prs/triton/PR-5726.md) | [Pipeliner] Enable automatic loop fusion | 2025-01-28 | pipeline-stages | tma |
+
+<a id="vllm-projectvllm"></a>
+## vllm-project/vllm
+233 PRs
+
+| PR | Title | Date | Techniques | Tags |
+|-----|-------|------|------------|------|
+| [#63638](../sources/prs/vllm/PR-63638.md) | [Perf][Kimi K3] Opt-in KV-balanced FP8 MLA decode for agentic workloads | 2026-10-26 | persistent-kernel, tile-scheduling | attention, fp4, fp8 |
+| [#63105](../sources/prs/vllm/PR-63105.md) | [ROCm][Build] Reland #62475: paged attention kernel split with `--offload-compress` => x4-x7 wheel build speedup on ROCm | 2026-10-22 |  | attention, fp8 |
+| [#62938](../sources/prs/vllm/PR-62938.md) | [Model] Add Flint (RecursiveSI/flint) | 2026-10-21 | swizzling | attention, block-scale, fp4 |
+| [#62745](../sources/prs/vllm/PR-62745.md) | [Perf][Kernel] mHC TileLang: skip Sinkhorn on non-finite padding rows; single-pass fused post+pre for <=4 tokens | 2026-10-20 |  | attention, fp4, fp8 |
+| [#62475](../sources/prs/vllm/PR-62475.md) | [ROCm][Build] Compile paged attention kernels in parallel (7.6x faster attention build) | 2026-10-19 |  | attention, fp8 |
+| [#62525](../sources/prs/vllm/PR-62525.md) | [MoE][Model] Gemma 4: skip CUDA-graph padding rows in the routing kernel | 2026-10-19 |  | moe, topk |
+| [#61868](../sources/prs/vllm/PR-61868.md) | [Perf][DSv4.1] DeepSeek-V4.1-Flash specialized decode on GB300 | 2026-10-15 | double-buffering, kernel-fusion, persistent-kernel | attention, block-scale, flash-attention |
+| [#61879](../sources/prs/vllm/PR-61879.md) | [Model] Add Muse Spark Open support | 2026-10-15 | kernel-fusion, swizzling | attention, block-scale, fp4 |
+| [#61903](../sources/prs/vllm/PR-61903.md) | [Perf][Kernel] Add a CuteDSL BF16x3 router GEMM for fp32 router weights on Hopper | 2026-10-15 | pipeline-stages, swizzling | attention, fp8, gemm |
+| [#61538](../sources/prs/vllm/PR-61538.md) | [MoE] Unify DeepGEMM MegaMoE experts behind one feature-matrix layer; add NVFP4 | 2026-10-14 |  | block-scale, fp4, fp8 |
+| [#61343](../sources/prs/vllm/PR-61343.md) | [Perf] per_token_group_quant_8bit: multiply by reciprocal instead of dividing per element | 2026-10-13 | kernel-fusion, pipeline-stages | fp8, quantization |
+| [#61371](../sources/prs/vllm/PR-61371.md) | [Kernel][DSv4.1] Bump FlashMLA to the 2026.09.30 release and its interleaved V4.1 KV cache | 2026-10-13 |  | attention, fp4, fp8 |
+| [#61149](../sources/prs/vllm/PR-61149.md) | [Kernel][Build] Bump DeepGEMM to the 26/09/30 release and adapt the sparse indexer | 2026-10-12 |  | attention, fp4, fp8 |
+| [#60721](../sources/prs/vllm/PR-60721.md) | [Misc] Consolidate csrc shared headers and prune dead code | 2026-10-08 |  | attention, fp4, fp8 |
+| [#60156](../sources/prs/vllm/PR-60156.md) | [Bugfix][Attention] Preserve small FP8 softmax weights in Triton attention | 2026-10-06 |  | attention, flash-attention, fp8 |
+| [#59857](../sources/prs/vllm/PR-59857.md) | [Feature][PCP] Add DeepSeek-V4.1-Flash support | 2026-10-03 | pipeline-stages | attention, fp4, moe |
+| [#59533](../sources/prs/vllm/PR-59533.md) | [Perf][Qwen4Exp] Merge QSA QKVG and indexer QK projections | 2026-10-01 |  | block-scale, fp4, fp8 |
+| [#59300](../sources/prs/vllm/PR-59300.md) | [Attention][MiniMax-M3] NVFP4 KV cache on the MSA sparse attention path | 2026-09-29 | swizzling | attention, block-scale, fp4 |
+| [#59042](../sources/prs/vllm/PR-59042.md) | [Bugfix][MoE] Apply expert_map remapping for CUTLASS FP4 MOE expert parallel | 2026-09-28 |  | fp4, fp8, gemm |
+| [#59081](../sources/prs/vllm/PR-59081.md) | [Minimax M3] Enable fp8 indexer cache on triton indexer for non-SM100 architectures.  | 2026-09-28 | pipeline-stages | attention, fp8, topk |
+| [#58053](../sources/prs/vllm/PR-58053.md) | [Refactor] Abstract DeepGemm MegaMOE backend | 2026-09-22 |  | fp4, fp8, moe |
+| [#57377](../sources/prs/vllm/PR-57377.md) | C3x SM100 FP8 blockwise - Pad activation scales to multiple of 4 | 2026-09-17 |  | fp8, quantization |
+| [#56579](../sources/prs/vllm/PR-56579.md) | [Bugfix][Attention] Avoid NaN in the Triton softcap for large attention logits | 2026-09-12 |  | attention, fp8 |
+| [#56273](../sources/prs/vllm/PR-56273.md) | [Quantization] Support packed NVFP4 Qwen4Exp PLE embeddings | 2026-09-10 | swizzling | block-scale, fp4, fp8 |
+| [#55072](../sources/prs/vllm/PR-55072.md) | [Perf][Distributed] Add low-SM multimem reduce-scatter for SM100/SM103 | 2026-09-03 |  |  |
+| [#55180](../sources/prs/vllm/PR-55180.md) | [Kernel] SM 12.x blockwise FP8: swizzle the CTA raster when the weight exceeds the L2 | 2026-09-03 | persistent-kernel, swizzling, tile-scheduling | fp8, gemm, quantization |
 | [#42899](../sources/prs/vllm/PR-42899.md) | add cutedsl dsv4 indexer fp8 kernel | 2026-05-17 |  | attention, fp4, fp8 |
 | [#42849](../sources/prs/vllm/PR-42849.md) | [Perf] Add do_not_specialize in fused FP8 RoPE kernel | 2026-05-16 |  | attention, fp8 |
 | [#42774](../sources/prs/vllm/PR-42774.md) | [Perf] Padded nvfp4 quant kernel to remove additional copy, 2.4%~5.7% e2e performance improvement | 2026-05-15 | swizzling | fp4, nvfp4, quantization |
@@ -895,6 +1509,7 @@
 | [#29354](../sources/prs/vllm/PR-29354.md) | Add unpermute-aware fused MoE path and small-batch fallback | 2025-11-24 |  | fp8, moe, quantization |
 | [#29257](../sources/prs/vllm/PR-29257.md) | Lora MoE Align Improvements | 2025-11-23 |  | moe, scan, topk |
 | [#29242](../sources/prs/vllm/PR-29242.md) | [Kernel] Add NVFP4 MoE CUTLASS support for SM120 | 2025-11-22 | tile-scheduling | fp4, gemm, moe |
+| [#29194](../sources/prs/vllm/PR-29194.md) | [Model Runner V2] Change bookkeeping logic in preparation for spec decoding | 2025-11-21 |  |  |
 | [#28840](../sources/prs/vllm/PR-28840.md) | bugfix: correct attn output with base 2 or e | 2025-11-17 |  | attention, mla |
 | [#28775](../sources/prs/vllm/PR-28775.md) | [Model] Add support for openPangu moe model | 2025-11-15 |  | attention, fp8, moe |
 | [#28358](../sources/prs/vllm/PR-28358.md) | [Performance][B200] silu_mul_quant: pack scales in int32 | 2025-11-09 |  | fp8, quantization |
@@ -964,6 +1579,7 @@
 | [#18778](../sources/prs/vllm/PR-18778.md) | [Perf] Tunings for SM100 FP8 CUTLASS kernel | 2025-05-27 |  | fp8, gemm, quantization |
 | [#18596](../sources/prs/vllm/PR-18596.md) | [Hardware][AMD] integrate aiter chunked prefill into vllm | 2025-05-23 |  | attention, fp8, quantization |
 | [#18564](../sources/prs/vllm/PR-18564.md) | Sm100 blockwise fp8 swap ab | 2025-05-22 |  | fp8, gemm, quantization |
+| [#18435](../sources/prs/vllm/PR-18435.md) | [V1] Support Deepseek MTP | 2025-05-20 |  | attention, mla |
 | [#18046](../sources/prs/vllm/PR-18046.md) | [Kernel] Have rotary embeddings support tensors | 2025-05-13 |  | mla |
 | [#17687](../sources/prs/vllm/PR-17687.md) | [Kernel] fp4 marlin kernel | 2025-05-06 |  | fp4, fp8, moe |
 | [#17280](../sources/prs/vllm/PR-17280.md) | [NVIDIA] Support Cutlass w8a8 FP8 for Blackwell Geforce GPUs (sm120) | 2025-04-28 |  | fp8, gemm, quantization |

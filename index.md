@@ -35,6 +35,8 @@ See [references/examples.md](references/examples.md) for 10 worked query pattern
 - [hw-2sm-cooperative](wiki/hardware/2sm-cooperative.md) — Two-SM cooperative MMA
 - [hw-nvfp4](wiki/hardware/nvfp4.md) — NVFP4 and block-scaled narrow precision
 - [hw-pdl-gdc](wiki/hardware/pdl-gdc.md) — Programmatic Dependent Launch / Grid Dependency Control
+- [hw-sm103-b300](wiki/hardware/sm103-b300.md) — SM103 / B300 datacenter variant (SM100 kernel model, per-SKU tuning)
+- [hw-sm120-consumer](wiki/hardware/sm120-consumer.md) — SM120 / SM121 consumer Blackwell (block-scaled GEMM, distinct guards)
 
 ## Optimization Techniques
 

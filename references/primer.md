@@ -23,6 +23,8 @@ All page IDs below resolve via `get_page.py <id>`. All paths are relative to the
 | NVFP4 / block-scaled FP | `hw-nvfp4` | `wiki/hardware/nvfp4.md` | E2M1 data + per-16 FP8 scale; task prose says E4M3FNUZ, current reference code uses `torch.float8_e4m3fn`. PTX `UE4M3` is a distinct 7-bit unsigned encoding; MXFP4's `UE8M0` is a distinct block-32 format. |
 | PDL / GDC | `hw-pdl-gdc` | `wiki/hardware/pdl-gdc.md` | Programmatic Dependent Launch and Grid Dependency Control — overlap successive kernel launches. |
 | mbarrier primitives | `hw-mbarrier` | `wiki/hardware/mbarrier.md` | Shared-memory barriers with phase tracking; the glue between TMA/tcgen05/warps. |
+| SM103 / B300 variant | `hw-sm103-b300` | `wiki/hardware/sm103-b300.md` | Datacenter Blackwell variant (B300/GB300); SM100 kernel model with per-SKU tuned artifacts (`sm_103a`). |
+| SM120 / SM121 consumer | `hw-sm120-consumer` | `wiki/hardware/sm120-consumer.md` | Consumer-family Blackwell; block-scaled FP4/FP8 GEMM surface with distinct backend guards (e.g. no TMA scatter on `sm_12x`). |
 
 ---
 
@@ -105,16 +107,19 @@ All page IDs below resolve via `get_page.py <id>`. All paths are relative to the
 
 | Repo | PR pages | Ledger |
 |---|---:|---|
-| NVIDIA/cutlass | 36 | `candidates/cutlass.yaml` |
-| sgl-project/sglang | 169 | `candidates/sglang.yaml` |
-| vllm-project/vllm | 205 | `candidates/vllm.yaml` |
-| flashinfer-ai/flashinfer | 322 | `candidates/flashinfer.yaml` |
-| pytorch/pytorch | 4 | `candidates/pytorch.yaml` |
-| deepseek-ai/DeepGEMM | 8 | `candidates/deepgemm.yaml` |
-| NVIDIA/cccl | 60 | `candidates/cccl-cub.yaml` |
-| Dao-AILab/flash-attention | 33 | `candidates/flash-attention.yaml` |
-| NVIDIA/TensorRT-LLM | 88 | `candidates/tensorrt-llm.yaml` |
-| tile-ai/tilelang | 19 | `candidates/tilelang.yaml` |
+| NVIDIA/cutlass | 56 | `candidates/cutlass.yaml` |
+| sgl-project/sglang | 213 | `candidates/sglang.yaml` |
+| vllm-project/vllm | 233 | `candidates/vllm.yaml` |
+| flashinfer-ai/flashinfer | 493 | `candidates/flashinfer.yaml` |
+| pytorch/pytorch | 5 | `candidates/pytorch.yaml` |
+| deepseek-ai/DeepGEMM | 25 | `candidates/deepgemm.yaml` |
+| NVIDIA/cccl | 160 | `candidates/cccl-cub.yaml` |
+| Dao-AILab/flash-attention | 75 | `candidates/flash-attention.yaml` |
+| NVIDIA/TensorRT-LLM | 144 | `candidates/tensorrt-llm.yaml` |
+| tile-ai/tilelang | 66 | `candidates/tilelang.yaml` |
+| triton-lang/triton | 59 | `candidates/triton.yaml` |
+| HazyResearch/ThunderKittens | 6 | `candidates/thunderkittens.yaml` |
+| Dao-AILab/quack | 4 | `candidates/quack.yaml` |
 
 Query by repo: `python3 scripts/query.py --repo <name>`.
 
