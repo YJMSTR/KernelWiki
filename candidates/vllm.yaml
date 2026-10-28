@@ -1,5 +1,5 @@
 repo: vllm-project/vllm
-searched_at: '2026-05-20'
+searched_at: '2026-10-27'
 keywords_used:
 - blackwell
 - sm100
@@ -11,10 +11,10 @@ keywords_used:
 - deepseek
 - flashinfer
 - attention
-total_candidates: 1660
-included: 330
-excluded: 874
-deferred: 456
+total_candidates: 1895
+included: 356
+excluded: 1077
+deferred: 462
 prs:
 - number: 40057
   title: '[Bugfix] Temporarily disable B200 fp4 MoE layer tests'
@@ -19199,3 +19199,2874 @@ prs:
   - vllm/model_executor/layers/quantization/utils/marlin_utils.py
   files_reviewed_count: 4
   scope_disposition: removed
+- number: 62090
+  title: '[CI][Unit Test] Patch MoE layer unit tests for Blackwell and Rubin'
+  date: '2026-10-19'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - tests/kernels/moe/test_moe_layer.py
+- number: 60298
+  title: '[CI][Test][1/N] Enable unit tests to run on Rubin'
+  date: '2026-10-22'
+  decision: exclude
+  reason: 'remove: only distributed-system implementation path(s) qualified: vllm/distributed/device_communicators/custom_all_reduce.py'
+  files_changed:
+  - tests/compile/passes/test_fusion_attn.py
+  - tests/distributed/test_custom_all_gather_reduce_scatter.py
+  - tests/distributed/test_custom_all_reduce.py
+  - tests/kernels/test_fused_deepseek_v32_norm_rope.py
+  - vllm/distributed/device_communicators/custom_all_reduce.py
+  - vllm/models/kimi_k3/nvidia/kda.py
+- number: 55866
+  title: '[Attention] Enable FA4 sparse MQA decode on Blackwell'
+  date: '2026-10-13'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 14 authoritative changed file(s)'
+  files_changed:
+  - cmake/external_projects/vllm_flash_attn.cmake
+  - docs/design/attention_backends.md
+  - tests/kernels/attention/test_flashinfer_mla_decode.py
+  - tests/v1/attention/test_flashmla_nope_sm90_backend_selection.py
+  - tests/v1/attention/test_sparse_mla_backends.py
+  - tests/v1/attention/test_sparse_mla_kv_cache_layout.py
+  - tests/v1/e2e/general/test_hisparse.py
+  - vllm/model_executor/layers/attention/mla_attention.py
+  - vllm/model_executor/layers/attention/sparse_mla_attention.py
+  - vllm/platforms/cuda.py
+  - vllm/v1/attention/backends/mla/flashattn_mla_sparse.py
+  - vllm/v1/attention/backends/mla/flashinfer_mla_sparse.py
+  - vllm/v1/attention/backends/registry.py
+  - vllm/vllm_flash_attn/flash_attn_interface.py
+- number: 63244
+  title: '[Doc][Recipe] MiniMax-M3.1-Flash: add Hopper FP8 variant, Docker-only install'
+  date: '2026-10-23'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - recipes/models/MiniMaxAI/MiniMax-M3.1-Flash.yaml
+- number: 61556
+  title: '[Dependency] Update Humming and remove NVFP4 scale workaround'
+  date: '2026-10-14'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 13 authoritative changed file(s)'
+  files_changed:
+  - requirements/cuda.txt
+  - vllm/model_executor/kernels/linear/mixed_precision/humming.py
+  - vllm/model_executor/kernels/linear/mxfp4/humming.py
+  - vllm/model_executor/kernels/linear/mxfp6/humming.py
+  - vllm/model_executor/kernels/linear/mxfp8/humming.py
+  - vllm/model_executor/kernels/linear/nvfp4/humming.py
+  - vllm/model_executor/kernels/linear/scaled_mm/humming.py
+  - vllm/model_executor/layers/fused_moe/experts/fused_humming_moe.py
+  - vllm/model_executor/layers/quantization/humming.py
+  - vllm/model_executor/layers/quantization/utils/humming/linear.py
+  - vllm/model_executor/layers/quantization/utils/humming/moe.py
+  - vllm/model_executor/layers/quantization/utils/humming/schema.py
+  - vllm/utils/humming.py
+- number: 61875
+  title: '[Perf][DeepSeek V4] Declare MXFP8 MoE activations and run them as block FP8 on Hopper'
+  date: '2026-10-26'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 5 authoritative changed file(s)'
+  files_changed:
+  - tests/quantization/test_fp8.py
+  - tests/quantization/test_humming_mxfp4_block_fp8.py
+  - vllm/model_executor/layers/fused_moe/oracle/mxfp4.py
+  - vllm/models/deepseek_v4/quant_config.py
+  - vllm/models/deepseek_v41/quant_config.py
+- number: 62938
+  title: '[Model] Add Flint (RecursiveSI/flint)'
+  date: '2026-10-22'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: vllm/models/flint/ops/cute_primitives.py, vllm/models/flint/ops/decode_attention.py, vllm/models/flint/ops/moe.py, vllm/models/flint/ops/moe_gemv.py,
+    vllm/models/flint/ops/norm.py, vllm/models/flint/ops/nvfp4_gemv.py, vllm/models/flint/ops/qk_norm_rope.py, vllm/models/flint/ops/qkv_fused.py'
+  files_changed:
+  - .buildkite/test_areas/models_basic.yaml
+  - docker/Dockerfile
+  - docker/versions.json
+  - docs/models/supported_models.md
+  - recipes/models/RecursiveSI/flint.yaml
+  - tests/models/flint/test_decode_attention.py
+  - tests/models/flint/test_flint_moe.py
+  - tests/models/flint/test_flint_ops.py
+  - tests/models/flint/test_gguf_nvfp4.py
+  - tests/models/flint/test_qk_norm_rope.py
+  - tests/models/flint/test_qkv_fused.py
+  - tests/models/registry.py
+  - tests/transformers_utils/test_speculators_override.py
+  - vllm/model_executor/models/registry.py
+  - vllm/models/flint/__init__.py
+  - vllm/models/flint/configs.py
+  - vllm/models/flint/gguf_nvfp4.py
+  - vllm/models/flint/model.py
+  - vllm/models/flint/ops/__init__.py
+  - vllm/models/flint/ops/cute_primitives.py
+  - vllm/models/flint/ops/decode_attention.py
+  - vllm/models/flint/ops/linear.py
+  - vllm/models/flint/ops/moe.py
+  - vllm/models/flint/ops/moe_cute.py
+  - vllm/models/flint/ops/moe_gemv.py
+  - vllm/models/flint/ops/norm.py
+  - vllm/models/flint/ops/nvfp4_gemv.py
+  - vllm/models/flint/ops/qk_norm_rope.py
+  - vllm/models/flint/ops/qkv_fused.py
+  - vllm/transformers_utils/config.py
+  - vllm/transformers_utils/configs/__init__.py
+- number: 61634
+  title: '[Bugfix][Attention] Make the query contiguous for TRTLLM ragged MLA prefill'
+  date: '2026-10-14'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - vllm/v1/attention/backends/mla/prefill/trtllm_ragged.py
+- number: 63236
+  title: '[Doc][Recipe] Add MiniMax-M3.1-Flash recipe'
+  date: '2026-10-23'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - recipes/models/MiniMaxAI/MiniMax-M3.1-Flash.yaml
+- number: 60942
+  title: '[Bugfix] Fix Triton prefill attention OutOfResources on GPUs with 99KiB shared memory'
+  date: '2026-10-27'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - tests/kernels/attention/test_triton_prefill_attention.py
+  - vllm/v1/attention/ops/triton_prefill_attention.py
+- number: 62710
+  title: '[Doc] Fix Kimi-K3 GB300 disaggregated selector and guide gaps'
+  date: '2026-10-20'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - recipes/models/moonshotai/Kimi-K3.yaml
+- number: 63698
+  title: '[Bugfix] Initialize valid ModelOpt NVFP4 MoE dummy scales'
+  date: '2026-10-26'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - docs/features/quantization/modelopt.md
+  - tests/quantization/test_blackwell_moe.py
+  - vllm/model_executor/layers/quantization/modelopt.py
+- number: 61013
+  title: '[Bugfix][MRV2] Fix FlashInfer attention and ReplaySSM warmups on MRV2'
+  date: '2026-10-11'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 5 authoritative changed file(s)'
+  files_changed:
+  - tests/model_executor/test_attention_warmup.py
+  - vllm/model_executor/warmup/attention_warmup.py
+  - vllm/model_executor/warmup/kernel_warmup.py
+  - vllm/model_executor/warmup/minimax_m3_msa_warmup.py
+  - vllm/v1/worker/gpu/model_runner.py
+- number: 61527
+  title: '[Kimi-K3] Route the fp8 chunked-context K/V pack through FlashInfer where it has a fused kernel'
+  date: '2026-10-26'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 4 authoritative changed file(s)'
+  files_changed:
+  - tests/kernels/attention/test_kimi_k3_mla_fused_epilogue.py
+  - vllm/models/kimi_k3/nvidia/mla.py
+  - vllm/models/kimi_k3/nvidia/ops/fused_mla_key_concat_kv_cache.py
+  - vllm/utils/flashinfer.py
+- number: 48167
+  title: '[Bugfix] Fix FlashInfer non-causal draft attention (DFlash/DSpark) on Blackwell'
+  date: '2026-07-15'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 12 authoritative changed file(s)'
+  files_changed:
+  - tests/v1/spec_decode/test_dflash_causality.py
+  - tools/pre_commit/generate_attention_backend_docs.py
+  - vllm/model_executor/models/qwen3_dflash.py
+  - vllm/platforms/cuda.py
+  - vllm/v1/attention/backends/flashinfer.py
+  - vllm/v1/spec_decode/dflash.py
+  - vllm/v1/worker/gpu/model_runner.py
+  - vllm/v1/worker/gpu/spec_decode/dflash/speculator.py
+  - vllm/v1/worker/gpu/spec_decode/dflash/utils.py
+  - vllm/v1/worker/gpu/spec_decode/dspark/speculator.py
+  - vllm/v1/worker/gpu/spec_decode/dspark/utils.py
+  - vllm/v1/worker/gpu/spec_decode/speculator.py
+- number: 56891
+  title: '[Bugfix] Fix FlashInfer all_reduce backend selection'
+  date: '2026-10-04'
+  decision: exclude
+  reason: 'remove: distributed-system topic matched ''all_reduce'' in PR title'
+  files_changed:
+  - tests/distributed/test_comm_ops.py
+  - vllm/distributed/device_communicators/flashinfer_all_reduce.py
+- number: 56528
+  title: '[Test][Determinism] Cover VLM batch invariance in default execution mode'
+  date: '2026-09-13'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - tests/v1/determinism/test_batch_invariance_vlm.py
+- number: 61989
+  title: '[Perf][Bugfix] Prefer MNNVL for single-node FlashInfer allreduce again'
+  date: '2026-10-17'
+  decision: exclude
+  reason: 'remove: distributed-system topic matched ''MNNVL'' in PR title'
+  files_changed:
+  - tests/distributed/test_comm_ops.py
+  - vllm/distributed/device_communicators/flashinfer_all_reduce.py
+- number: 56959
+  title: '[Platform] Support platform-specific MLA prefill backend selection'
+  date: '2026-10-08'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 11 authoritative changed file(s)'
+  files_changed:
+  - docs/mkdocs/gen_files/generate_attention_backends.py
+  - tests/v1/attention/test_mla_prefill_selector.py
+  - vllm/platforms/cpu.py
+  - vllm/platforms/interface.py
+  - vllm/platforms/rocm.py
+  - vllm/v1/attention/backends/mla/prefill/aiter_flash_attn.py
+  - vllm/v1/attention/backends/mla/prefill/base.py
+  - vllm/v1/attention/backends/mla/prefill/flashinfer.py
+  - vllm/v1/attention/backends/mla/prefill/selector.py
+  - vllm/v1/attention/backends/mla/prefill/tokenspeed_mla.py
+  - vllm/v1/attention/backends/mla/prefill/trtllm_ragged.py
+- number: 58073
+  title: '[Bugfix] prioritize architecture capability before DeepGEMM availability check'
+  date: '2026-09-22'
+  decision: defer
+  reason: authoritative PR evidence unavailable; needs-triage
+  files_changed: []
+- number: 60684
+  title: '[Perf][MiniMax-M3] MSA prefill attends with the E4M3 query; bump fmha_sm100 to 968061a'
+  date: '2026-10-11'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 4 authoritative changed file(s)'
+  files_changed:
+  - cmake/external_projects/fmha_sm100.cmake
+  - tests/kernels/attention/test_minimax_m3_msa_cutlass_sparse_decode.py
+  - vllm/models/minimax_m3/nvidia/model.py
+  - vllm/models/minimax_m3/nvidia/sparse_attention_msa.py
+- number: 58878
+  title: '[Test][Quantization] Gate CUTLASS W4A8 kernel tests to SM90'
+  date: '2026-10-08'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - tests/kernels/quantization/test_cutlass_w4a8.py
+  - tests/kernels/quantization/test_cutlass_w4a8_moe.py
+- number: 62541
+  title: '[Doc] Document the DeepSeek-V4.1-Flash B200 AgentX profile in the guide and command builder'
+  date: '2026-10-20'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - recipes/models/deepseek-ai/DeepSeek-V4.1-Flash.yaml
+- number: 59211
+  title: '[Model][GLM-5.3-Flash] Support DCP for the kpool sparse indexer'
+  date: '2026-10-05'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 9 authoritative changed file(s)'
+  files_changed:
+  - tests/v1/attention/test_indexer_deepseek_v4_slot_mapping.py
+  - tests/v1/core/test_kv_cache_utils.py
+  - vllm/model_executor/kernels/attention/dsa/dcp_indexer_cutedsl.py
+  - vllm/models/glm5next/amd/sparse_indexer.py
+  - vllm/models/glm5next/common/attention.py
+  - vllm/models/glm5next/nvidia/sparse_indexer.py
+  - vllm/v1/attention/backends/mla/compressor_utils.py
+  - vllm/v1/attention/backends/mla/indexer.py
+  - vllm/v1/attention/backends/utils.py
+- number: 49936
+  title: '[Doc] Document FP8 GEMM kernel selection and Blackwell support'
+  date: '2026-09-01'
+  decision: defer
+  reason: authoritative PR evidence unavailable; needs-triage
+  files_changed: []
+- number: 61873
+  title: '[GLM5.3 Perf] Inplace update draft decode metadata, 1.7% E2E Throughput Improvement'
+  date: '2026-10-15'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - vllm/v1/attention/backends/mla/flashinfer_mla_sparse.py
+- number: 60973
+  title: '[Bugfix][Responses API] Complete cache-write token accounting'
+  date: '2026-10-10'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 4 authoritative changed file(s)'
+  files_changed:
+  - tests/entrypoints/openai/responses/test_parsable_context_unit.py
+  - tests/entrypoints/unit_tests/test_context.py
+  - vllm/entrypoints/openai/responses/context.py
+  - vllm/entrypoints/openai/responses/serving.py
+- number: 57456
+  title: '[Kernel][Perf] Add sm_120 (RTX PRO 6000 / RTX 50) tuned configs for batch-invariant persistent matmul'
+  date: '2026-09-19'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - vllm/model_executor/determinism/batch_invariant_configs.py
+- number: 55908
+  title: '[Test] Dequantize NVFP4 KV cache scales in the layout the kernel writes'
+  date: '2026-09-08'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 4 authoritative changed file(s)'
+  files_changed:
+  - .buildkite/test_areas/kernels.yaml
+  - tests/kernels/attention/test_cache.py
+  - tests/kernels/attention/test_flashinfer_trtllm_attention.py
+  - tests/kernels/quantization/nvfp4_utils.py
+- number: 58427
+  title: '[Bugfix][Quantization] Add Humming to the W4A8 (INT4xFP8) MoE oracle'
+  date: '2026-09-24'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 5 authoritative changed file(s)'
+  files_changed:
+  - vllm/model_executor/layers/fused_moe/experts/cutlass_moe.py
+  - vllm/model_executor/layers/fused_moe/oracle/w4a8.py
+  - vllm/model_executor/layers/quantization/compressed_tensors/compressed_tensors.py
+  - vllm/model_executor/layers/quantization/compressed_tensors/compressed_tensors_moe/compressed_tensors_moe.py
+  - vllm/model_executor/layers/quantization/compressed_tensors/compressed_tensors_moe/compressed_tensors_moe_w4a8_fp8.py
+- number: 63147
+  title: '[Bugfix] Add SM100 support for Step-5-Preview'
+  date: '2026-10-22'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - vllm/models/step5/nvidia/model.py
+  - vllm/models/step5/nvidia/sparse_attention.py
+- number: 61355
+  title: '[Perf] Tune Triton GDN decode tiles on SM100-family GPUs'
+  date: '2026-10-13'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - tests/kernels/fla/test_fused_recurrent_packed_decode.py
+  - vllm/third_party/flash_linear_attention/ops/fused_recurrent.py
+- number: 61149
+  title: '[Kernel][Build] Bump DeepGEMM to the 26/09/30 release and adapt the sparse indexer'
+  date: '2026-10-13'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: vllm/model_executor/layers/sparse_attn_indexer.py, vllm/models/deepseek_v4/common/ops/fused_compress_quant_cache.py, vllm/models/deepseek_v41/common/ops/indexer_k_store.py,
+    vllm/models/glm5next/nvidia/ops/kpool_compress.py, vllm/v1/attention/ops/common.py'
+  files_changed:
+  - cmake/external_projects/deepgemm.cmake
+  - csrc/cache_kernels.cu
+  - tests/kernels/attention/test_deepgemm_attention.py
+  - tests/kernels/attention/test_rocm_paged_mxfp4_indexer.py
+  - tests/kernels/test_compressor_kv_cache.py
+  - tests/kernels/test_fused_deepseek_v32_norm_rope.py
+  - tests/kernels/test_fused_indexer_q_rope_quant.py
+  - tests/kernels/test_kpool_decode_update_batched.py
+  - tests/model_executor/layers/test_mla_short_prefill_indexer.py
+  - tests/v1/attention/test_indexer_deepseek_v4_slot_mapping.py
+  - tests/v1/attention/test_rocm_paged_mxfp4_indexer_plan.py
+  - tools/build_deepgemm_C.py
+  - tools/check_wheel_deepgemm.py
+  - tools/install_deepgemm.sh
+  - vllm/model_executor/layers/sparse_attn_indexer.py
+  - vllm/models/deepseek_v32/common/kernels.py
+  - vllm/models/deepseek_v4/common/ops/fused_compress_quant_cache.py
+  - vllm/models/deepseek_v41/common/ops/indexer_k_store.py
+  - vllm/models/glm5next/nvidia/ops/kpool_compress.py
+  - vllm/models/glm5next/nvidia/sparse_indexer.py
+  - vllm/utils/deep_gemm.py
+  - vllm/v1/attention/backends/mla/indexer.py
+  - vllm/v1/attention/ops/common.py
+- number: 60281
+  title: '[Bugfix] Limit GlmMoeDsaForCausalLM fp8 KV cache default to SM100'
+  date: '2026-10-07'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - vllm/model_executor/models/config.py
+- number: 62745
+  title: '[Perf][Kernel] mHC TileLang: skip Sinkhorn on non-finite padding rows; single-pass fused post+pre for <=4 tokens'
+  date: '2026-10-21'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: vllm/model_executor/kernels/mhc/tilelang_kernels.py'
+  files_changed:
+  - tests/kernels/mhc/test_mhc_jit_warmup.py
+  - vllm/model_executor/kernels/mhc/tilelang_kernels.py
+- number: 61903
+  title: '[Perf][Kernel] Add a CuteDSL BF16x3 router GEMM for fp32 router weights on Hopper'
+  date: '2026-10-27'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: vllm/model_executor/layers/fused_moe/router/bf16x3_router_gemm_sm90.py'
+  files_changed:
+  - .buildkite/test_areas/kernels.yaml
+  - .github/CODEOWNERS
+  - tests/kernels/test_bf16x3_router_gemm_cutedsl.py
+  - vllm/model_executor/layers/fused_moe/router/bf16x3_router_gemm_sm100.py
+  - vllm/model_executor/layers/fused_moe/router/bf16x3_router_gemm_sm90.py
+  - vllm/model_executor/layers/fused_moe/router/gate_linear.py
+  - vllm/model_executor/warmup/kernel_warmup.py
+- number: 59044
+  title: '[Perf][MoE] Skip padded work in SM100 FP4 DeepGEMM experts'
+  date: '2026-10-16'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - tests/kernels/moe/test_silu_mul_per_token_group_quant_fp8_colmajor.py
+  - vllm/model_executor/layers/fused_moe/experts/deep_gemm_moe.py
+- number: 59214
+  title: '[Perf][Qwen4Exp] Add SM100 low-latency decode GEMM plans'
+  date: '2026-10-01'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - tests/kernels/test_bf16_skinny_gemm.py
+  - vllm/models/qwen4_exp/nvidia/low_latency_gemm.py
+- number: 61979
+  title: '[Feature][LoRA][MoE] Expert LoRA for FlashInfer TRTLLM MXFP4 experts'
+  date: '2026-10-17'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 5 authoritative changed file(s)'
+  files_changed:
+  - tests/lora/test_trtllm_mxfp4_lora_moe.py
+  - vllm/model_executor/layers/fused_moe/experts/trtllm_lora_moe.py
+  - vllm/model_executor/layers/fused_moe/experts/trtllm_mxfp4_moe.py
+  - vllm/model_executor/layers/fused_moe/modular_kernel.py
+  - vllm/model_executor/layers/fused_moe/oracle/mxfp4.py
+- number: 60242
+  title: '[Misc] Report a missing DeepSelect extension only when it is requested'
+  date: '2026-10-07'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - vllm/model_executor/layers/indexer_topk.py
+- number: 59688
+  title: '[Bugfix][HiSparse] Reject cudagraph_mode=FULL at startup'
+  date: '2026-10-05'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - tests/test_config.py
+  - vllm/config/vllm.py
+- number: 59135
+  title: '[Docs] Fix stale W4A16 NVFP4 default kernel in ModelOpt docs'
+  date: '2026-10-02'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - docs/features/quantization/modelopt.md
+  - vllm/model_executor/layers/quantization/modelopt.py
+- number: 58053
+  title: '[Refactor] Abstract DeepGemm MegaMOE backend'
+  date: '2026-10-08'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: vllm/models/deepseek_v4/nvidia/ops/prepare_megamoe.py'
+  files_changed:
+  - tests/models/test_deepseek_v4_mega_moe.py
+  - vllm/model_executor/layers/fused_moe/deep_gemm_mega_moe.py
+  - vllm/models/deepseek_v4/nvidia/model.py
+  - vllm/models/deepseek_v4/nvidia/ops/prepare_megamoe.py
+  - vllm/models/kimi_k3/nvidia/model.py
+- number: 59300
+  title: '[Attention][MiniMax-M3] NVFP4 KV cache on the MSA sparse attention path'
+  date: '2026-10-01'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): csrc/libtorch_stable/fused_minimax_m3_qknorm_rope_kv_insert_kernel.cu'
+  files_changed:
+  - CMakeLists.txt
+  - cmake/external_projects/fmha_sm100.cmake
+  - csrc/libtorch_stable/fused_minimax_m3_qknorm_rope_kv_insert_kernel.cu
+  - csrc/libtorch_stable/ops.h
+  - csrc/libtorch_stable/torch_bindings.cpp
+  - tests/kernels/attention/test_minimax_m3_msa_cutlass_sparse_decode.py
+  - tests/kernels/test_fused_minimax_m3_qknorm_rope_kv_insert.py
+  - vllm/_custom_ops.py
+  - vllm/models/minimax_m3/common/sparse_attention.py
+  - vllm/models/minimax_m3/nvidia/model.py
+  - vllm/models/minimax_m3/nvidia/msa_cutlass_sparse_decode.py
+  - vllm/models/minimax_m3/nvidia/sparse_attention_msa.py
+- number: 60029
+  title: Pad to 64 not 128 Q heads in flashMLA sparse
+  date: '2026-10-06'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - vllm/models/hy_v4/nvidia/flashmla_sparse.py
+  - vllm/v1/attention/backends/mla/flashmla_sparse.py
+- number: 59900
+  title: '[Bugfix] Drop enable_in_kernel_fc2_reduce from FlashInfer CuteDSL MegaMoE config'
+  date: '2026-10-12'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - tests/kernels/moe/test_flashinfer_moe_ep.py
+  - vllm/model_executor/layers/fused_moe/flashinfer_moe_ep.py
+- number: 61274
+  title: '[Quantization] Auto-disable DeepGEMM for Kolibri 1 on SM12x'
+  date: '2026-10-14'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - vllm/config/vllm.py
+  - vllm/model_executor/layers/fused_moe/oracle/fp8.py
+  - vllm/utils/deep_gemm.py
+- number: 59081
+  title: '[Minimax M3] Enable fp8 indexer cache on triton indexer for non-SM100 architectures. '
+  date: '2026-09-28'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: vllm/models/minimax_m3/common/ops/index_topk.py'
+  files_changed:
+  - tests/kernels/attention/test_minimax_m3_fp8_triton_indexer.py
+  - vllm/models/minimax_m3/common/indexer.py
+  - vllm/models/minimax_m3/common/ops/index_topk.py
+- number: 52980
+  title: '[SM100] Hdim 256 optimized'
+  date: '2026-08-26'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 7 authoritative changed file(s)'
+  files_changed:
+  - cmake/external_projects/vllm_flash_attn.cmake
+  - docs/design/attention_backends.md
+  - tests/kernels/attention/test_attention_selector.py
+  - tests/kernels/attention/test_flash_attn.py
+  - vllm/v1/attention/backends/fa_utils.py
+  - vllm/v1/attention/backends/flash_attn.py
+  - vllm/v1/attention/backends/flash_attn_diffkv.py
+- number: 57377
+  title: C3x SM100 FP8 blockwise - Pad activation scales to multiple of 4
+  date: '2026-09-18'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): csrc/libtorch_stable/quantization/w8a8/cutlass/c3x/scaled_mm_blockwise_sm100_fp8_dispatch.cuh'
+  files_changed:
+  - .buildkite/test_areas/kernels.yaml
+  - csrc/libtorch_stable/quantization/w8a8/cutlass/c3x/scaled_mm_blockwise_sm100_fp8_dispatch.cuh
+  - tests/kernels/quantization/test_block_fp8.py
+- number: 55072
+  title: '[Perf][Distributed] Add low-SM multimem reduce-scatter for SM100/SM103'
+  date: '2026-09-25'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): csrc/custom_all_gather_reduce_scatter.cuh, csrc/libtorch_stable/custom_all_gather_reduce_scatter.cu'
+  files_changed:
+  - benchmarks/kernels/benchmark_multimem_reduce_scatter.py
+  - csrc/custom_all_gather_reduce_scatter.cuh
+  - csrc/custom_all_reduce.cuh
+  - csrc/libtorch_stable/custom_all_gather_reduce_scatter.cu
+  - csrc/libtorch_stable/custom_all_gather_reduce_scatter_ops.cpp
+  - csrc/libtorch_stable/ops.h
+  - tests/distributed/test_custom_all_gather_reduce_scatter.py
+  - tests/distributed/test_custom_all_reduce.py
+  - vllm/_custom_ops.py
+  - vllm/distributed/device_communicators/custom_all_reduce.py
+- number: 59533
+  title: '[Perf][Qwen4Exp] Merge QSA QKVG and indexer QK projections'
+  date: '2026-10-05'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: vllm/models/qwen4_exp/nvidia/ops/qsa_prepare.py'
+  files_changed:
+  - tests/kernels/test_bf16_skinny_gemm.py
+  - tests/models/qwen4_exp/test_qsa_prepare.py
+  - vllm/models/qwen4_exp/nvidia/low_latency_gemm.py
+  - vllm/models/qwen4_exp/nvidia/model.py
+  - vllm/models/qwen4_exp/nvidia/ops/qsa_prepare.py
+  - vllm/models/qwen4_exp/nvidia/qsa.py
+- number: 59612
+  title: '[Fusion] Support 3D activation quantization fusion and enable it for Pixtral'
+  date: '2026-10-09'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 6 authoritative changed file(s)'
+  files_changed:
+  - tests/fusion/test_quant_activation_contract.py
+  - tests/kernels/quantization/test_flashinfer_nvfp4_scaled_mm.py
+  - tests/kernels/test_fused_quant_activation.py
+  - vllm/model_executor/kernels/linear/nvfp4/flashinfer.py
+  - vllm/model_executor/layers/fusion/fused_act_quant.py
+  - vllm/model_executor/models/pixtral.py
+- number: 59850
+  title: '[CI] Drop duplicate bf16 skinny GEMM test from Kimi K3 B200 job'
+  date: '2026-10-03'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - .buildkite/test_areas/models_basic.yaml
+- number: 60468
+  title: '[Perf] Warm up DeepGEMM MegaMoE kernels before serving'
+  date: '2026-10-13'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - tests/model_executor/test_deep_gemm_warmup.py
+  - vllm/model_executor/warmup/deep_gemm_warmup.py
+  - vllm/models/kimi_k3/nvidia/model.py
+- number: 62419
+  title: '[XPU] Enable kernel/sampler unit tests on Intel XPU'
+  date: '2026-10-23'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 27 authoritative changed file(s)'
+  files_changed:
+  - tests/kernels/attention/test_pack_unpack_triton.py
+  - tests/kernels/core/test_fused_embed_norm.py
+  - tests/kernels/core/test_fused_q_kv_rmsnorm.py
+  - tests/kernels/core/test_minimax_reduce_rms.py
+  - tests/kernels/core/test_vit_bilinear_pos_embed.py
+  - tests/kernels/mamba/test_memcpy_u64_tiled.py
+  - tests/kernels/moe/test_routing.py
+  - tests/kernels/quantization/test_nvfp4_emulation.py
+  - tests/kernels/quantization/test_quantized_embedding.py
+  - tests/kernels/test_fused_qk_norm_rope_gate.py
+  - tests/models/inkling/test_sconv_metadata.py
+  - tests/models/kimi_k3/test_attn_res.py
+  - tests/v1/attention/test_dcp_a2a_pack_mask.py
+  - tests/v1/spec_decode/test_dflash_prepare_inputs.py
+  - tests/v1/spec_decode/test_ngram_gpu.py
+  - tests/v1/worker/test_gpu_bad_words.py
+  - tests/v1/worker/test_gpu_batch_shard.py
+  - tests/v1/worker/test_gpu_gumbel_sample.py
+  - tests/v1/worker/test_gpu_input_batch_v2.py
+  - tests/v1/worker/test_gpu_kpool_tail_slot_mapping.py
+  - tests/v1/worker/test_gpu_logit_bias.py
+  - tests/v1/worker/test_gpu_rejection_sampler_chunking.py
+  - tests/v1/worker/test_gpu_thinking_budget.py
+  - tests/v1/worker/test_gpu_trace_replay.py
+  - tests/v1/worker/test_kv_block_zeroer.py
+  - tests/v1/worker/test_mamba_hybrid_model_state.py
+  - tests/watermarking/test_gumbel.py
+- number: 63506
+  title: '[Fast Start] Key the weight cache on MoE and linear kernel backends'
+  date: '2026-10-26'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 4 authoritative changed file(s)'
+  files_changed:
+  - tests/model_executor/model_loader/test_weight_cache.py
+  - vllm/model_executor/model_loader/weight_cache/daemon.py
+  - vllm/model_executor/model_loader/weight_cache/ipc_loader.py
+  - vllm/model_executor/model_loader/weight_cache/protocol.py
+- number: 60721
+  title: '[Misc] Consolidate csrc shared headers and prune dead code'
+  date: '2026-10-12'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): csrc/async_util.cuh, csrc/attention/dcp_utils/dcp_direct_common.cuh, csrc/cache_kernels.cu, csrc/concat_mla_q.cuh, csrc/cooperative_topk.cuh,
+    csrc/core/vec_dtypes/dtype_bfloat16.cuh, csrc/core/vec_dtypes/dtype_float16.cuh, csrc/core/vec_dtypes/dtype_float32.cuh, csrc/core/vec_dtypes/dtype_fp8.cuh, csrc/core/vec_dtypes/dtype_generic.cuh, csrc/cuda_vec_utils.cuh,
+    csrc/custom_collective_common.cuh, csrc/cutlass_extensions/vllm_collective_builder.cuh, csrc/cutlass_extensions/vllm_numeric_conversion.cuh, csrc/cutlass_extensions/vllm_type_utils.cuh, csrc/moe/moeTopKFuncs.cuh,
+    csrc/persistent_topk.cuh, csrc/quantization/awq/dequantize.cuh, csrc/quantization/cutlass_w4a8/get_group_starts.cuh, csrc/quantization/cutlass_w4a8/w4a8_utils.cuh, csrc/quantization/fp4/nvfp4_utils.cuh,
+    csrc/quantization/fused_kernels/layernorm_utils.cuh, csrc/quantization/fused_kernels/quant_conversions.cuh, csrc/quantization/gptq/compat.cuh, csrc/quantization/gptq/matrix_view.cuh, csrc/quantization/gptq/qdq_2.cuh,
+    csrc/quantization/gptq/qdq_3.cuh, csrc/quantization/gptq/qdq_4.cuh, csrc/quantization/gptq/qdq_8.cuh, csrc/quantization/gptq/qdq_util.cuh, csrc/quantization/machete/machete_collective_builder.cuh, csrc/quantization/machete/machete_interleaving_utils.cuh,
+    csrc/quantization/machete/machete_mm_kernel.cuh, csrc/quantization/machete/machete_mm_launcher.cuh, csrc/quantization/machete/machete_prepack_kernel.cuh, csrc/quantization/machete/machete_prepack_launcher.cuh,
+    csrc/quantization/machete/machete_prepacked_layout.cuh, csrc/quantization/marlin/marlin.cuh, csrc/quantization/marlin/marlin_dtypes.cuh, csrc/quantization/vectorization.cuh, csrc/quantization/vectorization_utils.cuh,
+    csrc/quantization/w8a8/cutlass/c3x/cutlass_gemm_caller.cuh, csrc/quantization/w8a8/cutlass/c3x/scaled_mm.cuh, csrc/quantization/w8a8/cutlass/c3x/scaled_mm_blockwise_sm100_fp8_dispatch.cuh, csrc/quantization/w8a8/cutlass/c3x/scaled_mm_blockwise_sm120_fp8_dispatch.cuh,
+    csrc/quantization/w8a8/cutlass/c3x/scaled_mm_blockwise_sm90_fp8_dispatch.cuh, csrc/quantization/w8a8/cutlass/c3x/scaled_mm_sm100_fp8_dispatch.cuh, csrc/quantization/w8a8/cutlass/c3x/scaled_mm_sm120_fp8_dispatch.cuh,
+    csrc/quantization/w8a8/cutlass/c3x/scaled_mm_sm90_fp8_dispatch.cuh, csrc/quantization/w8a8/cutlass/c3x/scaled_mm_sm90_int8_dispatch.cuh, csrc/quantization/w8a8/cutlass/moe/get_group_starts.cuh, csrc/quantization/w8a8/cutlass/moe/grouped_mm_c3x.cuh,
+    csrc/quantization/w8a8/cutlass/scaled_mm_c2x.cuh, csrc/quantization/w8a8/cutlass/scaled_mm_c2x_sm75_dispatch.cuh, csrc/quantization/w8a8/cutlass/scaled_mm_c2x_sm80_dispatch.cuh, csrc/quantization/w8a8/cutlass/scaled_mm_c2x_sm89_fp8_dispatch.cuh,
+    csrc/quantization/w8a8/cutlass/scaled_mm_c2x_sm89_int8_dispatch.cuh, csrc/quantization/w8a8/fp8/amd/quant_utils.cuh, csrc/quantization/w8a8/fp8/common.cuh, csrc/quantization/w8a8/fp8/nvidia/quant_utils.cuh,
+    csrc/rocm/quickreduce/quick_reduce_impl.cuh, csrc/sampled_topk.cuh, csrc/topk_histogram_4096.cuh, csrc/type_convert.cuh'
+  files_changed:
+  - .buildkite/test-amd.yaml
+  - .buildkite/test_areas/distributed.yaml
+  - .buildkite/test_areas/kernels.yaml
+  - .buildkite/test_areas/lm_eval.yaml
+  - .buildkite/test_areas/models_basic.yaml
+  - .gitignore
+  - .pre-commit-config.yaml
+  - CMakeLists.txt
+  - cmake/cpu_extension.cmake
+  - cmake/hipify.py
+  - csrc/activation_kernels.cu
+  - csrc/async_util.cuh
+  - csrc/attention/dcp_utils/dcp_direct_a2a_lse_reduce.cu
+  - csrc/attention/dcp_utils/dcp_direct_common.cuh
+  - csrc/attention/dcp_utils/dcp_direct_kv_gather.cu
+  - csrc/attention/dcp_utils/dcp_direct_q_gather.cu
+  - csrc/attention/merge_attn_states.cu
+  - csrc/attention/mla/cutlass_sm100_mla/device/sm100_mla.hpp
+  - csrc/attention/mla/cutlass_sm100_mla/kernel/sm100_fmha_mla_reduction.hpp
+  - csrc/attention/mla/cutlass_sm100_mla/kernel/sm100_fmha_mla_tma_warpspecialized.hpp
+  - csrc/attention/mla/cutlass_sm100_mla/kernel/sm100_mla_tile_scheduler.hpp
+  - csrc/attention/mla/sm100_cutlass_mla_kernel.cu
+  - csrc/cache.h
+  - csrc/cache_kernels.cu
+  - csrc/cache_kernels_fused.cu
+  - csrc/concat_mla_q.cuh
+  - csrc/cooperative_topk.cu
+  - csrc/cooperative_topk.cuh
+  - csrc/core/batch_invariant.hpp
+  - csrc/core/cuda_compat.h
+  - csrc/core/exception.hpp
+  - csrc/core/registration.h
+  - csrc/core/utils.hpp
+  - csrc/core/vec_dtypes/dtype_bfloat16.cuh
+  - csrc/core/vec_dtypes/dtype_float16.cuh
+  - csrc/core/vec_dtypes/dtype_float32.cuh
+  - csrc/core/vec_dtypes/dtype_fp8.cuh
+  - csrc/core/vec_dtypes/dtype_generic.cuh
+  - csrc/core/vec_dtypes/vec_dtypes.h
+  - csrc/cpu/cpu_attn_impl.hpp
+  - csrc/cpu/dynamic_4bit_int_moe_cpu.cpp
+  - csrc/cpu/ops.h
+  - csrc/cpu/torch_bindings.cpp
+  - csrc/cub_helpers.h
+  - csrc/cuda_utils.h
+  - csrc/cuda_utils_kernels.cu
+  - csrc/cuda_vec_utils.cuh
+  - csrc/cuda_view.cu
+  - csrc/custom_all_gather_reduce_scatter.cu
+  - csrc/custom_all_gather_reduce_scatter_ops.cpp
+  - csrc/custom_all_reduce.cu
+  - csrc/custom_collective_common.cuh
+  - csrc/cutlass_extensions/common.hpp
+  - csrc/cutlass_extensions/epilogue/broadcast_load_epilogue_c2x.hpp
+  - csrc/cutlass_extensions/epilogue/scaled_mm_epilogues_c2x.hpp
+  - csrc/cutlass_extensions/epilogue/scaled_mm_epilogues_c3x.hpp
+  - csrc/cutlass_extensions/torch_utils.hpp
+  - csrc/cutlass_extensions/vllm_collective_builder.cuh
+  - csrc/cutlass_extensions/vllm_numeric_conversion.cuh
+  - csrc/cutlass_extensions/vllm_type_utils.cuh
+  - csrc/dispatch_utils.h
+  - csrc/dsv3_fused_a_gemm.cu
+  - csrc/fp32_router_gemm.cu
+  - csrc/fp32_router_gemm_entry.cu
+  - csrc/fused_deepseek_v4_qnorm_rope_kv_insert_kernel.cu
+  - csrc/fused_kimi_k3_mla_key_concat_kv_cache_kernel.cu
+  - csrc/fused_minimax_m3_qknorm_rope_kv_insert_kernel.cu
+  - csrc/fused_qknorm_rope_kernel.cu
+  - csrc/gdn/fused_gdn_decode_kernel.cu
+  - csrc/hisparse_kernels.cu
+  - csrc/kimi_k3/attn_res_kernel.cu
+  - csrc/kimi_k3/fused_kda_chunk_kernel_rocm.cu
+  - csrc/kimi_k3/fused_kda_decode_kernel.cu
+  - csrc/kimi_k3/fused_kda_decode_kernel_rocm.cu
+  - csrc/launch_bounds_utils.h
+  - csrc/layernorm_kernels.cu
+  - csrc/layernorm_quant_kernels.cu
+  - csrc/libtorch_stable/attention/attention_utils.cuh
+  - csrc/libtorch_stable/cutlass_extensions/common.cpp
+  - csrc/libtorch_stable/dispatch_utils.h
+  - csrc/libtorch_stable/mamba/static_switch.h
+  - csrc/libtorch_stable/moe/marlin_moe_wna16/generate_kernels.py
+  - csrc/libtorch_stable/ops.h
+  - csrc/libtorch_stable/quantization/w8a8/int8/per_token_group_quant.cu
+  - csrc/libtorch_stable/quantization/w8a8/per_token_group_quant_8bit.h
+  - csrc/libtorch_stable/torch_bindings.cpp
+  - csrc/libtorch_stable/torch_utils.h
+  - csrc/mamba/selective_scan.h
+  - csrc/mamba/selective_scan_fwd.cu
+  - csrc/minimax_reduce_rms_kernel.cu
+  - csrc/minimax_reduce_rms_kernel.h
+  - csrc/moe/grouped_topk_kernels.cu
+  - csrc/moe/marlin_moe_wna16/.gitignore
+  - csrc/moe/marlin_moe_wna16/kernel.h
+  - csrc/moe/marlin_moe_wna16/marlin_template.h
+  - csrc/moe/marlin_moe_wna16/ops.cu
+  - csrc/moe/moeTopKFuncs.cuh
+  - csrc/moe/moe_align_sum_kernels.cu
+  - csrc/moe/moe_ops.h
+  - csrc/moe/moe_permute_unpermute_op.cu
+  - csrc/moe/moe_wna16.cu
+  - csrc/moe/moe_wna16_utils.h
+  - csrc/moe/permute_unpermute_kernels/dispatch.h
+  - csrc/moe/permute_unpermute_kernels/moe_permute_unpermute_kernel.cu
+  - csrc/moe/permute_unpermute_kernels/moe_permute_unpermute_kernel.h
+  - csrc/moe/permute_unpermute_kernels/moe_permute_unpermute_kernel.inl
+  - csrc/moe/topk_softmax_kernels.cu
+  - csrc/moe/topk_softplus_sqrt_kernels.cu
+  - csrc/moe/torch_bindings.cpp
+  - csrc/ngram_embedding_kernels.cu
+  - csrc/nvfp4_ds_mla_cache.h
+  - csrc/nvfp4_ds_mla_cache_kernels.cu
+  - csrc/nvfp4_kv_cache_kernels.cu
+  - csrc/ops.h
+  - csrc/persistent_topk.cuh
+  - csrc/pos_encoding_kernels.cu
+  - csrc/quantization/activation_kernels.cu
+  - csrc/quantization/awq/dequantize.cuh
+  - csrc/quantization/awq/gemm_kernels.cu
+  - csrc/quantization/cutlass_w4a8/get_group_starts.cuh
+  - csrc/quantization/cutlass_w4a8/w4a8_grouped_mm_entry.cu
+  - csrc/quantization/cutlass_w4a8/w4a8_mm_entry.cu
+  - csrc/quantization/cutlass_w4a8/w4a8_utils.cu
+  - csrc/quantization/cutlass_w4a8/w4a8_utils.cuh
+  - csrc/quantization/fp4/activation_nvfp4_quant_fusion_kernels.cu
+  - csrc/quantization/fp4/mxfp4_blockwise_moe_kernel.cu
+  - csrc/quantization/fp4/mxfp4_experts_quant.cu
+  - csrc/quantization/fp4/nvfp4_blockwise_moe_kernel.cu
+  - csrc/quantization/fp4/nvfp4_experts_quant.cu
+  - csrc/quantization/fp4/nvfp4_quant_entry.cu
+  - csrc/quantization/fp4/nvfp4_quant_kernels.cu
+  - csrc/quantization/fp4/nvfp4_scaled_mm_entry.cu
+  - csrc/quantization/fp4/nvfp4_scaled_mm_kernels.cu
+  - csrc/quantization/fp4/nvfp4_scaled_mm_sm120_kernels.cu
+  - csrc/quantization/fp4/nvfp4_utils.cuh
+  - csrc/quantization/fused_kernels/fused_layernorm_dynamic_per_token_quant.cu
+  - csrc/quantization/fused_kernels/fused_silu_mul_block_quant.cu
+  - csrc/quantization/fused_kernels/layernorm_utils.cuh
+  - csrc/quantization/fused_kernels/quant_conversions.cuh
+  - csrc/quantization/gptq/compat.cuh
+  - csrc/quantization/gptq/matrix_view.cuh
+  - csrc/quantization/gptq/q_gemm.cu
+  - csrc/quantization/gptq/qdq_2.cuh
+  - csrc/quantization/gptq/qdq_3.cuh
+  - csrc/quantization/gptq/qdq_4.cuh
+  - csrc/quantization/gptq/qdq_8.cuh
+  - csrc/quantization/gptq/qdq_util.cuh
+  - csrc/quantization/hadamard/hadacore/hadamard_transform_cuda.cu
+  - csrc/quantization/machete/Readme.md
+  - csrc/quantization/machete/generate.py
+  - csrc/quantization/machete/machete_collective_builder.cuh
+  - csrc/quantization/machete/machete_interleaving_utils.cuh
+  - csrc/quantization/machete/machete_mainloop.cuh
+  - csrc/quantization/machete/machete_mm_kernel.cuh
+  - csrc/quantization/machete/machete_mm_launcher.cuh
+  - csrc/quantization/machete/machete_prepack_kernel.cuh
+  - csrc/quantization/machete/machete_prepack_launcher.cuh
+  - csrc/quantization/machete/machete_prepacked_layout.cuh
+  - csrc/quantization/machete/machete_pytorch.cu
+  - csrc/quantization/marlin/.gitignore
+  - csrc/quantization/marlin/awq_marlin_repack.cu
+  - csrc/quantization/marlin/dequant.h
+  - csrc/quantization/marlin/generate_kernels.py
+  - csrc/quantization/marlin/gptq_marlin_repack.cu
+  - csrc/quantization/marlin/kernel.h
+  - csrc/quantization/marlin/marlin.cu
+  - csrc/quantization/marlin/marlin.cuh
+  - csrc/quantization/marlin/marlin_dtypes.cuh
+  - csrc/quantization/marlin/marlin_int4_fp8_preprocess.cu
+  - csrc/quantization/marlin/marlin_mma.h
+  - csrc/quantization/marlin/marlin_template.h
+  - csrc/quantization/vectorization.cuh
+  - csrc/quantization/vectorization_utils.cuh
+  - csrc/quantization/w8a8/cutlass/c3x/cutlass_gemm_caller.cuh
+  - csrc/quantization/w8a8/cutlass/c3x/scaled_mm.cuh
+  - csrc/quantization/w8a8/cutlass/c3x/scaled_mm_azp_sm90_int8.cu
+  - csrc/quantization/w8a8/cutlass/c3x/scaled_mm_blockwise_sm100_fp8.cu
+  - csrc/quantization/w8a8/cutlass/c3x/scaled_mm_blockwise_sm100_fp8_dispatch.cuh
+  - csrc/quantization/w8a8/cutlass/c3x/scaled_mm_blockwise_sm120_fp8.cu
+  - csrc/quantization/w8a8/cutlass/c3x/scaled_mm_blockwise_sm120_fp8_dispatch.cuh
+  - csrc/quantization/w8a8/cutlass/c3x/scaled_mm_blockwise_sm90_fp8.cu
+  - csrc/quantization/w8a8/cutlass/c3x/scaled_mm_blockwise_sm90_fp8_dispatch.cuh
+  - csrc/quantization/w8a8/cutlass/c3x/scaled_mm_helper.hpp
+  - csrc/quantization/w8a8/cutlass/c3x/scaled_mm_kernels.hpp
+  - csrc/quantization/w8a8/cutlass/c3x/scaled_mm_sm100_fp8.cu
+  - csrc/quantization/w8a8/cutlass/c3x/scaled_mm_sm100_fp8_dispatch.cuh
+  - csrc/quantization/w8a8/cutlass/c3x/scaled_mm_sm120_fp8.cu
+  - csrc/quantization/w8a8/cutlass/c3x/scaled_mm_sm120_fp8_dispatch.cuh
+  - csrc/quantization/w8a8/cutlass/c3x/scaled_mm_sm90_fp8.cu
+  - csrc/quantization/w8a8/cutlass/c3x/scaled_mm_sm90_fp8_dispatch.cuh
+  - csrc/quantization/w8a8/cutlass/c3x/scaled_mm_sm90_int8.cu
+  - csrc/quantization/w8a8/cutlass/c3x/scaled_mm_sm90_int8_dispatch.cuh
+  - csrc/quantization/w8a8/cutlass/moe/get_group_starts.cuh
+  - csrc/quantization/w8a8/cutlass/moe/grouped_mm_c3x.cuh
+  - csrc/quantization/w8a8/cutlass/moe/grouped_mm_c3x_sm100.cu
+  - csrc/quantization/w8a8/cutlass/moe/grouped_mm_c3x_sm90.cu
+  - csrc/quantization/w8a8/cutlass/moe/moe_data.cu
+  - csrc/quantization/w8a8/cutlass/scaled_mm_c2x.cu
+  - csrc/quantization/w8a8/cutlass/scaled_mm_c2x.cuh
+  - csrc/quantization/w8a8/cutlass/scaled_mm_c2x_sm75_dispatch.cuh
+  - csrc/quantization/w8a8/cutlass/scaled_mm_c2x_sm80_dispatch.cuh
+  - csrc/quantization/w8a8/cutlass/scaled_mm_c2x_sm89_fp8_dispatch.cuh
+  - csrc/quantization/w8a8/cutlass/scaled_mm_c2x_sm89_int8_dispatch.cuh
+  - csrc/quantization/w8a8/cutlass/scaled_mm_c3x_sm100.cu
+  - csrc/quantization/w8a8/cutlass/scaled_mm_c3x_sm120.cu
+  - csrc/quantization/w8a8/cutlass/scaled_mm_c3x_sm90.cu
+  - csrc/quantization/w8a8/cutlass/scaled_mm_entry.cu
+  - csrc/quantization/w8a8/fp8/amd/quant_utils.cuh
+  - csrc/quantization/w8a8/fp8/common.cu
+  - csrc/quantization/w8a8/fp8/common.cuh
+  - csrc/quantization/w8a8/fp8/nvidia/quant_utils.cuh
+  - csrc/quantization/w8a8/fp8/per_token_group_quant.cu
+  - csrc/quantization/w8a8/int8/scaled_quant.cu
+  - csrc/rocm/attention.cu
+  - csrc/rocm/dispatch_utils.h
+  - csrc/rocm/q_gemm_rdna3.cu
+  - csrc/rocm/quickreduce/base.h
+  - csrc/rocm/quickreduce/custom_quickreduce.cu
+  - csrc/rocm/quickreduce/quick_reduce.h
+  - csrc/rocm/quickreduce/quick_reduce_impl.cuh
+  - csrc/rocm/quickreduce/torch_bindings.cpp
+  - csrc/rocm/skinny_gemms.cu
+  - csrc/rocm/skinny_gemms_int4.cu
+  - csrc/sampled_topk.cuh
+  - csrc/sampler.cu
+  - csrc/topk.cu
+  - csrc/topk_histogram_4096.cuh
+  - csrc/torch_bindings.cpp
+  - csrc/torch_utils.h
+  - csrc/type_convert.cuh
+  - csrc/vocab_parallel_embedding_kernels.cu
+  - docs/design/fusions.md
+  - tests/kernels/test_bf16_skinny_gemm.py
+  - tools/ci/kernel_symbol_map.py
+  - vllm/distributed/device_communicators/quick_all_reduce.py
+  - vllm/model_executor/kernels/linear/scaled_mm/cutlass.py
+  - vllm/models/common/ops/fused_qk_rmsnorm.py
+  - vllm/models/kimi_k3/amd/ops/kda_chunk.py
+  - vllm/models/kimi_k3/amd/ops/kda_decode.py
+  - vllm/models/kimi_k3/nvidia/ops/fused_mla_key_concat_kv_cache.py
+  - vllm/v1/attention/backends/mla/flashmla_sparse.py
+  - vllm/v1/hisparse/runtime.py
+- number: 60079
+  title: '[MoE] MXFP4 oracle: add CUTLASS W4A4 backend and BF16 activation fallback'
+  date: '2026-10-08'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - tests/kernels/moe/test_cutlass_moe.py
+  - tests/kernels/moe/test_ocp_mx_moe.py
+  - vllm/model_executor/layers/fused_moe/oracle/mxfp4.py
+- number: 59042
+  title: '[Bugfix][MoE] Apply expert_map remapping for CUTLASS FP4 MOE expert parallel'
+  date: '2026-10-12'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: vllm/model_executor/layers/fused_moe/utils.py'
+  files_changed:
+  - tests/kernels/moe/test_cutlass_moe.py
+  - tests/kernels/moe/test_ocp_mx_moe.py
+  - vllm/model_executor/layers/fused_moe/experts/cutlass_moe.py
+  - vllm/model_executor/layers/fused_moe/experts/gpt_oss_triton_kernels_moe.py
+  - vllm/model_executor/layers/fused_moe/oracle/mxfp4.py
+  - vllm/model_executor/layers/fused_moe/utils.py
+- number: 63101
+  title: '[Perf][MXFP4] Optimize activation quant for mxfp4. 3x kernel speedup, 5% throughput improvement'
+  date: '2026-10-26'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 9 authoritative changed file(s)'
+  files_changed:
+  - benchmarks/kernels/benchmark_mxfp4_experts_activation_quant.py
+  - csrc/ops.h
+  - csrc/quantization/fp4/mxfp4_experts_quant.cu
+  - csrc/quantization/w8a8/cutlass/moe/moe_data.cu
+  - csrc/quantization/w8a8/cutlass/scaled_mm_entry.cu
+  - csrc/torch_bindings.cpp
+  - tests/kernels/moe/test_mxfp4_moe.py
+  - vllm/_custom_ops.py
+  - vllm/model_executor/layers/fused_moe/experts/cutlass_moe.py
+- number: 63531
+  title: '[XPU] Fix Kimi-Linear model dispatch'
+  date: '2026-10-26'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - tests/models/test_registry.py
+  - vllm/models/kimi_k3/__init__.py
+- number: 61058
+  title: '[CI] Fix Buildkite path filters that point at moved or deleted files'
+  date: '2026-10-21'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 14 authoritative changed file(s)'
+  files_changed:
+  - .buildkite/ci_config_rocm.yaml
+  - .buildkite/hardware_tests/ascend_npu.yaml
+  - .buildkite/intel_jobs/engine_intel.yaml
+  - .buildkite/intel_jobs/misc_intel.yaml
+  - .buildkite/intel_jobs/samplers_intel.yaml
+  - .buildkite/test-amd.yaml
+  - .buildkite/test_areas/distributed.yaml
+  - .buildkite/test_areas/kernels.yaml
+  - .buildkite/test_areas/lm_eval.yaml
+  - .buildkite/test_areas/misc.yaml
+  - .buildkite/test_areas/models_language.yaml
+  - .buildkite/test_areas/plugins.yaml
+  - .buildkite/test_areas/rust_frontend.yaml
+  - .buildkite/test_areas/samplers.yaml
+- number: 60447
+  title: '[Bugfix][MoE] Size the permute scratch from its inputs'
+  date: '2026-10-08'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 7 authoritative changed file(s)'
+  files_changed:
+  - benchmarks/kernels/benchmark_moe_permute_unpermute.py
+  - tests/kernels/moe/test_moe.py
+  - tests/kernels/moe/test_moe_permute_unpermute.py
+  - vllm/model_executor/layers/fused_moe/experts/cutlass_moe.py
+  - vllm/model_executor/layers/fused_moe/experts/fused_humming_moe.py
+  - vllm/model_executor/layers/fused_moe/moe_permute_unpermute.py
+  - vllm/v1/worker/workspace.py
+- number: 60735
+  title: '[Bugfix][MoE] Keep DeepEP high-throughput buffers alive across DBO streams'
+  date: '2026-10-18'
+  decision: defer
+  reason: authoritative PR evidence unavailable; needs-triage
+  files_changed: []
+- number: 58173
+  title: '[Compilation] Fix QuTLASS compilation with PyTorch 2.13'
+  date: '2026-09-23'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - cmake/external_projects/qutlass.cmake
+- number: 60219
+  title: '[Bugfix] Fall back to auto for unquantized MoE layers when --moe-backend is marlin'
+  date: '2026-10-13'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - tests/kernels/moe/test_unquantized_backend_selection.py
+  - vllm/model_executor/layers/fused_moe/oracle/unquantized.py
+- number: 59717
+  title: '[Bugfix][MoE] Remap invalid topk_ids in moe_permute without expert_map'
+  date: '2026-10-23'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 6 authoritative changed file(s)'
+  files_changed:
+  - csrc/moe/moe_permute_unpermute_op.cu
+  - csrc/moe/permute_unpermute_kernels/moe_permute_unpermute_kernel.cu
+  - tests/kernels/moe/test_cutlass_moe.py
+  - tests/kernels/moe/test_moe_permute_unpermute.py
+  - vllm/model_executor/layers/fused_moe/experts/cutlass_moe.py
+  - vllm/model_executor/layers/fused_moe/experts/fused_humming_moe.py
+- number: 63407
+  title: '[Doc] MiniMax-M3: update the B300 NVFP4 InferenceX AgentX profile'
+  date: '2026-10-23'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - recipes/models/MiniMaxAI/MiniMax-M3.yaml
+- number: 55838
+  title: '[Perf][Attention][MiniMax-M3] Select CUTLASS MSA by EAGLE3 decode shape'
+  date: '2026-10-13'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - tests/kernels/attention/test_minimax_m3_msa_cutlass_sparse_decode.py
+  - vllm/models/minimax_m3/nvidia/msa_cutlass_sparse_decode.py
+  - vllm/models/minimax_m3/nvidia/sparse_attention_msa.py
+- number: 55537
+  title: '[Kernel] Reject unsupported layouts in CUTLASS 3.x scaled_mm'
+  date: '2026-10-19'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - .buildkite/test_areas/kernels.yaml
+  - csrc/quantization/w8a8/cutlass/scaled_mm_entry.cu
+  - tests/kernels/quantization/test_cutlass_scaled_mm.py
+- number: 59288
+  title: '[CI/Build][NVIDIA] Build Rubin images on the public nvidia/cuda base image'
+  date: '2026-10-03'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 5 authoritative changed file(s)'
+  files_changed:
+  - .buildkite/release-pipeline.yaml
+  - docker/Dockerfile
+  - docs/getting_started/installation/gpu.cuda.inc.md
+  - requirements/cuda.txt
+  - requirements/rubin-prerelease.txt
+- number: 55180
+  title: '[Kernel] SM 12.x blockwise FP8: swizzle the CTA raster when the weight exceeds the L2'
+  date: '2026-09-07'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): csrc/libtorch_stable/quantization/w8a8/cutlass/c3x/scaled_mm_blockwise_sm120_fp8_dispatch.cuh'
+  files_changed:
+  - csrc/libtorch_stable/quantization/w8a8/cutlass/c3x/scaled_mm_blockwise_sm120_fp8.cu
+  - csrc/libtorch_stable/quantization/w8a8/cutlass/c3x/scaled_mm_blockwise_sm120_fp8_dispatch.cuh
+  - tests/kernels/quantization/test_cutlass_scaled_mm.py
+- number: 62067
+  title: '[CI][Tests] Account for FP8 KV-cache rounding in MLA reference'
+  date: '2026-10-17'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - tests/v1/attention/test_mla_backends.py
+- number: 63163
+  title: '[Recipe] MiniMax-M3: add B200 NVFP4 AgentX aggregated profile'
+  date: '2026-10-23'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - recipes/models/MiniMaxAI/MiniMax-M3.yaml
+- number: 55579
+  title: '[Bugfix][MoE] Fix batched CUTLASS workspace overallocation'
+  date: '2026-09-10'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - vllm/model_executor/layers/fused_moe/experts/cutlass_moe.py
+- number: 54927
+  title: '[CI] Bump CUTLASS DSL to 4.7'
+  date: '2026-09-12'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - cmake/external_projects/tml_fa4.cmake
+  - requirements/cuda.txt
+- number: 60896
+  title: '[Bugfix][Build] Build fused GDN MTP decode for SM80-SM90 with CUDA < 13'
+  date: '2026-10-18'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - CMakeLists.txt
+- number: 59480
+  title: '[Bugfix] Support CuTe DSL 4.8.0 block-scale API'
+  date: '2026-10-01'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - vllm/cute_utils/_tcgen05.py
+- number: 59026
+  title: '[Bugfix] Read Ling quantization_config from top-level config for Bailing V3 VL'
+  date: '2026-10-12'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - vllm/model_executor/models/bailing_moe_v3.py
+- number: 61437
+  title: '[Perf][Qwen4Exp] Add SM121 TP=2 merged QSA projection plans'
+  date: '2026-10-13'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - vllm/models/qwen4_exp/nvidia/low_latency_gemm.py
+- number: 61362
+  title: '[XPU][FP8] Use per-token dynamic FP8 activation quantization'
+  date: '2026-10-26'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - vllm/model_executor/layers/quantization/fp8.py
+  - vllm/model_executor/layers/quantization/online/fp8.py
+- number: 63281
+  title: '[XPU][UT] Use W8A8 FP8 linear kernel instead of W8A16 on XPU in modernbert_fp8 unit test'
+  date: '2026-10-23'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - tests/models/language/pooling_mteb_test/test_modernbert_fp8.py
+- number: 62026
+  title: '[Kernel] Allow registering OOT block-scaled FP8 linear kernels'
+  date: '2026-10-26'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - tests/kernels/quantization/test_scaled_mm_kernel_selection.py
+  - vllm/model_executor/kernels/linear/__init__.py
+- number: 63099
+  title: '[Bugfix][ROCm] Match the DeepSeek-V4.1 FP8 config in the shared-expert FSE compatibility check'
+  date: '2026-10-26'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - tests/model_executor/layers/test_fused_shared_expert.py
+  - vllm/model_executor/layers/quantization/utils/config_utils.py
+- number: 62016
+  title: '[CPU] Add GELU-tanh MoE, FP8 checkpoint support and Gemma-4 INT8 TP=4 padding'
+  date: '2026-10-23'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 21 authoritative changed file(s)'
+  files_changed:
+  - .buildkite/hardware_tests/cpu.yaml
+  - cmake/cpu_extension.cmake
+  - csrc/cpu/fp8_quant.cpp
+  - csrc/cpu/sgl-kernels/common.h
+  - csrc/cpu/sgl-kernels/gemm.h
+  - csrc/cpu/sgl-kernels/moe.cpp
+  - csrc/cpu/sgl-kernels/moe.h
+  - csrc/cpu/sgl-kernels/moe_fp8.cpp
+  - csrc/cpu/sgl-kernels/moe_fp8_w8a8.cpp
+  - csrc/cpu/sgl-kernels/moe_int4.cpp
+  - csrc/cpu/sgl-kernels/moe_int8.cpp
+  - csrc/cpu/sgl-kernels/vec.h
+  - csrc/cpu/torch_bindings.cpp
+  - tests/kernels/moe/test_cpu_fused_moe.py
+  - tests/kernels/moe/test_cpu_quant_fused_moe.py
+  - tests/kernels/quantization/test_cpu_fp8_quant.py
+  - tests/kernels/quantization/test_cpu_fp8_scaled_mm.py
+  - vllm/_custom_ops.py
+  - vllm/model_executor/kernels/linear/__init__.py
+  - vllm/model_executor/kernels/linear/scaled_mm/cpu.py
+  - vllm/model_executor/layers/fused_moe/experts/cpu_moe.py
+- number: 62882
+  title: '[CI][ROCm] Set the FP8 MLA prefill scale cache in the test double'
+  date: '2026-10-21'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - tests/kernels/attention/test_rocm_aiter_mla_fp8_prefill.py
+- number: 62763
+  title: '[Perf][MoE] Add H200 FP8 fused MoE config for Beam-1.0 TP8'
+  date: '2026-10-26'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - benchmarks/kernels/benchmark_moe.py
+  - vllm/model_executor/layers/fused_moe/configs/E=256,N=320,device_name=NVIDIA_H200,dtype=fp8_w8a8.json
+- number: 61329
+  title: '[CPU] Fix underflow in FP8 AMX attention'
+  date: '2026-10-19'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 4 authoritative changed file(s)'
+  files_changed:
+  - csrc/cpu/cpu_attn_amx.hpp
+  - csrc/cpu/cpu_attn_fp8.hpp
+  - csrc/cpu/cpu_types_x86.hpp
+  - tests/kernels/attention/test_cpu_attn.py
+- number: 63669
+  title: '[ROCm][Perf] Make MXFP4 the default indexer K cache dtype for DeepSeek-V4'
+  date: '2026-10-26'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - vllm/config/attention.py
+  - vllm/platforms/rocm.py
+- number: 62475
+  title: '[ROCm][Build] Compile paged attention kernels in parallel (7.6x faster attention build)'
+  date: '2026-10-21'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): csrc/rocm/attention_kernels.cuh'
+  files_changed:
+  - CMakeLists.txt
+  - csrc/rocm/attention_dispatch.cu
+  - csrc/rocm/attention_kernels.cuh
+  - csrc/rocm/attention_paged_attn_h128_bf16_auto.cu
+  - csrc/rocm/attention_paged_attn_h128_bf16_fp8_f16.cu
+  - csrc/rocm/attention_paged_attn_h128_bf16_fp8_fp8.cu
+  - csrc/rocm/attention_paged_attn_h128_f16_auto.cu
+  - csrc/rocm/attention_paged_attn_h128_f16_fp8_f16.cu
+  - csrc/rocm/attention_paged_attn_h128_f16_fp8_fp8.cu
+  - csrc/rocm/attention_paged_attn_h64_bf16_auto.cu
+  - csrc/rocm/attention_paged_attn_h64_bf16_fp8_f16.cu
+  - csrc/rocm/attention_paged_attn_h64_bf16_fp8_fp8.cu
+  - csrc/rocm/attention_paged_attn_h64_f16_auto.cu
+  - csrc/rocm/attention_paged_attn_h64_f16_fp8_f16.cu
+  - csrc/rocm/attention_paged_attn_h64_f16_fp8_fp8.cu
+  - vllm/v1/attention/backends/rocm_attn.py
+- number: 63283
+  title: '[CI][ROCm] Run the online FP8 MoE batch-invariance test on ROCm'
+  date: '2026-10-23'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - tests/v1/determinism/test_batch_invariance.py
+- number: 61723
+  title: '[Tests][XPU] Skip modelopt_fp4 online MoE re-quantization test on XPU'
+  date: '2026-10-15'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - tests/quantization/test_online.py
+- number: 62451
+  title: '[Doc][Recipe] Use renamed Mamba prefix flag in Nemotron-3.5-Super-VL FP8'
+  date: '2026-10-22'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - recipes/models/nvidia/NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-NVFP4.yaml
+- number: 62405
+  title: '[Quantization] Use replace_parameter for params re-created in process_weights_after_loading'
+  date: '2026-10-21'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 40 authoritative changed file(s)'
+  files_changed:
+  - tests/quantization/test_keep_param_objects.py
+  - tests/quantization/test_modelopt.py
+  - vllm/model_executor/kernels/linear/mixed_precision/cpu.py
+  - vllm/model_executor/kernels/linear/mixed_precision/exllama.py
+  - vllm/model_executor/kernels/linear/mixed_precision/rdna3_w4a16.py
+  - vllm/model_executor/kernels/linear/mixed_precision/xpu.py
+  - vllm/model_executor/kernels/linear/mxfp4/aiter.py
+  - vllm/model_executor/kernels/linear/mxfp4/emulation.py
+  - vllm/model_executor/kernels/linear/mxfp4/flashinfer.py
+  - vllm/model_executor/kernels/linear/mxfp6/emulation.py
+  - vllm/model_executor/kernels/linear/mxfp8/emulation.py
+  - vllm/model_executor/kernels/linear/mxfp8/flashinfer.py
+  - vllm/model_executor/kernels/linear/mxfp8/rocm_native.py
+  - vllm/model_executor/kernels/linear/nvfp4/cutlass.py
+  - vllm/model_executor/kernels/linear/nvfp4/fbgemm.py
+  - vllm/model_executor/kernels/linear/nvfp4/flashinfer.py
+  - vllm/model_executor/kernels/linear/nvfp4/humming.py
+  - vllm/model_executor/kernels/linear/nvfp4/pytorch.py
+  - vllm/model_executor/layers/attention/mla_attention.py
+  - vllm/model_executor/layers/fused_moe/oracle/mxfp4.py
+  - vllm/model_executor/layers/quantization/auto_awq.py
+  - vllm/model_executor/layers/quantization/compressed_tensors/compressed_tensors_moe/compressed_tensors_moe_w4a16_flydsl.py
+  - vllm/model_executor/layers/quantization/compressed_tensors/compressed_tensors_moe/compressed_tensors_moe_w4a4_mxfp4.py
+  - vllm/model_executor/layers/quantization/compressed_tensors/compressed_tensors_moe/compressed_tensors_moe_w8a8_int8.py
+  - vllm/model_executor/layers/quantization/compressed_tensors/schemes/compressed_tensors_w4a4_nvfp4.py
+  - vllm/model_executor/layers/quantization/compressed_tensors/schemes/compressed_tensors_w8a8_fp8.py
+  - vllm/model_executor/layers/quantization/compressed_tensors/transform/schemes/linear_qutlass_nvfp4.py
+  - vllm/model_executor/layers/quantization/fbgemm_fp8.py
+  - vllm/model_executor/layers/quantization/inc/schemes/inc_mxfp4_moe.py
+  - vllm/model_executor/layers/quantization/inc/schemes/inc_w4a8_linear.py
+  - vllm/model_executor/layers/quantization/inc/schemes/inc_wna16_linear.py
+  - vllm/model_executor/layers/quantization/modelopt.py
+  - vllm/model_executor/layers/quantization/online/lm_head.py
+  - vllm/model_executor/layers/quantization/quark/quark_moe.py
+  - vllm/model_executor/layers/quantization/quark/schemes/quark_nvfp4.py
+  - vllm/model_executor/layers/quantization/quark/schemes/quark_ocp_mx.py
+  - vllm/model_executor/layers/quantization/quark/schemes/quark_w4a8_mxfp4_fp8.py
+  - vllm/model_executor/layers/quantization/quark/schemes/quark_w8a8_fp8.py
+  - vllm/model_executor/layers/quantization/utils/marlin_utils_fp4.py
+  - vllm/models/deepseek_v4/cpu/cpu_sparse.py
+- number: 63270
+  title: '[ROCm][MiniMax-M3] Backport #61889: fix sparse PA KV block count'
+  date: '2026-10-23'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - vllm/models/minimax_m3/amd/ops/sparse_pa.py
+- number: 63001
+  title: '[Bugfix][Quantization][Spec Decode] Load ModelOpt mixed-precision DFlash and DSpark drafts'
+  date: '2026-10-24'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 9 authoritative changed file(s)'
+  files_changed:
+  - .buildkite/test_areas/quantization.yaml
+  - docs/features/quantization/modelopt.md
+  - tests/config/test_model_arch_config.py
+  - tests/quantization/test_modelopt.py
+  - tests/v1/spec_decode/test_dflash2.py
+  - vllm/model_executor/layers/quantization/modelopt.py
+  - vllm/model_executor/models/qwen3_dflash.py
+  - vllm/model_executor/models/utils.py
+  - vllm/transformers_utils/model_arch_config_convertor.py
+- number: 61642
+  title: '[Bugfix] Fix TP loading of small block-FP8 MLA gates in BailingMoeV3'
+  date: '2026-10-14'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - vllm/model_executor/models/bailing_moe_v3.py
+- number: 60296
+  title: '[ROCm] Enable fp8 query for Triton attention'
+  date: '2026-10-14'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - tests/model_executor/model_loader/test_reload.py
+  - vllm/platforms/rocm.py
+  - vllm/v1/attention/backends/triton_attn.py
+- number: 62681
+  title: '[Model] Support updated Ling FP8 quantization exclusions and MLA gates'
+  date: '2026-10-20'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - vllm/model_executor/models/bailing_moe_v3.py
+- number: 63105
+  title: '[ROCm][Build] Reland #62475: paged attention kernel split with `--offload-compress` => x4-x7 wheel build speedup on ROCm'
+  date: '2026-10-22'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): csrc/rocm/attention_kernels.cuh'
+  files_changed:
+  - CMakeLists.txt
+  - csrc/rocm/attention_dispatch.cu
+  - csrc/rocm/attention_kernels.cuh
+  - csrc/rocm/attention_paged_attn_h128_bf16_auto.cu
+  - csrc/rocm/attention_paged_attn_h128_bf16_fp8_f16.cu
+  - csrc/rocm/attention_paged_attn_h128_bf16_fp8_fp8.cu
+  - csrc/rocm/attention_paged_attn_h128_f16_auto.cu
+  - csrc/rocm/attention_paged_attn_h128_f16_fp8_f16.cu
+  - csrc/rocm/attention_paged_attn_h128_f16_fp8_fp8.cu
+  - csrc/rocm/attention_paged_attn_h64_bf16_auto.cu
+  - csrc/rocm/attention_paged_attn_h64_bf16_fp8_f16.cu
+  - csrc/rocm/attention_paged_attn_h64_bf16_fp8_fp8.cu
+  - csrc/rocm/attention_paged_attn_h64_f16_auto.cu
+  - csrc/rocm/attention_paged_attn_h64_f16_fp8_f16.cu
+  - csrc/rocm/attention_paged_attn_h64_f16_fp8_fp8.cu
+  - vllm/v1/attention/backends/rocm_attn.py
+- number: 62032
+  title: '[CI][ROCm] Use AITER prebuilt fp8 MoE modules when inter dim is 256 aligned'
+  date: '2026-10-20'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - tests/kernels/moe/modular_kernel_tools/common.py
+- number: 63559
+  title: '[CI][ROCm] Skip the AITER MoE garbage-rows test for fp8 per-tensor until the AITER fix'
+  date: '2026-10-26'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - tests/kernels/moe/test_modular_kernel_combinations.py
+- number: 61343
+  title: '[Perf] per_token_group_quant_8bit: multiply by reciprocal instead of dividing per element'
+  date: '2026-10-13'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): csrc/quantization/fused_kernels/layernorm_utils.cuh'
+  files_changed:
+  - csrc/quantization/fused_kernels/layernorm_utils.cuh
+  - csrc/quantization/w8a8/fp8/per_token_group_quant.cu
+- number: 59815
+  title: '[Quantization] Support compressed-tensors MXFP4 MoE with FP8 activations via Mxfp4MoEMethod'
+  date: '2026-10-14'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 12 authoritative changed file(s)'
+  files_changed:
+  - tests/quantization/test_compressed_tensors.py
+  - vllm/model_executor/kernels/linear/mxfp4/humming.py
+  - vllm/model_executor/layers/fused_moe/oracle/mxfp4.py
+  - vllm/model_executor/layers/quantization/compressed_tensors/compressed_tensors.py
+  - vllm/model_executor/layers/quantization/compressed_tensors/compressed_tensors_moe/compressed_tensors_moe.py
+  - vllm/model_executor/layers/quantization/compressed_tensors/compressed_tensors_moe/compressed_tensors_moe_w4a8_mxfp4.py
+  - vllm/model_executor/layers/quantization/compressed_tensors/schemes/__init__.py
+  - vllm/model_executor/layers/quantization/compressed_tensors/schemes/compressed_tensors_w4a4_mxfp4.py
+  - vllm/model_executor/layers/quantization/compressed_tensors/schemes/compressed_tensors_w4a8_mxfp4.py
+  - vllm/model_executor/layers/quantization/mxfp4.py
+  - vllm/model_executor/layers/quantization/utils/humming/linear.py
+  - vllm/models/deepseek_v4/nvidia/model.py
+- number: 62326
+  title: '[Quantization] replace_parameter keeps the parameter object by default'
+  date: '2026-10-20'
+  decision: defer
+  reason: authoritative PR evidence unavailable; needs-triage
+  files_changed: []
+- number: 62665
+  title: '[Bugfix][CPU] Reject unsupported --kv-cache-dtype at CPU attention backend selection'
+  date: '2026-10-22'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - tests/kernels/attention/test_cpu_attn.py
+  - vllm/platforms/cpu.py
+  - vllm/v1/attention/backends/cpu_attn.py
+- number: 61773
+  title: '[Perf][MoE] Skip the TRTLLM fp8-block activation-scale transpose copy'
+  date: '2026-10-15'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 5 authoritative changed file(s)'
+  files_changed:
+  - tests/kernels/moe/test_flashinfer.py
+  - vllm/model_executor/layers/fused_moe/config.py
+  - vllm/model_executor/layers/fused_moe/oracle/fp8.py
+  - vllm/model_executor/layers/fused_moe/prepare_finalize/no_dp_ep.py
+  - vllm/model_executor/layers/fused_moe/utils.py
+- number: 61865
+  title: '[KV Connector][NIXL] Reject NVFP4 KV cache with heterogeneous TP head split'
+  date: '2026-10-15'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - tests/v1/kv_connector/unit/test_nixl_connector.py
+  - vllm/distributed/kv_transfer/kv_connector/v1/nixl/base_worker.py
+- number: 63920
+  title: '[Model] Add JIT warmup for Muse Spark NVFP4 MegaMoE input preparation'
+  date: '2026-10-27'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - vllm/models/muse_spark/nvidia/model.py
+  - vllm/models/muse_spark/nvidia/ops/prepare_megamoe_nvfp4.py
+- number: 61685
+  title: '[MoE] Add locality-domain allocation for FlashInfer CuTeDSL NVFP4'
+  date: '2026-10-26'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 10 authoritative changed file(s)'
+  files_changed:
+  - .buildkite/test_areas/distributed.yaml
+  - tests/distributed/test_localization.py
+  - tests/kernels/moe/test_flashinfer_cutedsl_nvfp4_moe.py
+  - vllm/distributed/localization.py
+  - vllm/envs.py
+  - vllm/model_executor/layers/fused_moe/experts/flashinfer_cutedsl_moe.py
+  - vllm/model_executor/layers/fused_moe/routed_experts.py
+  - vllm/model_executor/layers/quantization/utils/flashinfer_fp4_moe.py
+  - vllm/utils/flashinfer.py
+  - vllm/v1/worker/gpu_worker.py
+- number: 60620
+  title: '[Attention] Allow an NVFP4 KV cache on SM90 with fa2'
+  date: '2026-10-08'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - tests/kernels/attention/test_flashinfer.py
+  - vllm/v1/attention/backends/flashinfer.py
+- number: 60276
+  title: '[Online quantization] Extend re-quantization API to MOE (showcase `NVFP4 modelopt/CT/quark` to any online MOE method)'
+  date: '2026-10-14'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 16 authoritative changed file(s)'
+  files_changed:
+  - docs/features/quantization/online.md
+  - tests/quantization/test_online.py
+  - vllm/model_executor/layers/fused_moe/routed_experts.py
+  - vllm/model_executor/layers/linear.py
+  - vllm/model_executor/layers/quantization/base_config.py
+  - vllm/model_executor/layers/quantization/compressed_tensors/compressed_tensors_moe/compressed_tensors_moe_w4a4_nvfp4.py
+  - vllm/model_executor/layers/quantization/modelopt.py
+  - vllm/model_executor/layers/quantization/online/fp8.py
+  - vllm/model_executor/layers/quantization/online/int8.py
+  - vllm/model_executor/layers/quantization/online/moe_base.py
+  - vllm/model_executor/layers/quantization/online/mxfp4.py
+  - vllm/model_executor/layers/quantization/online/mxfp8.py
+  - vllm/model_executor/layers/quantization/online/nvfp4.py
+  - vllm/model_executor/layers/quantization/online/requantization.py
+  - vllm/model_executor/layers/quantization/quark/quark_moe.py
+  - vllm/model_executor/layers/quantization/utils/nvfp4_emulation_utils.py
+- number: 60452
+  title: '[Attention] Decode an NVFP4 KV cache with XQA on SM12x'
+  date: '2026-10-10'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - .buildkite/test_areas/attention.yaml
+  - tests/v1/attention/test_attention_backends.py
+  - vllm/v1/attention/backends/flashinfer.py
+- number: 62543
+  title: '[Doc] Document MiniMax-M3 GB200 Dynamo AgentX profile'
+  date: '2026-10-20'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - recipes/models/MiniMaxAI/MiniMax-M3.yaml
+- number: 63395
+  title: '[Doc] MiniMax-M3: document the B300 NVFP4 InferenceX AgentX aggregated profile'
+  date: '2026-10-23'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - recipes/models/MiniMaxAI/MiniMax-M3.yaml
+- number: 61749
+  title: '[Bugfix][MoE] Require exact strides for moe_forward custom ops'
+  date: '2026-10-22'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - tests/quantization/test_trtllm_nvfp4_hidden_dim_padding.py
+  - vllm/model_executor/layers/fused_moe/runner/moe_runner.py
+- number: 61538
+  title: '[MoE] Unify DeepGEMM MegaMoE experts behind one feature-matrix layer; add NVFP4'
+  date: '2026-10-15'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: vllm/model_executor/layers/fused_moe/prepare_megamoe.py'
+  files_changed:
+  - .buildkite/test_areas/kernels.yaml
+  - tests/kernels/moe/test_deep_gemm_mega_moe.py
+  - tests/model_executor/test_deep_gemm_warmup.py
+  - tests/models/test_deepseek_v4_mega_moe.py
+  - vllm/model_executor/layers/fused_moe/deep_gemm_mega_moe.py
+  - vllm/model_executor/layers/fused_moe/prepare_megamoe.py
+  - vllm/model_executor/warmup/deep_gemm_warmup.py
+  - vllm/models/deepseek_v4/nvidia/model.py
+  - vllm/models/deepseek_v4/nvidia/ops/prepare_megamoe.py
+  - vllm/models/kimi_k3/nvidia/model.py
+- number: 59973
+  title: '[MRV2][Spec Decode] Quantized draft lm_head for drafters that share the target head'
+  date: '2026-10-15'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 11 authoritative changed file(s)'
+  files_changed:
+  - docs/features/speculative_decoding/mtp.md
+  - tests/v1/e2e/spec_decode/mtp/qwen3_5/test_mtp.py
+  - tests/v1/worker/test_gpu_draft_lm_head.py
+  - tests/v1/worker/test_gpu_worker_weight_transfer.py
+  - vllm/config/speculative.py
+  - vllm/config/vllm.py
+  - vllm/model_executor/layers/quantization/online/lm_head.py
+  - vllm/model_executor/layers/vocab_parallel_embedding.py
+  - vllm/v1/worker/gpu/model_runner.py
+  - vllm/v1/worker/gpu/spec_decode/eagle/utils.py
+  - vllm/v1/worker/gpu_worker.py
+- number: 59655
+  title: '[Bugfix] [Spec Decode]   DeepSeek V4/V4.1 NVFP4: keep ignored MTP/DSpark experts on MXFP4'
+  date: '2026-10-08'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 6 authoritative changed file(s)'
+  files_changed:
+  - .buildkite/test_areas/lm_eval.yaml
+  - .buildkite/test_areas/quantization.yaml
+  - tests/evals/gsm8k/configs/DeepSeek-V4.1-Flash-NVFP4-DSpark-TP4.yaml
+  - tests/evals/gsm8k/configs/models-spec-decode.txt
+  - tests/quantization/test_fp8.py
+  - vllm/models/deepseek_v41/quant_config.py
+- number: 60337
+  title: '[Bugfix][Quantization] Accept folded NVFP4 scales for Humming A16'
+  date: '2026-10-07'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - vllm/model_executor/layers/quantization/utils/humming/schema.py
+- number: 63534
+  title: '[Doc] MiniMax-M3: InferenceX AgentX lanes as tuned presets'
+  date: '2026-10-25'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - recipes/models/MiniMaxAI/MiniMax-M3.yaml
+- number: 61883
+  title: '[Chore] Use upstream Transformers InklingProcessor'
+  date: '2026-10-17'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - vllm/models/inkling/common/mm_preprocess.py
+  - vllm/transformers_utils/processors/__init__.py
+  - vllm/transformers_utils/processors/inkling.py
+- number: 62074
+  title: '[Model] Add Reflection Beam'
+  date: '2026-10-19'
+  decision: defer
+  reason: authoritative PR evidence unavailable; needs-triage
+  files_changed: []
+- number: 63257
+  title: '[ROCm][Recipe] MiniMax-M3.1-Flash: MI355X PD, DBO / SP prefill, Quark MXFP4, mono decode'
+  date: '2026-10-23'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - recipes/models/MiniMaxAI/MiniMax-M3.1-Flash.yaml
+- number: 56273
+  title: '[Quantization] Support packed NVFP4 Qwen4Exp PLE embeddings'
+  date: '2026-10-14'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: vllm/model_executor/layers/quantization/utils/nvfp4_emulation_utils.py, vllm/models/qwen4_exp/common/ngram_embedding.py'
+  files_changed:
+  - .buildkite/test_areas/models_basic.yaml
+  - tests/models/qwen4_exp/test_ple.py
+  - vllm/model_executor/layers/quantization/utils/nvfp4_emulation_utils.py
+  - vllm/models/qwen4_exp/amd/ple_layer.py
+  - vllm/models/qwen4_exp/common/ngram_embedding.py
+  - vllm/models/qwen4_exp/nvidia/ngram_embedding.py
+- number: 61628
+  title: '[ROCm][MLA][DCP] Drop VLLM_ROCM_AITER_MLA_DCP_VERIFY'
+  date: '2026-10-24'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 4 authoritative changed file(s)'
+  files_changed:
+  - tests/v1/attention/test_rocm_aiter_mla_dcp_cprr.py
+  - tests/v1/attention/test_rocm_aiter_mla_dcp_cprr_numerics.py
+  - vllm/envs.py
+  - vllm/v1/attention/backends/mla/rocm_aiter_mla.py
+- number: 63530
+  title: '[XPU] Fix MLA cache op arguments'
+  date: '2026-10-26'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - vllm/_custom_ops.py
+- number: 63638
+  title: '[Perf][Kimi K3] Opt-in KV-balanced FP8 MLA decode for agentic workloads'
+  date: '2026-10-26'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: vllm/models/kimi_k3/nvidia/kv_balanced_mla/core.py, vllm/models/kimi_k3/nvidia/kv_balanced_mla/helpers.py'
+  files_changed:
+  - tests/models/kimi_k3/test_kv_balanced_mla.py
+  - vllm/models/kimi_k3/nvidia/kv_balanced_mla/__init__.py
+  - vllm/models/kimi_k3/nvidia/kv_balanced_mla/backend.py
+  - vllm/models/kimi_k3/nvidia/kv_balanced_mla/core.py
+  - vllm/models/kimi_k3/nvidia/kv_balanced_mla/decode.py
+  - vllm/models/kimi_k3/nvidia/kv_balanced_mla/helpers.py
+  - vllm/models/kimi_k3/nvidia/kv_balanced_mla/kernel.py
+  - vllm/v1/attention/backends/registry.py
+- number: 58297
+  title: '[XPU][MLA] Integrate XPU MLA support into the existing FLASH_ATTN_MLA backend'
+  date: '2026-10-15'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 5 authoritative changed file(s)'
+  files_changed:
+  - tests/v1/attention/test_mla_backends.py
+  - vllm/_xpu_ops.py
+  - vllm/platforms/xpu.py
+  - vllm/v1/attention/backends/fa_utils.py
+  - vllm/v1/attention/backends/mla/flashattn_mla.py
+- number: 60907
+  title: '[ROCm][Bugfix][MLA] Fix FP8 MLA prefill unpad for interleave-padded heads'
+  date: '2026-10-14'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - tests/kernels/attention/test_rocm_aiter_mla_fp8_prefill.py
+  - vllm/v1/attention/backends/mla/rocm_aiter_mla.py
+- number: 62371
+  title: '[ROCm][Compile] Fuse AITER static FP8 quant into MLA attention output'
+  date: '2026-10-19'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - tests/compile/passes/test_mla_attn_quant_fusion.py
+  - vllm/compilation/passes/fusion/mla_attn_quant_fusion.py
+  - vllm/model_executor/layers/attention/mla_attention.py
+- number: 62069
+  title: '[Attention] Add CuTe DSL backend selection for MLA context prefill'
+  date: '2026-10-17'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 4 authoritative changed file(s)'
+  files_changed:
+  - tests/v1/attention/test_mla_backends.py
+  - vllm/config/attention.py
+  - vllm/model_executor/layers/attention/mla_attention.py
+  - vllm/v1/attention/backends/mla/prefill/trtllm_ragged.py
+- number: 58381
+  title: '[ROCm][MLA] Cut ~21x host dispatch from the MLA metadata build'
+  date: '2026-10-12'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - tests/v1/attention/test_aiter_mla_uniform_mtp_qo_len.py
+  - vllm/model_executor/layers/attention/mla_attention.py
+  - vllm/v1/attention/backends/mla/rocm_aiter_mla.py
+- number: 61125
+  title: '[Bugfix] Bump tokenspeed-mla to 2.0.2 to fix nanobind conflict with Triton 3.9'
+  date: '2026-10-14'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - requirements/cuda.txt
+- number: 60654
+  title: '[Attention] Fetch MLA prefill workspace at use instead of init'
+  date: '2026-10-13'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - tests/v1/attention/test_mla_prefill_registry.py
+  - vllm/v1/attention/backends/mla/prefill/flashinfer.py
+  - vllm/v1/attention/backends/mla/prefill/trtllm_ragged.py
+- number: 61002
+  title: '[Bugfix][KV Connector] Pair non-divisible hybrid MLA block sizes in NixlConnector'
+  date: '2026-10-19'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - tests/v1/kv_connector/unit/test_nixl_desc_geometry.py
+  - vllm/distributed/kv_transfer/kv_connector/v1/nixl/base_worker.py
+- number: 61689
+  title: '[Dependency] Upgrade TokenSpeed MLA to 2.0.3'
+  date: '2026-10-16'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - requirements/cuda.txt
+- number: 61726
+  title: '[Bugfix][ROCm][MoRIIO] Support heterogeneous TP in WRITE mode for all attention and mamba layers'
+  date: '2026-10-19'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 13 authoritative changed file(s)'
+  files_changed:
+  - .buildkite/test_areas/misc.yaml
+  - docs/features/moriio_connector_usage.md
+  - tests/v1/kv_connector/moriio_integration/test_write_dummy_e2e_rocm.py
+  - tests/v1/kv_connector/unit/test_moriio_connector.py
+  - tests/v1/kv_connector/unit/test_moriio_hetero_tp_write.py
+  - tests/v1/kv_connector/unit/test_moriio_kv_layout.py
+  - tests/v1/kv_connector/unit/test_moriio_tp_mapping.py
+  - tests/v1/kv_connector/unit/test_moriio_write_done_routing.py
+  - vllm/distributed/kv_transfer/kv_connector/v1/moriio/moriio_common.py
+  - vllm/distributed/kv_transfer/kv_connector/v1/moriio/moriio_connector.py
+  - vllm/distributed/kv_transfer/kv_connector/v1/moriio/moriio_engine.py
+  - vllm/distributed/kv_transfer/kv_connector/v1/moriio/moriio_layout.py
+  - vllm/distributed/kv_transfer/kv_connector/v1/moriio/moriio_tp_mapping.py
+- number: 61074
+  title: '[KV Connector][NIXL] Register packed MLA KV rows as a single region'
+  date: '2026-10-15'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 4 authoritative changed file(s)'
+  files_changed:
+  - tests/v1/kv_connector/unit/test_nixl_connector.py
+  - tests/v1/kv_connector/unit/test_nixl_desc_geometry.py
+  - tests/v1/kv_connector/unit/test_nixl_push_connector.py
+  - vllm/distributed/kv_transfer/kv_connector/v1/nixl/base_worker.py
+- number: 62473
+  title: '[Bugfix][ROCm][MoRIIO] Release every prefill rank a READ holds'
+  date: '2026-10-24'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 9 authoritative changed file(s)'
+  files_changed:
+  - .buildkite/test-amd.yaml
+  - .buildkite/test_areas/misc.yaml
+  - tests/v1/kv_connector/moriio_integration/test_write_dummy_e2e_rocm.py
+  - tests/v1/kv_connector/unit/test_moriio_hetero_tp_write.py
+  - tests/v1/kv_connector/unit/test_moriio_read_tp.py
+  - tests/v1/kv_connector/unit/test_moriio_routing_fairness.py
+  - tests/v1/kv_connector/unit/test_moriio_tp_ack.py
+  - vllm/distributed/kv_transfer/kv_connector/v1/moriio/moriio_connector.py
+  - vllm/distributed/kv_transfer/kv_connector/v1/moriio/moriio_layout.py
+- number: 59246
+  title: '[Attention][MLA] Support fp8_ds_mla KV cache for NoPE-512 models on SM90'
+  date: '2026-10-05'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 5 authoritative changed file(s)'
+  files_changed:
+  - tests/v1/attention/test_flashmla_nope_sm90_backend_selection.py
+  - tests/v1/attention/test_mla_backends.py
+  - tests/v1/attention/test_sparse_mla_backends.py
+  - vllm/v1/attention/backend.py
+  - vllm/v1/attention/backends/mla/flashmla_sparse.py
+- number: 60154
+  title: '[ROCm][DSv4/4.1] Fuse inverse RoPE and MXFP8 quant into the aiter sparse MLA and sparse MLA gating changes'
+  date: '2026-10-27'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 4 authoritative changed file(s)'
+  files_changed:
+  - tests/v1/attention/test_rocm_aiter_triton_sparse_mla.py
+  - vllm/_aiter_ops.py
+  - vllm/models/deepseek_v4/amd/rocm.py
+  - vllm/models/deepseek_v41/amd/rocm.py
+- number: 61938
+  title: '[Bugfix][Attention] Fix Triton MLA decode int32 overflow and logits workspace accounting'
+  date: '2026-10-19'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 5 authoritative changed file(s)'
+  files_changed:
+  - tests/kernels/attention/test_triton_decode_attention.py
+  - vllm/model_executor/layers/attention/mla_attention.py
+  - vllm/v1/attention/backend.py
+  - vllm/v1/attention/backends/mla/triton_mla.py
+  - vllm/v1/attention/ops/triton_decode_attention.py
+- number: 60345
+  title: '[Perf] Support minimum KV splits configuration for TokenSpeed MLA decode '
+  date: '2026-10-09'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 4 authoritative changed file(s)'
+  files_changed:
+  - tests/engine/test_arg_utils.py
+  - tests/v1/attention/test_mla_backends.py
+  - vllm/config/attention.py
+  - vllm/v1/attention/backends/mla/tokenspeed_mla.py
+- number: 58471
+  title: '[Bugfix][KV Connector][NIXL] Shard a GQA draft''s KV by head under an MLA target'
+  date: '2026-10-20'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 7 authoritative changed file(s)'
+  files_changed:
+  - tests/v1/kv_connector/unit/test_nixl_connector.py
+  - tests/v1/kv_connector/unit/test_nixl_desc_geometry.py
+  - tests/v1/kv_connector/unit/test_nixl_push_connector.py
+  - tests/v1/kv_connector/unit/test_tp_mapping.py
+  - vllm/distributed/kv_transfer/kv_connector/v1/nixl/base_worker.py
+  - vllm/distributed/kv_transfer/kv_connector/v1/nixl/push_worker.py
+  - vllm/distributed/kv_transfer/kv_connector/v1/nixl/tp_mapping.py
+- number: 62798
+  title: '[Doc] Kimi-K3: DCP selector and TOKENSPEED_MLA draft backend on GB200/GB300'
+  date: '2026-10-21'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - recipes/models/moonshotai/Kimi-K3.yaml
+- number: 61023
+  title: '[Attention] Make the sparse MLA prefill workspace size configurable'
+  date: '2026-10-12'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 4 authoritative changed file(s)'
+  files_changed:
+  - vllm/config/attention.py
+  - vllm/config/vllm.py
+  - vllm/v1/attention/backends/mla/flashmla_sparse.py
+  - vllm/v1/attention/backends/mla/indexer.py
+- number: 59733
+  title: '[Bugfix][Kimi-K3] Declare max_tp_shards on the DSpark MLA KV cache spec'
+  date: '2026-10-08'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - tests/models/test_dspark_mla.py
+  - vllm/models/kimi_k3/nvidia/mla.py
+- number: 61371
+  title: '[Kernel][DSv4.1] Bump FlashMLA to the 2026.09.30 release and its interleaved V4.1 KV cache'
+  date: '2026-10-15'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: vllm/models/deepseek_v41/common/ops/cache_utils.py, vllm/models/deepseek_v41/common/ops/fused_compress_quant_cache.py'
+  files_changed:
+  - cmake/external_projects/flashmla.cmake
+  - csrc/fused_deepseek_v4_qnorm_rope_kv_insert_kernel.cu
+  - tests/kernels/test_compressor_kv_cache.py
+  - tests/kernels/test_fused_deepseek_v4_qnorm_rope_kv_insert.py
+  - tests/model_executor/layers/test_mla_short_prefill_indexer.py
+  - vllm/model_executor/kernels/attention/dsa/sparse_mqa_logits.py
+  - vllm/models/deepseek_v4/nvidia/ops/dequant_gather_k_cutedsl.py
+  - vllm/models/deepseek_v41/attention.py
+  - vllm/models/deepseek_v41/common/ops/cache_utils.py
+  - vllm/models/deepseek_v41/common/ops/fused_compress_quant_cache.py
+  - vllm/utils/deep_gemm.py
+  - vllm/v1/attention/backends/mla/flashmla_sparse.py
+  - vllm/v1/attention/backends/mla/sparse_swa.py
+- number: 63319
+  title: '[Bugfix][LoRA][MoE] Process reloaded weights of LoRA-wrapped MoE layers'
+  date: '2026-10-24'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - tests/model_executor/model_loader/test_reload.py
+  - vllm/model_executor/layers/fused_moe/fused_moe_modular_method.py
+- number: 62054
+  title: '[MoE] Use the sorted fused-MoE path for host-resident expert weights'
+  date: '2026-10-22'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - tests/kernels/moe/test_moe.py
+  - vllm/model_executor/layers/fused_moe/experts/triton_moe.py
+  - vllm/model_executor/layers/fused_moe/fused_moe.py
+- number: 62526
+  title: '[Benchmark] benchmark_moe: read Gemma 4''s MoE shape from its text config'
+  date: '2026-10-22'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - benchmarks/kernels/benchmark_moe.py
+- number: 63125
+  title: '[Quantization][Quark] Support MXFP8 (W8A8) routed experts'
+  date: '2026-10-22'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - tests/quantization/test_quark.py
+  - vllm/model_executor/layers/quantization/quark/quark_moe.py
+- number: 62751
+  title: '[Quantization] Honor MoE activation override for Humming MXFP4'
+  date: '2026-10-23'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - tests/evals/gpt_oss/configs/gpt-oss-20b-humming-mxfp4-mxfp8.yaml
+  - tests/evals/gpt_oss/configs/models-b200.txt
+  - vllm/model_executor/layers/fused_moe/oracle/mxfp4.py
+- number: 63894
+  title: '[Bugfix][LoRA] Avoid double rounding in fused MoE expand'
+  date: '2026-10-27'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - vllm/lora/ops/triton_ops/fused_moe_lora_op.py
+- number: 62907
+  title: '[CI][ROCm][MoE] Add MXFP4 SWIGLUOAI_UNINTERLEAVE/SITU test coverage on MI355'
+  date: '2026-10-23'
+  decision: defer
+  reason: authoritative PR evidence unavailable; needs-triage
+  files_changed: []
+- number: 63131
+  title: '[Bugfix][ROCm][Kimi-K3] Validate gfx942''s int4 expert requant as int4'
+  date: '2026-10-23'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - tests/kernels/moe/test_rocm_aiter_moe.py
+  - vllm/model_executor/layers/fused_moe/experts/rocm_aiter_moe.py
+  - vllm/model_executor/layers/fused_moe/oracle/mxfp4.py
+- number: 61038
+  title: '[Bugfix] Keep legacy WNA16 MoE dispatch on Triton under batch invariance'
+  date: '2026-10-26'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - vllm/model_executor/layers/fused_moe/fused_moe.py
+- number: 62486
+  title: '[ROCm] Bump AITER to v0.1.26'
+  date: '2026-10-20'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - docker/Dockerfile.rocm_72_base
+  - docker/Dockerfile.rocm_base
+  - tests/kernels/moe/test_rocm_aiter_moe.py
+- number: 62977
+  title: '[ROCm] Add _maybe_pad_weight guard-condition and RL-reload stability tests'
+  date: '2026-10-22'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - tests/rocm/test_moe_padding.py
+- number: 62525
+  title: '[MoE][Model] Gemma 4: skip CUDA-graph padding rows in the routing kernel'
+  date: '2026-10-26'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: vllm/model_executor/models/gemma4.py'
+  files_changed:
+  - tests/kernels/moe/test_gemma4router.py
+  - tests/kernels/moe/test_topk_softplus_sqrt.py
+  - vllm/model_executor/layers/fused_moe/router/base_router.py
+  - vllm/model_executor/layers/fused_moe/router/fused_topk_bias_router.py
+  - vllm/model_executor/layers/fused_moe/router/fused_topk_router.py
+  - vllm/model_executor/models/gemma4.py
+- number: 61442
+  title: '[CI][Tests] Add SM107a to DeepEP build'
+  date: '2026-10-19'
+  decision: exclude
+  reason: 'remove: distributed-system topic matched ''DeepEP'' in PR title'
+  files_changed:
+  - docker/Dockerfile
+- number: 58234
+  title: '[MoE] Use GateLinear for all MoE models'
+  date: '2026-09-23'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 34 authoritative changed file(s)'
+  files_changed:
+  - vllm/model_executor/layers/fused_moe/router/gate_linear.py
+  - vllm/model_executor/models/AXK1.py
+  - vllm/model_executor/models/afmoe.py
+  - vllm/model_executor/models/bailing_moe.py
+  - vllm/model_executor/models/bailing_moe_linear.py
+  - vllm/model_executor/models/bailing_moe_v3.py
+  - vllm/model_executor/models/bert_with_rope.py
+  - vllm/model_executor/models/cohere2_moe.py
+  - vllm/model_executor/models/dbrx.py
+  - vllm/model_executor/models/ernie45_moe.py
+  - vllm/model_executor/models/exaone_moe.py
+  - vllm/model_executor/models/glm4_moe.py
+  - vllm/model_executor/models/gpt_oss.py
+  - vllm/model_executor/models/granitemoe.py
+  - vllm/model_executor/models/interns1_pro.py
+  - vllm/model_executor/models/interns2_mobius.py
+  - vllm/model_executor/models/jamba.py
+  - vllm/model_executor/models/k2_horizon.py
+  - vllm/model_executor/models/laguna.py
+  - vllm/model_executor/models/lfm2_moe.py
+  - vllm/model_executor/models/llama4.py
+  - vllm/model_executor/models/longcat_flash.py
+  - vllm/model_executor/models/minicpm.py
+  - vllm/model_executor/models/mixtral.py
+  - vllm/model_executor/models/moondream3.py
+  - vllm/model_executor/models/olmoe.py
+  - vllm/model_executor/models/openpangu.py
+  - vllm/model_executor/models/param2moe.py
+  - vllm/model_executor/models/phimoe.py
+  - vllm/model_executor/models/qwen2_moe.py
+  - vllm/model_executor/models/qwen3_moe.py
+  - vllm/model_executor/models/qwen3_next.py
+  - vllm/model_executor/models/step3_text.py
+  - vllm/model_executor/models/step3p5.py
+- number: 61636
+  title: '[Bugfix][LoRA] Fix double pinning of 3D MoE LoRA and EP dummy LoRA sizing'
+  date: '2026-10-26'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - tests/lora/test_lora_manager.py
+  - vllm/lora/model_manager.py
+- number: 63541
+  title: '[Perf][MoE] Size the DeepGEMM MegaMoE symmetric buffer for one sequence-parallel shard'
+  date: '2026-10-26'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - vllm/model_executor/layers/fused_moe/deep_gemm_mega_moe.py
+  - vllm/models/kimi_k3/nvidia/model.py
+- number: 61293
+  title: '[MoE] Shape-based padding for FlashInfer TRT-LLM MXFP8 experts (gated and non-gated)'
+  date: '2026-10-15'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - tests/kernels/moe/test_flashinfer.py
+  - vllm/model_executor/layers/quantization/utils/flashinfer_utils.py
+- number: 60886
+  title: '[ROCm][MoE] Add AITER MXFP4 W4A16/W4A4 modular-kernel test coverage'
+  date: '2026-10-19'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 5 authoritative changed file(s)'
+  files_changed:
+  - tests/kernels/moe/modular_kernel_tools/common.py
+  - tests/kernels/moe/modular_kernel_tools/mk_objects.py
+  - tests/kernels/moe/test_modular_kernel_combinations.py
+  - tests/kernels/moe/test_rocm_aiter_moe.py
+  - tests/kernels/moe/utils.py
+- number: 63762
+  title: '[Rust Frontend] Separate DeepSeek V4 content blocks like deepseek-recipe'
+  date: '2026-10-27'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - rust/src/chat/src/renderer/deepseek.rs
+  - rust/src/chat/src/renderer/deepseek_v4/tests.rs
+  - rust/src/chat/src/renderer/deepseek_v41/tests.rs
+- number: 63063
+  title: '[Perf][DSpark] Stack DeepSeek V41 context WKV projections'
+  date: '2026-10-27'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - tests/models/test_dspark_mla.py
+  - vllm/models/deepseek_v41/nvidia/dspark.py
+- number: 62534
+  title: '[Doc] Document DeepSeek-V4.1-Flash Dynamo sidecar serving / 记录 DeepSeek-V4.1-Flash Dynamo sidecar 部署'
+  date: '2026-10-19'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - recipes/models/deepseek-ai/DeepSeek-V4.1-Flash.yaml
+- number: 63120
+  title: '[Bugfix] Fix DeepSeek-VL2 cache identity across cropping modes'
+  date: '2026-10-23'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 7 authoritative changed file(s)'
+  files_changed:
+  - tests/models/multimodal/generation/test_deepseek_vl2.py
+  - tests/models/multimodal/processing/test_deepseek_vl2.py
+  - tests/models/multimodal/processing/test_h2ovl.py
+  - tests/models/multimodal/processing/test_unlimited_ocr.py
+  - vllm/model_executor/models/deepseek_vl2.py
+  - vllm/model_executor/models/h2ovl.py
+  - vllm/model_executor/models/unlimited_ocr.py
+- number: 63560
+  title: '[Recipe] DeepSeek-V4.1-Flash: AgentX lanes as tuned presets'
+  date: '2026-10-26'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - recipes/models/MiniMaxAI/MiniMax-M3.yaml
+  - recipes/models/deepseek-ai/DeepSeek-V4.1-Flash.yaml
+  - recipes/models/moonshotai/Kimi-K3.yaml
+- number: 62713
+  title: '[DeepSeek][ROCm] V4.1-Flash: enable --monokernel on MI325X'
+  date: '2026-10-24'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - recipes/models/deepseek-ai/DeepSeek-V4.1-Flash.yaml
+- number: 62875
+  title: '[Rust Frontend] Match DeepSeek DSML markers by token identity'
+  date: '2026-10-22'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 10 authoritative changed file(s)'
+  files_changed:
+  - rust/src/parser/benches/deepseek_v32.rs
+  - rust/src/parser/benches/utils/mod.rs
+  - rust/src/parser/src/tool/deepseek_dsml/deepseek_v32.rs
+  - rust/src/parser/src/tool/deepseek_dsml/deepseek_v4.rs
+  - rust/src/parser/src/tool/deepseek_dsml/deepseek_v41.rs
+  - rust/src/parser/src/tool/deepseek_dsml/deepseek_v41/tests.rs
+  - rust/src/parser/src/tool/deepseek_dsml/mod.rs
+  - rust/src/parser/src/tool/test_utils.rs
+  - rust/src/parser/src/tool/tests.rs
+  - rust/src/parser/src/unified/combined.rs
+- number: 63665
+  title: '[Doc][ROCm] Update DeepSeek-V4.1-Flash MI355X AgentX scheduling profiles'
+  date: '2026-10-26'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - recipes/models/deepseek-ai/DeepSeek-V4.1-Flash.yaml
+- number: 62670
+  title: '[Doc] Document DeepSeek-V4.1-Flash B300 aggregate AgentX config'
+  date: '2026-10-20'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - recipes/models/deepseek-ai/DeepSeek-V4.1-Flash.yaml
+- number: 61994
+  title: '[Spec Decode] Support PCP with DSpark for DeepSeek-V4.1'
+  date: '2026-10-26'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 7 authoritative changed file(s)'
+  files_changed:
+  - tests/kernels/test_compressor_kv_cache.py
+  - tests/models/test_deepseek_v41_pcp.py
+  - tests/v1/worker/test_gpu_pcp_manager.py
+  - vllm/models/deepseek_v41/compressor.py
+  - vllm/models/deepseek_v41/nvidia/model.py
+  - vllm/v1/worker/gpu/model_runner.py
+  - vllm/v1/worker/gpu/pcp_manager.py
+- number: 63344
+  title: '[Doc][ROCm] Document DeepSeek-V4.1-Flash MI355X AgentX TP2 profiles'
+  date: '2026-10-23'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - recipes/models/deepseek-ai/DeepSeek-V4.1-Flash.yaml
+- number: 62208
+  title: '[Bugfix][DeepSeek V4.1] Inject Engram at pipeline stage entry'
+  date: '2026-10-19'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - .buildkite/test_areas/models_basic.yaml
+  - tests/models/test_deepseek_v41_pipeline.py
+  - vllm/models/deepseek_v41/nvidia/model.py
+- number: 62652
+  title: '[Bugfix][Model] Preserve target-token scoring rows during DeepSeek-V4.1 replay'
+  date: '2026-10-21'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - tests/models/test_deepseek_v41_replay_batch.py
+  - vllm/models/deepseek_v41/nvidia/model_state.py
+- number: 59611
+  title: '[Bugfix][DeepSeek V4] Load redundant EPLB expert slots'
+  date: '2026-10-20'
+  decision: exclude
+  reason: 'remove: distributed-system topic matched ''EPLB'' in PR title'
+  files_changed:
+  - .buildkite/test_areas/lm_eval.yaml
+  - tests/evals/gsm8k/configs/DeepSeek-V4-Flash-EPLB-TEP4.yaml
+  - tests/evals/gsm8k/configs/models-spec-decode.txt
+  - tests/evals/gsm8k/eplb_checks.py
+  - tests/evals/gsm8k/test_gsm8k_correctness.py
+  - vllm/models/deepseek_v4/nvidia/model.py
+  - vllm/models/deepseek_v41/nvidia/model.py
+- number: 61868
+  title: '[Perf][DSv4.1] DeepSeek-V4.1-Flash specialized decode on GB300'
+  date: '2026-10-21'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: vllm/models/deepseek_v41/nvidia/specialized_decode/attention/candidate_topk.py, vllm/models/deepseek_v41/nvidia/specialized_decode/attention/indexer_k_store.py,
+    vllm/models/deepseek_v41/nvidia/specialized_decode/boundary/publishing_gemm.py, vllm/models/deepseek_v41/nvidia/specialized_decode/moe/routed_expert_front_cute.py, vllm/models/deepseek_v41/nvidia/specialized_decode/moe/routed_expert_gemm.py,
+    vllm/models/deepseek_v41/nvidia/specialized_decode/moe/routed_expert_gemm_cute.py, vllm/models/deepseek_v41/nvidia/specialized_decode/moe/routed_expert_route_cute.py'
+  files_changed:
+  - .buildkite/test_areas/models_basic.yaml
+  - tests/models/deepseek_v41/__init__.py
+  - tests/models/deepseek_v41/nvidia/__init__.py
+  - tests/models/deepseek_v41/nvidia/specialized_decode/__init__.py
+  - tests/models/deepseek_v41/nvidia/specialized_decode/test_kernels.py
+  - tests/models/deepseek_v41/nvidia/specialized_decode/test_layers.py
+  - tests/models/deepseek_v41/nvidia/specialized_decode/test_numerics.py
+  - vllm/models/deepseek_v41/nvidia/model.py
+  - vllm/models/deepseek_v41/nvidia/model_state.py
+  - vllm/models/deepseek_v41/nvidia/ops/cute_dsl/all_reduce_mhc.py
+  - vllm/models/deepseek_v41/nvidia/ops/o_proj.py
+  - vllm/models/deepseek_v41/nvidia/specialized_decode/AGENTS.md
+  - vllm/models/deepseek_v41/nvidia/specialized_decode/__init__.py
+  - vllm/models/deepseek_v41/nvidia/specialized_decode/attention/__init__.py
+  - vllm/models/deepseek_v41/nvidia/specialized_decode/attention/aux_projections.py
+  - vllm/models/deepseek_v41/nvidia/specialized_decode/attention/candidate_topk.py
+  - vllm/models/deepseek_v41/nvidia/specialized_decode/attention/indexer.py
+  - vllm/models/deepseek_v41/nvidia/specialized_decode/attention/indexer_k_store.py
+  - vllm/models/deepseek_v41/nvidia/specialized_decode/attention/mxfp8.py
+  - vllm/models/deepseek_v41/nvidia/specialized_decode/attention/sparse_mla.py
+  - vllm/models/deepseek_v41/nvidia/specialized_decode/attention/step.py
+  - vllm/models/deepseek_v41/nvidia/specialized_decode/boundary/__init__.py
+  - vllm/models/deepseek_v41/nvidia/specialized_decode/boundary/all_reduce.py
+  - vllm/models/deepseek_v41/nvidia/specialized_decode/boundary/boundary.py
+  - vllm/models/deepseek_v41/nvidia/specialized_decode/boundary/publishing_gemm.py
+  - vllm/models/deepseek_v41/nvidia/specialized_decode/engram/__init__.py
+  - vllm/models/deepseek_v41/nvidia/specialized_decode/engram/prefetch.py
+  - vllm/models/deepseek_v41/nvidia/specialized_decode/logits/__init__.py
+  - vllm/models/deepseek_v41/nvidia/specialized_decode/logits/lm_head.py
+  - vllm/models/deepseek_v41/nvidia/specialized_decode/logits/logits.py
+  - vllm/models/deepseek_v41/nvidia/specialized_decode/moe/__init__.py
+  - vllm/models/deepseek_v41/nvidia/specialized_decode/moe/routed_expert_front_cute.py
+  - vllm/models/deepseek_v41/nvidia/specialized_decode/moe/routed_expert_gemm.py
+  - vllm/models/deepseek_v41/nvidia/specialized_decode/moe/routed_expert_gemm_cute.py
+  - vllm/models/deepseek_v41/nvidia/specialized_decode/moe/routed_expert_route_cute.py
+  - vllm/models/deepseek_v41/nvidia/specialized_decode/moe/step.py
+  - vllm/models/deepseek_v41/nvidia/specialized_decode/runtime/__init__.py
+  - vllm/models/deepseek_v41/nvidia/specialized_decode/runtime/decode.py
+  - vllm/models/deepseek_v41/nvidia/specialized_decode/runtime/metadata_graphs.py
+  - vllm/models/deepseek_v41/nvidia/specialized_decode/runtime/model_state.py
+  - vllm/models/deepseek_v41/nvidia/specialized_decode/runtime/warmup.py
+  - vllm/models/deepseek_v41/nvidia/vl_model.py
+- number: 59857
+  title: '[Feature][PCP] Add DeepSeek-V4.1-Flash support'
+  date: '2026-10-16'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: vllm/models/deepseek_v41/common/ops/fused_compress_quant_cache.py, vllm/models/deepseek_v41/nvidia/model_state.py'
+  files_changed:
+  - .buildkite/test_areas/models_basic.yaml
+  - tests/distributed/test_engram_dp_shard.py
+  - tests/kernels/test_compressor_kv_cache.py
+  - tests/kernels/test_engram.py
+  - tests/models/test_deepseek_v41_pcp.py
+  - tests/v1/attention/test_rocm_attention_backends_selection.py
+  - vllm/models/deepseek_v41/amd/model.py
+  - vllm/models/deepseek_v41/attention.py
+  - vllm/models/deepseek_v41/common/ops/fused_compress_quant_cache.py
+  - vllm/models/deepseek_v41/compressor.py
+  - vllm/models/deepseek_v41/nvidia/flashmla.py
+  - vllm/models/deepseek_v41/nvidia/model.py
+  - vllm/models/deepseek_v41/nvidia/model_state.py
+  - vllm/models/deepseek_v41/sparse_mla.py
+  - vllm/v1/attention/backends/mla/sparse_swa.py
+- number: 63192
+  title: '[Bugfix][Model] Build the skipped DeepSeek-VL2 vision tower without meta .item()'
+  date: '2026-10-22'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - vllm/model_executor/models/deepseek_vl2.py
+- number: 59685
+  title: '[ROCm][DSv4] AITER MegaMoEV2 Integration For DeepSeek V4'
+  date: '2026-10-07'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 10 authoritative changed file(s)'
+  files_changed:
+  - .buildkite/test-amd.yaml
+  - .buildkite/test_areas/kernels.yaml
+  - tests/models/test_deepseek_v4_aiter_mega_moe.py
+  - tests/models/test_deepseek_v4_vl_rocm.py
+  - vllm/config/kernel.py
+  - vllm/distributed/device_communicators/all2all.py
+  - vllm/models/deepseek_v4/amd/dspark.py
+  - vllm/models/deepseek_v4/amd/mega_moe.py
+  - vllm/models/deepseek_v4/amd/model.py
+  - vllm/models/deepseek_v4/amd/mtp.py
+- number: 61262
+  title: '[ROCm][DSv4] AITER MegaMoE Fixed-Slot Dispatch For DeepSeek-V4'
+  date: '2026-10-15'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - tests/models/test_deepseek_v4_aiter_mega_moe.py
+  - vllm/models/deepseek_v4/amd/mega_moe.py
+  - vllm/utils/math_utils.py
+- number: 62561
+  title: '[Doc] Document DeepSeek-V4.1-Flash B300 and GB300 Dynamo disaggregated profiles'
+  date: '2026-10-20'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - recipes/models/deepseek-ai/DeepSeek-V4.1-Flash.yaml
+- number: 60792
+  title: '[Bugfix][Frontend] Align DeepSeek V4.1 images with rendered content'
+  date: '2026-10-19'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 5 authoritative changed file(s)'
+  files_changed:
+  - tests/tokenizers_/test_deepseek_v41.py
+  - vllm/renderers/deepseek_v4.py
+  - vllm/renderers/registry.py
+  - vllm/tokenizers/deepseek_v41.py
+  - vllm/tokenizers/deepseek_v41_encoding.py
+- number: 62421
+  title: '[ROCm][Model] DeepSeek-V4.1 VL: stream language-model weights on ROCm'
+  date: '2026-10-20'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 4 authoritative changed file(s)'
+  files_changed:
+  - .buildkite/test-amd.yaml
+  - .buildkite/test_areas/models_basic.yaml
+  - tests/models/test_deepseek_v4_vl_stream_weights.py
+  - vllm/models/deepseek_v41/amd/vl_model.py
+- number: 61678
+  title: '[CI/Build] Fix test_deepseek_v41_mxfp8_scale_loading after #57797'
+  date: '2026-10-14'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - tests/quantization/test_fp8.py
+- number: 62199
+  title: '[Bugfix][Frontend] Match DeepSeek-V4.1 encoder to the 1017 reference encoding'
+  date: '2026-10-19'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 13 authoritative changed file(s)'
+  files_changed:
+  - tests/tokenizers_/fixtures/deepseek_v41/test_input_1.json
+  - tests/tokenizers_/fixtures/deepseek_v41/test_input_2.json
+  - tests/tokenizers_/fixtures/deepseek_v41/test_input_3.json
+  - tests/tokenizers_/fixtures/deepseek_v41/test_input_4.json
+  - tests/tokenizers_/fixtures/deepseek_v41/test_input_5.json
+  - tests/tokenizers_/fixtures/deepseek_v41/test_output_1.txt
+  - tests/tokenizers_/fixtures/deepseek_v41/test_output_2.txt
+  - tests/tokenizers_/fixtures/deepseek_v41/test_output_3.txt
+  - tests/tokenizers_/fixtures/deepseek_v41/test_output_4.txt
+  - tests/tokenizers_/fixtures/deepseek_v41/test_output_5.txt
+  - tests/tokenizers_/test_deepseek_v41.py
+  - vllm/tokenizers/deepseek_v41.py
+  - vllm/tokenizers/deepseek_v41_encoding.py
+- number: 62954
+  title: '[Doc] DeepSeek-V4.1-Flash: document B200 AgentX router and drop removed c64 points'
+  date: '2026-10-21'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - recipes/models/deepseek-ai/DeepSeek-V4.1-Flash.yaml
+- number: 60362
+  title: '[Bugfix][Tool Parser] Parse multi-line JSON arguments in the DeepSeek V3 and V3.1 parsers'
+  date: '2026-10-19'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 4 authoritative changed file(s)'
+  files_changed:
+  - tests/tool_parsers/test_deepseekv31_tool_parser.py
+  - tests/tool_parsers/test_deepseekv3_tool_parser.py
+  - vllm/tool_parsers/deepseekv31_tool_parser.py
+  - vllm/tool_parsers/deepseekv3_tool_parser.py
+- number: 60462
+  title: '[CI] Fix failing test_deepseek_v4_rocm_dspark* tests'
+  date: '2026-10-07'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - .buildkite/test_areas/models_basic.yaml
+  - tests/models/test_deepseek_v4_dspark_rocm.py
+- number: 61489
+  title: '[Docs] Point users at --disable-flashinfer-autotune'
+  date: '2026-10-21'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 24 authoritative changed file(s)'
+  files_changed:
+  - benchmarks/replayssm/e2e_decode_speedup.py
+  - docs/design/optimization_levels.md
+  - recipes/models/MiniMaxAI/MiniMax-M3.yaml
+  - recipes/models/deepseek-ai/DeepSeek-V3.2.yaml
+  - recipes/models/deepseek-ai/DeepSeek-V4-Flash-Vision-Exp.yaml
+  - recipes/models/deepseek-ai/DeepSeek-V4-Flash.yaml
+  - recipes/models/deepseek-ai/DeepSeek-V4-Pro.yaml
+  - recipes/models/moonshotai/Kimi-K3.yaml
+  - recipes/models/thinkingmachines/Inkling-Small.yaml
+  - recipes/models/thinkingmachines/Inkling.yaml
+  - recipes/models/zai-org/GLM-5.3-Flash.yaml
+  - recipes/models/zai-org/GLM-5.3.yaml
+  - tests/compile/fusions_e2e/test_tp1_quant.py
+  - tests/compile/fusions_e2e/test_tp2_ar_rms.py
+  - tests/evals/gsm8k/configs/Kimi-K3-pruned75-DSpark-TP4.yaml
+  - tests/evals/gsm8k/configs/humming/Qwen3.5-35B-A3B-int6wc-hadamard-humming-act-int8.yaml
+  - tests/evals/gsm8k/configs/humming/Qwen3.5-35B-A3B-int6wc-hadamard-humming.yaml
+  - tests/evals/gsm8k/configs/humming/Qwen3.5-9B-int6wc-hadamard-humming-act-int8.yaml
+  - tests/evals/gsm8k/configs/humming/Qwen3.5-9B-int6wc-hadamard-humming.yaml
+  - tests/models/kimi_k3/test_prefix_cache.py
+  - tests/v1/e2e/general/test_sharded_sampling.py
+  - tests/v1/e2e/spec_decode/test_sharded_sampling.py
+  - vllm/config/kernel.py
+  - vllm/model_executor/warmup/kernel_warmup.py
+- number: 63394
+  title: '[Doc] MiniMax-M3: use the autotune flag the pinned GB200 nightly accepts, fix golden-AL links'
+  date: '2026-10-23'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - recipes/models/MiniMaxAI/MiniMax-M3.yaml
+- number: 63466
+  title: '[Kernel] Bump up FlashInfer to 0.7.2.post1'
+  date: '2026-10-24'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - requirements/cuda.txt
+- number: 61879
+  title: '[Model] Add Muse Spark Open support'
+  date: '2026-10-26'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: vllm/models/common/ops/gemm_rs_ar.py, vllm/models/muse_spark/nvidia/ops/cute_dsl/moe_finalize_rmsnorm.py, vllm/models/muse_spark/nvidia/ops/cute_dsl/qk_norm.py,
+    vllm/models/muse_spark/nvidia/ops/prepare_megamoe_bf16.py, vllm/models/muse_spark/nvidia/ops/prepare_megamoe_nvfp4.py, vllm/models/muse_spark/nvidia/ops/prepare_trtllm_nvfp4.py'
+  files_changed:
+  - benchmarks/kernels/benchmark_muse_spark_qknorm_rope_kv_insert.py
+  - tests/distributed/test_comm_ops.py
+  - tests/kernels/core/test_muse_spark_norms.py
+  - tests/kernels/moe/muse_spark_utils.py
+  - tests/kernels/moe/test_muse_spark_hopper_marlin_moe.py
+  - tests/kernels/moe/test_muse_spark_moe_deployment.py
+  - tests/kernels/moe/test_muse_spark_moe_finalize.py
+  - tests/kernels/moe/test_muse_spark_rocm_bf16_moe.py
+  - tests/kernels/moe/test_muse_spark_router.py
+  - tests/kernels/moe/test_muse_spark_trtllm_moe.py
+  - tests/kernels/test_fused_muse_spark_qknorm_rope_kv_insert.py
+  - tests/quantization/test_modelopt.py
+  - vllm/distributed/device_communicators/all_reduce_utils.py
+  - vllm/distributed/device_communicators/flashinfer_all_reduce.py
+  - vllm/envs.py
+  - vllm/model_executor/layers/attention/attention.py
+  - vllm/model_executor/layers/fused_moe/experts/marlin_moe.py
+  - vllm/model_executor/layers/fused_moe/experts/triton_moe.py
+  - vllm/model_executor/layers/fused_moe/experts/trtllm_bf16_moe.py
+  - vllm/model_executor/layers/fused_moe/experts/trtllm_nvfp4_moe.py
+  - vllm/model_executor/layers/fused_moe/modular_kernel.py
+  - vllm/model_executor/layers/fused_moe/moe_output.py
+  - vllm/model_executor/layers/quantization/modelopt.py
+  - vllm/models/common/ops/gemm_rs_ar.py
+  - vllm/models/common/ops/sequence_parallel.py
+  - vllm/models/muse_spark/__init__.py
+  - vllm/models/muse_spark/amd/model.py
+  - vllm/models/muse_spark/amd/muse_moe_runner.py
+  - vllm/models/muse_spark/common/dspark.py
+  - vllm/models/muse_spark/common/layers.py
+  - vllm/models/muse_spark/common/omni.py
+  - vllm/models/muse_spark/common/ops/fused_qk_norm_rope_kv.py
+  - vllm/models/muse_spark/common/ops/fused_rmsnorm.py
+  - vllm/models/muse_spark/common/ops/fused_routing.py
+  - vllm/models/muse_spark/nvidia/__init__.py
+  - vllm/models/muse_spark/nvidia/mega_moe.py
+  - vllm/models/muse_spark/nvidia/model.py
+  - vllm/models/muse_spark/nvidia/multimodal.py
+  - vllm/models/muse_spark/nvidia/muse_moe_runner.py
+  - vllm/models/muse_spark/nvidia/ops/__init__.py
+  - vllm/models/muse_spark/nvidia/ops/cute_dsl/__init__.py
+  - vllm/models/muse_spark/nvidia/ops/cute_dsl/moe_finalize_rmsnorm.py
+  - vllm/models/muse_spark/nvidia/ops/cute_dsl/qk_norm.py
+  - vllm/models/muse_spark/nvidia/ops/gemm_rs.py
+  - vllm/models/muse_spark/nvidia/ops/mnnvl_fusions.py
+  - vllm/models/muse_spark/nvidia/ops/prepare_megamoe_bf16.py
+  - vllm/models/muse_spark/nvidia/ops/prepare_megamoe_nvfp4.py
+  - vllm/models/muse_spark/nvidia/ops/prepare_trtllm_nvfp4.py
+  - vllm/v1/attention/backends/flash_attn.py
+  - vllm/v1/attention/backends/flashinfer.py
+- number: 62366
+  title: '[Model][Perf] Fuse Beam''s TP all-reduce with its sandwich norms and MoE finalize'
+  date: '2026-10-22'
+  decision: exclude
+  reason: 'remove: distributed-system topic matched ''all-reduce'' in PR title'
+  files_changed:
+  - CMakeLists.txt
+  - csrc/beam/allreduce_norm.cu
+  - csrc/mnnvl_lamport.cuh
+  - csrc/ops.h
+  - csrc/torch_bindings.cpp
+  - tests/models/test_beam_numerics.py
+  - vllm/models/beam/nvidia/allreduce.py
+  - vllm/models/beam/nvidia/attention.py
+  - vllm/models/beam/nvidia/layernorm.py
+  - vllm/models/beam/nvidia/model.py
+  - vllm/models/beam/nvidia/moe.py
+- number: 61655
+  title: '[Refactor] Migrate FlashInfer NVLink one-sided to MoEEpCommunication'
+  date: '2026-10-22'
+  decision: exclude
+  reason: 'remove: only distributed-system implementation path(s) qualified: vllm/distributed/device_communicators/mnnvl_compat.py'
+  files_changed:
+  - tests/distributed/test_mnnvl_alltoall.py
+  - tests/kernels/moe/test_moe_layer.py
+  - tests/quantization/test_online.py
+  - vllm/distributed/device_communicators/all2all.py
+  - vllm/distributed/device_communicators/mnnvl_compat.py
+  - vllm/model_executor/layers/fused_moe/all2all_utils.py
+  - vllm/model_executor/layers/fused_moe/oracle/fp8.py
+  - vllm/model_executor/layers/fused_moe/prepare_finalize/flashinfer_nvlink_one_sided.py
+  - vllm/utils/flashinfer.py
+- number: 60514
+  title: '[Bugfix] Fall back from DeepGEMM and FlashInfer sampling when nvcc is missing'
+  date: '2026-10-27'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 4 authoritative changed file(s)'
+  files_changed:
+  - tests/utils_/test_deep_gemm_utils.py
+  - tests/v1/sample/test_topk_topp_sampler.py
+  - vllm/utils/deep_gemm.py
+  - vllm/v1/sample/ops/topk_topp_sampler.py
+- number: 61913
+  title: '[Dependency] Upgrade FlashInfer to 0.7.2 and restore KDA auto backend'
+  date: '2026-10-16'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - requirements/cuda.txt
+  - vllm/models/kimi_k3/nvidia/kda.py
+- number: 60532
+  title: '[Attention] Decode FlashInfer spec queries with fa2 on pre-SM90 GPUs'
+  date: '2026-10-22'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - tests/v1/attention/test_attention_backends.py
+  - vllm/v1/attention/backends/flashinfer.py
+- number: 63177
+  title: '[CI][Benchmarks] Fix attention smoke test backend names and failure exit status'
+  date: '2026-10-25'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - .buildkite/test_areas/benchmarks.yaml
+  - benchmarks/attention_benchmarks/benchmark.py
+  - docs/benchmarking/cli.md
+- number: 60948
+  title: '[Dependency] Upgrade FlashInfer to 0.7.1'
+  date: '2026-10-14'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - requirements/cuda.txt
+  - vllm/models/kimi_k3/nvidia/kda.py
+- number: 60052
+  title: 'fix: exclude flashinfer-jit-cache from wheel install_requires'
+  date: '2026-10-06'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - setup.py
+- number: 55671
+  title: '[FlashInfer] Migrate autotune warmup to flashinfer.autotune_v2 managed cache'
+  date: '2026-10-17'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 6 authoritative changed file(s)'
+  files_changed:
+  - docs/usage/security.md
+  - tests/model_executor/test_flashinfer_autotune_warmup.py
+  - vllm/model_executor/warmup/flashinfer_autotune_cache.py
+  - vllm/model_executor/warmup/flashinfer_sparse_mla_warmup.py
+  - vllm/model_executor/warmup/kernel_warmup.py
+  - vllm/utils/flashinfer.py
+- number: 62029
+  title: '[Attention] Use trtllm-gen for the FlashInfer DCP prefill context pass'
+  date: '2026-10-20'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - tests/kernels/attention/test_flashinfer_trtllm_attention.py
+  - vllm/v1/attention/backends/flashinfer.py
+- number: 60434
+  title: '[Kernel] Remove WAR for LL CuTeDSL BF16 GEMM'
+  date: '2026-10-08'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 5 authoritative changed file(s)'
+  files_changed:
+  - tests/kernels/test_flashinfer_bf16_gemm.py
+  - tests/model_executor/test_flashinfer_autotune_warmup.py
+  - vllm/model_executor/layers/utils.py
+  - vllm/model_executor/warmup/kernel_warmup.py
+  - vllm/utils/flashinfer.py
+- number: 63428
+  title: '[Doc][Recipe] MiniMax-M3.1-Flash: DEP2 + DEP4 PD on GB200/GB300, 7-token FLASHINFER_TS DSpark on NVIDIA'
+  date: '2026-10-24'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - recipes/models/MiniMaxAI/MiniMax-M3.1-Flash.yaml
+- number: 58765
+  title: '[Frontend][Build] Add `vllm download-kernels` for FlashInfer precompiled kernels'
+  date: '2026-10-10'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 15 authoritative changed file(s)'
+  files_changed:
+  - .buildkite/test_areas/entrypoints.yaml
+  - README.md
+  - docker/Dockerfile
+  - docker/versions.json
+  - docs/cli/README.md
+  - docs/contributing/README.md
+  - docs/getting_started/installation/gpu.cuda.inc.md
+  - docs/getting_started/quickstart.md
+  - docs/mkdocs/gen_files/generate_argparse.py
+  - requirements/cuda.txt
+  - tests/entrypoints/unit_tests/test_download_kernels_cli.py
+  - vllm/entrypoints/cli/download_kernels.py
+  - vllm/entrypoints/cli/main.py
+  - vllm/utils/flashinfer.py
+  - vllm/v1/worker/gpu_worker.py
+- number: 63613
+  title: '[Benchmark] Add PCP support to vllm bench forward'
+  date: '2026-10-25'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 4 authoritative changed file(s)'
+  files_changed:
+  - docs/cli/README.md
+  - tests/benchmarks/test_forward_cli.py
+  - vllm/benchmarks/forward/capture.py
+  - vllm/benchmarks/forward/routing.py
+- number: 61041
+  title: '[Bugfix][DSv4.1] Match decoder-replay input_ids dtype for FlashInfer MegaMoE'
+  date: '2026-10-12'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - tests/models/test_deepseek_v41_decoder_replay_layers.py
+  - vllm/models/deepseek_v41/nvidia/decoder_replay_cudagraph.py
+- number: 61569
+  title: '[Perf][GDN] Skip FLA chunk metadata when FlashInfer GDN prefill is active'
+  date: '2026-10-14'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - vllm/v1/attention/backends/gdn_attn.py
+- number: 60515
+  title: '[CI][Mamba] Use well-conditioned prompts for FlashInfer ReplaySSM parity tests'
+  date: '2026-10-08'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - tests/v1/e2e/test_replayssm_decode.py
+- number: 58360
+  title: '[Bugfix] Detect the CUDA toolkit the way FlashInfer does in has_flashinfer()'
+  date: '2026-09-29'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - tests/utils_/test_flashinfer_utils.py
+  - vllm/utils/flashinfer.py
+- number: 61126
+  title: '[Attention] Remove cascade attention'
+  date: '2026-10-12'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 48 authoritative changed file(s)'
+  files_changed:
+  - docs/design/cuda_graphs.md
+  - tests/conftest.py
+  - tests/kernels/attention/test_cascade_flash_attn.py
+  - tests/kernels/attention/test_prefix_prefill.py
+  - tests/platforms/test_cpu.py
+  - tests/system_messages/sonnet3.5_nov2024.txt
+  - tests/v1/attention/test_attention_backends.py
+  - tests/v1/attention/test_rocm_attention_backends_selection.py
+  - tests/v1/core/test_async_scheduler.py
+  - tests/v1/core/test_scheduler.py
+  - tests/v1/core/test_single_type_kv_cache_manager.py
+  - tests/v1/cudagraph/test_cudagraph_dispatch.py
+  - tests/v1/e2e/general/test_cascade_attention.py
+  - tests/v1/kv_connector/unit/test_kv_connector_lifecycle.py
+  - tests/v1/kv_connector/unit/test_nixl_connector.py
+  - tests/v1/simple_kv_offload/test_scheduler.py
+  - tests/v1/streaming_input/test_gpu_model_runner_v2_streaming.py
+  - tests/v1/worker/test_gpu_model_runner.py
+  - tests/v1/worker/test_gpu_model_runner_prefill_tail_classification.py
+  - tests/v1/worker/test_gpu_target_dependent_ar_speculator.py
+  - tests/v1/worker/test_mamba_utils.py
+  - vllm/config/model.py
+  - vllm/config/vllm.py
+  - vllm/engine/arg_utils.py
+  - vllm/model_executor/models/extract_hidden_states.py
+  - vllm/platforms/cpu.py
+  - vllm/v1/attention/backend.py
+  - vllm/v1/attention/backends/cpu_attn.py
+  - vllm/v1/attention/backends/flash_attn.py
+  - vllm/v1/attention/backends/flash_attn_diffkv.py
+  - vllm/v1/attention/backends/flashinfer.py
+  - vllm/v1/attention/backends/flex_attention.py
+  - vllm/v1/attention/backends/rocm_aiter_fa.py
+  - vllm/v1/attention/backends/rocm_aiter_unified_attn.py
+  - vllm/v1/attention/backends/rocm_attn.py
+  - vllm/v1/attention/backends/rocm_segmented_attn.py
+  - vllm/v1/attention/backends/triton_attn.py
+  - vllm/v1/attention/backends/triton_attn_diffkv.py
+  - vllm/v1/core/kv_cache_coordinator.py
+  - vllm/v1/core/kv_cache_manager.py
+  - vllm/v1/core/sched/output.py
+  - vllm/v1/core/sched/scheduler.py
+  - vllm/v1/core/single_type_kv_cache_manager.py
+  - vllm/v1/cudagraph_dispatcher.py
+  - vllm/v1/worker/cpu_model_runner.py
+  - vllm/v1/worker/gpu/warmup.py
+  - vllm/v1/worker/gpu_model_runner.py
+  - vllm/v1/worker/xpu_model_runner.py
+- number: 62983
+  title: '[ROCm] Revert "[ROCm][Build] Compile paged attention kernels in parallel (7.6x faster attention build) (#62475)"'
+  date: '2026-10-22'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 16 authoritative changed file(s)'
+  files_changed:
+  - CMakeLists.txt
+  - csrc/rocm/attention.cu
+  - csrc/rocm/attention_dispatch.cu
+  - csrc/rocm/attention_paged_attn_h128_bf16_auto.cu
+  - csrc/rocm/attention_paged_attn_h128_bf16_fp8_f16.cu
+  - csrc/rocm/attention_paged_attn_h128_bf16_fp8_fp8.cu
+  - csrc/rocm/attention_paged_attn_h128_f16_auto.cu
+  - csrc/rocm/attention_paged_attn_h128_f16_fp8_f16.cu
+  - csrc/rocm/attention_paged_attn_h128_f16_fp8_fp8.cu
+  - csrc/rocm/attention_paged_attn_h64_bf16_auto.cu
+  - csrc/rocm/attention_paged_attn_h64_bf16_fp8_f16.cu
+  - csrc/rocm/attention_paged_attn_h64_bf16_fp8_fp8.cu
+  - csrc/rocm/attention_paged_attn_h64_f16_auto.cu
+  - csrc/rocm/attention_paged_attn_h64_f16_fp8_f16.cu
+  - csrc/rocm/attention_paged_attn_h64_f16_fp8_fp8.cu
+  - vllm/v1/attention/backends/rocm_attn.py
+- number: 60156
+  title: '[Bugfix][Attention] Preserve small FP8 softmax weights in Triton attention'
+  date: '2026-10-08'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: vllm/v1/attention/ops/triton_unified_attention.py'
+  files_changed:
+  - tests/kernels/attention/test_triton_unified_attention.py
+  - vllm/v1/attention/ops/triton_unified_attention.py
+- number: 63738
+  title: '[Bugfix][CPU] Run encoder-only attention bidirectionally in CPU_ATTN'
+  date: '2026-10-27'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 4 authoritative changed file(s)'
+  files_changed:
+  - tests/kernels/attention/test_cpu_attn.py
+  - tests/v1/attention/test_group_head_counts.py
+  - vllm/model_executor/models/embedding_gemma2.py
+  - vllm/v1/attention/backends/cpu_attn.py
+- number: 57885
+  title: '[Perf][Attention] Avoid redundant sparse attention metadata operations'
+  date: '2026-09-21'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - vllm/v1/attention/backends/mla/indexer.py
+  - vllm/v1/attention/backends/mla/sparse_swa.py
+- number: 60908
+  title: '[Attention] Set ALWAYS cudagraph support for FA4'
+  date: '2026-10-13'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - vllm/v1/attention/backends/flash_attn.py
+- number: 60405
+  title: '[CPU][GDN] Route FP16 attention through Triton/FLA'
+  date: '2026-10-22'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - vllm/model_executor/layers/mamba/ops/cpu/gdn_attention.py
+- number: 63857
+  title: '[Recipes Tool] Fix TP auto-detection for heterogeneous per-layer attention models'
+  date: '2026-10-27'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - tools/recipes/model_constraints.py
+- number: 56305
+  title: '[Attention] Add Triton/FlashInfer composite for multimodal prefix attention'
+  date: '2026-09-13'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 15 authoritative changed file(s)'
+  files_changed:
+  - docs/design/attention_backends.md
+  - tests/kernels/attention/test_attention_selector.py
+  - tests/v1/attention/test_mm_prefix.py
+  - tests/v1/spec_decode/test_dflash2.py
+  - vllm/platforms/cuda.py
+  - vllm/v1/attention/backend.py
+  - vllm/v1/attention/backends/composite.py
+  - vllm/v1/attention/backends/flash_attn.py
+  - vllm/v1/attention/backends/flex_attention.py
+  - vllm/v1/attention/backends/registry.py
+  - vllm/v1/attention/backends/triton_attn.py
+  - vllm/v1/attention/backends/triton_flash_attn.py
+  - vllm/v1/attention/backends/triton_flashinfer.py
+  - vllm/v1/attention/backends/utils.py
+  - vllm/v1/attention/selector.py
+- number: 56579
+  title: '[Bugfix][Attention] Avoid NaN in the Triton softcap for large attention logits'
+  date: '2026-09-22'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: vllm/v1/attention/ops/triton_attention_helpers.py'
+  files_changed:
+  - tests/kernels/attention/test_triton_unified_attention.py
+  - vllm/v1/attention/ops/triton_attention_helpers.py
+- number: 62014
+  title: '[XPU][Attention] Route multimodal prefix masks through the Triton/FlashAttention composite'
+  date: '2026-10-21'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 4 authoritative changed file(s)'
+  files_changed:
+  - vllm/model_executor/models/config.py
+  - vllm/platforms/xpu.py
+  - vllm/v1/attention/backends/flash_attn.py
+  - vllm/v1/attention/backends/triton_flash_attn.py
+- number: 58225
+  title: '[Perf][ROCm][Attention] Narrow the Triton prefill-attention KV tile on RDNA3/RDNA4'
+  date: '2026-09-23'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - tests/kernels/attention/test_triton_prefill_attention.py
+  - vllm/v1/attention/ops/triton_prefill_attention.py
+- number: 61285
+  title: '[Attention][DCP] Support a2a DCP comm backend for FlashMLA sparse'
+  date: '2026-10-13'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - tests/v1/attention/test_sparse_mla_backends.py
+  - vllm/v1/attention/backends/mla/flashmla_sparse.py
+- number: 57041
+  title: '[Config] Infer HiSparse attention config from HiSparseConnector'
+  date: '2026-09-15'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - tests/test_config.py
+  - vllm/config/attention.py
+  - vllm/config/vllm.py
+- number: 61732
+  title: '[CI] Use an ungated model as the attention test config default'
+  date: '2026-10-15'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - tests/v1/attention/test_attention_backends.py
+  - tests/v1/attention/test_deepseek_v4_swa_visible.py
+  - tests/v1/attention/utils.py
+- number: 55780
+  title: '[Attention] Require explicit DCP support from attention implementations'
+  date: '2026-09-08'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 15 authoritative changed file(s)'
+  files_changed:
+  - tests/kernels/attention/test_attention_selector.py
+  - tests/test_attention_backend_registry.py
+  - tests/v1/attention/test_rocm_attention_backends_selection.py
+  - vllm/v1/attention/backend.py
+  - vllm/v1/attention/backends/flash_attn.py
+  - vllm/v1/attention/backends/flashinfer.py
+  - vllm/v1/attention/backends/mla/cutlass_mla.py
+  - vllm/v1/attention/backends/mla/flashattn_mla.py
+  - vllm/v1/attention/backends/mla/flashinfer_mla.py
+  - vllm/v1/attention/backends/mla/flashinfer_mla_sparse.py
+  - vllm/v1/attention/backends/mla/flashmla.py
+  - vllm/v1/attention/backends/mla/flashmla_sparse.py
+  - vllm/v1/attention/backends/mla/rocm_aiter_mla.py
+  - vllm/v1/attention/backends/mla/tokenspeed_mla.py
+  - vllm/v1/attention/backends/mla/triton_mla.py
+- number: 59082
+  title: '[CPU] Improve long-context MTP attention scheduling on AMX'
+  date: '2026-10-21'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 4 authoritative changed file(s)'
+  files_changed:
+  - benchmarks/kernels/cpu/benchmark_cpu_attn.py
+  - csrc/cpu/cpu_attn_impl.hpp
+  - tests/kernels/attention/test_cpu_attn.py
+  - tests/v1/attention/test_group_head_counts.py
+- number: 60271
+  title: '[Bugfix] Check batch-invariance support for every attention backend'
+  date: '2026-10-08'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - vllm/v1/worker/gpu/attn_utils.py

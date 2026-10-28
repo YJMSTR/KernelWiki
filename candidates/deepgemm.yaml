@@ -1,5 +1,5 @@
 repo: deepseek-ai/DeepGEMM
-searched_at: '2026-05-20'
+searched_at: '2026-10-27'
 keywords_used:
 - blackwell
 - sm100
@@ -11,8 +11,8 @@ keywords_used:
 - fp8
 - moe
 - block_scale
-total_candidates: 37
-included: 8
+total_candidates: 54
+included: 25
 excluded: 7
 deferred: 22
 prs:
@@ -750,3 +750,904 @@ prs:
   - deep_gemm/jit/interleave_ffma.py
   files_reviewed_count: 1
   scope_disposition: removed
+- number: 447
+  title: Integrate main APIs and SM120 kernels while preserving nv_dev features
+  date: '2026-09-23'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): deep_gemm/include/deep_gemm/comm/barrier.cuh, deep_gemm/include/deep_gemm/common/math.cuh, deep_gemm/include/deep_gemm/common/packing.cuh,
+    deep_gemm/include/deep_gemm/common/ring_pipeline.cuh, deep_gemm/include/deep_gemm/common/sm120_utils.cuh, deep_gemm/include/deep_gemm/common/tma_copy.cuh, deep_gemm/include/deep_gemm/common/types.cuh,
+    deep_gemm/include/deep_gemm/common/utils.cuh, deep_gemm/include/deep_gemm/epilogue/clean_logits.cuh, deep_gemm/include/deep_gemm/epilogue/sm100_mega_gate.cuh, deep_gemm/include/deep_gemm/epilogue/sm100_mega_mhc.cuh,
+    deep_gemm/include/deep_gemm/epilogue/sm100_store_cd.cuh, deep_gemm/include/deep_gemm/epilogue/sm100_store_cd_swap_ab.cuh, deep_gemm/include/deep_gemm/epilogue/transform.cuh, deep_gemm/include/deep_gemm/impls/sm100_bf16_gemm.cuh,
+    deep_gemm/include/deep_gemm/impls/sm100_bf16_mega_gate.cuh, deep_gemm/include/deep_gemm/impls/sm100_bf16_mega_moe.cuh, deep_gemm/include/deep_gemm/impls/sm100_fp4_fp4_mega_moe.cuh, deep_gemm/include/deep_gemm/impls/sm100_fp8_fp4_gemm_1d1d.cuh,
+    deep_gemm/include/deep_gemm/impls/sm100_fp8_fp4_mega_moe.cuh, deep_gemm/include/deep_gemm/impls/sm100_mega_mhc.cuh, deep_gemm/include/deep_gemm/impls/sm100_mqa_logits.cuh, deep_gemm/include/deep_gemm/impls/sm100_sparse_mqa_logits.cuh,
+    deep_gemm/include/deep_gemm/impls/sm100_tf32_hc_prenorm_gemm.cuh, deep_gemm/include/deep_gemm/impls/sm120_bf16_gemm.cuh, deep_gemm/include/deep_gemm/impls/sm120_bmk_bnk_mn.cuh, deep_gemm/include/deep_gemm/impls/sm120_fp4_mqa_logits.cuh,
+    deep_gemm/include/deep_gemm/impls/sm120_fp4_paged_mqa_logits.cuh, deep_gemm/include/deep_gemm/impls/sm120_fp8_fp4_gemm_1d1d.cuh, deep_gemm/include/deep_gemm/impls/sm120_fp8_fp4_sparse_mqa_logits.cuh,
+    deep_gemm/include/deep_gemm/impls/sm120_fp8_mqa_logits.cuh, deep_gemm/include/deep_gemm/impls/sm120_fp8_paged_mqa_logits.cuh, deep_gemm/include/deep_gemm/impls/sm120_padding.cuh, deep_gemm/include/deep_gemm/impls/sm120_split_k_reduce.cuh,
+    deep_gemm/include/deep_gemm/impls/sm120_tf32_hc_prenorm_gemm.cuh, deep_gemm/include/deep_gemm/impls/sm90_bf16_gemm.cuh, deep_gemm/include/deep_gemm/impls/sm90_fp8_gemm_1d1d.cuh, deep_gemm/include/deep_gemm/impls/sm90_fp8_gemm_1d2d.cuh,
+    deep_gemm/include/deep_gemm/impls/sm90_fp8_mega_moe.cuh, deep_gemm/include/deep_gemm/impls/sm90_fp8_mqa_logits.cuh, deep_gemm/include/deep_gemm/impls/sm90_fp8_paged_mqa_logits.cuh, deep_gemm/include/deep_gemm/impls/sm90_mega_moe_math.cuh,
+    deep_gemm/include/deep_gemm/impls/smxx_layout.cuh, deep_gemm/include/deep_gemm/layout/gemm.cuh, deep_gemm/include/deep_gemm/layout/mega_gate.cuh, deep_gemm/include/deep_gemm/layout/mega_mhc.cuh, deep_gemm/include/deep_gemm/layout/mega_moe.cuh,
+    deep_gemm/include/deep_gemm/layout/mqa_logits.cuh, deep_gemm/include/deep_gemm/layout/nv_moe_workspace.cuh, deep_gemm/include/deep_gemm/layout/nvfp4_mega_moe.cuh, deep_gemm/include/deep_gemm/layout/sparse_mqa_logits.cuh,
+    deep_gemm/include/deep_gemm/mma/sm100.cuh, deep_gemm/include/deep_gemm/mma/sm120.cuh, deep_gemm/include/deep_gemm/ptx/ld_st.cuh, deep_gemm/include/deep_gemm/ptx/tcgen05.cuh, deep_gemm/include/deep_gemm/ptx/tma.cuh,
+    deep_gemm/include/deep_gemm/ptx/utils.cuh, deep_gemm/include/deep_gemm/scheduler/gemm.cuh, deep_gemm/include/deep_gemm/scheduler/mega_gate.cuh, deep_gemm/include/deep_gemm/scheduler/mega_mhc.cuh, deep_gemm/include/deep_gemm/scheduler/mega_moe.cuh,
+    deep_gemm/include/deep_gemm/scheduler/nvfp4_mega_moe.cuh, deep_gemm/include/deep_gemm/scheduler/sm100_mqa_logits.cuh, deep_gemm/include/deep_gemm/scheduler/sm100_mqa_logits_metadata.cuh, deep_gemm/include/deep_gemm/scheduler/sm100_paged_mqa_logits.cuh,
+    deep_gemm/include/deep_gemm/scheduler/sm100_sparse_mqa_logits_metadata.cuh, deep_gemm/include/deep_gemm/scheduler/sm120_gemm.cuh, deep_gemm/include/deep_gemm/scheduler/sm120_paged_mqa_logits.cuh, deep_gemm/include/deep_gemm/scheduler/sm90_mega_moe.cuh,
+    deep_gemm/include/deep_gemm/scheduler/sm90_paged_mqa_logits.cuh'
+  files_changed:
+  - .gitmodules
+  - CMakeLists.txt
+  - README.md
+  - csrc/apis/attention.hpp
+  - csrc/apis/config.hpp
+  - csrc/apis/einsum.hpp
+  - csrc/apis/gemm.hpp
+  - csrc/apis/hyperconnection.hpp
+  - csrc/apis/layout.hpp
+  - csrc/apis/mega_gate.hpp
+  - csrc/apis/mega_mhc.hpp
+  - csrc/apis/mega_moe.hpp
+  - csrc/apis/nvfp4_mega_moe.hpp
+  - csrc/apis/sm120_gemm.hpp
+  - csrc/apis/sm90_mega.hpp
+  - csrc/indexing/main.cu
+  - csrc/jit/cache.hpp
+  - csrc/jit/compiler.hpp
+  - csrc/jit/device_runtime.hpp
+  - csrc/jit/handle.hpp
+  - csrc/jit/include_parser.hpp
+  - csrc/jit/kernel_runtime.hpp
+  - csrc/jit_kernels/heuristics/common.hpp
+  - csrc/jit_kernels/heuristics/config.hpp
+  - csrc/jit_kernels/heuristics/mega_gate.hpp
+  - csrc/jit_kernels/heuristics/mega_moe.hpp
+  - csrc/jit_kernels/heuristics/nvfp4_mega_moe.hpp
+  - csrc/jit_kernels/heuristics/runtime.hpp
+  - csrc/jit_kernels/heuristics/sm100.hpp
+  - csrc/jit_kernels/heuristics/sm120.hpp
+  - csrc/jit_kernels/heuristics/sm120_config.hpp
+  - csrc/jit_kernels/heuristics/sm90.hpp
+  - csrc/jit_kernels/heuristics/sm90_mega_moe.hpp
+  - csrc/jit_kernels/heuristics/utils.hpp
+  - csrc/jit_kernels/impls/epilogue.hpp
+  - csrc/jit_kernels/impls/runtime_utils.hpp
+  - csrc/jit_kernels/impls/sm100_bf16_gemm.hpp
+  - csrc/jit_kernels/impls/sm100_bf16_mega_gate.hpp
+  - csrc/jit_kernels/impls/sm100_bf16_mega_moe.hpp
+  - csrc/jit_kernels/impls/sm100_bmk_bnk_mn.hpp
+  - csrc/jit_kernels/impls/sm100_fp4_fp4_mega_moe.hpp
+  - csrc/jit_kernels/impls/sm100_fp8_fp4_gemm_1d1d.hpp
+  - csrc/jit_kernels/impls/sm100_fp8_fp4_mega_moe.hpp
+  - csrc/jit_kernels/impls/sm100_mega_mhc.hpp
+  - csrc/jit_kernels/impls/sm100_mqa_logits.hpp
+  - csrc/jit_kernels/impls/sm100_mqa_logits_f16_weights.hpp
+  - csrc/jit_kernels/impls/sm100_sparse_mqa_logits.hpp
+  - csrc/jit_kernels/impls/sm100_tf32_hc_prenorm_gemm.hpp
+  - csrc/jit_kernels/impls/sm120_bf16_gemm.hpp
+  - csrc/jit_kernels/impls/sm120_bmk_bnk_mn.hpp
+  - csrc/jit_kernels/impls/sm120_fp8_fp4_gemm_1d1d.hpp
+  - csrc/jit_kernels/impls/sm120_fp8_fp4_sparse_mqa_logits.hpp
+  - csrc/jit_kernels/impls/sm120_mqa_logits.hpp
+  - csrc/jit_kernels/impls/sm120_padding.hpp
+  - csrc/jit_kernels/impls/sm120_runtime.hpp
+  - csrc/jit_kernels/impls/sm120_tf32_hc_prenorm_gemm.hpp
+  - csrc/jit_kernels/impls/sm90_bf16_gemm.hpp
+  - csrc/jit_kernels/impls/sm90_bmk_bnk_mn.hpp
+  - csrc/jit_kernels/impls/sm90_fp8_gemm_1d1d.hpp
+  - csrc/jit_kernels/impls/sm90_fp8_gemm_1d2d.hpp
+  - csrc/jit_kernels/impls/sm90_fp8_mega_moe.hpp
+  - csrc/jit_kernels/impls/sm90_fp8_mqa_logits.hpp
+  - csrc/jit_kernels/impls/sm90_tf32_hc_prenorm_gemm.hpp
+  - csrc/jit_kernels/impls/smxx_clean_logits.hpp
+  - csrc/jit_kernels/impls/smxx_cublaslt.hpp
+  - csrc/jit_kernels/impls/smxx_layout.hpp
+  - csrc/python_api.cpp
+  - csrc/runtime/jit.hpp
+  - csrc/runtime/runtime.hpp
+  - csrc/utils/compatibility.hpp
+  - csrc/utils/exception.hpp
+  - csrc/utils/format.hpp
+  - csrc/utils/hash.hpp
+  - csrc/utils/layout.hpp
+  - csrc/utils/lazy_init.hpp
+  - csrc/utils/math.hpp
+  - csrc/utils/system.hpp
+  - deep_gemm/__init__.py
+  - deep_gemm/include/deep_gemm/comm/barrier.cuh
+  - deep_gemm/include/deep_gemm/common/math.cuh
+  - deep_gemm/include/deep_gemm/common/packing.cuh
+  - deep_gemm/include/deep_gemm/common/ring_pipeline.cuh
+  - deep_gemm/include/deep_gemm/common/sm120_utils.cuh
+  - deep_gemm/include/deep_gemm/common/tma_copy.cuh
+  - deep_gemm/include/deep_gemm/common/types.cuh
+  - deep_gemm/include/deep_gemm/common/utils.cuh
+  - deep_gemm/include/deep_gemm/epilogue/clean_logits.cuh
+  - deep_gemm/include/deep_gemm/epilogue/sm100_mega_gate.cuh
+  - deep_gemm/include/deep_gemm/epilogue/sm100_mega_mhc.cuh
+  - deep_gemm/include/deep_gemm/epilogue/sm100_store_cd.cuh
+  - deep_gemm/include/deep_gemm/epilogue/sm100_store_cd_swap_ab.cuh
+  - deep_gemm/include/deep_gemm/epilogue/transform.cuh
+  - deep_gemm/include/deep_gemm/impls/sm100_bf16_gemm.cuh
+  - deep_gemm/include/deep_gemm/impls/sm100_bf16_mega_gate.cuh
+  - deep_gemm/include/deep_gemm/impls/sm100_bf16_mega_moe.cuh
+  - deep_gemm/include/deep_gemm/impls/sm100_fp4_fp4_mega_moe.cuh
+  - deep_gemm/include/deep_gemm/impls/sm100_fp8_fp4_gemm_1d1d.cuh
+  - deep_gemm/include/deep_gemm/impls/sm100_fp8_fp4_mega_moe.cuh
+  - deep_gemm/include/deep_gemm/impls/sm100_mega_mhc.cuh
+  - deep_gemm/include/deep_gemm/impls/sm100_mqa_logits.cuh
+  - deep_gemm/include/deep_gemm/impls/sm100_sparse_mqa_logits.cuh
+  - deep_gemm/include/deep_gemm/impls/sm100_tf32_hc_prenorm_gemm.cuh
+  - deep_gemm/include/deep_gemm/impls/sm120_bf16_gemm.cuh
+  - deep_gemm/include/deep_gemm/impls/sm120_bmk_bnk_mn.cuh
+  - deep_gemm/include/deep_gemm/impls/sm120_fp4_mqa_logits.cuh
+  - deep_gemm/include/deep_gemm/impls/sm120_fp4_paged_mqa_logits.cuh
+  - deep_gemm/include/deep_gemm/impls/sm120_fp8_fp4_gemm_1d1d.cuh
+  - deep_gemm/include/deep_gemm/impls/sm120_fp8_fp4_sparse_mqa_logits.cuh
+  - deep_gemm/include/deep_gemm/impls/sm120_fp8_mqa_logits.cuh
+  - deep_gemm/include/deep_gemm/impls/sm120_fp8_paged_mqa_logits.cuh
+  - deep_gemm/include/deep_gemm/impls/sm120_padding.cuh
+  - deep_gemm/include/deep_gemm/impls/sm120_split_k_reduce.cuh
+  - deep_gemm/include/deep_gemm/impls/sm120_tf32_hc_prenorm_gemm.cuh
+  - deep_gemm/include/deep_gemm/impls/sm90_bf16_gemm.cuh
+  - deep_gemm/include/deep_gemm/impls/sm90_fp8_gemm_1d1d.cuh
+  - deep_gemm/include/deep_gemm/impls/sm90_fp8_gemm_1d2d.cuh
+  - deep_gemm/include/deep_gemm/impls/sm90_fp8_mega_moe.cuh
+  - deep_gemm/include/deep_gemm/impls/sm90_fp8_mqa_logits.cuh
+  - deep_gemm/include/deep_gemm/impls/sm90_fp8_paged_mqa_logits.cuh
+  - deep_gemm/include/deep_gemm/impls/sm90_mega_moe_math.cuh
+  - deep_gemm/include/deep_gemm/impls/smxx_layout.cuh
+  - deep_gemm/include/deep_gemm/layout/gemm.cuh
+  - deep_gemm/include/deep_gemm/layout/mega_gate.cuh
+  - deep_gemm/include/deep_gemm/layout/mega_mhc.cuh
+  - deep_gemm/include/deep_gemm/layout/mega_moe.cuh
+  - deep_gemm/include/deep_gemm/layout/mqa_logits.cuh
+  - deep_gemm/include/deep_gemm/layout/nv_moe_workspace.cuh
+  - deep_gemm/include/deep_gemm/layout/nvfp4_mega_moe.cuh
+  - deep_gemm/include/deep_gemm/layout/sparse_mqa_logits.cuh
+  - deep_gemm/include/deep_gemm/mma/sm100.cuh
+  - deep_gemm/include/deep_gemm/mma/sm120.cuh
+  - deep_gemm/include/deep_gemm/ptx/ld_st.cuh
+  - deep_gemm/include/deep_gemm/ptx/tcgen05.cuh
+  - deep_gemm/include/deep_gemm/ptx/tma.cuh
+  - deep_gemm/include/deep_gemm/ptx/utils.cuh
+  - deep_gemm/include/deep_gemm/scheduler/gemm.cuh
+  - deep_gemm/include/deep_gemm/scheduler/mega_gate.cuh
+  - deep_gemm/include/deep_gemm/scheduler/mega_mhc.cuh
+  - deep_gemm/include/deep_gemm/scheduler/mega_moe.cuh
+  - deep_gemm/include/deep_gemm/scheduler/nvfp4_mega_moe.cuh
+  - deep_gemm/include/deep_gemm/scheduler/sm100_mqa_logits.cuh
+  - deep_gemm/include/deep_gemm/scheduler/sm100_mqa_logits_metadata.cuh
+  - deep_gemm/include/deep_gemm/scheduler/sm100_paged_mqa_logits.cuh
+  - deep_gemm/include/deep_gemm/scheduler/sm100_sparse_mqa_logits_metadata.cuh
+  - deep_gemm/include/deep_gemm/scheduler/sm120_gemm.cuh
+  - deep_gemm/include/deep_gemm/scheduler/sm120_paged_mqa_logits.cuh
+  - deep_gemm/include/deep_gemm/scheduler/sm90_mega_moe.cuh
+  - deep_gemm/include/deep_gemm/scheduler/sm90_paged_mqa_logits.cuh
+  - deep_gemm/legacy/m_grouped_gemm.py
+  - deep_gemm/mega/__init__.py
+  - deep_gemm/utils/layout.py
+  - deep_gemm/utils/math.py
+  - docs/scaling-factor-format.md
+  - setup.py
+  - tests/bench_mega_moe_sm90.py
+  - tests/generators.py
+  - tests/sm120_exercise.py
+  - tests/sm120_reference_heuristic.py
+  - tests/sm120_test_storage.py
+  - tests/test_attention.py
+  - tests/test_bf16.py
+  - tests/test_einsum.py
+  - tests/test_fp8_fp4.py
+  - tests/test_layout.py
+  - tests/test_legacy.py
+  - tests/test_mega_gate.py
+  - tests/test_mega_mhc.py
+  - tests/test_mega_moe.py
+  - tests/test_mega_moe_main_contracts.py
+  - tests/test_mega_moe_protocol_contracts.py
+  - tests/test_mega_moe_situ.py
+  - tests/test_mega_moe_sm90.py
+  - tests/test_nv_attention_restoration.py
+  - tests/test_nvfp4_mega_moe.py
+  - tests/test_pack_ue8m0.py
+  - tests/test_sanitizer.py
+  - tests/test_sm120_attention.py
+  - tests/test_sm120_bf16_einsum.py
+  - tests/test_sm120_bf16_einsum_tma.py
+  - tests/test_sm120_bf16_gemm.py
+  - tests/test_sm120_bf16_odd_n.py
+  - tests/test_sm120_gemm.py
+  - tests/test_sm120_gemm_regressions.py
+  - tests/test_sm120_hyperconnection.py
+  - tests/test_sm120_mixed_quant_regressions.py
+  - tests/test_sm120_native_rejections.py
+  - tests/test_sm120_quant_layout_regressions.py
+  - tests/test_sm120_sf_public_compat.py
+  - tests/utils.py
+  - third-party/deep_jit
+  - third-party/fmt
+  - third-party/tilelang_ops/norm.py
+  - third-party/tilelang_ops/ref_mhc.py
+- number: 324
+  title: 'feat: add sm120 support for DeepGEMM '
+  date: '2026-06-24'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): deep_gemm/include/deep_gemm/common/sm120_utils.cuh, deep_gemm/include/deep_gemm/impls/sm120_bf16_gemm.cuh, deep_gemm/include/deep_gemm/impls/sm120_bmk_bnk_mn.cuh,
+    deep_gemm/include/deep_gemm/impls/sm120_fp4_mqa_logits.cuh, deep_gemm/include/deep_gemm/impls/sm120_fp4_paged_mqa_logits.cuh, deep_gemm/include/deep_gemm/impls/sm120_fp8_fp4_gemm_1d1d.cuh, deep_gemm/include/deep_gemm/impls/sm120_fp8_mqa_logits.cuh,
+    deep_gemm/include/deep_gemm/impls/sm120_fp8_paged_mqa_logits.cuh, deep_gemm/include/deep_gemm/impls/sm120_split_k_reduce.cuh, deep_gemm/include/deep_gemm/impls/sm120_tf32_hc_prenorm_gemm.cuh, deep_gemm/include/deep_gemm/mma/sm120.cuh,
+    deep_gemm/include/deep_gemm/ptx/tma.cuh, deep_gemm/include/deep_gemm/scheduler/gemm.cuh'
+  files_changed:
+  - csrc/apis/attention.hpp
+  - csrc/apis/einsum.hpp
+  - csrc/apis/gemm.hpp
+  - csrc/apis/hyperconnection.hpp
+  - csrc/apis/layout.hpp
+  - csrc/jit/compiler.hpp
+  - csrc/jit/device_runtime.hpp
+  - csrc/jit_kernels/heuristics/config.hpp
+  - csrc/jit_kernels/heuristics/runtime.hpp
+  - csrc/jit_kernels/heuristics/sm120.hpp
+  - csrc/jit_kernels/impls/runtime_utils.hpp
+  - csrc/jit_kernels/impls/sm120_bf16_gemm.hpp
+  - csrc/jit_kernels/impls/sm120_bmk_bnk_mn.hpp
+  - csrc/jit_kernels/impls/sm120_fp8_fp4_gemm_1d1d.hpp
+  - csrc/jit_kernels/impls/sm120_tf32_hc_prenorm_gemm.hpp
+  - csrc/jit_kernels/impls/smxx_fp8_fp4_mqa_logits.hpp
+  - csrc/jit_kernels/impls/smxx_fp8_fp4_paged_mqa_logits.hpp
+  - csrc/jit_kernels/impls/smxx_layout.hpp
+  - csrc/utils/layout.hpp
+  - csrc/utils/math.hpp
+  - deep_gemm/include/deep_gemm/common/sm120_utils.cuh
+  - deep_gemm/include/deep_gemm/impls/sm120_bf16_gemm.cuh
+  - deep_gemm/include/deep_gemm/impls/sm120_bmk_bnk_mn.cuh
+  - deep_gemm/include/deep_gemm/impls/sm120_fp4_mqa_logits.cuh
+  - deep_gemm/include/deep_gemm/impls/sm120_fp4_paged_mqa_logits.cuh
+  - deep_gemm/include/deep_gemm/impls/sm120_fp8_fp4_gemm_1d1d.cuh
+  - deep_gemm/include/deep_gemm/impls/sm120_fp8_mqa_logits.cuh
+  - deep_gemm/include/deep_gemm/impls/sm120_fp8_paged_mqa_logits.cuh
+  - deep_gemm/include/deep_gemm/impls/sm120_split_k_reduce.cuh
+  - deep_gemm/include/deep_gemm/impls/sm120_tf32_hc_prenorm_gemm.cuh
+  - deep_gemm/include/deep_gemm/mma/sm120.cuh
+  - deep_gemm/include/deep_gemm/ptx/tma.cuh
+  - deep_gemm/include/deep_gemm/scheduler/gemm.cuh
+  - tests/generators.py
+  - tests/test_attention.py
+  - tests/test_bf16.py
+  - tests/test_einsum.py
+  - tests/test_fp8_fp4.py
+- number: 462
+  title: Public release 26/09/30
+  date: '2026-09-30'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): deep_gemm/include/deep_gemm/common/probe.cuh, deep_gemm/include/deep_gemm/common/tma_copy.cuh, deep_gemm/include/deep_gemm/common/types.cuh,
+    deep_gemm/include/deep_gemm/epilogue/operators.cuh, deep_gemm/include/deep_gemm/epilogue/sm100_mega_gate.cuh, deep_gemm/include/deep_gemm/epilogue/sm100_store_cd.cuh, deep_gemm/include/deep_gemm/epilogue/sm100_store_cd_swap_ab.cuh,
+    deep_gemm/include/deep_gemm/impls/sm100_bf16_gemm.cuh, deep_gemm/include/deep_gemm/impls/sm100_bf16_mega_gate.cuh, deep_gemm/include/deep_gemm/impls/sm100_bf16_mega_moe.cuh, deep_gemm/include/deep_gemm/impls/sm100_fp8_fp4_gemm_1d1d.cuh,
+    deep_gemm/include/deep_gemm/impls/sm100_fp8_fp4_mega_moe.cuh, deep_gemm/include/deep_gemm/impls/sm100_locality_domain.cuh, deep_gemm/include/deep_gemm/impls/sm100_mqa_logits.cuh, deep_gemm/include/deep_gemm/impls/sm100_sparse_mqa_logits.cuh,
+    deep_gemm/include/deep_gemm/impls/sm90_bf16_gemm.cuh, deep_gemm/include/deep_gemm/impls/sm90_bmk_bnk_mn.cuh, deep_gemm/include/deep_gemm/impls/sm90_fp8_gemm_1d1d.cuh, deep_gemm/include/deep_gemm/impls/sm90_fp8_gemm_1d2d.cuh,
+    deep_gemm/include/deep_gemm/impls/sm90_fp8_mqa_logits.cuh, deep_gemm/include/deep_gemm/layout/mega_gate.cuh, deep_gemm/include/deep_gemm/layout/mega_mhc.cuh, deep_gemm/include/deep_gemm/layout/mega_moe.cuh,
+    deep_gemm/include/deep_gemm/layout/mqa_logits.cuh, deep_gemm/include/deep_gemm/layout/sparse_mqa_logits.cuh, deep_gemm/include/deep_gemm/ptx/ld_st.cuh, deep_gemm/include/deep_gemm/scheduler/mega_gate.cuh,
+    deep_gemm/include/deep_gemm/scheduler/mega_moe.cuh, deep_gemm/include/deep_gemm/scheduler/sm100_mqa_logits.cuh, deep_gemm/include/deep_gemm/scheduler/sm100_paged_mqa_logits.cuh, deep_gemm/include/deep_gemm/scheduler/sm100_sparse_mqa_logits_metadata.cuh'
+  files_changed:
+  - README.md
+  - csrc/apis/attention.hpp
+  - csrc/apis/config.hpp
+  - csrc/apis/einsum.hpp
+  - csrc/apis/epilogue_class.hpp
+  - csrc/apis/gemm.hpp
+  - csrc/apis/locality_domain.hpp
+  - csrc/apis/mega_gate.hpp
+  - csrc/apis/mega_moe.hpp
+  - csrc/indexing/main.cu
+  - csrc/jit_kernels/heuristics/mega_gate.hpp
+  - csrc/jit_kernels/heuristics/mega_moe.hpp
+  - csrc/jit_kernels/impls/epilogue.hpp
+  - csrc/jit_kernels/impls/epilogue_class.hpp
+  - csrc/jit_kernels/impls/runtime_utils.hpp
+  - csrc/jit_kernels/impls/sm100_bf16_gemm.hpp
+  - csrc/jit_kernels/impls/sm100_bf16_mega_gate.hpp
+  - csrc/jit_kernels/impls/sm100_bf16_mega_moe.hpp
+  - csrc/jit_kernels/impls/sm100_fp8_fp4_gemm_1d1d.hpp
+  - csrc/jit_kernels/impls/sm100_fp8_fp4_mega_moe.hpp
+  - csrc/jit_kernels/impls/sm100_locality_domain.hpp
+  - csrc/jit_kernels/impls/sm100_mqa_logits.hpp
+  - csrc/jit_kernels/impls/sm100_sparse_mqa_logits.hpp
+  - csrc/jit_kernels/impls/sm90_bf16_gemm.hpp
+  - csrc/jit_kernels/impls/sm90_fp8_gemm_1d2d.hpp
+  - csrc/jit_kernels/impls/sm90_fp8_mqa_logits.hpp
+  - csrc/jit_kernels/impls/smxx_cublaslt.hpp
+  - csrc/jit_kernels/impls/smxx_layout.hpp
+  - csrc/python_api.cpp
+  - csrc/runtime/locality_domain.hpp
+  - csrc/runtime/mlopart.hpp
+  - csrc/runtime/runtime.hpp
+  - csrc/utils/layout.hpp
+  - deep_gemm/__init__.py
+  - deep_gemm/include/deep_gemm/common/probe.cuh
+  - deep_gemm/include/deep_gemm/common/tma_copy.cuh
+  - deep_gemm/include/deep_gemm/common/types.cuh
+  - deep_gemm/include/deep_gemm/epilogue/clean_logits.cuh
+  - deep_gemm/include/deep_gemm/epilogue/operators.cuh
+  - deep_gemm/include/deep_gemm/epilogue/sm100_mega_gate.cuh
+  - deep_gemm/include/deep_gemm/epilogue/sm100_store_cd.cuh
+  - deep_gemm/include/deep_gemm/epilogue/sm100_store_cd_swap_ab.cuh
+  - deep_gemm/include/deep_gemm/impls/sm100_bf16_gemm.cuh
+  - deep_gemm/include/deep_gemm/impls/sm100_bf16_mega_gate.cuh
+  - deep_gemm/include/deep_gemm/impls/sm100_bf16_mega_moe.cuh
+  - deep_gemm/include/deep_gemm/impls/sm100_fp8_fp4_gemm_1d1d.cuh
+  - deep_gemm/include/deep_gemm/impls/sm100_fp8_fp4_mega_moe.cuh
+  - deep_gemm/include/deep_gemm/impls/sm100_locality_domain.cuh
+  - deep_gemm/include/deep_gemm/impls/sm100_mqa_logits.cuh
+  - deep_gemm/include/deep_gemm/impls/sm100_sparse_mqa_logits.cuh
+  - deep_gemm/include/deep_gemm/impls/sm90_bf16_gemm.cuh
+  - deep_gemm/include/deep_gemm/impls/sm90_bmk_bnk_mn.cuh
+  - deep_gemm/include/deep_gemm/impls/sm90_fp8_gemm_1d1d.cuh
+  - deep_gemm/include/deep_gemm/impls/sm90_fp8_gemm_1d2d.cuh
+  - deep_gemm/include/deep_gemm/impls/sm90_fp8_mqa_logits.cuh
+  - deep_gemm/include/deep_gemm/layout/mega_gate.cuh
+  - deep_gemm/include/deep_gemm/layout/mega_mhc.cuh
+  - deep_gemm/include/deep_gemm/layout/mega_moe.cuh
+  - deep_gemm/include/deep_gemm/layout/mqa_logits.cuh
+  - deep_gemm/include/deep_gemm/layout/sparse_mqa_logits.cuh
+  - deep_gemm/include/deep_gemm/ptx/ld_st.cuh
+  - deep_gemm/include/deep_gemm/scheduler/mega_gate.cuh
+  - deep_gemm/include/deep_gemm/scheduler/mega_moe.cuh
+  - deep_gemm/include/deep_gemm/scheduler/sm100_mqa_logits.cuh
+  - deep_gemm/include/deep_gemm/scheduler/sm100_mqa_logits_metadata.cuh
+  - deep_gemm/include/deep_gemm/scheduler/sm100_paged_mqa_logits.cuh
+  - deep_gemm/include/deep_gemm/scheduler/sm100_sparse_mqa_logits_metadata.cuh
+  - deep_gemm/jit_hooks/__init__.py
+  - deep_gemm/locality_domain.py
+  - deep_gemm/testing/bench.py
+  - deep_gemm/utils/mlopart.py
+  - docs/scaling-factor-format.md
+  - tests/test_attention.py
+  - tests/test_bf16.py
+  - tests/test_einsum.py
+  - tests/test_fp8_fp4.py
+  - tests/test_lazy_init.py
+  - tests/test_locality_domain.py
+  - tests/test_mega_gate.py
+  - tests/test_mega_mhc.py
+  - tests/test_mega_moe.py
+  - tests/test_sanitizer.py
+  - tests/utils.py
+  - third-party/deep_jit
+  - third-party/tilelang_ops/norm.py
+  - third-party/tilelang_ops/ref_mhc.py
+- number: 409
+  title: Add SM100 NVFP4 MegaMoE with fused BF16 shared experts
+  date: '2026-08-27'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): deep_gemm/include/deep_gemm/common/types.cuh, deep_gemm/include/deep_gemm/impls/sm100_fp4_fp4_mega_moe.cuh, deep_gemm/include/deep_gemm/layout/mega_moe.cuh,
+    deep_gemm/include/deep_gemm/ptx/tcgen05.cuh, deep_gemm/include/deep_gemm/scheduler/mega_moe.cuh'
+  files_changed:
+  - csrc/apis/mega.hpp
+  - csrc/jit_kernels/heuristics/common.hpp
+  - csrc/jit_kernels/heuristics/mega_moe.hpp
+  - csrc/jit_kernels/heuristics/sm100.hpp
+  - csrc/jit_kernels/heuristics/sm120.hpp
+  - csrc/jit_kernels/heuristics/sm90.hpp
+  - csrc/jit_kernels/impls/runtime_utils.hpp
+  - csrc/jit_kernels/impls/sm100_fp4_fp4_mega_moe.hpp
+  - deep_gemm/__init__.py
+  - deep_gemm/include/deep_gemm/common/types.cuh
+  - deep_gemm/include/deep_gemm/impls/sm100_fp4_fp4_mega_moe.cuh
+  - deep_gemm/include/deep_gemm/layout/mega_moe.cuh
+  - deep_gemm/include/deep_gemm/ptx/tcgen05.cuh
+  - deep_gemm/include/deep_gemm/scheduler/mega_moe.cuh
+  - deep_gemm/mega/__init__.py
+  - tests/test_nvfp4_mega_moe.py
+- number: 441
+  title: Fix Mega MoE task info slot release ordering
+  date: '2026-09-14'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): deep_gemm/include/deep_gemm/ptx/ld_st.cuh, deep_gemm/include/deep_gemm/scheduler/mega_moe.cuh'
+  files_changed:
+  - deep_gemm/include/deep_gemm/ptx/ld_st.cuh
+  - deep_gemm/include/deep_gemm/scheduler/mega_moe.cuh
+- number: 459
+  title: 'Sparse MQA logits follow-ups for nv_dev: 16-byte paged KV stride, workspace reuse under graph capture'
+  date: '2026-09-24'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): deep_gemm/include/deep_gemm/impls/sm100_sparse_mqa_logits.cuh'
+  files_changed:
+  - csrc/apis/attention.hpp
+  - deep_gemm/include/deep_gemm/impls/sm100_sparse_mqa_logits.cuh
+- number: 383
+  title: '[SM90] Add FP8 MegaMoE support'
+  date: '2026-09-08'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): deep_gemm/include/deep_gemm/comm/barrier.cuh, deep_gemm/include/deep_gemm/comm/barrier_with_timeout_policy.cuh, deep_gemm/include/deep_gemm/impls/sm90_fp8_mega_moe.cuh,
+    deep_gemm/include/deep_gemm/layout/sm90_mega_moe.cuh, deep_gemm/include/deep_gemm/scheduler/sm90_mega_moe.cuh'
+  files_changed:
+  - README.md
+  - csrc/apis/sm90_mega.hpp
+  - csrc/jit_kernels/heuristics/sm90_mega_moe.hpp
+  - csrc/jit_kernels/impls/sm90_fp8_mega_moe.hpp
+  - csrc/python_api.cpp
+  - deep_gemm/__init__.py
+  - deep_gemm/include/deep_gemm/comm/barrier.cuh
+  - deep_gemm/include/deep_gemm/comm/barrier_with_timeout_policy.cuh
+  - deep_gemm/include/deep_gemm/impls/sm90_fp8_mega_moe.cuh
+  - deep_gemm/include/deep_gemm/layout/sm90_mega_moe.cuh
+  - deep_gemm/include/deep_gemm/scheduler/sm90_mega_moe.cuh
+  - deep_gemm/mega/__init__.py
+  - tests/bench_mega_moe_sm90.py
+  - tests/test_mega_moe_sm90.py
+- number: 384
+  title: 'Sync nv_dev with upstream #377'
+  date: '2026-07-20'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): deep_gemm/include/deep_gemm/comm/barrier.cuh, deep_gemm/include/deep_gemm/common/types.cuh, deep_gemm/include/deep_gemm/common/utils.cuh,
+    deep_gemm/include/deep_gemm/impls/sm100_bf16_gemm.cuh, deep_gemm/include/deep_gemm/impls/sm100_bf16_mega_moe.cuh, deep_gemm/include/deep_gemm/impls/sm100_fp8_fp4_gemm_1d1d.cuh, deep_gemm/include/deep_gemm/impls/sm100_fp8_fp4_mega_moe.cuh,
+    deep_gemm/include/deep_gemm/impls/sm100_fp8_mqa_logits_f16_weights.cuh, deep_gemm/include/deep_gemm/impls/sm100_mqa_logits.cuh, deep_gemm/include/deep_gemm/impls/sm120_fp4_paged_mqa_logits.cuh, deep_gemm/include/deep_gemm/impls/sm120_fp8_fp4_gemm_1d1d.cuh,
+    deep_gemm/include/deep_gemm/impls/sm120_fp8_paged_mqa_logits.cuh, deep_gemm/include/deep_gemm/impls/sm90_fp8_gemm_1d1d.cuh, deep_gemm/include/deep_gemm/impls/sm90_fp8_paged_mqa_logits.cuh, deep_gemm/include/deep_gemm/impls/smxx_layout.cuh,
+    deep_gemm/include/deep_gemm/layout/mega_moe.cuh, deep_gemm/include/deep_gemm/layout/mqa_logits.cuh, deep_gemm/include/deep_gemm/mma/sm100.cuh, deep_gemm/include/deep_gemm/ptx/ld_st.cuh, deep_gemm/include/deep_gemm/ptx/utils.cuh,
+    deep_gemm/include/deep_gemm/scheduler/gemm.cuh, deep_gemm/include/deep_gemm/scheduler/mega_moe.cuh, deep_gemm/include/deep_gemm/scheduler/sm100_mqa_logits.cuh, deep_gemm/include/deep_gemm/scheduler/sm100_paged_mqa_logits.cuh,
+    deep_gemm/include/deep_gemm/scheduler/sm120_paged_mqa_logits.cuh, deep_gemm/include/deep_gemm/scheduler/sm90_paged_mqa_logits.cuh'
+  files_changed:
+  - csrc/apis/attention.hpp
+  - csrc/apis/einsum.hpp
+  - csrc/apis/gemm.hpp
+  - csrc/apis/layout.hpp
+  - csrc/apis/mega.hpp
+  - csrc/indexing/main.cu
+  - csrc/jit_kernels/heuristics/config.hpp
+  - csrc/jit_kernels/heuristics/mega_moe.hpp
+  - csrc/jit_kernels/heuristics/runtime.hpp
+  - csrc/jit_kernels/impls/runtime_utils.hpp
+  - csrc/jit_kernels/impls/sm100_bf16_gemm.hpp
+  - csrc/jit_kernels/impls/sm100_bf16_mega_moe.hpp
+  - csrc/jit_kernels/impls/sm100_fp8_fp4_gemm_1d1d.hpp
+  - csrc/jit_kernels/impls/sm100_fp8_fp4_mega_moe.hpp
+  - csrc/jit_kernels/impls/sm100_fp8_gemm_1d1d.hpp
+  - csrc/jit_kernels/impls/sm100_mqa_logits.hpp
+  - csrc/jit_kernels/impls/sm100_mqa_logits_f16_weights.hpp
+  - csrc/jit_kernels/impls/sm120_mqa_logits.hpp
+  - csrc/jit_kernels/impls/sm90_bf16_gemm.hpp
+  - csrc/jit_kernels/impls/sm90_fp8_gemm_1d1d.hpp
+  - csrc/jit_kernels/impls/sm90_fp8_mqa_logits.hpp
+  - csrc/jit_kernels/impls/smxx_fp8_fp4_mqa_logits.hpp
+  - csrc/jit_kernels/impls/smxx_fp8_fp4_paged_mqa_logits.hpp
+  - csrc/jit_kernels/impls/smxx_fp8_mqa_logits.hpp
+  - csrc/jit_kernels/impls/smxx_fp8_paged_mqa_logits.hpp
+  - csrc/jit_kernels/impls/smxx_layout.hpp
+  - csrc/utils/layout.hpp
+  - deep_gemm/__init__.py
+  - deep_gemm/include/deep_gemm/comm/barrier.cuh
+  - deep_gemm/include/deep_gemm/common/epilogue_utils.cuh
+  - deep_gemm/include/deep_gemm/common/reduction.cuh
+  - deep_gemm/include/deep_gemm/common/scheduler.cuh
+  - deep_gemm/include/deep_gemm/common/sm100_utils.cuh
+  - deep_gemm/include/deep_gemm/common/sm90_utils.cuh
+  - deep_gemm/include/deep_gemm/common/tma_utils.cuh
+  - deep_gemm/include/deep_gemm/common/types.cuh
+  - deep_gemm/include/deep_gemm/common/types.hpp
+  - deep_gemm/include/deep_gemm/common/utils.cuh
+  - deep_gemm/include/deep_gemm/impls/sm100_bf16_gemm.cuh
+  - deep_gemm/include/deep_gemm/impls/sm100_bf16_mega_moe.cuh
+  - deep_gemm/include/deep_gemm/impls/sm100_fp4_mqa_logits.cuh
+  - deep_gemm/include/deep_gemm/impls/sm100_fp4_paged_mqa_logits.cuh
+  - deep_gemm/include/deep_gemm/impls/sm100_fp8_fp4_gemm_1d1d.cuh
+  - deep_gemm/include/deep_gemm/impls/sm100_fp8_fp4_mega_moe.cuh
+  - deep_gemm/include/deep_gemm/impls/sm100_fp8_gemm_1d1d.cuh
+  - deep_gemm/include/deep_gemm/impls/sm100_fp8_mqa_logits.cuh
+  - deep_gemm/include/deep_gemm/impls/sm100_fp8_mqa_logits_f16_weights.cuh
+  - deep_gemm/include/deep_gemm/impls/sm100_fp8_paged_mqa_logits.cuh
+  - deep_gemm/include/deep_gemm/impls/sm100_mqa_logits.cuh
+  - deep_gemm/include/deep_gemm/impls/sm120_fp4_paged_mqa_logits.cuh
+  - deep_gemm/include/deep_gemm/impls/sm120_fp8_fp4_gemm_1d1d.cuh
+  - deep_gemm/include/deep_gemm/impls/sm120_fp8_paged_mqa_logits.cuh
+  - deep_gemm/include/deep_gemm/impls/sm90_fp8_gemm_1d1d.cuh
+  - deep_gemm/include/deep_gemm/impls/sm90_fp8_paged_mqa_logits.cuh
+  - deep_gemm/include/deep_gemm/impls/smxx_layout.cuh
+  - deep_gemm/include/deep_gemm/layout/mega_moe.cuh
+  - deep_gemm/include/deep_gemm/layout/mqa_logits.cuh
+  - deep_gemm/include/deep_gemm/mma/sm100.cuh
+  - deep_gemm/include/deep_gemm/ptx/ld_st.cuh
+  - deep_gemm/include/deep_gemm/ptx/utils.cuh
+  - deep_gemm/include/deep_gemm/scheduler/gemm.cuh
+  - deep_gemm/include/deep_gemm/scheduler/mega_moe.cuh
+  - deep_gemm/include/deep_gemm/scheduler/sm100_mqa_logits.cuh
+  - deep_gemm/include/deep_gemm/scheduler/sm100_paged_mqa_logits.cuh
+  - deep_gemm/include/deep_gemm/scheduler/sm120_paged_mqa_logits.cuh
+  - deep_gemm/include/deep_gemm/scheduler/sm90_paged_mqa_logits.cuh
+  - deep_gemm/mega/__init__.py
+  - deep_gemm/testing/numeric.py
+  - deep_gemm/utils/math.py
+  - tests/generators.py
+  - tests/test_attention.py
+  - tests/test_bf16.py
+  - tests/test_fp8_fp4.py
+  - tests/test_layout.py
+  - tests/test_legacy.py
+  - tests/test_mega_moe.py
+  - tests/utils.py
+- number: 396
+  title: 'feat: add SiTU support to FP8/FP4 Mega MoE'
+  date: '2026-08-11'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): deep_gemm/include/deep_gemm/impls/sm100_fp8_fp4_mega_moe.cuh'
+  files_changed:
+  - csrc/apis/mega.hpp
+  - csrc/jit_kernels/impls/sm100_fp8_fp4_mega_moe.hpp
+  - deep_gemm/include/deep_gemm/impls/sm100_fp8_fp4_mega_moe.cuh
+  - deep_gemm/mega/__init__.py
+  - tests/test_mega_moe_situ.py
+- number: 369
+  title: support indexer_n_heads = 16
+  date: '2026-06-29'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): deep_gemm/include/deep_gemm/impls/sm100_fp4_mqa_logits.cuh, deep_gemm/include/deep_gemm/impls/sm100_fp4_paged_mqa_logits.cuh, deep_gemm/include/deep_gemm/impls/sm100_fp8_mqa_logits.cuh,
+    deep_gemm/include/deep_gemm/impls/sm100_fp8_paged_mqa_logits.cuh'
+  files_changed:
+  - csrc/apis/attention.hpp
+  - csrc/jit_kernels/impls/smxx_fp8_fp4_paged_mqa_logits.hpp
+  - deep_gemm/include/deep_gemm/impls/sm100_fp4_mqa_logits.cuh
+  - deep_gemm/include/deep_gemm/impls/sm100_fp4_paged_mqa_logits.cuh
+  - deep_gemm/include/deep_gemm/impls/sm100_fp8_mqa_logits.cuh
+  - deep_gemm/include/deep_gemm/impls/sm100_fp8_paged_mqa_logits.cuh
+- number: 377
+  title: Public release 26/07
+  date: '2026-07-15'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): deep_gemm/include/deep_gemm/impls/sm100_bf16_mega_moe.cuh, deep_gemm/include/deep_gemm/impls/sm100_fp8_fp4_mega_moe.cuh, deep_gemm/include/deep_gemm/impls/sm100_mqa_logits.cuh,
+    deep_gemm/include/deep_gemm/impls/sm90_fp8_gemm_1d1d.cuh, deep_gemm/include/deep_gemm/layout/mega_moe.cuh, deep_gemm/include/deep_gemm/layout/mqa_logits.cuh, deep_gemm/include/deep_gemm/mma/sm100.cuh,
+    deep_gemm/include/deep_gemm/ptx/ld_st.cuh, deep_gemm/include/deep_gemm/ptx/utils.cuh, deep_gemm/include/deep_gemm/scheduler/mega_moe.cuh'
+  files_changed:
+  - csrc/apis/attention.hpp
+  - csrc/apis/einsum.hpp
+  - csrc/apis/mega.hpp
+  - csrc/jit_kernels/heuristics/mega_moe.hpp
+  - csrc/jit_kernels/impls/sm100_bf16_mega_moe.hpp
+  - csrc/jit_kernels/impls/sm100_fp8_fp4_mega_moe.hpp
+  - csrc/jit_kernels/impls/sm100_mqa_logits.hpp
+  - csrc/jit_kernels/impls/sm90_fp8_mqa_logits.hpp
+  - csrc/jit_kernels/impls/smxx_layout.hpp
+  - csrc/utils/layout.hpp
+  - deep_gemm/__init__.py
+  - deep_gemm/include/deep_gemm/impls/sm100_bf16_mega_moe.cuh
+  - deep_gemm/include/deep_gemm/impls/sm100_fp8_fp4_mega_moe.cuh
+  - deep_gemm/include/deep_gemm/impls/sm100_mqa_logits.cuh
+  - deep_gemm/include/deep_gemm/impls/sm90_fp8_gemm_1d1d.cuh
+  - deep_gemm/include/deep_gemm/layout/mega_moe.cuh
+  - deep_gemm/include/deep_gemm/layout/mqa_logits.cuh
+  - deep_gemm/include/deep_gemm/mma/sm100.cuh
+  - deep_gemm/include/deep_gemm/ptx/ld_st.cuh
+  - deep_gemm/include/deep_gemm/ptx/utils.cuh
+  - deep_gemm/include/deep_gemm/scheduler/mega_moe.cuh
+  - deep_gemm/mega/__init__.py
+  - deep_gemm/utils/math.py
+  - tests/generators.py
+  - tests/test_attention.py
+  - tests/test_bf16.py
+  - tests/test_fp8_fp4.py
+  - tests/test_layout.py
+  - tests/test_mega_moe.py
+  - tests/utils.py
+- number: 364
+  title: Multiple updates and refactorings
+  date: '2026-06-23'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): deep_gemm/include/deep_gemm/comm/barrier.cuh, deep_gemm/include/deep_gemm/common/types.cuh, deep_gemm/include/deep_gemm/common/utils.cuh,
+    deep_gemm/include/deep_gemm/impls/sm100_bf16_gemm.cuh, deep_gemm/include/deep_gemm/impls/sm100_bf16_mega_moe.cuh, deep_gemm/include/deep_gemm/impls/sm100_fp8_fp4_gemm_1d1d.cuh, deep_gemm/include/deep_gemm/impls/sm100_fp8_fp4_mega_moe.cuh,
+    deep_gemm/include/deep_gemm/impls/sm100_mqa_logits.cuh, deep_gemm/include/deep_gemm/impls/sm90_fp8_gemm_1d1d.cuh, deep_gemm/include/deep_gemm/impls/sm90_fp8_paged_mqa_logits.cuh, deep_gemm/include/deep_gemm/impls/smxx_layout.cuh,
+    deep_gemm/include/deep_gemm/layout/mega_moe.cuh, deep_gemm/include/deep_gemm/layout/mqa_logits.cuh, deep_gemm/include/deep_gemm/ptx/utils.cuh, deep_gemm/include/deep_gemm/scheduler/gemm.cuh, deep_gemm/include/deep_gemm/scheduler/sm100_mqa_logits.cuh,
+    deep_gemm/include/deep_gemm/scheduler/sm100_paged_mqa_logits.cuh, deep_gemm/include/deep_gemm/scheduler/sm90_paged_mqa_logits.cuh'
+  files_changed:
+  - csrc/apis/attention.hpp
+  - csrc/apis/gemm.hpp
+  - csrc/apis/layout.hpp
+  - csrc/apis/mega.hpp
+  - csrc/indexing/main.cu
+  - csrc/jit_kernels/heuristics/config.hpp
+  - csrc/jit_kernels/heuristics/mega_moe.hpp
+  - csrc/jit_kernels/heuristics/runtime.hpp
+  - csrc/jit_kernels/impls/runtime_utils.hpp
+  - csrc/jit_kernels/impls/sm100_bf16_gemm.hpp
+  - csrc/jit_kernels/impls/sm100_bf16_mega_moe.hpp
+  - csrc/jit_kernels/impls/sm100_fp8_fp4_gemm_1d1d.hpp
+  - csrc/jit_kernels/impls/sm100_fp8_fp4_mega_moe.hpp
+  - csrc/jit_kernels/impls/sm100_fp8_gemm_1d1d.hpp
+  - csrc/jit_kernels/impls/sm100_mqa_logits.hpp
+  - csrc/jit_kernels/impls/sm90_bf16_gemm.hpp
+  - csrc/jit_kernels/impls/sm90_fp8_gemm_1d1d.hpp
+  - csrc/jit_kernels/impls/sm90_fp8_mqa_logits.hpp
+  - csrc/jit_kernels/impls/smxx_fp8_fp4_mqa_logits.hpp
+  - csrc/jit_kernels/impls/smxx_fp8_fp4_paged_mqa_logits.hpp
+  - csrc/jit_kernels/impls/smxx_fp8_mqa_logits.hpp
+  - csrc/jit_kernels/impls/smxx_fp8_paged_mqa_logits.hpp
+  - csrc/jit_kernels/impls/smxx_layout.hpp
+  - deep_gemm/__init__.py
+  - deep_gemm/include/deep_gemm/comm/barrier.cuh
+  - deep_gemm/include/deep_gemm/common/epilogue_utils.cuh
+  - deep_gemm/include/deep_gemm/common/reduction.cuh
+  - deep_gemm/include/deep_gemm/common/scheduler.cuh
+  - deep_gemm/include/deep_gemm/common/sm100_utils.cuh
+  - deep_gemm/include/deep_gemm/common/sm90_utils.cuh
+  - deep_gemm/include/deep_gemm/common/tma_utils.cuh
+  - deep_gemm/include/deep_gemm/common/types.cuh
+  - deep_gemm/include/deep_gemm/common/types.hpp
+  - deep_gemm/include/deep_gemm/common/utils.cuh
+  - deep_gemm/include/deep_gemm/impls/sm100_bf16_gemm.cuh
+  - deep_gemm/include/deep_gemm/impls/sm100_bf16_mega_moe.cuh
+  - deep_gemm/include/deep_gemm/impls/sm100_fp4_mqa_logits.cuh
+  - deep_gemm/include/deep_gemm/impls/sm100_fp4_paged_mqa_logits.cuh
+  - deep_gemm/include/deep_gemm/impls/sm100_fp8_fp4_gemm_1d1d.cuh
+  - deep_gemm/include/deep_gemm/impls/sm100_fp8_fp4_mega_moe.cuh
+  - deep_gemm/include/deep_gemm/impls/sm100_fp8_gemm_1d1d.cuh
+  - deep_gemm/include/deep_gemm/impls/sm100_fp8_mqa_logits.cuh
+  - deep_gemm/include/deep_gemm/impls/sm100_fp8_paged_mqa_logits.cuh
+  - deep_gemm/include/deep_gemm/impls/sm100_mqa_logits.cuh
+  - deep_gemm/include/deep_gemm/impls/sm90_fp8_gemm_1d1d.cuh
+  - deep_gemm/include/deep_gemm/impls/sm90_fp8_paged_mqa_logits.cuh
+  - deep_gemm/include/deep_gemm/impls/smxx_layout.cuh
+  - deep_gemm/include/deep_gemm/layout/mega_moe.cuh
+  - deep_gemm/include/deep_gemm/layout/mqa_logits.cuh
+  - deep_gemm/include/deep_gemm/ptx/utils.cuh
+  - deep_gemm/include/deep_gemm/scheduler/gemm.cuh
+  - deep_gemm/include/deep_gemm/scheduler/sm100_mqa_logits.cuh
+  - deep_gemm/include/deep_gemm/scheduler/sm100_paged_mqa_logits.cuh
+  - deep_gemm/include/deep_gemm/scheduler/sm90_paged_mqa_logits.cuh
+  - deep_gemm/mega/__init__.py
+  - deep_gemm/testing/numeric.py
+  - deep_gemm/utils/math.py
+  - tests/generators.py
+  - tests/test_attention.py
+  - tests/test_bf16.py
+  - tests/test_fp8_fp4.py
+  - tests/test_layout.py
+  - tests/test_legacy.py
+  - tests/test_mega_moe.py
+- number: 432
+  title: Public Release 26/09
+  date: '2026-09-10'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): deep_gemm/include/deep_gemm/comm/barrier.cuh, deep_gemm/include/deep_gemm/common/math.cuh, deep_gemm/include/deep_gemm/common/packing.cuh,
+    deep_gemm/include/deep_gemm/common/ring_pipeline.cuh, deep_gemm/include/deep_gemm/common/tma_copy.cuh, deep_gemm/include/deep_gemm/common/types.cuh, deep_gemm/include/deep_gemm/common/utils.cuh, deep_gemm/include/deep_gemm/epilogue/clean_logits.cuh,
+    deep_gemm/include/deep_gemm/epilogue/sm100_mega_gate.cuh, deep_gemm/include/deep_gemm/epilogue/sm100_mega_mhc.cuh, deep_gemm/include/deep_gemm/epilogue/sm100_store_cd.cuh, deep_gemm/include/deep_gemm/epilogue/sm100_store_cd_swap_ab.cuh,
+    deep_gemm/include/deep_gemm/epilogue/transform.cuh, deep_gemm/include/deep_gemm/impls/sm100_bf16_gemm.cuh, deep_gemm/include/deep_gemm/impls/sm100_bf16_mega_gate.cuh, deep_gemm/include/deep_gemm/impls/sm100_bf16_mega_moe.cuh,
+    deep_gemm/include/deep_gemm/impls/sm100_fp8_fp4_gemm_1d1d.cuh, deep_gemm/include/deep_gemm/impls/sm100_fp8_fp4_mega_moe.cuh, deep_gemm/include/deep_gemm/impls/sm100_mega_mhc.cuh, deep_gemm/include/deep_gemm/impls/sm100_mqa_logits.cuh,
+    deep_gemm/include/deep_gemm/impls/sm100_sparse_mqa_logits.cuh, deep_gemm/include/deep_gemm/impls/sm100_tf32_hc_prenorm_gemm.cuh, deep_gemm/include/deep_gemm/impls/sm90_bf16_gemm.cuh, deep_gemm/include/deep_gemm/impls/sm90_fp8_gemm_1d1d.cuh,
+    deep_gemm/include/deep_gemm/impls/sm90_fp8_gemm_1d2d.cuh, deep_gemm/include/deep_gemm/impls/sm90_fp8_mqa_logits.cuh, deep_gemm/include/deep_gemm/impls/smxx_layout.cuh, deep_gemm/include/deep_gemm/layout/gemm.cuh,
+    deep_gemm/include/deep_gemm/layout/mega_gate.cuh, deep_gemm/include/deep_gemm/layout/mega_mhc.cuh, deep_gemm/include/deep_gemm/layout/mega_moe.cuh, deep_gemm/include/deep_gemm/layout/mqa_logits.cuh,
+    deep_gemm/include/deep_gemm/layout/sparse_mqa_logits.cuh, deep_gemm/include/deep_gemm/mma/sm100.cuh, deep_gemm/include/deep_gemm/ptx/ld_st.cuh, deep_gemm/include/deep_gemm/ptx/tcgen05.cuh, deep_gemm/include/deep_gemm/ptx/tma.cuh,
+    deep_gemm/include/deep_gemm/ptx/utils.cuh, deep_gemm/include/deep_gemm/scheduler/gemm.cuh, deep_gemm/include/deep_gemm/scheduler/mega_gate.cuh, deep_gemm/include/deep_gemm/scheduler/mega_mhc.cuh, deep_gemm/include/deep_gemm/scheduler/mega_moe.cuh,
+    deep_gemm/include/deep_gemm/scheduler/sm100_mqa_logits.cuh, deep_gemm/include/deep_gemm/scheduler/sm100_mqa_logits_metadata.cuh, deep_gemm/include/deep_gemm/scheduler/sm100_paged_mqa_logits.cuh, deep_gemm/include/deep_gemm/scheduler/sm100_sparse_mqa_logits_metadata.cuh'
+  files_changed:
+  - .gitmodules
+  - CMakeLists.txt
+  - README.md
+  - csrc/apis/attention.hpp
+  - csrc/apis/config.hpp
+  - csrc/apis/einsum.hpp
+  - csrc/apis/gemm.hpp
+  - csrc/apis/hyperconnection.hpp
+  - csrc/apis/layout.hpp
+  - csrc/apis/mega_gate.hpp
+  - csrc/apis/mega_mhc.hpp
+  - csrc/apis/mega_moe.hpp
+  - csrc/indexing/main.cu
+  - csrc/jit/cache.hpp
+  - csrc/jit/compiler.hpp
+  - csrc/jit/device_runtime.hpp
+  - csrc/jit/handle.hpp
+  - csrc/jit/include_parser.hpp
+  - csrc/jit/kernel_runtime.hpp
+  - csrc/jit_kernels/heuristics/common.hpp
+  - csrc/jit_kernels/heuristics/config.hpp
+  - csrc/jit_kernels/heuristics/mega_gate.hpp
+  - csrc/jit_kernels/heuristics/mega_moe.hpp
+  - csrc/jit_kernels/heuristics/runtime.hpp
+  - csrc/jit_kernels/heuristics/sm100.hpp
+  - csrc/jit_kernels/heuristics/sm90.hpp
+  - csrc/jit_kernels/heuristics/utils.hpp
+  - csrc/jit_kernels/impls/epilogue.hpp
+  - csrc/jit_kernels/impls/runtime_utils.hpp
+  - csrc/jit_kernels/impls/sm100_bf16_gemm.hpp
+  - csrc/jit_kernels/impls/sm100_bf16_mega_gate.hpp
+  - csrc/jit_kernels/impls/sm100_bf16_mega_moe.hpp
+  - csrc/jit_kernels/impls/sm100_bmk_bnk_mn.hpp
+  - csrc/jit_kernels/impls/sm100_fp8_fp4_gemm_1d1d.hpp
+  - csrc/jit_kernels/impls/sm100_fp8_fp4_mega_moe.hpp
+  - csrc/jit_kernels/impls/sm100_mega_mhc.hpp
+  - csrc/jit_kernels/impls/sm100_mqa_logits.hpp
+  - csrc/jit_kernels/impls/sm100_sparse_mqa_logits.hpp
+  - csrc/jit_kernels/impls/sm100_tf32_hc_prenorm_gemm.hpp
+  - csrc/jit_kernels/impls/sm90_bf16_gemm.hpp
+  - csrc/jit_kernels/impls/sm90_bmk_bnk_mn.hpp
+  - csrc/jit_kernels/impls/sm90_fp8_gemm_1d1d.hpp
+  - csrc/jit_kernels/impls/sm90_fp8_gemm_1d2d.hpp
+  - csrc/jit_kernels/impls/sm90_fp8_mqa_logits.hpp
+  - csrc/jit_kernels/impls/sm90_tf32_hc_prenorm_gemm.hpp
+  - csrc/jit_kernels/impls/smxx_clean_logits.hpp
+  - csrc/jit_kernels/impls/smxx_cublaslt.hpp
+  - csrc/jit_kernels/impls/smxx_layout.hpp
+  - csrc/python_api.cpp
+  - csrc/runtime/jit.hpp
+  - csrc/runtime/runtime.hpp
+  - csrc/utils/compatibility.hpp
+  - csrc/utils/exception.hpp
+  - csrc/utils/format.hpp
+  - csrc/utils/hash.hpp
+  - csrc/utils/layout.hpp
+  - csrc/utils/lazy_init.hpp
+  - csrc/utils/system.hpp
+  - deep_gemm/__init__.py
+  - deep_gemm/include/deep_gemm/comm/barrier.cuh
+  - deep_gemm/include/deep_gemm/common/math.cuh
+  - deep_gemm/include/deep_gemm/common/packing.cuh
+  - deep_gemm/include/deep_gemm/common/ring_pipeline.cuh
+  - deep_gemm/include/deep_gemm/common/tma_copy.cuh
+  - deep_gemm/include/deep_gemm/common/types.cuh
+  - deep_gemm/include/deep_gemm/common/utils.cuh
+  - deep_gemm/include/deep_gemm/epilogue/clean_logits.cuh
+  - deep_gemm/include/deep_gemm/epilogue/sm100_mega_gate.cuh
+  - deep_gemm/include/deep_gemm/epilogue/sm100_mega_mhc.cuh
+  - deep_gemm/include/deep_gemm/epilogue/sm100_store_cd.cuh
+  - deep_gemm/include/deep_gemm/epilogue/sm100_store_cd_swap_ab.cuh
+  - deep_gemm/include/deep_gemm/epilogue/transform.cuh
+  - deep_gemm/include/deep_gemm/impls/sm100_bf16_gemm.cuh
+  - deep_gemm/include/deep_gemm/impls/sm100_bf16_mega_gate.cuh
+  - deep_gemm/include/deep_gemm/impls/sm100_bf16_mega_moe.cuh
+  - deep_gemm/include/deep_gemm/impls/sm100_fp8_fp4_gemm_1d1d.cuh
+  - deep_gemm/include/deep_gemm/impls/sm100_fp8_fp4_mega_moe.cuh
+  - deep_gemm/include/deep_gemm/impls/sm100_mega_mhc.cuh
+  - deep_gemm/include/deep_gemm/impls/sm100_mqa_logits.cuh
+  - deep_gemm/include/deep_gemm/impls/sm100_sparse_mqa_logits.cuh
+  - deep_gemm/include/deep_gemm/impls/sm100_tf32_hc_prenorm_gemm.cuh
+  - deep_gemm/include/deep_gemm/impls/sm90_bf16_gemm.cuh
+  - deep_gemm/include/deep_gemm/impls/sm90_fp8_gemm_1d1d.cuh
+  - deep_gemm/include/deep_gemm/impls/sm90_fp8_gemm_1d2d.cuh
+  - deep_gemm/include/deep_gemm/impls/sm90_fp8_mqa_logits.cuh
+  - deep_gemm/include/deep_gemm/impls/smxx_clean_logits.cuh
+  - deep_gemm/include/deep_gemm/impls/smxx_layout.cuh
+  - deep_gemm/include/deep_gemm/layout/gemm.cuh
+  - deep_gemm/include/deep_gemm/layout/mega_gate.cuh
+  - deep_gemm/include/deep_gemm/layout/mega_mhc.cuh
+  - deep_gemm/include/deep_gemm/layout/mega_moe.cuh
+  - deep_gemm/include/deep_gemm/layout/mqa_logits.cuh
+  - deep_gemm/include/deep_gemm/layout/sparse_mqa_logits.cuh
+  - deep_gemm/include/deep_gemm/mma/sm100.cuh
+  - deep_gemm/include/deep_gemm/ptx/ld_st.cuh
+  - deep_gemm/include/deep_gemm/ptx/tcgen05.cuh
+  - deep_gemm/include/deep_gemm/ptx/tma.cuh
+  - deep_gemm/include/deep_gemm/ptx/utils.cuh
+  - deep_gemm/include/deep_gemm/scheduler/gemm.cuh
+  - deep_gemm/include/deep_gemm/scheduler/mega_gate.cuh
+  - deep_gemm/include/deep_gemm/scheduler/mega_mhc.cuh
+  - deep_gemm/include/deep_gemm/scheduler/mega_moe.cuh
+  - deep_gemm/include/deep_gemm/scheduler/sm100_mqa_logits.cuh
+  - deep_gemm/include/deep_gemm/scheduler/sm100_mqa_logits_metadata.cuh
+  - deep_gemm/include/deep_gemm/scheduler/sm100_paged_mqa_logits.cuh
+  - deep_gemm/include/deep_gemm/scheduler/sm100_sparse_mqa_logits_metadata.cuh
+  - deep_gemm/legacy/m_grouped_gemm.py
+  - deep_gemm/mega/__init__.py
+  - deep_gemm/utils/layout.py
+  - deep_gemm/utils/math.py
+  - docs/scaling-factor-format.md
+  - setup.py
+  - tests/generators.py
+  - tests/test_attention.py
+  - tests/test_bf16.py
+  - tests/test_einsum.py
+  - tests/test_fp8_fp4.py
+  - tests/test_layout.py
+  - tests/test_legacy.py
+  - tests/test_mega_gate.py
+  - tests/test_mega_mhc.py
+  - tests/test_mega_moe.py
+  - tests/test_sanitizer.py
+  - tests/utils.py
+  - third-party/deep_jit
+  - third-party/fmt
+  - third-party/tilelang_ops/norm.py
+  - third-party/tilelang_ops/ref_mhc.py
+- number: 471
+  title: Public release 10/14
+  date: '2026-10-14'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): deep_gemm/include/deep_gemm/common/math.cuh, deep_gemm/include/deep_gemm/common/types.cuh, deep_gemm/include/deep_gemm/epilogue/operators.cuh,
+    deep_gemm/include/deep_gemm/epilogue/sm100_store_cd.cuh, deep_gemm/include/deep_gemm/epilogue/sm100_store_cd_swap_ab.cuh, deep_gemm/include/deep_gemm/impls/sm100_bf16_gemm.cuh, deep_gemm/include/deep_gemm/impls/sm100_fp8_fp4_gemm_1d1d.cuh,
+    deep_gemm/include/deep_gemm/impls/sm100_sparse_mqa_logits.cuh, deep_gemm/include/deep_gemm/impls/sm90_bf16_gemm.cuh, deep_gemm/include/deep_gemm/ptx/ld_st.cuh'
+  files_changed:
+  - csrc/apis/attention.hpp
+  - csrc/apis/einsum.hpp
+  - csrc/apis/epilogue_class.hpp
+  - csrc/jit_kernels/impls/epilogue_class.hpp
+  - deep_gemm/__init__.py
+  - deep_gemm/include/deep_gemm/common/math.cuh
+  - deep_gemm/include/deep_gemm/common/types.cuh
+  - deep_gemm/include/deep_gemm/epilogue/operators.cuh
+  - deep_gemm/include/deep_gemm/epilogue/sm100_store_cd.cuh
+  - deep_gemm/include/deep_gemm/epilogue/sm100_store_cd_swap_ab.cuh
+  - deep_gemm/include/deep_gemm/impls/sm100_bf16_gemm.cuh
+  - deep_gemm/include/deep_gemm/impls/sm100_fp8_fp4_gemm_1d1d.cuh
+  - deep_gemm/include/deep_gemm/impls/sm100_sparse_mqa_logits.cuh
+  - deep_gemm/include/deep_gemm/impls/sm90_bf16_gemm.cuh
+  - deep_gemm/include/deep_gemm/ptx/ld_st.cuh
+  - tests/test_attention.py
+  - tests/test_einsum.py
+  - tests/test_mega_moe.py
+- number: 347
+  title: Multiple updates and refactorings
+  date: '2026-06-01'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): deep_gemm/include/deep_gemm/comm/barrier.cuh, deep_gemm/include/deep_gemm/impls/sm100_bf16_gemm.cuh, deep_gemm/include/deep_gemm/impls/sm100_fp4_mqa_logits.cuh,
+    deep_gemm/include/deep_gemm/impls/sm100_fp4_paged_mqa_logits.cuh, deep_gemm/include/deep_gemm/impls/sm100_fp8_fp4_gemm_1d1d.cuh, deep_gemm/include/deep_gemm/impls/sm100_fp8_fp4_mega_moe.cuh, deep_gemm/include/deep_gemm/impls/sm100_fp8_paged_mqa_logits.cuh,
+    deep_gemm/include/deep_gemm/impls/sm90_bf16_gemm.cuh, deep_gemm/include/deep_gemm/impls/sm90_fp8_gemm_1d1d.cuh, deep_gemm/include/deep_gemm/impls/sm90_fp8_gemm_1d2d.cuh, deep_gemm/include/deep_gemm/layout/sym_buffer.cuh,
+    deep_gemm/include/deep_gemm/ptx/ld_st.cuh, deep_gemm/include/deep_gemm/ptx/utils.cuh, deep_gemm/include/deep_gemm/scheduler/mega_moe.cuh, deep_gemm/include/deep_gemm/scheduler/paged_mqa_logits.cuh'
+  files_changed:
+  - csrc/apis/attention.hpp
+  - csrc/apis/einsum.hpp
+  - csrc/apis/gemm.hpp
+  - csrc/apis/mega.hpp
+  - csrc/jit_kernels/heuristics/mega_moe.hpp
+  - csrc/jit_kernels/impls/runtime_utils.hpp
+  - csrc/jit_kernels/impls/sm100_fp8_fp4_mega_moe.hpp
+  - csrc/jit_kernels/impls/sm90_fp8_gemm_1d2d.hpp
+  - csrc/jit_kernels/impls/smxx_fp8_fp4_paged_mqa_logits.hpp
+  - deep_gemm/include/deep_gemm/comm/barrier.cuh
+  - deep_gemm/include/deep_gemm/impls/sm100_bf16_gemm.cuh
+  - deep_gemm/include/deep_gemm/impls/sm100_fp4_mqa_logits.cuh
+  - deep_gemm/include/deep_gemm/impls/sm100_fp4_paged_mqa_logits.cuh
+  - deep_gemm/include/deep_gemm/impls/sm100_fp8_fp4_gemm_1d1d.cuh
+  - deep_gemm/include/deep_gemm/impls/sm100_fp8_fp4_mega_moe.cuh
+  - deep_gemm/include/deep_gemm/impls/sm100_fp8_paged_mqa_logits.cuh
+  - deep_gemm/include/deep_gemm/impls/sm90_bf16_gemm.cuh
+  - deep_gemm/include/deep_gemm/impls/sm90_fp8_gemm_1d1d.cuh
+  - deep_gemm/include/deep_gemm/impls/sm90_fp8_gemm_1d2d.cuh
+  - deep_gemm/include/deep_gemm/layout/sym_buffer.cuh
+  - deep_gemm/include/deep_gemm/ptx/ld_st.cuh
+  - deep_gemm/include/deep_gemm/ptx/utils.cuh
+  - deep_gemm/include/deep_gemm/scheduler/mega_moe.cuh
+  - deep_gemm/include/deep_gemm/scheduler/paged_mqa_logits.cuh
+  - deep_gemm/mega/__init__.py
+  - tests/generators.py
+  - tests/test_attention.py
+  - tests/test_bf16.py
+  - tests/test_mega_moe.py
+- number: 343
+  title: Fix a race condition in contiguous k-grouped GEMM where in-flight tensormaps are updated in-place
+  date: '2026-07-06'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): deep_gemm/include/deep_gemm/impls/sm90_fp8_gemm_1d1d.cuh'
+  files_changed:
+  - deep_gemm/include/deep_gemm/impls/sm90_fp8_gemm_1d1d.cuh
+  - tests/generators.py
+- number: 349
+  title: 'Sync nv_dev with upstream #347'
+  date: '2026-06-02'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): deep_gemm/include/deep_gemm/comm/barrier.cuh, deep_gemm/include/deep_gemm/impls/sm100_bf16_gemm.cuh, deep_gemm/include/deep_gemm/impls/sm100_fp4_mqa_logits.cuh,
+    deep_gemm/include/deep_gemm/impls/sm100_fp4_paged_mqa_logits.cuh, deep_gemm/include/deep_gemm/impls/sm100_fp8_fp4_gemm_1d1d.cuh, deep_gemm/include/deep_gemm/impls/sm100_fp8_fp4_mega_moe.cuh, deep_gemm/include/deep_gemm/impls/sm100_fp8_paged_mqa_logits.cuh,
+    deep_gemm/include/deep_gemm/impls/sm90_bf16_gemm.cuh, deep_gemm/include/deep_gemm/impls/sm90_fp8_gemm_1d1d.cuh, deep_gemm/include/deep_gemm/impls/sm90_fp8_gemm_1d2d.cuh, deep_gemm/include/deep_gemm/layout/sym_buffer.cuh,
+    deep_gemm/include/deep_gemm/ptx/ld_st.cuh, deep_gemm/include/deep_gemm/ptx/utils.cuh, deep_gemm/include/deep_gemm/scheduler/mega_moe.cuh, deep_gemm/include/deep_gemm/scheduler/paged_mqa_logits.cuh'
+  files_changed:
+  - csrc/apis/attention.hpp
+  - csrc/apis/einsum.hpp
+  - csrc/apis/gemm.hpp
+  - csrc/apis/mega.hpp
+  - csrc/jit_kernels/heuristics/mega_moe.hpp
+  - csrc/jit_kernels/impls/runtime_utils.hpp
+  - csrc/jit_kernels/impls/sm100_fp8_fp4_mega_moe.hpp
+  - csrc/jit_kernels/impls/sm90_fp8_gemm_1d2d.hpp
+  - csrc/jit_kernels/impls/smxx_fp8_fp4_paged_mqa_logits.hpp
+  - deep_gemm/include/deep_gemm/comm/barrier.cuh
+  - deep_gemm/include/deep_gemm/impls/sm100_bf16_gemm.cuh
+  - deep_gemm/include/deep_gemm/impls/sm100_fp4_mqa_logits.cuh
+  - deep_gemm/include/deep_gemm/impls/sm100_fp4_paged_mqa_logits.cuh
+  - deep_gemm/include/deep_gemm/impls/sm100_fp8_fp4_gemm_1d1d.cuh
+  - deep_gemm/include/deep_gemm/impls/sm100_fp8_fp4_mega_moe.cuh
+  - deep_gemm/include/deep_gemm/impls/sm100_fp8_paged_mqa_logits.cuh
+  - deep_gemm/include/deep_gemm/impls/sm90_bf16_gemm.cuh
+  - deep_gemm/include/deep_gemm/impls/sm90_fp8_gemm_1d1d.cuh
+  - deep_gemm/include/deep_gemm/impls/sm90_fp8_gemm_1d2d.cuh
+  - deep_gemm/include/deep_gemm/layout/sym_buffer.cuh
+  - deep_gemm/include/deep_gemm/ptx/ld_st.cuh
+  - deep_gemm/include/deep_gemm/ptx/utils.cuh
+  - deep_gemm/include/deep_gemm/scheduler/mega_moe.cuh
+  - deep_gemm/include/deep_gemm/scheduler/paged_mqa_logits.cuh
+  - deep_gemm/mega/__init__.py
+  - tests/generators.py
+  - tests/test_attention.py
+  - tests/test_bf16.py
+  - tests/test_mega_moe.py

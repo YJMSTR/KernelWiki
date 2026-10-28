@@ -1,5 +1,5 @@
 repo: NVIDIA/cccl
-searched_at: '2026-05-20'
+searched_at: '2026-10-27'
 keywords_used:
 - cub
 - topk
@@ -9,10 +9,10 @@ keywords_used:
 - b200
 - sm100
 - cuda
-total_candidates: 239
-included: 67
-excluded: 6
-deferred: 166
+total_candidates: 419
+included: 168
+excluded: 82
+deferred: 169
 prs:
 - number: 6152
   pr: 6152
@@ -9693,3 +9693,2957 @@ prs:
   - cudax/include/cuda/experimental/__utility/unstable_unique.cuh
   files_reviewed_count: 6
   scope_disposition: retained
+- number: 12190
+  title: '[CUB] Add std::formatter specialization for cub::ScanByKeyAlgorithm'
+  date: '2026-10-23'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/device/dispatch/tuning/tuning_scan_by_key.cuh'
+  files_changed:
+  - cub/cub/device/dispatch/tuning/tuning_scan_by_key.cuh
+  - cub/test/catch2_test_enum_formatting.cu
+- number: 12085
+  title: '[CUB] Fix two CUB header inclusion cycles'
+  date: '2026-10-20'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/detail/launcher/cuda_runtime.cuh, cub/cub/device/dispatch/dispatch_find_bound_sorted_values.cuh, cub/cub/device/dispatch/dispatch_histogram.cuh,
+    cub/cub/device/dispatch/dispatch_merge.cuh, cub/cub/device/dispatch/dispatch_merge_sort.cuh, cub/cub/device/dispatch/dispatch_radix_sort.cuh, cub/cub/device/dispatch/dispatch_reduce_deterministic.cuh,
+    cub/cub/device/dispatch/dispatch_scan_by_key.cuh, cub/cub/device/dispatch/dispatch_segmented_radix_sort.cuh, cub/cub/device/dispatch/dispatch_segmented_sort.cuh, cub/cub/device/dispatch/dispatch_select_if.cuh,
+    cub/cub/device/dispatch/dispatch_set_operations.cuh, cub/cub/device/dispatch/dispatch_three_way_partition.cuh, cub/cub/device/dispatch/dispatch_topk.cuh, cub/cub/device/dispatch/dispatch_unique_by_key.cuh,
+    cub/cub/util_arch.cuh, cub/cub/util_device.cuh'
+  files_changed:
+  - cub/cub/detail/launcher/cuda_runtime.cuh
+  - cub/cub/device/dispatch/dispatch_find_bound_sorted_values.cuh
+  - cub/cub/device/dispatch/dispatch_histogram.cuh
+  - cub/cub/device/dispatch/dispatch_merge.cuh
+  - cub/cub/device/dispatch/dispatch_merge_sort.cuh
+  - cub/cub/device/dispatch/dispatch_radix_sort.cuh
+  - cub/cub/device/dispatch/dispatch_reduce_deterministic.cuh
+  - cub/cub/device/dispatch/dispatch_scan_by_key.cuh
+  - cub/cub/device/dispatch/dispatch_segmented_radix_sort.cuh
+  - cub/cub/device/dispatch/dispatch_segmented_sort.cuh
+  - cub/cub/device/dispatch/dispatch_select_if.cuh
+  - cub/cub/device/dispatch/dispatch_set_operations.cuh
+  - cub/cub/device/dispatch/dispatch_three_way_partition.cuh
+  - cub/cub/device/dispatch/dispatch_topk.cuh
+  - cub/cub/device/dispatch/dispatch_unique_by_key.cuh
+  - cub/cub/util_arch.cuh
+  - cub/cub/util_device.cuh
+  - cub/test/stream_registry_factory.h
+  - thrust/thrust/system/cuda/detail/assign_value.h
+  - thrust/thrust/system/cuda/detail/iter_swap.h
+  - thrust/thrust/system/cuda/detail/util.h
+- number: 12209
+  title: '[cub] `cub::DeviceSelect::UniqueByKey` docs: fix unterminated `@rst` block'
+  date: '2026-10-23'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - cub/cub/device/device_select.cuh
+- number: 12186
+  title: '[CUB] Reject empty inputs in the unseeded cub::ThreadReduce overload'
+  date: '2026-10-23'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/thread/thread_reduce.cuh'
+  files_changed:
+  - cub/cub/thread/thread_reduce.cuh
+  - cub/test/test_thread_reduce_empty_fail.cu
+  - cub/test/thread_reduce/catch2_test_thread_reduce.cu
+- number: 12013
+  title: '[CUB] Refactor `cub::DeviceHistogram` to always take an environment '
+  date: '2026-10-20'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/device/device_histogram.cuh'
+  files_changed:
+  - cub/cub/device/device_histogram.cuh
+  - cub/test/catch2_test_device_histogram_env.cu
+- number: 12111
+  title: '[CUB] Apply clang-tidy `misc-include-cleaner` to `cub/device/dispatch`'
+  date: '2026-10-23'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/device/dispatch/dispatch_adjacent_difference.cuh, cub/cub/device/dispatch/dispatch_batch_memcpy.cuh, cub/cub/device/dispatch/dispatch_batched_topk.cuh,
+    cub/cub/device/dispatch/dispatch_copy_mdspan.cuh, cub/cub/device/dispatch/dispatch_find.cuh, cub/cub/device/dispatch/dispatch_find_bound_sorted_values.cuh, cub/cub/device/dispatch/dispatch_for.cuh,
+    cub/cub/device/dispatch/dispatch_histogram.cuh, cub/cub/device/dispatch/dispatch_merge.cuh, cub/cub/device/dispatch/dispatch_merge_sort.cuh, cub/cub/device/dispatch/dispatch_radix_sort.cuh, cub/cub/device/dispatch/dispatch_reduce.cuh,
+    cub/cub/device/dispatch/dispatch_reduce_by_key.cuh, cub/cub/device/dispatch/dispatch_reduce_deterministic.cuh, cub/cub/device/dispatch/dispatch_rle.cuh, cub/cub/device/dispatch/dispatch_rle_encode.cuh,
+    cub/cub/device/dispatch/dispatch_scan.cuh, cub/cub/device/dispatch/dispatch_scan_by_key.cuh, cub/cub/device/dispatch/dispatch_segmented_radix_sort.cuh, cub/cub/device/dispatch/dispatch_segmented_reduce.cuh,
+    cub/cub/device/dispatch/dispatch_segmented_scan.cuh, cub/cub/device/dispatch/dispatch_segmented_sort.cuh, cub/cub/device/dispatch/dispatch_select_if.cuh, cub/cub/device/dispatch/dispatch_set_operations.cuh,
+    cub/cub/device/dispatch/dispatch_streaming_reduce.cuh, cub/cub/device/dispatch/dispatch_streaming_reduce_by_key.cuh, cub/cub/device/dispatch/dispatch_three_way_partition.cuh, cub/cub/device/dispatch/dispatch_topk.cuh,
+    cub/cub/device/dispatch/dispatch_transform.cuh, cub/cub/device/dispatch/dispatch_unique_by_key.cuh, cub/cub/device/dispatch/kernels/kernel_histogram.cuh'
+  files_changed:
+  - cub/cub/device/dispatch/dispatch_adjacent_difference.cuh
+  - cub/cub/device/dispatch/dispatch_batch_memcpy.cuh
+  - cub/cub/device/dispatch/dispatch_batched_topk.cuh
+  - cub/cub/device/dispatch/dispatch_copy_mdspan.cuh
+  - cub/cub/device/dispatch/dispatch_find.cuh
+  - cub/cub/device/dispatch/dispatch_find_bound_sorted_values.cuh
+  - cub/cub/device/dispatch/dispatch_for.cuh
+  - cub/cub/device/dispatch/dispatch_histogram.cuh
+  - cub/cub/device/dispatch/dispatch_merge.cuh
+  - cub/cub/device/dispatch/dispatch_merge_sort.cuh
+  - cub/cub/device/dispatch/dispatch_radix_sort.cuh
+  - cub/cub/device/dispatch/dispatch_reduce.cuh
+  - cub/cub/device/dispatch/dispatch_reduce_by_key.cuh
+  - cub/cub/device/dispatch/dispatch_reduce_deterministic.cuh
+  - cub/cub/device/dispatch/dispatch_rle.cuh
+  - cub/cub/device/dispatch/dispatch_rle_encode.cuh
+  - cub/cub/device/dispatch/dispatch_scan.cuh
+  - cub/cub/device/dispatch/dispatch_scan_by_key.cuh
+  - cub/cub/device/dispatch/dispatch_segmented_radix_sort.cuh
+  - cub/cub/device/dispatch/dispatch_segmented_reduce.cuh
+  - cub/cub/device/dispatch/dispatch_segmented_scan.cuh
+  - cub/cub/device/dispatch/dispatch_segmented_sort.cuh
+  - cub/cub/device/dispatch/dispatch_select_if.cuh
+  - cub/cub/device/dispatch/dispatch_set_operations.cuh
+  - cub/cub/device/dispatch/dispatch_streaming_reduce.cuh
+  - cub/cub/device/dispatch/dispatch_streaming_reduce_by_key.cuh
+  - cub/cub/device/dispatch/dispatch_three_way_partition.cuh
+  - cub/cub/device/dispatch/dispatch_topk.cuh
+  - cub/cub/device/dispatch/dispatch_transform.cuh
+  - cub/cub/device/dispatch/dispatch_unique_by_key.cuh
+  - cub/cub/device/dispatch/kernels/kernel_histogram.cuh
+- number: 12110
+  title: '[CUB] Simplify Thrust dependencies for `triple_chevron_launch`'
+  date: '2026-10-22'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/config.cuh, cub/cub/device/device_copy.cuh, cub/cub/device/dispatch/dispatch_adjacent_difference.cuh, cub/cub/device/dispatch/dispatch_batch_memcpy.cuh,
+    cub/cub/device/dispatch/dispatch_batched_topk.cuh, cub/cub/device/dispatch/dispatch_find.cuh, cub/cub/device/dispatch/dispatch_find_bound_sorted_values.cuh, cub/cub/device/dispatch/dispatch_for.cuh,
+    cub/cub/device/dispatch/dispatch_merge.cuh, cub/cub/device/dispatch/dispatch_reduce_by_key.cuh, cub/cub/device/dispatch/dispatch_rle.cuh, cub/cub/device/dispatch/dispatch_scan.cuh, cub/cub/device/dispatch/dispatch_scan_by_key.cuh,
+    cub/cub/device/dispatch/dispatch_segmented_scan.cuh, cub/cub/device/dispatch/dispatch_segmented_sort.cuh, cub/cub/device/dispatch/dispatch_select_if.cuh, cub/cub/device/dispatch/dispatch_set_operations.cuh,
+    cub/cub/device/dispatch/dispatch_streaming_reduce_by_key.cuh, cub/cub/device/dispatch/dispatch_three_way_partition.cuh, cub/cub/device/dispatch/dispatch_transform.cuh'
+  files_changed:
+  - cub/cub/config.cuh
+  - cub/cub/cub.cuh
+  - cub/cub/device/device_copy.cuh
+  - cub/cub/device/dispatch/dispatch_adjacent_difference.cuh
+  - cub/cub/device/dispatch/dispatch_batch_memcpy.cuh
+  - cub/cub/device/dispatch/dispatch_batched_topk.cuh
+  - cub/cub/device/dispatch/dispatch_find.cuh
+  - cub/cub/device/dispatch/dispatch_find_bound_sorted_values.cuh
+  - cub/cub/device/dispatch/dispatch_for.cuh
+  - cub/cub/device/dispatch/dispatch_merge.cuh
+  - cub/cub/device/dispatch/dispatch_reduce_by_key.cuh
+  - cub/cub/device/dispatch/dispatch_rle.cuh
+  - cub/cub/device/dispatch/dispatch_scan.cuh
+  - cub/cub/device/dispatch/dispatch_scan_by_key.cuh
+  - cub/cub/device/dispatch/dispatch_segmented_scan.cuh
+  - cub/cub/device/dispatch/dispatch_segmented_sort.cuh
+  - cub/cub/device/dispatch/dispatch_select_if.cuh
+  - cub/cub/device/dispatch/dispatch_set_operations.cuh
+  - cub/cub/device/dispatch/dispatch_streaming_reduce_by_key.cuh
+  - cub/cub/device/dispatch/dispatch_three_way_partition.cuh
+  - cub/cub/device/dispatch/dispatch_transform.cuh
+- number: 12166
+  title: Fix cub RunsOn tests for mismatched compute capabilities
+  date: '2026-10-22'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - cub/test/catch2_test_device_radix_sort_runs_on.cu
+- number: 12066
+  title: Support Thrust and libcu++ benchmarks in PR benchmark CI
+  date: '2026-10-20'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 8 authoritative changed file(s)'
+  files_changed:
+  - .github/workflows/bench.yml
+  - .github/workflows/ci-workflow-pull-request.yml
+  - ci/bench.template.yaml
+  - ci/bench.yaml
+  - ci/bench/README.md
+  - ci/bench/compare_paths.sh
+  - ci/bench/parse_bench_matrix.sh
+  - docs/contributors/how_tos/install_build_test.rst
+- number: 12089
+  title: '[FIX] Exclude items in P0 benchmark on GB10 to avoid OOM'
+  date: '2026-10-20'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - benchmarks/scripts/cccl/bench/search.py
+- number: 11995
+  title: '[Cub] Modularize util_type'
+  date: '2026-10-16'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): c2h/include/c2h/bfloat16.cuh, c2h/include/c2h/half.cuh, cub/cub/agent/agent_adjacent_difference.cuh, cub/cub/agent/agent_batch_memcpy.cuh,
+    cub/cub/agent/agent_batched_topk.cuh, cub/cub/agent/agent_batched_topk_cluster.cuh, cub/cub/agent/agent_find.cuh, cub/cub/agent/agent_find_bound_sorted_values.cuh, cub/cub/agent/agent_for.cuh, cub/cub/agent/agent_histogram.cuh,
+    cub/cub/agent/agent_merge.cuh, cub/cub/agent/agent_merge_sort.cuh, cub/cub/agent/agent_radix_sort_downsweep.cuh, cub/cub/agent/agent_radix_sort_histogram.cuh, cub/cub/agent/agent_radix_sort_onesweep.cuh,
+    cub/cub/agent/agent_radix_sort_upsweep.cuh, cub/cub/agent/agent_reduce.cuh, cub/cub/agent/agent_reduce_by_key.cuh, cub/cub/agent/agent_rle.cuh, cub/cub/agent/agent_scan.cuh, cub/cub/agent/agent_scan_by_key.cuh,
+    cub/cub/agent/agent_segmented_radix_sort.cuh, cub/cub/agent/agent_select_if.cuh, cub/cub/agent/agent_sub_warp_merge_sort.cuh, cub/cub/agent/agent_three_way_partition.cuh, cub/cub/agent/agent_topk.cuh,
+    cub/cub/agent/agent_unique_by_key.cuh, cub/cub/agent/single_pass_scan_operators.cuh, cub/cub/block/block_adjacent_difference.cuh, cub/cub/block/block_discontinuity.cuh, cub/cub/block/block_exchange.cuh,
+    cub/cub/block/block_histogram.cuh, cub/cub/block/block_load.cuh, cub/cub/block/block_load_to_shared.cuh, cub/cub/block/block_merge_sort.cuh, cub/cub/block/block_radix_rank.cuh, cub/cub/block/block_radix_sort.cuh,
+    cub/cub/block/block_raking_layout.cuh, cub/cub/block/block_reduce.cuh, cub/cub/block/block_run_length_decode.cuh, cub/cub/block/block_scan.cuh, cub/cub/block/block_shuffle.cuh, cub/cub/block/block_store.cuh,
+    cub/cub/block/block_topk.cuh, cub/cub/block/radix_rank_sort_operations.cuh, cub/cub/block/specializations/block_histogram_sort.cuh, cub/cub/block/specializations/block_reduce_raking.cuh, cub/cub/block/specializations/block_reduce_raking_commutative_only.cuh,
+    cub/cub/block/specializations/block_reduce_warp_reductions.cuh, cub/cub/block/specializations/block_scan_raking.cuh, cub/cub/block/specializations/block_scan_warp_scans.cuh, cub/cub/block/specializations/block_topk_air.cuh,
+    cub/cub/detail/align_bytes.cuh, cub/cub/detail/binary_op_has_idx_param.cuh, cub/cub/detail/constant.cuh, cub/cub/detail/cub_vector.cuh, cub/cub/detail/detect_nested_type.cuh, cub/cub/detail/double_buffer.cuh,
+    cub/cub/detail/future_value.cuh, cub/cub/detail/input_value.cuh, cub/cub/detail/it_traits.cuh, cub/cub/detail/key_value_pair.cuh, cub/cub/detail/lazy_trait.cuh, cub/cub/detail/log2.cuh, cub/cub/detail/non_void_value.cuh,
+    cub/cub/detail/null_type.cuh, cub/cub/detail/numeric_traits.cuh, cub/cub/detail/power_of_two.cuh, cub/cub/detail/prefetch.cuh, cub/cub/detail/strong_load.cuh, cub/cub/detail/strong_store.cuh, cub/cub/detail/type_size.cuh,
+    cub/cub/detail/uninitialized.cuh, cub/cub/detail/unit_word.cuh, cub/cub/detail/warpspeed/look_ahead.cuh, cub/cub/device/device_batched_topk.cuh, cub/cub/device/device_find.cuh, cub/cub/device/device_for.cuh,
+    cub/cub/device/device_histogram.cuh, cub/cub/device/device_memcpy.cuh, cub/cub/device/device_merge.cuh, cub/cub/device/device_merge_sort.cuh, cub/cub/device/device_partition.cuh, cub/cub/device/device_radix_sort.cuh,
+    cub/cub/device/device_reduce.cuh, cub/cub/device/device_run_length_encode.cuh, cub/cub/device/device_scan.cuh, cub/cub/device/device_segmented_radix_sort.cuh, cub/cub/device/device_segmented_reduce.cuh,
+    cub/cub/device/device_segmented_scan.cuh, cub/cub/device/device_segmented_sort.cuh, cub/cub/device/device_select.cuh, cub/cub/device/device_topk.cuh, cub/cub/device/device_transform.cuh, cub/cub/device/dispatch/dispatch_adjacent_difference.cuh,
+    cub/cub/device/dispatch/dispatch_batch_memcpy.cuh, cub/cub/device/dispatch/dispatch_batched_topk.cuh, cub/cub/device/dispatch/dispatch_find.cuh, cub/cub/device/dispatch/dispatch_find_bound_sorted_values.cuh,
+    cub/cub/device/dispatch/dispatch_histogram.cuh, cub/cub/device/dispatch/dispatch_merge.cuh, cub/cub/device/dispatch/dispatch_merge_sort.cuh, cub/cub/device/dispatch/dispatch_radix_sort.cuh, cub/cub/device/dispatch/dispatch_reduce.cuh,
+    cub/cub/device/dispatch/dispatch_reduce_by_key.cuh, cub/cub/device/dispatch/dispatch_reduce_deterministic.cuh, cub/cub/device/dispatch/dispatch_rle.cuh, cub/cub/device/dispatch/dispatch_rle_encode.cuh,
+    cub/cub/device/dispatch/dispatch_scan.cuh, cub/cub/device/dispatch/dispatch_scan_by_key.cuh, cub/cub/device/dispatch/dispatch_segmented_radix_sort.cuh, cub/cub/device/dispatch/dispatch_segmented_reduce.cuh,
+    cub/cub/device/dispatch/dispatch_segmented_scan.cuh, cub/cub/device/dispatch/dispatch_segmented_sort.cuh, cub/cub/device/dispatch/dispatch_select_if.cuh, cub/cub/device/dispatch/dispatch_streaming_reduce.cuh,
+    cub/cub/device/dispatch/dispatch_streaming_reduce_by_key.cuh, cub/cub/device/dispatch/dispatch_three_way_partition.cuh, cub/cub/device/dispatch/dispatch_topk.cuh, cub/cub/device/dispatch/dispatch_transform.cuh,
+    cub/cub/device/dispatch/dispatch_unique_by_key.cuh, cub/cub/device/dispatch/kernels/kernel_batched_topk.cuh, cub/cub/device/dispatch/kernels/kernel_radix_sort.cuh, cub/cub/device/dispatch/kernels/kernel_reduce.cuh,
+    cub/cub/device/dispatch/kernels/kernel_reduce_deterministic.cuh, cub/cub/device/dispatch/kernels/kernel_scan.cuh, cub/cub/device/dispatch/kernels/kernel_scan_lookahead.cuh, cub/cub/device/dispatch/kernels/kernel_segmented_scan.cuh,
+    cub/cub/device/dispatch/kernels/kernel_segmented_sort.cuh, cub/cub/device/dispatch/kernels/kernel_transform.cuh, cub/cub/device/dispatch/tuning/common.cuh, cub/cub/device/dispatch/tuning/tuning_adjacent_difference.cuh,
+    cub/cub/device/dispatch/tuning/tuning_histogram.cuh, cub/cub/device/dispatch/tuning/tuning_merge.cuh, cub/cub/device/dispatch/tuning/tuning_merge_sort.cuh, cub/cub/device/dispatch/tuning/tuning_radix_sort.cuh,
+    cub/cub/device/dispatch/tuning/tuning_reduce.cuh, cub/cub/device/dispatch/tuning/tuning_reduce_by_key.cuh, cub/cub/device/dispatch/tuning/tuning_rle_encode.cuh, cub/cub/device/dispatch/tuning/tuning_rle_non_trivial_runs.cuh,
+    cub/cub/device/dispatch/tuning/tuning_scan.cuh, cub/cub/device/dispatch/tuning/tuning_scan_by_key.cuh, cub/cub/device/dispatch/tuning/tuning_segmented_radix_sort.cuh, cub/cub/device/dispatch/tuning/tuning_segmented_sort.cuh,
+    cub/cub/device/dispatch/tuning/tuning_select_if.cuh, cub/cub/device/dispatch/tuning/tuning_three_way_partition.cuh, cub/cub/device/dispatch/tuning/tuning_topk.cuh, cub/cub/device/dispatch/tuning/tuning_transform.cuh,
+    cub/cub/device/dispatch/tuning/tuning_unique_by_key.cuh, cub/cub/grid/grid_even_share.cuh, cub/cub/iterator/arg_index_input_iterator.cuh, cub/cub/iterator/cache_modified_input_iterator.cuh, cub/cub/iterator/tex_obj_input_iterator.cuh,
+    cub/cub/thread/thread_load.cuh, cub/cub/thread/thread_operators.cuh, cub/cub/thread/thread_scan.cuh, cub/cub/thread/thread_search.cuh, cub/cub/thread/thread_simd.cuh, cub/cub/thread/thread_sort.cuh,
+    cub/cub/thread/thread_store.cuh, cub/cub/util_device.cuh, cub/cub/util_ptx.cuh, cub/cub/util_type.cuh, cub/cub/util_vsmem.cuh, cub/cub/warp/specializations/warp_exchange_shfl.cuh, cub/cub/warp/specializations/warp_exchange_smem.cuh,
+    cub/cub/warp/specializations/warp_reduce_batched_wspro.cuh, cub/cub/warp/specializations/warp_reduce_shfl.cuh, cub/cub/warp/specializations/warp_reduce_smem.cuh, cub/cub/warp/specializations/warp_scan_shfl.cuh,
+    cub/cub/warp/specializations/warp_scan_smem.cuh, cub/cub/warp/warp_bitonic_sort.cuh, cub/cub/warp/warp_exchange.cuh, cub/cub/warp/warp_load.cuh, cub/cub/warp/warp_merge_sort.cuh, cub/cub/warp/warp_reduce.cuh,
+    cub/cub/warp/warp_reduce_batched.cuh, cub/cub/warp/warp_scan.cuh, cub/cub/warp/warp_store.cuh, cudax/include/cuda/experimental/coop/__algorithm/reduce.cuh'
+  files_changed:
+  - c/parallel/src/merge_sort.cu
+  - c/parallel/src/radix_sort.cu
+  - c/parallel/src/scan.cu
+  - c/parallel/src/segmented_sort.cu
+  - c/parallel/src/transform.cu
+  - c/parallel/src/util/scan_tile_state.cu
+  - c2h/include/c2h/bfloat16.cuh
+  - c2h/include/c2h/fill_striped.h
+  - c2h/include/c2h/half.cuh
+  - cub/cub/agent/agent_adjacent_difference.cuh
+  - cub/cub/agent/agent_batch_memcpy.cuh
+  - cub/cub/agent/agent_batched_topk.cuh
+  - cub/cub/agent/agent_batched_topk_cluster.cuh
+  - cub/cub/agent/agent_find.cuh
+  - cub/cub/agent/agent_find_bound_sorted_values.cuh
+  - cub/cub/agent/agent_for.cuh
+  - cub/cub/agent/agent_histogram.cuh
+  - cub/cub/agent/agent_merge.cuh
+  - cub/cub/agent/agent_merge_sort.cuh
+  - cub/cub/agent/agent_radix_sort_downsweep.cuh
+  - cub/cub/agent/agent_radix_sort_histogram.cuh
+  - cub/cub/agent/agent_radix_sort_onesweep.cuh
+  - cub/cub/agent/agent_radix_sort_upsweep.cuh
+  - cub/cub/agent/agent_reduce.cuh
+  - cub/cub/agent/agent_reduce_by_key.cuh
+  - cub/cub/agent/agent_rle.cuh
+  - cub/cub/agent/agent_scan.cuh
+  - cub/cub/agent/agent_scan_by_key.cuh
+  - cub/cub/agent/agent_segmented_radix_sort.cuh
+  - cub/cub/agent/agent_select_if.cuh
+  - cub/cub/agent/agent_sub_warp_merge_sort.cuh
+  - cub/cub/agent/agent_three_way_partition.cuh
+  - cub/cub/agent/agent_topk.cuh
+  - cub/cub/agent/agent_unique_by_key.cuh
+  - cub/cub/agent/single_pass_scan_operators.cuh
+  - cub/cub/block/block_adjacent_difference.cuh
+  - cub/cub/block/block_discontinuity.cuh
+  - cub/cub/block/block_exchange.cuh
+  - cub/cub/block/block_histogram.cuh
+  - cub/cub/block/block_load.cuh
+  - cub/cub/block/block_load_to_shared.cuh
+  - cub/cub/block/block_merge_sort.cuh
+  - cub/cub/block/block_radix_rank.cuh
+  - cub/cub/block/block_radix_sort.cuh
+  - cub/cub/block/block_raking_layout.cuh
+  - cub/cub/block/block_reduce.cuh
+  - cub/cub/block/block_run_length_decode.cuh
+  - cub/cub/block/block_scan.cuh
+  - cub/cub/block/block_shuffle.cuh
+  - cub/cub/block/block_store.cuh
+  - cub/cub/block/block_topk.cuh
+  - cub/cub/block/radix_rank_sort_operations.cuh
+  - cub/cub/block/specializations/block_histogram_sort.cuh
+  - cub/cub/block/specializations/block_reduce_raking.cuh
+  - cub/cub/block/specializations/block_reduce_raking_commutative_only.cuh
+  - cub/cub/block/specializations/block_reduce_warp_reductions.cuh
+  - cub/cub/block/specializations/block_scan_raking.cuh
+  - cub/cub/block/specializations/block_scan_warp_scans.cuh
+  - cub/cub/block/specializations/block_topk_air.cuh
+  - cub/cub/detail/align_bytes.cuh
+  - cub/cub/detail/binary_op_has_idx_param.cuh
+  - cub/cub/detail/constant.cuh
+  - cub/cub/detail/cub_vector.cuh
+  - cub/cub/detail/detect_nested_type.cuh
+  - cub/cub/detail/double_buffer.cuh
+  - cub/cub/detail/future_value.cuh
+  - cub/cub/detail/input_value.cuh
+  - cub/cub/detail/it_traits.cuh
+  - cub/cub/detail/key_value_pair.cuh
+  - cub/cub/detail/lazy_trait.cuh
+  - cub/cub/detail/log2.cuh
+  - cub/cub/detail/non_void_value.cuh
+  - cub/cub/detail/null_type.cuh
+  - cub/cub/detail/numeric_traits.cuh
+  - cub/cub/detail/power_of_two.cuh
+  - cub/cub/detail/prefetch.cuh
+  - cub/cub/detail/strong_load.cuh
+  - cub/cub/detail/strong_store.cuh
+  - cub/cub/detail/type_size.cuh
+  - cub/cub/detail/uninitialized.cuh
+  - cub/cub/detail/unit_word.cuh
+  - cub/cub/detail/warpspeed/look_ahead.cuh
+  - cub/cub/device/device_batched_topk.cuh
+  - cub/cub/device/device_find.cuh
+  - cub/cub/device/device_for.cuh
+  - cub/cub/device/device_histogram.cuh
+  - cub/cub/device/device_memcpy.cuh
+  - cub/cub/device/device_merge.cuh
+  - cub/cub/device/device_merge_sort.cuh
+  - cub/cub/device/device_partition.cuh
+  - cub/cub/device/device_radix_sort.cuh
+  - cub/cub/device/device_reduce.cuh
+  - cub/cub/device/device_run_length_encode.cuh
+  - cub/cub/device/device_scan.cuh
+  - cub/cub/device/device_segmented_radix_sort.cuh
+  - cub/cub/device/device_segmented_reduce.cuh
+  - cub/cub/device/device_segmented_scan.cuh
+  - cub/cub/device/device_segmented_sort.cuh
+  - cub/cub/device/device_select.cuh
+  - cub/cub/device/device_topk.cuh
+  - cub/cub/device/device_transform.cuh
+  - cub/cub/device/dispatch/dispatch_adjacent_difference.cuh
+  - cub/cub/device/dispatch/dispatch_batch_memcpy.cuh
+  - cub/cub/device/dispatch/dispatch_batched_topk.cuh
+  - cub/cub/device/dispatch/dispatch_find.cuh
+  - cub/cub/device/dispatch/dispatch_find_bound_sorted_values.cuh
+  - cub/cub/device/dispatch/dispatch_histogram.cuh
+  - cub/cub/device/dispatch/dispatch_merge.cuh
+  - cub/cub/device/dispatch/dispatch_merge_sort.cuh
+  - cub/cub/device/dispatch/dispatch_radix_sort.cuh
+  - cub/cub/device/dispatch/dispatch_reduce.cuh
+  - cub/cub/device/dispatch/dispatch_reduce_by_key.cuh
+  - cub/cub/device/dispatch/dispatch_reduce_deterministic.cuh
+  - cub/cub/device/dispatch/dispatch_rle.cuh
+  - cub/cub/device/dispatch/dispatch_rle_encode.cuh
+  - cub/cub/device/dispatch/dispatch_scan.cuh
+  - cub/cub/device/dispatch/dispatch_scan_by_key.cuh
+  - cub/cub/device/dispatch/dispatch_segmented_radix_sort.cuh
+  - cub/cub/device/dispatch/dispatch_segmented_reduce.cuh
+  - cub/cub/device/dispatch/dispatch_segmented_scan.cuh
+  - cub/cub/device/dispatch/dispatch_segmented_sort.cuh
+  - cub/cub/device/dispatch/dispatch_select_if.cuh
+  - cub/cub/device/dispatch/dispatch_streaming_reduce.cuh
+  - cub/cub/device/dispatch/dispatch_streaming_reduce_by_key.cuh
+  - cub/cub/device/dispatch/dispatch_three_way_partition.cuh
+  - cub/cub/device/dispatch/dispatch_topk.cuh
+  - cub/cub/device/dispatch/dispatch_transform.cuh
+  - cub/cub/device/dispatch/dispatch_unique_by_key.cuh
+  - cub/cub/device/dispatch/kernels/kernel_batched_topk.cuh
+  - cub/cub/device/dispatch/kernels/kernel_radix_sort.cuh
+  - cub/cub/device/dispatch/kernels/kernel_reduce.cuh
+  - cub/cub/device/dispatch/kernels/kernel_reduce_deterministic.cuh
+  - cub/cub/device/dispatch/kernels/kernel_scan.cuh
+  - cub/cub/device/dispatch/kernels/kernel_scan_lookahead.cuh
+  - cub/cub/device/dispatch/kernels/kernel_segmented_scan.cuh
+  - cub/cub/device/dispatch/kernels/kernel_segmented_sort.cuh
+  - cub/cub/device/dispatch/kernels/kernel_transform.cuh
+  - cub/cub/device/dispatch/tuning/common.cuh
+  - cub/cub/device/dispatch/tuning/tuning_adjacent_difference.cuh
+  - cub/cub/device/dispatch/tuning/tuning_histogram.cuh
+  - cub/cub/device/dispatch/tuning/tuning_merge.cuh
+  - cub/cub/device/dispatch/tuning/tuning_merge_sort.cuh
+  - cub/cub/device/dispatch/tuning/tuning_radix_sort.cuh
+  - cub/cub/device/dispatch/tuning/tuning_reduce.cuh
+  - cub/cub/device/dispatch/tuning/tuning_reduce_by_key.cuh
+  - cub/cub/device/dispatch/tuning/tuning_rle_encode.cuh
+  - cub/cub/device/dispatch/tuning/tuning_rle_non_trivial_runs.cuh
+  - cub/cub/device/dispatch/tuning/tuning_scan.cuh
+  - cub/cub/device/dispatch/tuning/tuning_scan_by_key.cuh
+  - cub/cub/device/dispatch/tuning/tuning_segmented_radix_sort.cuh
+  - cub/cub/device/dispatch/tuning/tuning_segmented_sort.cuh
+  - cub/cub/device/dispatch/tuning/tuning_select_if.cuh
+  - cub/cub/device/dispatch/tuning/tuning_three_way_partition.cuh
+  - cub/cub/device/dispatch/tuning/tuning_topk.cuh
+  - cub/cub/device/dispatch/tuning/tuning_transform.cuh
+  - cub/cub/device/dispatch/tuning/tuning_unique_by_key.cuh
+  - cub/cub/grid/grid_even_share.cuh
+  - cub/cub/iterator/arg_index_input_iterator.cuh
+  - cub/cub/iterator/cache_modified_input_iterator.cuh
+  - cub/cub/iterator/tex_obj_input_iterator.cuh
+  - cub/cub/thread/thread_load.cuh
+  - cub/cub/thread/thread_operators.cuh
+  - cub/cub/thread/thread_scan.cuh
+  - cub/cub/thread/thread_search.cuh
+  - cub/cub/thread/thread_simd.cuh
+  - cub/cub/thread/thread_sort.cuh
+  - cub/cub/thread/thread_store.cuh
+  - cub/cub/util_device.cuh
+  - cub/cub/util_ptx.cuh
+  - cub/cub/util_type.cuh
+  - cub/cub/util_vsmem.cuh
+  - cub/cub/warp/specializations/warp_exchange_shfl.cuh
+  - cub/cub/warp/specializations/warp_exchange_smem.cuh
+  - cub/cub/warp/specializations/warp_reduce_batched_wspro.cuh
+  - cub/cub/warp/specializations/warp_reduce_shfl.cuh
+  - cub/cub/warp/specializations/warp_reduce_smem.cuh
+  - cub/cub/warp/specializations/warp_scan_shfl.cuh
+  - cub/cub/warp/specializations/warp_scan_smem.cuh
+  - cub/cub/warp/warp_bitonic_sort.cuh
+  - cub/cub/warp/warp_exchange.cuh
+  - cub/cub/warp/warp_load.cuh
+  - cub/cub/warp/warp_merge_sort.cuh
+  - cub/cub/warp/warp_reduce.cuh
+  - cub/cub/warp/warp_reduce_batched.cuh
+  - cub/cub/warp/warp_scan.cuh
+  - cub/cub/warp/warp_store.cuh
+  - cudax/include/cuda/experimental/coop/__algorithm/reduce.cuh
+  - cudax/include/cuda/experimental/mgmn/__algorithm/scan/scan.h
+- number: 12156
+  title: '[CUB] Make DeviceScan implementation helpers private'
+  date: '2026-10-22'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/device/device_scan.cuh'
+  files_changed:
+  - cub/cub/device/device_scan.cuh
+- number: 12006
+  title: refactor cub test allocation failures
+  date: '2026-10-18'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 31 authoritative changed file(s)'
+  files_changed:
+  - c2h/include/c2h/allocation_failure.h
+  - c2h/include/c2h/catch2_allocation_failure.h
+  - cub/test/catch2_test_c2h_allocation_failure.cu
+  - cub/test/catch2_test_device_copy_batched.cu
+  - cub/test/catch2_test_device_find.cu
+  - cub/test/catch2_test_device_find_bound_sorted_values.cu
+  - cub/test/catch2_test_device_histogram.cu
+  - cub/test/catch2_test_device_memcpy_batched.cu
+  - cub/test/catch2_test_device_merge.cu
+  - cub/test/catch2_test_device_merge_sort.cu
+  - cub/test/catch2_test_device_partition_flagged.cu
+  - cub/test/catch2_test_device_partition_if.cu
+  - cub/test/catch2_test_device_radix_sort_keys.cu
+  - cub/test/catch2_test_device_radix_sort_pairs.cu
+  - cub/test/catch2_test_device_run_length_encode.cu
+  - cub/test/catch2_test_device_run_length_encode_non_trivial_runs.cu
+  - cub/test/catch2_test_device_scan_by_key_large_offsets.cu
+  - cub/test/catch2_test_device_scan_large_offsets.cu
+  - cub/test/catch2_test_device_segmented_radix_sort_keys.cu
+  - cub/test/catch2_test_device_segmented_radix_sort_pairs.cu
+  - cub/test/catch2_test_device_segmented_reduce_large_offsets.cu
+  - cub/test/catch2_test_device_segmented_sort_keys.cu
+  - cub/test/catch2_test_device_segmented_sort_pairs.cu
+  - cub/test/catch2_test_device_select_flagged.cu
+  - cub/test/catch2_test_device_select_if.cu
+  - cub/test/catch2_test_device_select_unique.cu
+  - cub/test/catch2_test_device_set_operations.cu
+  - cub/test/catch2_test_device_three_way_partition.cu
+  - cub/test/catch2_test_device_topk_keys.cu
+  - cub/test/catch2_test_device_transform.cu
+  - cub/test/test_device_batch_copy.cu
+- number: 11860
+  title: Include device_segmented_scan.cuh in cub/cub.cuh
+  date: '2026-10-06'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/cub.cuh'
+  files_changed:
+  - cub/cub/cub.cuh
+- number: 12076
+  title: '[CUB][Refactor] Moves shared top-k radix-pass helpers into `cub/detail/topk_helpers.cuh`'
+  date: '2026-10-20'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/agent/agent_batched_topk_cluster.cuh, cub/cub/agent/agent_topk.cuh, cub/cub/detail/topk_helpers.cuh, cub/cub/device/dispatch/dispatch_topk.cuh'
+  files_changed:
+  - cub/cub/agent/agent_batched_topk_cluster.cuh
+  - cub/cub/agent/agent_topk.cuh
+  - cub/cub/detail/topk_helpers.cuh
+  - cub/cub/device/dispatch/dispatch_topk.cuh
+- number: 12185
+  title: '[CUB] Test DeviceFor::ForEachIn{Extents,Layout} and DeviceCopy::Copy with a zero extent'
+  date: '2026-10-23'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - cub/test/catch2_test_device_copy_mdspan.cu
+  - cub/test/catch2_test_device_for_each_in_extents.cu
+  - cub/test/catch2_test_device_for_each_in_layout.cu
+- number: 12109
+  title: Fix cub::DeviceReduce::ReduceByKey key comparisons with lossy key output type
+  date: '2026-10-21'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/agent/agent_reduce_by_key.cuh'
+  files_changed:
+  - cub/cub/agent/agent_reduce_by_key.cuh
+  - cub/test/catch2_test_device_reduce_by_key.cu
+- number: 11964
+  title: Selectively merge Thrust's reduce_by_key default tuning into CUB
+  date: '2026-10-20'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/device/dispatch/tuning/tuning_reduce_by_key.cuh'
+  files_changed:
+  - cub/cub/device/dispatch/tuning/tuning_reduce_by_key.cuh
+- number: 12260
+  title: '[CUB] Extract shared numeric and scan reference test helpers'
+  date: '2026-10-27'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 4 authoritative changed file(s)'
+  files_changed:
+  - cub/test/catch2_test_device_reduce.cuh
+  - cub/test/catch2_test_device_scan.cuh
+  - cub/test/catch2_test_numeric_helpers.cuh
+  - cub/test/catch2_test_scan_reference.cuh
+- number: 11943
+  title: Consolidate and remove various overlaping type-trait implementations
+  date: '2026-10-13'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/agent/agent_select_if.cuh, cub/cub/detail/type_traits.cuh, cub/cub/device/device_reduce.cuh, cub/cub/device/dispatch/dispatch_select_if.cuh,
+    cub/cub/device/dispatch/tuning/tuning_select_if.cuh, cub/cub/thread/thread_reduce.cuh, cub/cub/thread/thread_scan.cuh, cub/cub/util_type.cuh, cub/cub/warp/warp_reduce_batched.cuh'
+  files_changed:
+  - cub/cub/agent/agent_select_if.cuh
+  - cub/cub/detail/type_traits.cuh
+  - cub/cub/device/device_reduce.cuh
+  - cub/cub/device/dispatch/dispatch_select_if.cuh
+  - cub/cub/device/dispatch/tuning/tuning_select_if.cuh
+  - cub/cub/thread/thread_reduce.cuh
+  - cub/cub/thread/thread_scan.cuh
+  - cub/cub/util_type.cuh
+  - cub/cub/warp/warp_reduce_batched.cuh
+  - libcudacxx/include/cuda/std/__iterator/iterator_traits.h
+  - thrust/testing/allocator.cu
+  - thrust/testing/vector_allocators.cu
+  - thrust/thrust/detail/allocator/allocator_system.h
+  - thrust/thrust/detail/functional/actor.h
+  - thrust/thrust/detail/functional/operators.h
+  - thrust/thrust/detail/internal_functional.h
+  - thrust/thrust/detail/pointer.h
+  - thrust/thrust/detail/raw_reference_cast.h
+  - thrust/thrust/detail/temporary_array.h
+  - thrust/thrust/detail/type_traits.h
+  - thrust/thrust/detail/type_traits/has_nested_type.h
+  - thrust/thrust/detail/type_traits/is_call_possible.h
+  - thrust/thrust/detail/vector_base.inl
+  - thrust/thrust/iterator/counting_iterator.h
+  - thrust/thrust/iterator/iterator_facade.h
+  - thrust/thrust/iterator/transform_input_output_iterator.h
+  - thrust/thrust/random/detail/uniform_int_distribution.inl
+  - thrust/thrust/random/xor_combine_engine.h
+  - thrust/thrust/system/cuda/detail/core/agent_launcher.h
+  - thrust/thrust/system/cuda/detail/core/util.h
+  - thrust/thrust/system/cuda/detail/cross_system.h
+  - thrust/thrust/system/cuda/detail/reduce_by_key.h
+  - thrust/thrust/system/cuda/detail/set_operations.h
+  - thrust/thrust/system/cuda/detail/sort.h
+  - thrust/thrust/system/cuda/detail/transform_scan.h
+  - thrust/thrust/system/cuda/error.h
+  - thrust/thrust/system/detail/generic/transform_scan.inl
+  - thrust/thrust/system/detail/generic/uninitialized_copy.inl
+  - thrust/thrust/system/detail/generic/uninitialized_fill.inl
+  - thrust/thrust/system/detail/sequential/copy.h
+  - thrust/thrust/system/error_code.h
+  - thrust/thrust/type_traits/is_execution_policy.h
+- number: 12063
+  title: Reject unsupported `tie_break` requests in `cub::DeviceTopK`
+  date: '2026-10-20'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/device/device_topk.cuh'
+  files_changed:
+  - cub/cub/device/device_topk.cuh
+  - cub/test/test_device_topk_requirements_fail.cu
+  - docs/cub/device_topk_requirements.rst
+- number: 12163
+  title: '[CUB] Only vectorize BlockLoad/BlockStore for matching value types'
+  date: '2026-10-22'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/block/block_load.cuh, cub/cub/block/block_store.cuh'
+  files_changed:
+  - cub/cub/block/block_load.cuh
+  - cub/cub/block/block_store.cuh
+  - cub/test/catch2_test_block_load.cu
+  - cub/test/catch2_test_block_store.cu
+- number: 11589
+  title: '[CUB] Refactor `cub::DeviceMerge` to always take an environment'
+  date: '2026-10-01'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/device/device_merge.cuh'
+  files_changed:
+  - cub/cub/device/device_merge.cuh
+  - cub/test/catch2_test_device_merge_env.cu
+- number: 11590
+  title: '[CUB] Refactor `cub::DeviceMemcpy` to always take an environment'
+  date: '2026-09-30'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/device/device_memcpy.cuh'
+  files_changed:
+  - cub/cub/device/device_memcpy.cuh
+  - cub/test/catch2_test_device_memcpy_env.cu
+- number: 11587
+  title: '[CUB] Refactor `cub::DeviceMergeSort` to always take an environment'
+  date: '2026-09-29'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/device/device_merge_sort.cuh'
+  files_changed:
+  - cub/cub/device/device_merge_sort.cuh
+  - cub/test/catch2_test_device_merge_sort_env.cu
+- number: 12103
+  title: '[CUB] Fix racecheck exclusion tags for large DeviceFind tests'
+  date: '2026-10-21'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - cub/test/catch2_test_device_find.cu
+  - cub/test/catch2_test_device_find_bound_sorted_values.cu
+- number: 12079
+  title: '[QA Agent] Fix `cub::DeviceFind::LowerBoundSortedValues` large input values'
+  date: '2026-10-23'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/agent/agent_find_bound_sorted_values.cuh, cub/cub/device/dispatch/dispatch_find_bound_sorted_values.cuh'
+  files_changed:
+  - cub/cub/agent/agent_find_bound_sorted_values.cuh
+  - cub/cub/device/dispatch/dispatch_find_bound_sorted_values.cuh
+  - cub/test/catch2_test_device_find_bound_sorted_values_grid.cu
+- number: 12167
+  title: '[CUB] Propagate launcher errors from kernel launches in dispatch layers'
+  date: '2026-10-23'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/device/dispatch/dispatch_merge_sort.cuh, cub/cub/device/dispatch/dispatch_radix_sort.cuh, cub/cub/device/dispatch/dispatch_reduce.cuh,
+    cub/cub/device/dispatch/dispatch_segmented_radix_sort.cuh, cub/cub/device/dispatch/dispatch_segmented_reduce.cuh, cub/cub/device/dispatch/dispatch_segmented_sort.cuh, cub/cub/device/dispatch/dispatch_unique_by_key.cuh'
+  files_changed:
+  - cub/cub/device/dispatch/dispatch_merge_sort.cuh
+  - cub/cub/device/dispatch/dispatch_radix_sort.cuh
+  - cub/cub/device/dispatch/dispatch_reduce.cuh
+  - cub/cub/device/dispatch/dispatch_segmented_radix_sort.cuh
+  - cub/cub/device/dispatch/dispatch_segmented_reduce.cuh
+  - cub/cub/device/dispatch/dispatch_segmented_sort.cuh
+  - cub/cub/device/dispatch/dispatch_unique_by_key.cuh
+- number: 11891
+  title: Add cub::detail::DeviceSetOps pairs APIs
+  date: '2026-10-08'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/device/device_set_operations.cuh'
+  files_changed:
+  - cub/cub/device/device_set_operations.cuh
+  - cub/test/catch2_test_device_set_operations_pairs.cu
+  - cub/test/catch2_test_device_set_operations_pairs_api.cu
+  - cub/test/catch2_test_device_set_operations_pairs_env.cu
+- number: 11581
+  title: '[CUB]: Move more logic into `cub::detail::log_dispatch`'
+  date: '2026-09-22'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/detail/logging.cuh, cub/cub/device/dispatch/dispatch_adjacent_difference.cuh, cub/cub/device/dispatch/dispatch_batch_memcpy.cuh, cub/cub/device/dispatch/dispatch_batched_topk.cuh,
+    cub/cub/device/dispatch/dispatch_find.cuh, cub/cub/device/dispatch/dispatch_find_bound_sorted_values.cuh, cub/cub/device/dispatch/dispatch_for.cuh, cub/cub/device/dispatch/dispatch_histogram.cuh, cub/cub/device/dispatch/dispatch_merge.cuh,
+    cub/cub/device/dispatch/dispatch_merge_sort.cuh, cub/cub/device/dispatch/dispatch_radix_sort.cuh, cub/cub/device/dispatch/dispatch_reduce.cuh, cub/cub/device/dispatch/dispatch_reduce_by_key.cuh, cub/cub/device/dispatch/dispatch_reduce_deterministic.cuh,
+    cub/cub/device/dispatch/dispatch_rle.cuh, cub/cub/device/dispatch/dispatch_rle_encode.cuh, cub/cub/device/dispatch/dispatch_scan.cuh, cub/cub/device/dispatch/dispatch_scan_by_key.cuh, cub/cub/device/dispatch/dispatch_segmented_radix_sort.cuh,
+    cub/cub/device/dispatch/dispatch_segmented_reduce.cuh, cub/cub/device/dispatch/dispatch_segmented_scan.cuh, cub/cub/device/dispatch/dispatch_segmented_sort.cuh, cub/cub/device/dispatch/dispatch_select_if.cuh,
+    cub/cub/device/dispatch/dispatch_streaming_reduce_by_key.cuh, cub/cub/device/dispatch/dispatch_three_way_partition.cuh, cub/cub/device/dispatch/dispatch_topk.cuh, cub/cub/device/dispatch/dispatch_transform.cuh,
+    cub/cub/device/dispatch/dispatch_unique_by_key.cuh'
+  files_changed:
+  - cub/cub/detail/logging.cuh
+  - cub/cub/device/dispatch/dispatch_adjacent_difference.cuh
+  - cub/cub/device/dispatch/dispatch_batch_memcpy.cuh
+  - cub/cub/device/dispatch/dispatch_batched_topk.cuh
+  - cub/cub/device/dispatch/dispatch_find.cuh
+  - cub/cub/device/dispatch/dispatch_find_bound_sorted_values.cuh
+  - cub/cub/device/dispatch/dispatch_for.cuh
+  - cub/cub/device/dispatch/dispatch_histogram.cuh
+  - cub/cub/device/dispatch/dispatch_merge.cuh
+  - cub/cub/device/dispatch/dispatch_merge_sort.cuh
+  - cub/cub/device/dispatch/dispatch_radix_sort.cuh
+  - cub/cub/device/dispatch/dispatch_reduce.cuh
+  - cub/cub/device/dispatch/dispatch_reduce_by_key.cuh
+  - cub/cub/device/dispatch/dispatch_reduce_deterministic.cuh
+  - cub/cub/device/dispatch/dispatch_rle.cuh
+  - cub/cub/device/dispatch/dispatch_rle_encode.cuh
+  - cub/cub/device/dispatch/dispatch_scan.cuh
+  - cub/cub/device/dispatch/dispatch_scan_by_key.cuh
+  - cub/cub/device/dispatch/dispatch_segmented_radix_sort.cuh
+  - cub/cub/device/dispatch/dispatch_segmented_reduce.cuh
+  - cub/cub/device/dispatch/dispatch_segmented_scan.cuh
+  - cub/cub/device/dispatch/dispatch_segmented_sort.cuh
+  - cub/cub/device/dispatch/dispatch_select_if.cuh
+  - cub/cub/device/dispatch/dispatch_streaming_reduce_by_key.cuh
+  - cub/cub/device/dispatch/dispatch_three_way_partition.cuh
+  - cub/cub/device/dispatch/dispatch_topk.cuh
+  - cub/cub/device/dispatch/dispatch_transform.cuh
+  - cub/cub/device/dispatch/dispatch_unique_by_key.cuh
+- number: 11826
+  title: Tune the sm100 lookahead scan for int64
+  date: '2026-10-20'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/device/dispatch/tuning/tuning_scan.cuh'
+  files_changed:
+  - cub/cub/device/dispatch/tuning/tuning_scan.cuh
+- number: 11914
+  title: '[CUB] Rename phaseInOutW to phaseInOutL in warpspeed scan'
+  date: '2026-10-07'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/device/dispatch/kernels/kernel_scan_lookahead.cuh'
+  files_changed:
+  - cub/cub/device/dispatch/kernels/kernel_scan_lookahead.cuh
+- number: 11847
+  title: '[Thrust] Fix OpenMP scans with constrained thread teams'
+  date: '2026-10-05'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - thrust/testing/omp/scan.cu
+  - thrust/thrust/system/omp/detail/scan.h
+- number: 11923
+  title: '[cub] Fix scan reduction for `AccumT` without identity element'
+  date: '2026-10-08'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/detail/warpspeed/look_ahead.cuh'
+  files_changed:
+  - cub/cub/detail/warpspeed/look_ahead.cuh
+- number: 11808
+  title: Retune sm107 lookahead scan tuning for i128 inputs
+  date: '2026-10-06'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/device/dispatch/tuning/tuning_scan.cuh'
+  files_changed:
+  - cub/cub/device/dispatch/tuning/tuning_scan.cuh
+- number: 11682
+  title: Combine load and sched squad in warpspeed scan
+  date: '2026-09-30'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/device/dispatch/kernels/kernel_scan_lookahead.cuh, cub/cub/device/dispatch/tuning/tuning_scan.cuh'
+  files_changed:
+  - cub/benchmarks/bench/scan/exclusive/sum.lookahead.cu
+  - cub/benchmarks/bench/scan/policy_selector.h
+  - cub/cub/device/dispatch/kernels/kernel_scan_lookahead.cuh
+  - cub/cub/device/dispatch/tuning/tuning_scan.cuh
+  - cub/test/catch2_test_device_scan_env.cu
+- number: 11332
+  title: Add IKET annotations to lookback scan
+  date: '2026-09-18'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/agent/agent_scan.cuh, cub/cub/agent/single_pass_scan_operators.cuh'
+  files_changed:
+  - cub/cub/agent/agent_scan.cuh
+  - cub/cub/agent/single_pass_scan_operators.cuh
+- number: 11895
+  title: '[cuda.compute] Avoid building a type union on every reduce/scan call'
+  date: '2026-10-06'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - python/cuda_cccl/cuda/compute/algorithms/_reduce.py
+  - python/cuda_cccl/cuda/compute/algorithms/_scan.py
+- number: 11866
+  title: Fix out-of-bounds key read in scan-by-key custom policy test
+  date: '2026-10-06'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - cub/test/catch2_test_device_scan_by_key_custom_policy_hub.cu
+- number: 11640
+  title: Add support for device-resident problem sizes in device-scan for lookback algorithm
+  date: '2026-10-22'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/agent/agent_scan.cuh, cub/cub/agent/single_pass_scan_operators.cuh, cub/cub/detail/deferred_parameter.cuh, cub/cub/device/device_scan.cuh,
+    cub/cub/device/dispatch/dispatch_reduce.cuh, cub/cub/device/dispatch/dispatch_reduce_deterministic.cuh, cub/cub/device/dispatch/dispatch_scan.cuh, cub/cub/device/dispatch/kernels/kernel_reduce_deterministic.cuh,
+    cub/cub/device/dispatch/kernels/kernel_scan.cuh, cub/cub/device/dispatch/tuning/tuning_scan.cuh'
+  files_changed:
+  - c/parallel/src/scan.cu
+  - cub/benchmarks/bench/scan/exclusive/deferred_sum.cu
+  - cub/cub/agent/agent_scan.cuh
+  - cub/cub/agent/single_pass_scan_operators.cuh
+  - cub/cub/detail/deferred_parameter.cuh
+  - cub/cub/device/device_scan.cuh
+  - cub/cub/device/dispatch/dispatch_reduce.cuh
+  - cub/cub/device/dispatch/dispatch_reduce_deterministic.cuh
+  - cub/cub/device/dispatch/dispatch_scan.cuh
+  - cub/cub/device/dispatch/kernels/kernel_reduce_deterministic.cuh
+  - cub/cub/device/dispatch/kernels/kernel_scan.cuh
+  - cub/cub/device/dispatch/tuning/tuning_scan.cuh
+  - cub/test/catch2_test_deferred_parameter.cu
+  - cub/test/catch2_test_deferred_parameter_assertions.cu
+  - cub/test/catch2_test_device_radix_sort_env.cu
+  - cub/test/catch2_test_device_reduce_deferred.cu
+  - cub/test/catch2_test_device_scan_deferred.cu
+  - cub/test/catch2_test_device_scan_env.cu
+  - cub/test/test_device_scan_deferred_policy_fail.cu
+  - cub/test/test_device_scan_num_items_fail.cu
+  - libcudacxx/include/cuda/__argument/argument.h
+  - libcudacxx/test/libcudacxx/cuda/argument/argument_traits.pass.cpp
+- number: 11257
+  title: Add IKET annotations to warpspeed scan
+  date: '2026-09-09'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/detail/iket_support.cuh, cub/cub/detail/warpspeed/look_ahead.cuh, cub/cub/detail/warpspeed/resource/smem_ref.cuh, cub/cub/detail/warpspeed/resource/smem_resource_raw.cuh,
+    cub/cub/detail/warpspeed/squad/load_store.cuh, cub/cub/device/dispatch/kernels/kernel_scan_lookahead.cuh'
+  files_changed:
+  - cub/cub/detail/iket_support.cuh
+  - cub/cub/detail/warpspeed/look_ahead.cuh
+  - cub/cub/detail/warpspeed/resource/smem_ref.cuh
+  - cub/cub/detail/warpspeed/resource/smem_resource_raw.cuh
+  - cub/cub/detail/warpspeed/squad/load_store.cuh
+  - cub/cub/device/dispatch/kernels/kernel_scan_lookahead.cuh
+- number: 11804
+  title: Move the bulk store of the warpspeed scan into a dedicated store squad
+  date: '2026-10-05'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/device/dispatch/kernels/kernel_scan_lookahead.cuh, cub/cub/device/dispatch/tuning/tuning_scan.cuh'
+  files_changed:
+  - cub/cub/device/dispatch/kernels/kernel_scan_lookahead.cuh
+  - cub/cub/device/dispatch/tuning/tuning_scan.cuh
+- number: 11450
+  title: '[cuda.compute]: Fix bfloat16 issue with scan on ARM'
+  date: '2026-09-17'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - c/parallel/src/scan.cu
+  - c/parallel/test/test_scan.cpp
+  - ci/matrix.yaml
+- number: 11212
+  title: Add cuda.coop Block and Warp Scan with Numba-CUDA-MLIR
+  date: '2026-10-16'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 64 authoritative changed file(s)'
+  files_changed:
+  - ci/test_cuda_coop_python.sh
+  - ci/validate_cuda_coop_wheel.py
+  - docs/_ext/coop_visualization.py
+  - docs/_static/coop-collectives.js
+  - docs/python/coop.rst
+  - docs/python/coop/concepts.rst
+  - docs/python/coop/developer_overview.rst
+  - docs/python/coop/faqs.rst
+  - docs/python/coop/glossary.rst
+  - docs/python/coop/programming_guide.rst
+  - docs/python/coop/source_dumps/captures.zip
+  - docs/python/coop/source_dumps/scan.cpp.txt
+  - docs/python/coop/visualizations/index.rst
+  - docs/python/coop/visualizations/scan.rst
+  - docs/python/coop/visualizations/scan.svg
+  - docs/python/coop_api.rst
+  - docs/python/index.rst
+  - python/cuda_coop/README.md
+  - python/cuda_coop/cuda/coop/__init__.pyi
+  - python/cuda_coop/cuda/coop/_core/__init__.py
+  - python/cuda_coop/cuda/coop/_core/api/__init__.py
+  - python/cuda_coop/cuda/coop/_core/api/__init__.pyi
+  - python/cuda_coop/cuda/coop/_core/api/scan.py
+  - python/cuda_coop/cuda/coop/_core/api/scan.pyi
+  - python/cuda_coop/cuda/coop/_core/api/temp_storage.py
+  - python/cuda_coop/cuda/coop/_core/block/__init__.py
+  - python/cuda_coop/cuda/coop/_core/block/scan.py
+  - python/cuda_coop/cuda/coop/_core/group/__init__.py
+  - python/cuda_coop/cuda/coop/_core/group/scan.py
+  - python/cuda_coop/cuda/coop/_core/scan.py
+  - python/cuda_coop/cuda/coop/_core/warp/__init__.py
+  - python/cuda_coop/cuda/coop/_core/warp/scan.py
+  - python/cuda_coop/cuda/coop/_typing.py
+  - python/cuda_coop/cuda/coop/_typing.pyi
+  - python/cuda_coop/cuda/coop/numba_mlir/__init__.py
+  - python/cuda_coop/cuda/coop/numba_mlir/__init__.pyi
+  - python/cuda_coop/cuda/coop/numba_mlir/_compiler/_group_scan.py
+  - python/cuda_coop/cuda/coop/numba_mlir/_compiler/_parameters.py
+  - python/cuda_coop/cuda/coop/numba_mlir/_compiler/_rewrite_scan.py
+  - python/cuda_coop/cuda/coop/numba_mlir/_group/_scan.py
+  - python/cuda_coop/cuda/coop/numba_mlir/_group/_scan.pyi
+  - python/cuda_coop/cuda/coop/numba_mlir/_lowering/_core.py
+  - python/cuda_coop/cuda/coop/numba_mlir/_lowering/_scan.py
+  - python/cuda_coop/examples/numba_mlir/block_scan.py
+  - python/cuda_coop/examples/numba_mlir/source_dumps.py
+  - python/cuda_coop/tests/_group_planning.py
+  - python/cuda_coop/tests/backends/numba_mlir/compile/test_compile_target_compile.py
+  - python/cuda_coop/tests/backends/numba_mlir/compile/test_installed_activation_compile.py
+  - python/cuda_coop/tests/backends/numba_mlir/compile/test_scan_compile.py
+  - python/cuda_coop/tests/backends/numba_mlir/runtime/test_programming_guide_examples.py
+  - python/cuda_coop/tests/backends/numba_mlir/runtime/test_qualified_prefix_examples.py
+  - python/cuda_coop/tests/backends/numba_mlir/runtime/test_qualified_scan_examples.py
+  - python/cuda_coop/tests/backends/numba_mlir/runtime/test_scan.py
+  - python/cuda_coop/tests/backends/numba_mlir/runtime/test_scan_examples.py
+  - python/cuda_coop/tests/backends/numba_mlir/runtime/test_storage_examples.py
+  - python/cuda_coop/tests/backends/numba_mlir/unit/test_group_lowering_plan.py
+  - python/cuda_coop/tests/backends/numba_mlir/unit/test_public_foundation.py
+  - python/cuda_coop/tests/backends/numba_mlir/unit/test_scan_planning.py
+  - python/cuda_coop/tests/contracts/core/test_core_block_scan.py
+  - python/cuda_coop/tests/contracts/core/test_core_group_scan.py
+  - python/cuda_coop/tests/contracts/core/test_core_warp_scan.py
+  - python/cuda_coop/tests/packaging/typing/common_consumer.py
+  - python/cuda_coop/tests/packaging/typing/invalid_consumer.py
+  - python/cuda_coop/tests/packaging/typing/numba_consumer.py
+- number: 10992
+  title: Add sm107 tunings for lookahead scan
+  date: '2026-09-01'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/device/dispatch/tuning/tuning_scan.cuh'
+  files_changed:
+  - cub/cub/device/dispatch/tuning/tuning_scan.cuh
+- number: 11586
+  title: Exclude I128 from P0 scan benchmarks to avoid OOM on unified-memory platforms
+  date: '2026-09-23'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - benchmarks/scripts/cccl/bench/search.py
+- number: 11823
+  title: '[c.parallel]: Remove static assert preventing compiling c.parallel with nvcc 13.4'
+  date: '2026-10-05'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - c/parallel/src/scan.cu
+- number: 12178
+  title: '[STF] Fix two races in tests and examples: fence() timing events and threads_multiple_graphs'
+  date: '2026-10-24'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 18 authoritative changed file(s)'
+  files_changed:
+  - cudax/examples/stf/heat_mgpu.cu
+  - cudax/examples/stf/jacobi.cu
+  - cudax/examples/stf/jacobi_pfor.cu
+  - cudax/examples/stf/jacobi_stackable.cu
+  - cudax/examples/stf/jacobi_stackable_raii.cu
+  - cudax/examples/stf/launch_histogram.cu
+  - cudax/examples/stf/launch_scan.cu
+  - cudax/examples/stf/linear_algebra/06-pdgemm-stackable.cu
+  - cudax/examples/stf/linear_algebra/06-pdgemm.cu
+  - cudax/examples/stf/linear_algebra/07-cholesky.cu
+  - cudax/examples/stf/linear_algebra/07-potri.cu
+  - cudax/examples/stf/scan.cu
+  - cudax/test/stf/examples/07-cholesky-redux.cu
+  - cudax/test/stf/examples/09-nbody-blocked.cu
+  - cudax/test/stf/gnu/07-cholesky.cpp
+  - cudax/test/stf/local_stf/threads_multiple_graphs.cu
+  - cudax/test/stf/stress/launch_vs_parallelfor.cu
+  - cudax/test/stf/utility/timing_with_fences.cu
+- number: 11376
+  title: Handle benchmarks with no registrations
+  date: '2026-10-12'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - benchmarks/scripts/cccl/bench/bench.py
+- number: 12077
+  title: '[QA Agent] Fix `WarpScan` regression with `cuda::std::pair`'
+  date: '2026-10-21'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/warp/specializations/warp_scan_shfl.cuh'
+  files_changed:
+  - cub/cub/warp/specializations/warp_scan_shfl.cuh
+- number: 11443
+  title: AI summary of SASS diffs
+  date: '2026-09-22'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 8 authoritative changed file(s)'
+  files_changed:
+  - .github/workflows/ci-workflow-pull-request.yml
+  - .github/workflows/sass-diff.yml
+  - ci/sass/README.md
+  - ci/sass/model-output.schema.json
+  - ci/sass/render_report.py
+  - ci/sass/sass_triage_config.toml
+  - ci/sass/sass_triage_prompt.md
+  - ci/sass/test_render_report.py
+- number: 11905
+  title: Reorganize mgmn into cuda/experimental/mgmn
+  date: '2026-10-08'
+  decision: exclude
+  reason: 'remove: only distributed-system implementation path(s) qualified: cudax/include/cuda/experimental/__multi_gpu/concepts.h, cudax/include/cuda/experimental/mgmn/__concepts/has_all_reduce.h, cudax/include/cuda/experimental/mgmn/__concepts/has_all_to_all.h,
+    cudax/include/cuda/experimental/mgmn/__concepts/has_all_to_all_v.h'
+  files_changed:
+  - cudax/benchmarks/bench/mgmn/stream.cu
+  - cudax/include/cuda/experimental/__multi_gpu/concepts.h
+  - cudax/include/cuda/experimental/mgmn/__algorithm/common.h
+  - cudax/include/cuda/experimental/mgmn/__algorithm/reduce/reduce.h
+  - cudax/include/cuda/experimental/mgmn/__algorithm/reduce/segmented_reduce.h
+  - cudax/include/cuda/experimental/mgmn/__algorithm/scan/scan.h
+  - cudax/include/cuda/experimental/mgmn/__algorithm/sort/hss/bucket_count_fn.h
+  - cudax/include/cuda/experimental/mgmn/__algorithm/sort/hss/data_exchange.h
+  - cudax/include/cuda/experimental/mgmn/__algorithm/sort/hss/execute.h
+  - cudax/include/cuda/experimental/mgmn/__algorithm/sort/hss/histogramming.h
+  - cudax/include/cuda/experimental/mgmn/__algorithm/sort/hss/ideal_rank_fn.h
+  - cudax/include/cuda/experimental/mgmn/__algorithm/sort/hss/local_setup.h
+  - cudax/include/cuda/experimental/mgmn/__algorithm/sort/hss/merge_k_way.h
+  - cudax/include/cuda/experimental/mgmn/__algorithm/sort/hss/rebalance.h
+  - cudax/include/cuda/experimental/mgmn/__algorithm/sort/hss/sorter.h
+  - cudax/include/cuda/experimental/mgmn/__algorithm/sort/sort.h
+  - cudax/include/cuda/experimental/mgmn/__algorithm/transform/transform.h
+  - cudax/include/cuda/experimental/mgmn/__concepts/common.h
+  - cudax/include/cuda/experimental/mgmn/__concepts/communicator.h
+  - cudax/include/cuda/experimental/mgmn/__concepts/has_all_gather.h
+  - cudax/include/cuda/experimental/mgmn/__concepts/has_all_gather_v.h
+  - cudax/include/cuda/experimental/mgmn/__concepts/has_all_reduce.h
+  - cudax/include/cuda/experimental/mgmn/__concepts/has_all_to_all.h
+  - cudax/include/cuda/experimental/mgmn/__concepts/has_all_to_all_v.h
+  - cudax/include/cuda/experimental/mgmn/__concepts/has_broadcast.h
+  - cudax/include/cuda/experimental/mgmn/__concepts/has_gather.h
+  - cudax/include/cuda/experimental/mgmn/__concepts/has_gather_v.h
+  - cudax/include/cuda/experimental/mgmn/__concepts/has_reduce.h
+  - cudax/include/cuda/experimental/mgmn/__nccl/abi_compatible.h
+  - cudax/include/cuda/experimental/mgmn/__nccl/nccl_api.h
+  - cudax/include/cuda/experimental/mgmn/__nccl/nccl_communicator.h
+  - cudax/include/cuda/experimental/mgmn/__nccl/nccl_communicator_ref.h
+  - cudax/include/cuda/experimental/mgmn/__nccl/shared_library.h
+  - cudax/include/cuda/experimental/mgmn/concepts
+  - cudax/include/cuda/experimental/mgmn/nccl_communicators
+  - cudax/include/cuda/experimental/mgmn/reduce
+  - cudax/include/cuda/experimental/mgmn/scan
+  - cudax/include/cuda/experimental/mgmn/segmented_reduce
+  - cudax/include/cuda/experimental/mgmn/sort
+  - cudax/include/cuda/experimental/mgmn/transform
+  - cudax/test/multi_gpu/algorithms/exclusive_scan/range_basic.cu
+  - cudax/test/multi_gpu/algorithms/exclusive_scan/range_defaults.cu
+  - cudax/test/multi_gpu/algorithms/exclusive_scan/single_comm_basic.cu
+  - cudax/test/multi_gpu/algorithms/exclusive_scan/single_comm_defaults.cu
+  - cudax/test/multi_gpu/algorithms/exclusive_scan/single_comm_determinism.cu
+  - cudax/test/multi_gpu/algorithms/inclusive_scan/range_basic.cu
+  - cudax/test/multi_gpu/algorithms/inclusive_scan/range_defaults.cu
+  - cudax/test/multi_gpu/algorithms/inclusive_scan/single_comm_basic.cu
+  - cudax/test/multi_gpu/algorithms/inclusive_scan/single_comm_defaults.cu
+  - cudax/test/multi_gpu/algorithms/inclusive_scan/single_comm_determinism.cu
+  - cudax/test/multi_gpu/algorithms/reduce/range_basic.cu
+  - cudax/test/multi_gpu/algorithms/reduce/range_defaults.cu
+  - cudax/test/multi_gpu/algorithms/reduce/range_deferred.cu
+  - cudax/test/multi_gpu/algorithms/reduce/single_comm_basic.cu
+  - cudax/test/multi_gpu/algorithms/reduce/single_comm_defaults.cu
+  - cudax/test/multi_gpu/algorithms/reduce/single_comm_deferred.cu
+  - cudax/test/multi_gpu/algorithms/reduce/single_comm_determinism.cu
+  - cudax/test/multi_gpu/algorithms/reduce/single_comm_gpu_to_gpu_determinism_fail.cu
+  - cudax/test/multi_gpu/algorithms/segmented_reduce/range_basic.cu
+  - cudax/test/multi_gpu/algorithms/segmented_reduce/range_defaults.cu
+  - cudax/test/multi_gpu/algorithms/segmented_reduce/single_comm_basic.cu
+  - cudax/test/multi_gpu/algorithms/segmented_reduce/single_comm_defaults.cu
+  - cudax/test/multi_gpu/algorithms/sort/range_basic.cu
+  - cudax/test/multi_gpu/algorithms/sort/range_defaults.cu
+  - cudax/test/multi_gpu/algorithms/sort/single_comm_basic.cu
+  - cudax/test/multi_gpu/algorithms/sort/single_comm_defaults.cu
+  - cudax/test/multi_gpu/algorithms/transform/range_basic.cu
+  - cudax/test/multi_gpu/algorithms/transform/single_comm_basic.cu
+  - cudax/test/multi_gpu/communicators/nccl/basic.cu
+  - cudax/test/multi_gpu/communicators/nccl/concepts.cu
+  - cudax/test/multi_gpu/concepts/communicator.cu
+  - cudax/test/multi_gpu/concepts/has_all_gather.cu
+  - cudax/test/multi_gpu/concepts/has_all_gather_v.cu
+  - cudax/test/multi_gpu/concepts/has_all_reduce.cu
+  - cudax/test/multi_gpu/concepts/has_all_to_all.cu
+  - cudax/test/multi_gpu/concepts/has_all_to_all_v.cu
+  - cudax/test/multi_gpu/concepts/has_broadcast.cu
+  - cudax/test/multi_gpu/concepts/has_gather.cu
+  - cudax/test/multi_gpu/concepts/has_gather_v.cu
+  - cudax/test/multi_gpu/concepts/has_recv.cu
+  - cudax/test/multi_gpu/concepts/has_reduce.cu
+  - cudax/test/multi_gpu/concepts/has_send.cu
+  - cudax/test/multi_gpu/include/nccl_test_common.h
+  - cudax/test/multi_gpu/nccl/abi_compatible.cu
+  - cudax/test/multi_gpu/nccl/concepts.cu
+- number: 12157
+  title: '[libcu++] Optimize `cuda::bit_fns`'
+  date: '2026-10-23'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - docs/libcudacxx/extended_api/bit/bit_fns.rst
+  - libcudacxx/include/cuda/__bit/bit_fns.h
+  - libcudacxx/test/libcudacxx/cuda/bit/bit_fns.pass.cpp
+- number: 12001
+  title: cccl-modernize-type-trait
+  date: '2026-10-19'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): c2h/include/c2h/bfloat16.cuh, c2h/include/c2h/half.cuh, cub/cub/detail/numeric_traits.cuh, cudax/include/cuda/experimental/__stf/allocators/buddy_allocator.cuh,
+    cudax/include/cuda/experimental/__stf/internal/async_resources_handle.cuh, cudax/include/cuda/experimental/__stf/utility/memory.cuh'
+  files_changed:
+  - c/parallel/test/test_histogram.cpp
+  - c2h/include/c2h/bfloat16.cuh
+  - c2h/include/c2h/half.cuh
+  - ci/build_tidy.sh
+  - cmake/clang_tidy_plugins/CMakeLists.txt
+  - cmake/clang_tidy_plugins/modernize_type_traits/CMakeLists.txt
+  - cmake/clang_tidy_plugins/modernize_type_traits/generate_trait_catalog.cpp
+  - cmake/clang_tidy_plugins/modernize_type_traits/modernize_type_traits.cpp
+  - cmake/clang_tidy_plugins/modernize_type_traits/test/CMakeLists.txt
+  - cmake/clang_tidy_plugins/modernize_type_traits/test/composed_trait_definitions.cpp
+  - cmake/clang_tidy_plugins/modernize_type_traits/test/composed_traits.cpp
+  - cmake/clang_tidy_plugins/modernize_type_traits/test/cuda_traits.cpp
+  - cmake/clang_tidy_plugins/modernize_type_traits/test/implicit_instantiation.cpp
+  - cmake/clang_tidy_plugins/modernize_type_traits/test/inline_namespaces.cpp
+  - cmake/clang_tidy_plugins/modernize_type_traits/test/macros.cpp
+  - cmake/clang_tidy_plugins/modernize_type_traits/test/remove_cv.cpp
+  - cmake/clang_tidy_plugins/modernize_type_traits/test/remove_cv_inline_namespaces.cpp
+  - cmake/clang_tidy_plugins/modernize_type_traits/test/remove_cv_macros.cpp
+  - cmake/clang_tidy_plugins/modernize_type_traits/test/remove_cvref.cpp
+  - cmake/clang_tidy_plugins/modernize_type_traits/test/remove_cvref_macros.cpp
+  - cmake/clang_tidy_plugins/modernize_type_traits/test/repeated_traits.cpp
+  - cmake/clang_tidy_plugins/modernize_type_traits/test/spacing.cpp
+  - cmake/clang_tidy_plugins/modernize_type_traits/test/structured_bindings.cpp
+  - cmake/clang_tidy_plugins/modernize_type_traits/test/template_arguments.cpp
+  - cmake/clang_tidy_plugins/modernize_type_traits/test/types.cpp
+  - cmake/clang_tidy_plugins/modernize_type_traits/test/value_trait_definitions.cpp
+  - cmake/clang_tidy_plugins/modernize_type_traits/test/values.cpp
+  - cmake/clang_tidy_plugins/modernize_type_traits/trait_catalog.h
+  - cub/benchmarks/bench/partition/flagged.cu
+  - cub/benchmarks/bench/partition/if.cu
+  - cub/cub/detail/numeric_traits.cuh
+  - cub/test/catch2_segmented_sort_helper.cuh
+  - cub/test/catch2_test_device_histogram.cu
+  - cub/test/catch2_test_device_segmented_scan_multi_segment.cu
+  - cub/test/catch2_test_device_topk_common.cuh
+  - cub/test/catch2_test_util_type.cu
+  - cub/test/test_device_batch_copy.cu
+  - cudax/include/cuda/experimental/__stf/allocators/buddy_allocator.cuh
+  - cudax/include/cuda/experimental/__stf/internal/async_resources_handle.cuh
+  - cudax/include/cuda/experimental/__stf/utility/memory.cuh
+  - cudax/test/containers/uninitialized_buffer.cu
+  - libcudacxx/include/cuda/__type_traits/is_vector_type.h
+  - libcudacxx/include/cuda/std/__algorithm/partial_sort_copy.h
+  - libcudacxx/include/cuda/std/__algorithm/sample.h
+  - libcudacxx/include/cuda/std/__atomic/order.h
+  - libcudacxx/include/cuda/std/__chrono/time_point.h
+  - libcudacxx/include/cuda/std/__iterator/wrap_iter.h
+  - libcudacxx/include/cuda/std/__memory/allocator_arg_t.h
+  - libcudacxx/include/cuda/std/__memory/compressed_pair.h
+  - libcudacxx/include/cuda/std/__memory/unique_ptr.h
+  - libcudacxx/include/cuda/std/__memory/uses_allocator.h
+  - libcudacxx/include/cuda/std/__random/poisson_distribution.h
+  - libcudacxx/include/cuda/std/__tuple_dir/tuple.h
+  - libcudacxx/include/cuda/std/__tuple_dir/tuple_cat.h
+  - libcudacxx/include/cuda/std/__tuple_dir/tuple_constraints.h
+  - libcudacxx/include/cuda/std/__tuple_dir/tuple_like.h
+  - libcudacxx/include/cuda/std/__tuple_dir/tuple_size.h
+  - libcudacxx/include/cuda/std/__type_traits/aligned_union.h
+  - libcudacxx/include/cuda/std/__utility/convert_to_integral.h
+  - libcudacxx/include/cuda/std/ratio
+  - libcudacxx/include/cuda/std/span
+  - libcudacxx/test/libcudacxx/cuda/containers/buffer/constructor.cu
+  - libcudacxx/test/libcudacxx/cuda/containers/buffer/types.h
+  - libcudacxx/test/libcudacxx/cuda/containers/uninitialized_async_buffer.cu
+  - libcudacxx/test/libcudacxx/cuda/memory_resource/resources/device_memory_resource.cu
+  - libcudacxx/test/libcudacxx/cuda/memory_resource/resources/managed_memory_resource.cu
+  - libcudacxx/test/libcudacxx/cuda/memory_resource/resources/memory_pools.cu
+  - libcudacxx/test/libcudacxx/cuda/memory_resource/resources/pinned_memory_resource.cu
+  - libcudacxx/test/libcudacxx/cuda/memory_resource/resources/shared_memory_pools.cu
+  - libcudacxx/test/libcudacxx/cuda/memory_resource/shared_block_ptr.cu
+  - libcudacxx/test/support/test_iterators.h
+  - thrust/benchmarks/bench/copy/basic.cu
+  - thrust/testing/address_stability.cu
+  - thrust/testing/allocator.cu
+  - thrust/testing/allocator_aware_policies.cu
+  - thrust/testing/complex.cu
+  - thrust/testing/constant_iterator.cu
+  - thrust/testing/counting_iterator.cu
+  - thrust/testing/discard_iterator.cu
+  - thrust/testing/functional.cu
+  - thrust/testing/merge_by_key.cu
+  - thrust/testing/merge_key_value.cu
+  - thrust/testing/pair.cu
+  - thrust/testing/pair_transform.cu
+  - thrust/testing/permutation_iterator.cu
+  - thrust/testing/random.cu
+  - thrust/testing/reverse_iterator.cu
+  - thrust/testing/tabulate_output_iterator.cu
+  - thrust/testing/transform_iterator.cu
+  - thrust/testing/tuple_sort.cu
+  - thrust/testing/tuple_transform.cu
+  - thrust/testing/type_traits.cu
+  - thrust/testing/unittest/special_types.h
+  - thrust/testing/zip_iterator.cu
+  - thrust/thrust/iterator/detail/tuple_of_iterator_references.h
+  - thrust/thrust/system/cuda/detail/core/util.h
+  - thrust/thrust/system/cuda/detail/transform.h
+  - thrust/thrust/system/detail/sequential/stable_primitive_sort.h
+- number: 12152
+  title: '[libcu++] `cuda::std::simd` Masked Reduction behavior + Scalar'
+  date: '2026-10-23'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - libcudacxx/include/cuda/std/__simd/reductions.h
+  - libcudacxx/test/libcudacxx/std/numerics/simd/simd.reductions/masked.pass.cpp
+  - libcudacxx/test/libcudacxx/std/numerics/simd/simd.reductions/scalar.pass.cpp
+- number: 11645
+  title: Fix [QA Agent] Cooperative reduction - Warp
+  date: '2026-10-02'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/warp/specializations/warp_redux.cuh'
+  files_changed:
+  - cub/cub/warp/specializations/warp_redux.cuh
+  - cub/test/warp/catch2_test_warp_reduce.cu
+- number: 11646
+  title: Fix [QA Agent] Cooperative reduction - Block
+  date: '2026-10-01'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/block/block_reduce.cuh, cub/cub/block/specializations/block_reduce_warp_reductions.cuh'
+  files_changed:
+  - cub/cub/block/block_reduce.cuh
+  - cub/cub/block/specializations/block_reduce_warp_reductions.cuh
+  - cub/test/catch2_test_block_reduce.cu
+- number: 11760
+  title: '[fpmp] Evaluate fp32mp2 sinpi, cospi, and sincospi without radian reduction'
+  date: '2026-10-05'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - libcudacxx/include/cuda/__fp/fpmp_math.h
+  - libcudacxx/include/cuda/__fp/fpmp_math_impl_trig.h
+  - libcudacxx/test/libcudacxx/cuda/fp/units/fpmp/math.pass.cpp
+- number: 12171
+  title: '[libcu++] Forward host thread libraries directly to the host linker in NVCC lit tests'
+  date: '2026-10-22'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - libcudacxx/test/utils/libcudacxx/test/target_info.py
+- number: 11827
+  title: Optimize WarpReduce for large integers (Min/Max)
+  date: '2026-10-03'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/warp/specializations/warp_redux.cuh'
+  files_changed:
+  - cub/cub/warp/specializations/warp_redux.cuh
+  - cub/cub/warp/warp_reduce.cuh
+  - cub/test/warp/catch2_test_warp_reduce.cu
+- number: 9101
+  title: Implement parallel final reduction in BlockReduceWarp
+  date: '2026-10-16'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/block/block_reduce.cuh, cub/cub/block/specializations/block_reduce_warp_reductions.cuh'
+  files_changed:
+  - cub/cub/block/block_reduce.cuh
+  - cub/cub/block/specializations/block_reduce_warp_reductions.cuh
+- number: 12227
+  title: '[libcu++] Fix `cuda::simd` Masked operation (Nightly failure)'
+  date: '2026-10-26'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 0 authoritative changed file(s)'
+  files_changed: []
+- number: 10718
+  title: Add MGMN segmented reduction
+  date: '2026-08-24'
+  decision: exclude
+  reason: 'remove: only distributed-system implementation path(s) qualified: cudax/include/cuda/experimental/__multi_gpu/algorithm/common.h, cudax/include/cuda/experimental/__multi_gpu/algorithm/reduce/segmented_reduce.h'
+  files_changed:
+  - cudax/include/cuda/experimental/__multi_gpu/algorithm/common.h
+  - cudax/include/cuda/experimental/__multi_gpu/algorithm/reduce/segmented_reduce.h
+  - cudax/test/multi_gpu/algorithms/CMakeLists.txt
+  - cudax/test/multi_gpu/algorithms/segmented_reduce/CMakeLists.txt
+  - cudax/test/multi_gpu/algorithms/segmented_reduce/range_basic.cu
+  - cudax/test/multi_gpu/algorithms/segmented_reduce/range_defaults.cu
+  - cudax/test/multi_gpu/algorithms/segmented_reduce/segmented_reduce_common.cuh
+  - cudax/test/multi_gpu/algorithms/segmented_reduce/single_comm_basic.cu
+  - cudax/test/multi_gpu/algorithms/segmented_reduce/single_comm_defaults.cu
+  - cudax/test/multi_gpu/include/algorithm_common.h
+- number: 12052
+  title: Tune deterministic DeviceReduce for sm100 with 64-bit offsets
+  date: '2026-10-26'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/device/dispatch/tuning/tuning_reduce.cuh'
+  files_changed:
+  - cub/cub/device/dispatch/tuning/tuning_reduce.cuh
+- number: 11878
+  title: Use vote instructions in `WarpReduce`
+  date: '2026-10-08'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/warp/specializations/warp_reduce_shfl.cuh'
+  files_changed:
+  - cub/benchmarks/bench/reduce/warp_reduce_logical.cu
+  - cub/cub/warp/specializations/warp_reduce_shfl.cuh
+  - cub/cub/warp/warp_reduce.cuh
+  - cub/test/warp/catch2_test_warp_reduce.cu
+- number: 11283
+  title: Disambiguate arg-extremum reductions in the reduce tuning policy selector
+  date: '2026-09-11'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/device/dispatch/tuning/common.cuh, cub/cub/device/dispatch/tuning/tuning_reduce.cuh'
+  files_changed:
+  - cub/cub/device/dispatch/tuning/common.cuh
+  - cub/cub/device/dispatch/tuning/tuning_reduce.cuh
+- number: 11210
+  title: Add cuda.coop group operations and Numba-CUDA-MLIR Reduce
+  date: '2026-10-16'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 0 authoritative changed file(s)'
+  files_changed: []
+- number: 11968
+  title: Use `cuda::__simple_vector` instead of `std::vector` in mgmn algorithms
+  date: '2026-10-09'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 11 authoritative changed file(s)'
+  files_changed:
+  - cudax/include/cuda/experimental/mgmn/__algorithm/reduce/reduce.h
+  - cudax/include/cuda/experimental/mgmn/__algorithm/reduce/segmented_reduce.h
+  - cudax/include/cuda/experimental/mgmn/__algorithm/scan/scan.h
+  - cudax/include/cuda/experimental/mgmn/__algorithm/sort/hss/data_exchange.h
+  - cudax/include/cuda/experimental/mgmn/__algorithm/sort/hss/histogramming.h
+  - cudax/include/cuda/experimental/mgmn/__algorithm/sort/hss/local_setup.h
+  - cudax/include/cuda/experimental/mgmn/__algorithm/sort/hss/merge_k_way.h
+  - cudax/include/cuda/experimental/mgmn/__algorithm/sort/hss/rebalance.h
+  - cudax/include/cuda/experimental/mgmn/__algorithm/sort/hss/sorter.h
+  - cudax/include/cuda/experimental/mgmn/__nccl/nccl_api.h
+  - libcudacxx/include/cuda/__container/simple_vector.h
+- number: 11974
+  title: Optimize `WarpReduce` for floating-point types (Min/Max)
+  date: '2026-10-12'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/detail/integer_utility.cuh, cub/cub/warp/specializations/warp_redux.cuh'
+  files_changed:
+  - cub/cub/detail/integer_utility.cuh
+  - cub/cub/device/device_reduce.cuh
+  - cub/cub/warp/specializations/warp_redux.cuh
+  - cub/cub/warp/warp_reduce.cuh
+  - cub/test/catch2_test_integer_utility.cu
+  - cub/test/warp/catch2_test_warp_reduce.cu
+- number: 11755
+  title: Add `BlockReduce` benchmark
+  date: '2026-09-30'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - cub/benchmarks/bench/reduce/block_reduce_sum.cu
+- number: 11623
+  title: Optimize `WarpReduce` for large integers (Sum)
+  date: '2026-10-01'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/detail/integer_utility.cuh, cub/cub/warp/specializations/warp_redux.cuh'
+  files_changed:
+  - cub/benchmarks/bench/reduce/warp_reduce_base.cuh
+  - cub/cub/detail/integer_utility.cuh
+  - cub/cub/warp/specializations/warp_redux.cuh
+  - cub/cub/warp/warp_reduce.cuh
+  - cub/test/warp/catch2_test_warp_reduce.cu
+- number: 12230
+  title: '[clang-tidy] Disable `cert-dcl03-c`'
+  date: '2026-10-24'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - .clang-tidy
+  - libcudacxx/test/libcudacxx/std/numerics/simd/simd.reductions/masked.pass.cpp
+  - libcudacxx/test/libcudacxx/std/numerics/simd/simd.reductions/scalar.pass.cpp
+- number: 11951
+  title: '`warp_redux` uses `is_integer` instead of `is_integral`'
+  date: '2026-10-08'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/warp/specializations/warp_redux.cuh'
+  files_changed:
+  - cub/cub/warp/specializations/warp_redux.cuh
+- number: 11768
+  title: '[cudax] Add simple groups example'
+  date: '2026-10-03'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cudax/examples/coop/group/simple.cu'
+  files_changed:
+  - cudax/examples/CMakeLists.txt
+  - cudax/examples/coop/group/CMakeLists.txt
+  - cudax/examples/coop/group/simple.cu
+- number: 12005
+  title: Fix missing instances of thread scope for shared memory barrier
+  date: '2026-10-14'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 6 authoritative changed file(s)'
+  files_changed:
+  - libcudacxx/include/cuda/__fabric/atom.h
+  - libcudacxx/include/cuda/__fabric/get.h
+  - libcudacxx/include/cuda/__fabric/pull_reduce.h
+  - libcudacxx/include/cuda/__fabric/put.h
+  - libcudacxx/include/cuda/__fabric/reduce.h
+  - libcudacxx/test/libcudacxx/cuda/ccclrt/fabric/fabric_test_helper.h
+- number: 11578
+  title: 'fix(cuda.compute): ignore NumPy field titles in gpu_struct'
+  date: '2026-10-02'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - python/cuda_cccl/cuda/compute/struct.py
+  - python/cuda_cccl/tests/compute/test_struct_conversions.py
+- number: 12004
+  title: Reenable HW warp redux min/max f32
+  date: '2026-10-15'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/warp/specializations/warp_redux.cuh'
+  files_changed:
+  - cub/cub/warp/specializations/warp_redux.cuh
+- number: 11479
+  title: '[CUB] Compare input values in ArgMin and ArgMax'
+  date: '2026-09-30'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/device/dispatch/dispatch_streaming_reduce.cuh'
+  files_changed:
+  - cub/cub/device/device_reduce.cuh
+  - cub/cub/device/dispatch/dispatch_streaming_reduce.cuh
+  - cub/test/catch2_test_device_reduce.cu
+- number: 11769
+  title: '[infra] Parse compile-time traces once and in parallel'
+  date: '2026-10-06'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 4 authoritative changed file(s)'
+  files_changed:
+  - ci/compile_time/README.md
+  - ci/compile_time/summarize_events.py
+  - ci/compile_time/test_summarize_events.py
+  - docs/maintainers/references/compile_time.rst
+- number: 12071
+  title: Respect CCCL_AVOID_SORT_UNROLL in all sort/merge unroll defaults
+  date: '2026-10-21'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/block/block_merge_sort.cuh, cub/cub/device/dispatch/tuning/tuning_merge.cuh, cub/cub/device/dispatch/tuning/tuning_merge_sort.cuh,
+    cub/cub/thread/thread_sort.cuh'
+  files_changed:
+  - cub/cub/block/block_merge_sort.cuh
+  - cub/cub/device/dispatch/tuning/tuning_merge.cuh
+  - cub/cub/device/dispatch/tuning/tuning_merge_sort.cuh
+  - cub/cub/thread/thread_sort.cuh
+  - cub/test/catch2_test_sort_avoid_unroll.cu
+- number: 12018
+  title: '[stdpar] Disable sort smoke test on arm64'
+  date: '2026-10-16'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - test/stdpar/CMakeLists.txt
+- number: 12068
+  title: '[stdpar] Disable sort smoke test on arm64 fix'
+  date: '2026-10-19'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - test/stdpar/CMakeLists.txt
+- number: 11898
+  title: 'fix radix sort test allocation failures '
+  date: '2026-10-07'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - cub/test/catch2_test_device_radix_sort_keys.cu
+- number: 12168
+  title: Split thread_sort/ benchmarks as they takes ages to compile
+  date: '2026-10-22'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 10 authoritative changed file(s)'
+  files_changed:
+  - cub/benchmarks/bench/thread_sort/selection/common.cuh
+  - cub/benchmarks/bench/thread_sort/selection/median.cu
+  - cub/benchmarks/bench/thread_sort/selection/top_16.cu
+  - cub/benchmarks/bench/thread_sort/selection/top_3.cu
+  - cub/benchmarks/bench/thread_sort/selection/top_5.cu
+  - cub/benchmarks/bench/thread_sort/sort/common.cuh
+  - cub/benchmarks/bench/thread_sort/sort/stable_keys.cu
+  - cub/benchmarks/bench/thread_sort/sort/stable_pairs.cu
+  - cub/benchmarks/bench/thread_sort/sort/unstable_keys.cu
+  - cub/benchmarks/bench/thread_sort/sort/unstable_pairs.cu
+- number: 11881
+  title: Add sort NVHPC stdpar smoke test
+  date: '2026-10-06'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - test/stdpar/tests/sort.cpp
+- number: 11882
+  title: Add stable_sort NVHPC stdpar smoke test
+  date: '2026-10-06'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - test/stdpar/tests/stable_sort.cpp
+- number: 11973
+  title: Change cub device radix sort to always take an env
+  date: '2026-10-16'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/device/device_radix_sort.cuh'
+  files_changed:
+  - cub/cub/device/device_radix_sort.cuh
+  - cub/test/catch2_test_device_radix_sort_env.cu
+  - cub/test/catch2_test_device_radix_sort_env_api.cu
+  - libcudacxx/include/cuda/std/__pstl/cuda/sort.h
+- number: 11506
+  title: '[CUB] Thread-level Pairwise Sorting Networks'
+  date: '2026-10-01'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/thread/thread_sort.cuh'
+  files_changed:
+  - cub/benchmarks/bench/thread_sort/base.cu
+  - cub/benchmarks/bench/thread_sort/selection.cu
+  - cub/cub/thread/thread_sort.cuh
+  - cub/test/catch2_test_thread_sort.cu
+- number: 12164
+  title: Fixed _make_merge_sort to pass explicit d_in_values and d_out_values as None
+  date: '2026-10-22'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - python/cuda_cccl/benchmarks/compute/host/host_benchmark_cases.py
+- number: 11871
+  title: Use forward instead of move on rvalue reference
+  date: '2026-10-06'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - libcudacxx/include/cuda/std/__execution/policy.h
+- number: 11238
+  title: Simplify radix sort agent a bit
+  date: '2026-09-07'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/agent/agent_radix_sort_downsweep.cuh, cub/cub/agent/agent_radix_sort_onesweep.cuh'
+  files_changed:
+  - cub/cub/agent/agent_radix_sort_downsweep.cuh
+  - cub/cub/agent/agent_radix_sort_onesweep.cuh
+- number: 12053
+  title: Tune DeviceRadixSort pairs for sm100 with 64-bit keys, values and offsets
+  date: '2026-10-22'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/device/dispatch/tuning/tuning_radix_sort.cuh'
+  files_changed:
+  - cub/cub/device/dispatch/tuning/tuning_radix_sort.cuh
+- number: 12138
+  title: '[libcu++] Keep launch_transform storage alive until after the kernel launch on MSVC'
+  date: '2026-10-23'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - libcudacxx/include/cuda/__stream/launch_transform.h
+- number: 12093
+  title: '[CUB] Fix tuning policy docs for DeviceMergeSort, DeviceTransform and DeviceSegmentedSort'
+  date: '2026-10-21'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/device/dispatch/tuning/tuning_merge_sort.cuh'
+  files_changed:
+  - cub/cub/device/device_segmented_sort.cuh
+  - cub/cub/device/dispatch/tuning/tuning_merge_sort.cuh
+  - cub/cub/device/dispatch/tuning/tuning_transform.cuh
+  - docs/cub/tuning.rst
+- number: 10812
+  title: Implement sorted outputs for segmented TopK
+  date: '2026-09-11'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/device/device_batched_topk.cuh, cub/cub/device/dispatch/dispatch_batched_topk.cuh, cub/cub/device/dispatch/kernels/kernel_batched_topk.cuh,
+    cub/cub/device/dispatch/tuning/tuning_batched_topk.cuh'
+  files_changed:
+  - cub/cub/device/device_batched_topk.cuh
+  - cub/cub/device/dispatch/dispatch_batched_topk.cuh
+  - cub/cub/device/dispatch/kernels/kernel_batched_topk.cuh
+  - cub/cub/device/dispatch/tuning/tuning_batched_topk.cuh
+  - cub/test/catch2_test_device_segmented_topk_keys.cu
+  - cub/test/catch2_test_device_segmented_topk_pairs.cu
+  - cub/test/test_device_batched_topk_requirements_fail.cu
+  - cub/test/test_device_batched_topk_sorted_coverage_fail.cu
+  - docs/cub/device_topk_requirements.rst
+- number: 12131
+  title: '[libcu++] Skip fabric status decoding when a shared_memory_barrier wait has no report'
+  date: '2026-10-23'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - libcudacxx/include/cuda/__barrier/shared_memory_barrier.h
+- number: 12125
+  title: Fix CUDA Toolkit version in DeviceFind SortedValues docs
+  date: '2026-10-22'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - cub/cub/device/device_find.cuh
+- number: 12060
+  title: Recoups performance for `+/-0.0` float normalization in `DeviceBatchedTopK`
+  date: '2026-10-19'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/agent/agent_batched_topk_cluster.cuh, cub/cub/device/dispatch/dispatch_topk.cuh'
+  files_changed:
+  - cub/cub/agent/agent_batched_topk_cluster.cuh
+  - cub/cub/device/dispatch/dispatch_topk.cuh
+- number: 11079
+  title: Segmented Topk tuning on B200 `keys.cluster`
+  date: '2026-09-09'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/device/dispatch/dispatch_batched_topk.cuh, cub/cub/device/dispatch/tuning/tuning_batched_topk.cuh'
+  files_changed:
+  - cub/cub/device/dispatch/dispatch_batched_topk.cuh
+  - cub/cub/device/dispatch/tuning/tuning_batched_topk.cuh
+- number: 9801
+  title: Segmented Topk tuning on B200 `indexed.cluster`
+  date: '2026-09-08'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/device/dispatch/dispatch_batched_topk.cuh, cub/cub/device/dispatch/tuning/tuning_batched_topk.cuh'
+  files_changed:
+  - cub/cub/device/dispatch/dispatch_batched_topk.cuh
+  - cub/cub/device/dispatch/tuning/tuning_batched_topk.cuh
+- number: 11875
+  title: '[docs][fp] Document the FP component'
+  date: '2026-10-08'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 13 authoritative changed file(s)'
+  files_changed:
+  - docs/libcudacxx/extended_api.rst
+  - docs/libcudacxx/extended_api/fp.rst
+  - docs/libcudacxx/extended_api/fp/fpemu.rst
+  - docs/libcudacxx/extended_api/fp/fpemu_example.rst
+  - docs/libcudacxx/extended_api/fp/fpmp.rst
+  - docs/libcudacxx/extended_api/fp/fpmp_example.rst
+  - docs/libcudacxx/extended_api/fp/fpmp_spec.rst
+  - docs/libcudacxx/extended_api/fp/fptool.rst
+  - docs/libcudacxx/extended_api/fp/fptool_custom.rst
+  - docs/libcudacxx/extended_api/fp/fptool_stat.rst
+  - examples/cudax/fp/README_fpemu.md
+  - examples/cudax/fp/README_fpmp.md
+  - examples/cudax/fp/README_fptool_custom.md
+- number: 10730
+  title: Use `mbarrier_arrive_expect_tx` with `sem_relaxed_t` in DeviceTransform when available
+  date: '2026-08-17'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/device/dispatch/kernels/kernel_transform.cuh'
+  files_changed:
+  - cub/cub/device/dispatch/kernels/kernel_transform.cuh
+- number: 11043
+  title: Lookahead RunLengthEncode should write the last key of the run to be consistent with ReduceByKey
+  date: '2026-08-28'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/device/dispatch/kernels/kernel_rle_encode_lookahead.cuh'
+  files_changed:
+  - cub/cub/device/device_run_length_encode.cuh
+  - cub/cub/device/dispatch/kernels/kernel_rle_encode_lookahead.cuh
+  - cub/test/catch2_test_device_run_length_encode.cu
+- number: 11555
+  title: Re-enable RTX 5090 fill tuning for 8-byte stores
+  date: '2026-09-21'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/device/dispatch/tuning/tuning_transform.cuh'
+  files_changed:
+  - cub/cub/device/dispatch/tuning/tuning_transform.cuh
+- number: 11738
+  title: FP component housekeeping ahead of the `cuda::` promotion
+  date: '2026-10-05'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 48 authoritative changed file(s)'
+  files_changed:
+  - examples/cudax/fp/README_fpemu.md
+  - examples/cudax/fp/README_fpmp.md
+  - examples/cudax/fp/README_fptool_custom.md
+  - examples/cudax/fp/README_fptool_stat.md
+  - examples/cudax/fp/fpemu.cu
+  - examples/cudax/fp/fpmp.cu
+  - examples/cudax/fp/fptool_custom.cu
+  - examples/cudax/fp/fptool_stat.cu
+  - libcudacxx/include/cuda/__fp/fpemu.h
+  - libcudacxx/include/cuda/__fp/fpemu_impl.h
+  - libcudacxx/include/cuda/__fp/fpemu_impl_add.h
+  - libcudacxx/include/cuda/__fp/fpemu_impl_cvt.h
+  - libcudacxx/include/cuda/__fp/fpemu_impl_div.h
+  - libcudacxx/include/cuda/__fp/fpemu_impl_fma.h
+  - libcudacxx/include/cuda/__fp/fpemu_impl_mul.h
+  - libcudacxx/include/cuda/__fp/fpemu_impl_sqrt.h
+  - libcudacxx/include/cuda/__fp/fpemu_impl_unpack.h
+  - libcudacxx/include/cuda/__fp/fpemu_limits.h
+  - libcudacxx/include/cuda/__fp/fpmp.h
+  - libcudacxx/include/cuda/__fp/fpmp_impl.h
+  - libcudacxx/include/cuda/__fp/fpmp_impl_atomic.h
+  - libcudacxx/include/cuda/__fp/fpmp_math.h
+  - libcudacxx/include/cuda/__fp/fpmp_math_impl.h
+  - libcudacxx/include/cuda/__fp/fptool_common.h
+  - libcudacxx/include/cuda/__fp/fptool_custom.h
+  - libcudacxx/include/cuda/__fp/fptool_limits.h
+  - libcudacxx/include/cuda/__fp/fptool_stat.h
+  - libcudacxx/include/cuda/__fp/fptool_stat_math.h
+  - libcudacxx/include/cuda/fpemu
+  - libcudacxx/include/cuda/fpmp
+  - libcudacxx/include/cuda/fpmp_math
+  - libcudacxx/include/cuda/fptool
+  - libcudacxx/test/libcudacxx/cuda/fp/units/fpemu/limits.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/fp/units/fpmp/accuracy_conv.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/fp/units/fpmp/atomic_dd.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/fp/units/fpmp/atomic_ff.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/fp/units/fpmp/black_scholes.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/fp/units/fpmp/cuda_std.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/fp/units/fpmp/math.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/fp/units/fpmp/reduce.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/fp/units/fpmp/shfl.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/fp/units/fptool/custom.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/fp/units/fptool/fpemu_interop.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/fp/units/fptool/limits.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/fp/units/fptool/opt_in.fail.cpp
+  - libcudacxx/test/libcudacxx/cuda/fp/units/fptool/qualified_calls.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/fp/units/fptool/stat.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/fp/units/fptool/unary.pass.cpp
+- number: 10731
+  title: Add `cub::DeviceReduce::ArgMin[Last]Max`
+  date: '2026-08-21'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/device/device_reduce.cuh, cub/cub/device/dispatch/dispatch_reduce.cuh, cub/cub/device/dispatch/dispatch_streaming_reduce.cuh, cub/cub/thread/thread_operators.cuh'
+  files_changed:
+  - cub/benchmarks/bench/reduce/arg_minmax.cu
+  - cub/cub/device/device_reduce.cuh
+  - cub/cub/device/dispatch/dispatch_reduce.cuh
+  - cub/cub/device/dispatch/dispatch_streaming_reduce.cuh
+  - cub/cub/thread/thread_operators.cuh
+  - cub/test/catch2_test_device_reduce_arg_minmax.cu
+  - cub/test/catch2_test_device_reduce_arg_minmax_env.cu
+  - cub/test/catch2_test_device_reduce_arg_minmax_env_api.cu
+  - cub/test/catch2_test_device_reduce_arg_minmax_large_offsets.cu
+- number: 10570
+  title: '[cub] Always set smem limit to max for lookahead scan'
+  date: '2026-07-31'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/detail/launcher/cuda_driver.cuh, cub/cub/device/dispatch/dispatch_scan.cuh'
+  files_changed:
+  - cub/cub/detail/launcher/cuda_driver.cuh
+  - cub/cub/device/dispatch/dispatch_scan.cuh
+- number: 10519
+  title: Add tunable prefetching to DeviceSelect::Flagged
+  date: '2026-07-31'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/agent/agent_select_if.cuh, cub/cub/device/dispatch/dispatch_select_if.cuh, cub/cub/device/dispatch/tuning/tuning_select_if.cuh'
+  files_changed:
+  - cub/benchmarks/bench/select/flagged.cu
+  - cub/cub/agent/agent_select_if.cuh
+  - cub/cub/device/dispatch/dispatch_select_if.cuh
+  - cub/cub/device/dispatch/tuning/tuning_select_if.cuh
+  - cub/test/catch2_test_device_select_env.cu
+  - cub/test/catch2_test_device_select_flagged.cu
+  - cub/test/catch2_test_device_select_flagged_if.cu
+- number: 3719
+  title: '[Backport branch/2.8.x] Add b200 tunings for scan.exclusive.by_key'
+  date: '2025-02-06'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/device/dispatch/tuning/tuning_scan_by_key.cuh'
+  files_changed:
+  - cub/cub/device/dispatch/tuning/tuning_scan_by_key.cuh
+- number: 9481
+  title: Vectorize output store in ublkcp DeviceTransform kernel
+  date: '2026-07-08'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/device/dispatch/kernels/kernel_transform.cuh, cub/cub/device/dispatch/tuning/tuning_transform.cuh'
+  files_changed:
+  - cub/cub/device/dispatch/kernels/kernel_transform.cuh
+  - cub/cub/device/dispatch/tuning/tuning_transform.cuh
+  - cub/test/catch2_test_device_transform_vectorized.cu
+- number: 9127
+  title: Hardcode `DeviceTransform` `OffsetT` to `int64`
+  date: '2026-05-27'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/device/device_transform.cuh, cub/cub/device/dispatch/dispatch_transform.cuh, cub/cub/device/dispatch/kernels/kernel_transform.cuh'
+  files_changed:
+  - cub/benchmarks/bench/transform/babelstream.cu
+  - cub/benchmarks/bench/transform/common.h
+  - cub/benchmarks/bench/transform/complex_cmp.cu
+  - cub/benchmarks/bench/transform/fib.cu
+  - cub/benchmarks/bench/transform/fill.cu
+  - cub/benchmarks/bench/transform/grayscale.cu
+  - cub/benchmarks/bench/transform/heavy.cu
+  - cub/benchmarks/bench/transform/pytorch.cu
+  - cub/cub/device/device_transform.cuh
+  - cub/cub/device/dispatch/dispatch_transform.cuh
+  - cub/cub/device/dispatch/kernels/kernel_transform.cuh
+  - cub/test/catch2_test_device_transform.cu
+  - cub/test/catch2_test_device_transform_if.cu
+  - thrust/thrust/system/cuda/detail/transform.h
+- number: 11279
+  title: Optimize `WarpReduce` for bitwise operators
+  date: '2026-09-10'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/warp/specializations/warp_redux.cuh'
+  files_changed:
+  - cub/cub/warp/specializations/warp_redux.cuh
+  - cub/cub/warp/warp_reduce.cuh
+  - cub/test/warp/catch2_test_warp_reduce.cu
+- number: 8292
+  title: Port `thrust::minmax_element` to CUB
+  date: '2026-08-27'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 7 authoritative changed file(s)'
+  files_changed:
+  - thrust/benchmarks/bench/extrema/basic.cu
+  - thrust/testing/cuda/minmax_element.cu
+  - thrust/thrust/extrema.h
+  - thrust/thrust/system/cuda/detail/extrema.h
+  - thrust/thrust/system/cuda/detail/reduce.h
+  - thrust/thrust/system/detail/generic/extrema.inl
+  - thrust/thrust/system/detail/sequential/extrema.h
+- number: 9471
+  title: 'use `__ballot_sync` in warpspeed lookahead '
+  date: '2026-06-23'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/detail/warpspeed/look_ahead.cuh'
+  files_changed:
+  - cub/cub/detail/warpspeed/look_ahead.cuh
+- number: 9210
+  title: '[Tile] tile DeviceTransform port'
+  date: '2026-07-10'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/device/dispatch/dispatch_transform.cuh, cub/cub/device/dispatch/dispatch_transform_tile.cuh, cub/cub/device/dispatch/dispatch_transform_tile_config.cuh,
+    cub/cub/device/dispatch/dispatch_transform_tile_traits.cuh, cub/cub/device/dispatch/kernels/kernel_transform_tile.cuh, cub/cub/device/dispatch/tuning/tuning_transform_tile.cuh'
+  files_changed:
+  - cub/CMakeLists.txt
+  - cub/benchmarks/CMakeLists.txt
+  - cub/benchmarks/bench/transform/tile/babelstream.cu
+  - cub/benchmarks/bench/transform/tile/copy.cu
+  - cub/benchmarks/bench/transform/tile/grayscale.cu
+  - cub/benchmarks/bench/transform/tile/pytorch.cu
+  - cub/cub/device/dispatch/dispatch_transform.cuh
+  - cub/cub/device/dispatch/dispatch_transform_tile.cuh
+  - cub/cub/device/dispatch/dispatch_transform_tile_config.cuh
+  - cub/cub/device/dispatch/dispatch_transform_tile_traits.cuh
+  - cub/cub/device/dispatch/kernels/kernel_transform_tile.cuh
+  - cub/cub/device/dispatch/tuning/tuning_transform_tile.cuh
+  - cub/test/CMakeLists.txt
+  - cub/test/catch2_test_device_transform_tile.cu
+- number: 11252
+  title: multi-GPU compile iq tuning
+  date: '2026-09-19'
+  decision: exclude
+  reason: 'remove: distributed-system topic matched ''multi-GPU'' in PR title'
+  files_changed:
+  - benchmarks/scripts/cccl/bench/__init__.py
+  - benchmarks/scripts/cccl/bench/bench.py
+  - benchmarks/scripts/cccl/bench/cmake.py
+  - benchmarks/scripts/search.py
+  - benchmarks/scripts/search_iq.py
+  - benchmarks/scripts/search_multi_gpu.md
+  - docs/cub/tuning_infra.rst
+- number: 9565
+  title: warpspeed run_to_run deterministic scan for SM90 using atomic global counter
+  date: '2026-07-09'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/detail/warpspeed/look_ahead.cuh, cub/cub/detail/warpspeed/squad/load_store.cuh, cub/cub/device/dispatch/dispatch_scan.cuh, cub/cub/device/dispatch/kernels/kernel_scan.cuh,
+    cub/cub/device/dispatch/kernels/kernel_scan_lookahead.cuh, cub/cub/device/dispatch/tuning/tuning_scan.cuh'
+  files_changed:
+  - c/parallel/src/scan.cu
+  - cub/cub/detail/warpspeed/look_ahead.cuh
+  - cub/cub/detail/warpspeed/squad/load_store.cuh
+  - cub/cub/device/dispatch/dispatch_scan.cuh
+  - cub/cub/device/dispatch/kernels/kernel_scan.cuh
+  - cub/cub/device/dispatch/kernels/kernel_scan_lookahead.cuh
+  - cub/cub/device/dispatch/tuning/tuning_scan.cuh
+- number: 7449
+  title: Support `cp_async_bulk_ignore_oob` in DeviceTransform
+  date: '2026-09-08'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/device/dispatch/kernels/kernel_transform.cuh'
+  files_changed:
+  - cub/cub/device/dispatch/kernels/kernel_transform.cuh
+  - cub/test/catch2_test_device_transform.cu
+- number: 10996
+  title: '[CUB] Fix HistogramEven bin arithmetic for level ranges wider than the common type'
+  date: '2026-10-01'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/device/dispatch/dispatch_histogram.cuh, cub/cub/device/dispatch/kernels/kernel_histogram.cuh'
+  files_changed:
+  - cub/cub/device/dispatch/dispatch_histogram.cuh
+  - cub/cub/device/dispatch/kernels/kernel_histogram.cuh
+  - cub/test/catch2_test_device_histogram.cu
+- number: 9868
+  title: '[cudax][cuco] Migrate host and device find APIs for fixed_capacity_map'
+  date: '2026-07-24'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cudax/include/cuda/experimental/__cuco/detail/open_addressing/kernels.cuh, cudax/include/cuda/experimental/__cuco/detail/open_addressing/open_addressing_impl.cuh,
+    cudax/include/cuda/experimental/__cuco/detail/open_addressing/open_addressing_ref_impl.cuh, cudax/include/cuda/experimental/__cuco/fixed_capacity_map.cuh, cudax/include/cuda/experimental/__cuco/fixed_capacity_map_ref.cuh'
+  files_changed:
+  - cudax/benchmarks/bench/cuco/fixed_capacity_map/find.cu
+  - cudax/include/cuda/experimental/__cuco/detail/open_addressing/kernels.cuh
+  - cudax/include/cuda/experimental/__cuco/detail/open_addressing/open_addressing_impl.cuh
+  - cudax/include/cuda/experimental/__cuco/detail/open_addressing/open_addressing_ref_impl.cuh
+  - cudax/include/cuda/experimental/__cuco/fixed_capacity_map.cuh
+  - cudax/include/cuda/experimental/__cuco/fixed_capacity_map_ref.cuh
+  - cudax/test/CMakeLists.txt
+  - cudax/test/cuco/fixed_capacity_map/test_find.cu
+- number: 9829
+  title: Remove _CCCL_GRID_CONSTANT from merge sort kernel parameters
+  date: '2026-07-13'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/device/dispatch/kernels/kernel_merge_sort.cuh'
+  files_changed:
+  - cub/cub/device/dispatch/kernels/kernel_merge_sort.cuh
+- number: 11480
+  title: '[libcu++] Fix `arch_traits` for sm100'
+  date: '2026-09-18'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - libcudacxx/include/cuda/__device/arch_traits.h
+  - libcudacxx/test/libcudacxx/cuda/ccclrt/device/arch_traits.c2h.cu
+- number: 11484
+  title: '[Backport branch/3.5.x] [libcu++] Fix `arch_traits` for sm100'
+  date: '2026-09-21'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - libcudacxx/include/cuda/__device/arch_traits.h
+  - libcudacxx/test/libcudacxx/cuda/ccclrt/device/arch_traits.c2h.cu
+- number: 12090
+  title: '[libcu++] Implement `cuda::bit_trunc`'
+  date: '2026-10-20'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 5 authoritative changed file(s)'
+  files_changed:
+  - docs/libcudacxx/extended_api/bit.rst
+  - docs/libcudacxx/extended_api/bit/bit_trunc.rst
+  - libcudacxx/include/cuda/__bit/bit_trunc.h
+  - libcudacxx/include/cuda/bit
+  - libcudacxx/test/libcudacxx/cuda/bit/bit_trunc.pass.cpp
+- number: 12165
+  title: Thrust SASS diffs
+  date: '2026-10-23'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 11 authoritative changed file(s)'
+  files_changed:
+  - .github/workflows/ci-workflow-pull-request.yml
+  - .github/workflows/sass-diff.yml
+  - CMakePresets.json
+  - ci/matrix.yaml
+  - ci/sass/README.md
+  - ci/sass/parse_matrix.py
+  - ci/sass/render_report.py
+  - ci/sass/sass_diff.sh
+  - ci/sass/test_parse_matrix.py
+  - ci/sass/test_render_report.py
+  - thrust/benchmarks/CMakeLists.txt
+- number: 11092
+  title: Add sm107 tunings for DeviceRadixSort::Pairs
+  date: '2026-09-04'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/device/dispatch/tuning/tuning_radix_sort.cuh'
+  files_changed:
+  - cub/cub/device/dispatch/tuning/tuning_radix_sort.cuh
+- number: 11102
+  title: Add sm107 tunings for `DeviceSelect::If/Unique`
+  date: '2026-09-02'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/device/dispatch/tuning/tuning_select_if.cuh'
+  files_changed:
+  - cub/cub/device/dispatch/tuning/tuning_select_if.cuh
+- number: 10671
+  title: 'libcu++: unify codegen testing cmake logic between atomics and simd.'
+  date: '2026-08-10'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 6 authoritative changed file(s)'
+  files_changed:
+  - libcudacxx/test/CMakeLists.txt
+  - libcudacxx/test/atomic_codegen/CMakeLists.txt
+  - libcudacxx/test/cmake/CodegenTest.cmake
+  - libcudacxx/test/codegen/dump_and_check.bash
+  - libcudacxx/test/simd_codegen/CMakeLists.txt
+  - libcudacxx/test/simd_codegen/load_store/CMakeLists.txt
+- number: 11241
+  title: Make `DeviceTransform` easier to tune
+  date: '2026-09-10'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 8 authoritative changed file(s)'
+  files_changed:
+  - cub/benchmarks/bench/transform/README.md
+  - cub/benchmarks/bench/transform/babelstream.cu
+  - cub/benchmarks/bench/transform/babelstream.h
+  - cub/benchmarks/bench/transform/babelstream.prefetch.cu
+  - cub/benchmarks/bench/transform/babelstream.ublkcp.cu
+  - cub/benchmarks/bench/transform/babelstream.vectorized.cu
+  - cub/benchmarks/bench/transform/common.h
+  - cub/benchmarks/bench/transform/fill.cu
+- number: 12253
+  title: Enable `__float128` in `cuda::std::ceil`, `floor`, `trunc` and `round`
+  date: '2026-10-27'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - libcudacxx/include/cuda/std/__cmath/rounding_functions.h
+  - libcudacxx/test/libcudacxx/std/numerics/c.math/rounding.pass.cpp
+- number: 9263
+  title: run to run scan warpspeed impl sm100+
+  date: '2026-06-14'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/detail/warpspeed/look_ahead.cuh, cub/cub/device/dispatch/kernels/kernel_scan.cuh, cub/cub/device/dispatch/kernels/kernel_scan_lookahead.cuh,
+    cub/cub/device/dispatch/tuning/tuning_scan.cuh'
+  files_changed:
+  - cub/cub/detail/warpspeed/look_ahead.cuh
+  - cub/cub/device/dispatch/kernels/kernel_scan.cuh
+  - cub/cub/device/dispatch/kernels/kernel_scan_lookahead.cuh
+  - cub/cub/device/dispatch/tuning/tuning_scan.cuh
+- number: 10832
+  title: 'libcu++: atomics SASS FileCheck suite for arithmetic atomic operations'
+  date: '2026-08-28'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 26 authoritative changed file(s)'
+  files_changed:
+  - libcudacxx/test/atomic_codegen/sass/arithmetic_apis.cu
+  - libcudacxx/test/atomic_codegen/sass/arithmetic_floating_types.cu
+  - libcudacxx/test/atomic_codegen/sass/arithmetic_minmax_apis.cu
+  - libcudacxx/test/atomic_codegen/sass/arithmetic_minmax_floating_types.cu
+  - libcudacxx/test/atomic_codegen/sass/arithmetic_minmax_types.cu
+  - libcudacxx/test/atomic_codegen/sass/arithmetic_minmax_types_8_16_atomic.cu
+  - libcudacxx/test/atomic_codegen/sass/arithmetic_minmax_types_8_16_atomic_ref.cu
+  - libcudacxx/test/atomic_codegen/sass/arithmetic_minmax_volatile_apis.cu
+  - libcudacxx/test/atomic_codegen/sass/arithmetic_minmax_volatile_floating_types.cu
+  - libcudacxx/test/atomic_codegen/sass/arithmetic_minmax_volatile_types.cu
+  - libcudacxx/test/atomic_codegen/sass/arithmetic_minmax_volatile_types_8_16_atomic.cu
+  - libcudacxx/test/atomic_codegen/sass/arithmetic_minmax_volatile_types_8_16_atomic_ref.cu
+  - libcudacxx/test/atomic_codegen/sass/arithmetic_operators_apis.cu
+  - libcudacxx/test/atomic_codegen/sass/arithmetic_operators_volatile_apis.cu
+  - libcudacxx/test/atomic_codegen/sass/arithmetic_pointer_types.cu
+  - libcudacxx/test/atomic_codegen/sass/arithmetic_types.cu
+  - libcudacxx/test/atomic_codegen/sass/arithmetic_types_128_atomic_ref.cu
+  - libcudacxx/test/atomic_codegen/sass/arithmetic_types_8_16_atomic.cu
+  - libcudacxx/test/atomic_codegen/sass/arithmetic_types_8_16_atomic_ref.cu
+  - libcudacxx/test/atomic_codegen/sass/arithmetic_volatile_apis.cu
+  - libcudacxx/test/atomic_codegen/sass/arithmetic_volatile_floating_types.cu
+  - libcudacxx/test/atomic_codegen/sass/arithmetic_volatile_pointer_types.cu
+  - libcudacxx/test/atomic_codegen/sass/arithmetic_volatile_types.cu
+  - libcudacxx/test/atomic_codegen/sass/arithmetic_volatile_types_128_atomic_ref.cu
+  - libcudacxx/test/atomic_codegen/sass/arithmetic_volatile_types_8_16_atomic.cu
+  - libcudacxx/test/atomic_codegen/sass/arithmetic_volatile_types_8_16_atomic_ref.cu
+- number: 11100
+  title: Add Warp `redux` min/max for Rubin
+  date: '2026-09-02'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/warp/specializations/warp_redux.cuh'
+  files_changed:
+  - cub/cub/warp/specializations/warp_redux.cuh
+- number: 11093
+  title: Add sm107 tunings for DevicePartition::If three-way
+  date: '2026-09-03'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/device/dispatch/tuning/tuning_three_way_partition.cuh'
+  files_changed:
+  - cub/cub/device/dispatch/tuning/tuning_three_way_partition.cuh
+- number: 11084
+  title: Add sm107 tunings for DeviceRadixSort::SortKeys
+  date: '2026-09-03'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/device/dispatch/tuning/tuning_radix_sort.cuh'
+  files_changed:
+  - cub/cub/device/dispatch/tuning/tuning_radix_sort.cuh
+- number: 10751
+  title: Add sm107 tunings for DeviceScan::*ByKey
+  date: '2026-09-02'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/device/dispatch/tuning/tuning_scan_by_key.cuh'
+  files_changed:
+  - cub/cub/device/dispatch/tuning/tuning_scan_by_key.cuh
+- number: 9751
+  title: '[CUB] warpspeed kernel: make scan_resources_t copy'
+  date: '2026-07-08'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/device/dispatch/kernels/kernel_scan_lookahead.cuh'
+  files_changed:
+  - cub/cub/device/dispatch/kernels/kernel_scan_lookahead.cuh
+- number: 8951
+  title: '`cuda::std::simd` F32x2 cleanup/refactoring'
+  date: '2026-07-20'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 18 authoritative changed file(s)'
+  files_changed:
+  - libcudacxx/include/cuda/std/__internal/features.h
+  - libcudacxx/include/cuda/std/__simd/basic_vec.h
+  - libcudacxx/include/cuda/std/__simd/math.h
+  - libcudacxx/include/cuda/std/__simd/math/fma.h
+  - libcudacxx/include/cuda/std/__simd/math/lerp.h
+  - libcudacxx/include/cuda/std/__simd/specializations/fixed_size_float_vec.h
+  - libcudacxx/include/cuda/std/__simd/specializations/fixed_size_mask.h
+  - libcudacxx/include/cuda/std/__simd/specializations/fixed_size_storage.h
+  - libcudacxx/include/cuda/std/__simd/specializations/fixed_size_vec.h
+  - libcudacxx/include/cuda/std/__simd/specializations/fp32x2_intrinsics.h
+  - libcudacxx/include/cuda/std/__simd/specializations/fp32x2_intrinsics_array.h
+  - libcudacxx/test/simd_codegen/CMakeLists.txt
+  - libcudacxx/test/simd_codegen/floating_point/decrement_f32x2.cu
+  - libcudacxx/test/simd_codegen/floating_point/fma_f32x2.cu
+  - libcudacxx/test/simd_codegen/floating_point/increment_f32x2.cu
+  - libcudacxx/test/simd_codegen/floating_point/minus_f32x2.cu
+  - libcudacxx/test/simd_codegen/floating_point/plus_f32x2.cu
+  - libcudacxx/test/simd_codegen/floating_point/unary_minus_f32x2.cu
+- number: 11174
+  title: Add sm107 tuning for Reduce::ByKey
+  date: '2026-09-05'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/device/dispatch/tuning/tuning_reduce_by_key.cuh'
+  files_changed:
+  - cub/cub/device/dispatch/tuning/tuning_reduce_by_key.cuh
+- number: 9490
+  title: Ensure warpspeed scan uses <= 256 threads for NVHPC
+  date: '2026-06-17'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/device/dispatch/tuning/tuning_scan.cuh'
+  files_changed:
+  - cub/cub/device/dispatch/tuning/tuning_scan.cuh
+- number: 11170
+  title: Add sm107 tunings for DeviceRunLengthEncode::NonTrivialRuns
+  date: '2026-09-09'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/device/dispatch/tuning/tuning_rle_non_trivial_runs.cuh'
+  files_changed:
+  - cub/cub/device/dispatch/tuning/tuning_rle_non_trivial_runs.cuh
+- number: 10752
+  title: Add sm107 tunings for DeviceReduce::Sum
+  date: '2026-09-08'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/device/dispatch/tuning/tuning_reduce.cuh'
+  files_changed:
+  - cub/cub/device/dispatch/tuning/tuning_reduce.cuh
+- number: 12084
+  title: Remove CUDA runtime headers
+  date: '2026-10-20'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/device/dispatch/dispatch_batched_topk.cuh, cub/cub/device/dispatch/dispatch_scan.cuh, cudax/include/cuda/experimental/__execution/stream/adaptor.cuh,
+    cudax/include/cuda/experimental/__execution/stream/bulk.cuh, cudax/include/cuda/experimental/__execution/stream/schedule_from.cuh, cudax/include/cuda/experimental/__execution/stream/scheduler.cuh, cudax/include/cuda/experimental/__graph/depends_on.cuh,
+    cudax/include/cuda/experimental/__graph/fwd.cuh, cudax/include/cuda/experimental/__graph/graph.cuh, cudax/include/cuda/experimental/__graph/graph_builder_ref.cuh, cudax/include/cuda/experimental/__graph/graph_node_ref.cuh,
+    cudax/include/cuda/experimental/__graph/graph_node_type.cuh, cudax/include/cuda/experimental/__places/machine.cuh, cudax/include/cuda/experimental/__stream/stream.cuh, cudax/include/cuda/experimental/__stream/stream_ref.cuh'
+  files_changed:
+  - cub/cub/device/dispatch/dispatch_batched_topk.cuh
+  - cub/cub/device/dispatch/dispatch_scan.cuh
+  - cudax/include/cuda/experimental/__execution/stream/adaptor.cuh
+  - cudax/include/cuda/experimental/__execution/stream/bulk.cuh
+  - cudax/include/cuda/experimental/__execution/stream/schedule_from.cuh
+  - cudax/include/cuda/experimental/__execution/stream/scheduler.cuh
+  - cudax/include/cuda/experimental/__graph/depends_on.cuh
+  - cudax/include/cuda/experimental/__graph/fwd.cuh
+  - cudax/include/cuda/experimental/__graph/graph.cuh
+  - cudax/include/cuda/experimental/__graph/graph_builder_ref.cuh
+  - cudax/include/cuda/experimental/__graph/graph_node_ref.cuh
+  - cudax/include/cuda/experimental/__graph/graph_node_type.cuh
+  - cudax/include/cuda/experimental/__places/machine.cuh
+  - cudax/include/cuda/experimental/__stream/stream.cuh
+  - cudax/include/cuda/experimental/__stream/stream_ref.cuh
+  - libcudacxx/include/cuda/__barrier/shared_memory_barrier.h
+  - libcudacxx/include/cuda/__tma/make_tma_descriptor.h
+- number: 12208
+  title: '[libcu++] Optimize `cuda::bit_ffs`'
+  date: '2026-10-23'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - libcudacxx/include/cuda/__bit/bit_ffs.h
+- number: 12226
+  title: Allow numba-cuda-mlir 0.6.0 in cuda.compute's cu12/cu13/sysctk extras
+  date: '2026-10-26'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - python/cuda_cccl/pyproject.toml
+- number: 12220
+  title: '[libcu++] Optimize `cuda::std::__bit_log2`'
+  date: '2026-10-26'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - libcudacxx/include/cuda/std/__bit/integral.h
+- number: 11956
+  title: '[fp] Promote the FP component from cuda::experimental:: to cuda::'
+  date: '2026-10-12'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 110 authoritative changed file(s)'
+  files_changed:
+  - docs/libcudacxx/extended_api/fp.rst
+  - docs/libcudacxx/extended_api/fp/fpemu.rst
+  - docs/libcudacxx/extended_api/fp/fpemu_example.rst
+  - docs/libcudacxx/extended_api/fp/fpmp.rst
+  - docs/libcudacxx/extended_api/fp/fpmp_example.rst
+  - docs/libcudacxx/extended_api/fp/fpmp_spec.rst
+  - docs/libcudacxx/extended_api/fp/fptool_custom.rst
+  - docs/libcudacxx/extended_api/fp/fptool_stat.rst
+  - examples/cudax/fp/README.md
+  - examples/cudax/fp/README_fpemu.md
+  - examples/cudax/fp/README_fpmp.md
+  - examples/cudax/fp/README_fptool_custom.md
+  - examples/cudax/fp/README_fptool_stat.md
+  - examples/cudax/fp/fpemu.cu
+  - examples/cudax/fp/fpmp.cu
+  - examples/cudax/fp/fptool_custom.cu
+  - examples/cudax/fp/fptool_stat.cu
+  - libcudacxx/include/cuda/__fp/fpemu.h
+  - libcudacxx/include/cuda/__fp/fpemu_common.h
+  - libcudacxx/include/cuda/__fp/fpemu_impl.h
+  - libcudacxx/include/cuda/__fp/fpemu_impl_add.h
+  - libcudacxx/include/cuda/__fp/fpemu_impl_cmp.h
+  - libcudacxx/include/cuda/__fp/fpemu_impl_cvt.h
+  - libcudacxx/include/cuda/__fp/fpemu_impl_div.h
+  - libcudacxx/include/cuda/__fp/fpemu_impl_fma.h
+  - libcudacxx/include/cuda/__fp/fpemu_impl_mul.h
+  - libcudacxx/include/cuda/__fp/fpemu_impl_others.h
+  - libcudacxx/include/cuda/__fp/fpemu_impl_sqrt.h
+  - libcudacxx/include/cuda/__fp/fpemu_impl_sub.h
+  - libcudacxx/include/cuda/__fp/fpemu_impl_unpack.h
+  - libcudacxx/include/cuda/__fp/fpemu_limits.h
+  - libcudacxx/include/cuda/__fp/fpmp.h
+  - libcudacxx/include/cuda/__fp/fpmp_common.h
+  - libcudacxx/include/cuda/__fp/fpmp_impl.h
+  - libcudacxx/include/cuda/__fp/fpmp_impl_atomic.h
+  - libcudacxx/include/cuda/__fp/fpmp_impl_cmp.h
+  - libcudacxx/include/cuda/__fp/fpmp_impl_cvt.h
+  - libcudacxx/include/cuda/__fp/fpmp_impl_divsqrt.h
+  - libcudacxx/include/cuda/__fp/fpmp_impl_muladd.h
+  - libcudacxx/include/cuda/__fp/fpmp_limits.h
+  - libcudacxx/include/cuda/__fp/fpmp_math.h
+  - libcudacxx/include/cuda/__fp/fpmp_math_impl.h
+  - libcudacxx/include/cuda/__fp/fpmp_math_impl_classify.h
+  - libcudacxx/include/cuda/__fp/fpmp_math_impl_exp.h
+  - libcudacxx/include/cuda/__fp/fpmp_math_impl_hyperbolic.h
+  - libcudacxx/include/cuda/__fp/fpmp_math_impl_lib.h
+  - libcudacxx/include/cuda/__fp/fpmp_math_impl_manip.h
+  - libcudacxx/include/cuda/__fp/fpmp_math_impl_nearint.h
+  - libcudacxx/include/cuda/__fp/fpmp_math_impl_pow.h
+  - libcudacxx/include/cuda/__fp/fpmp_math_impl_special.h
+  - libcudacxx/include/cuda/__fp/fpmp_math_impl_trig.h
+  - libcudacxx/include/cuda/__fp/fptool_common.h
+  - libcudacxx/include/cuda/__fp/fptool_custom.h
+  - libcudacxx/include/cuda/__fp/fptool_limits.h
+  - libcudacxx/include/cuda/__fp/fptool_stat.h
+  - libcudacxx/include/cuda/__fp/fptool_stat_math.h
+  - libcudacxx/test/libcudacxx/cuda/fp/units/fpemu/accuracy.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/fp/units/fpemu/api.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/fp/units/fpemu/api_unpacked.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/fp/units/fpemu/bit_cast.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/fp/units/fpemu/charbool.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/fp/units/fpemu/cmp.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/fp/units/fpemu/conv.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/fp/units/fpemu/copyable.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/fp/units/fpemu/core.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/fp/units/fpemu/core_unpacked.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/fp/units/fpemu/cuda_std.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/fp/units/fpemu/div.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/fp/units/fpemu/exp.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/fp/units/fpemu/float.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/fp/units/fpemu/float64.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/fp/units/fpemu/from_int.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/fp/units/fpemu/limits.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/fp/units/fpemu/mixed.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/fp/units/fpemu/pi.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/fp/units/fpemu/sqrt.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/fp/units/fpemu/template.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/fp/units/fpemu/to_int.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/fp/units/fpemu/unary.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/fp/units/fpemu/volatile.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/fp/units/fpmp/accuracy.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/fp/units/fpmp/accuracy_conv.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/fp/units/fpmp/accuracy_mixed.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/fp/units/fpmp/api.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/fp/units/fpmp/atomic_dd.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/fp/units/fpmp/atomic_ff.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/fp/units/fpmp/black_scholes.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/fp/units/fpmp/cast.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/fp/units/fpmp/charbool.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/fp/units/fpmp/copyable.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/fp/units/fpmp/cross_prec.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/fp/units/fpmp/cuda_std.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/fp/units/fpmp/fpemu_interop.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/fp/units/fpmp/implicit_conv.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/fp/units/fpmp/int.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/fp/units/fpmp/limits.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/fp/units/fpmp/lut.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/fp/units/fpmp/math.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/fp/units/fpmp/pi.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/fp/units/fpmp/qualified_calls.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/fp/units/fpmp/reduce.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/fp/units/fpmp/shfl.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/fp/units/fpmp/unary.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/fp/units/fpmp/volatile.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/fp/units/fptool/custom.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/fp/units/fptool/fpemu_interop.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/fp/units/fptool/limits.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/fp/units/fptool/qualified_calls.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/fp/units/fptool/stat.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/fp/units/fptool/unary.pass.cpp
+- number: 11922
+  title: Add `cuda::is_arithmetic`
+  date: '2026-10-08'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 7 authoritative changed file(s)'
+  files_changed:
+  - docs/libcudacxx/extended_api/type_traits.rst
+  - docs/libcudacxx/extended_api/type_traits/is_arithmetic.rst
+  - libcudacxx/include/cuda/__type_traits/is_arithmetic.h
+  - libcudacxx/include/cuda/type_traits
+  - libcudacxx/test/libcudacxx/cuda/type_traits/is_arithmetic.no_nvfp_conversions_and_operators.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/type_traits/is_arithmetic.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/type_traits/is_arithmetic.specialization.pass.cpp
+- number: 12182
+  title: Fix nvbug6967336 missing atomic scopes include
+  date: '2026-10-26'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - libcudacxx/include/cuda/std/__atomic/functions/cuda_nvvm.h
+- number: 11728
+  title: Test cuda.compute v2/HostJIT on CUDA 12.x
+  date: '2026-10-08'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 10 authoritative changed file(s)'
+  files_changed:
+  - c/parallel.v2/src/hostjit/CMakeLists.txt
+  - c/parallel.v2/src/hostjit/codegen/cub_call.cpp
+  - c/parallel.v2/src/hostjit/config.cpp
+  - c/parallel.v2/src/hostjit/include/hostjit/config.hpp
+  - c/parallel.v2/src/hostjit/include/hostjit/cuda_minimal/stubs/cxa_guard.h
+  - c/parallel.v2/src/hostjit/jit_compiler.cpp
+  - c/parallel.v2/src/hostjit/libnvcc/compiler.cpp
+  - c/parallel.v2/src/util/build_utils.h
+  - ci/matrix.yaml
+  - libcudacxx/include/cuda/__runtime/types.h
+- number: 12206
+  title: '[libcu++] `cuda::std::simd` Fix memory flags behavior'
+  date: '2026-10-23'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 9 authoritative changed file(s)'
+  files_changed:
+  - libcudacxx/include/cuda/std/__simd/basic_mask.h
+  - libcudacxx/include/cuda/std/__simd/basic_vec.h
+  - libcudacxx/include/cuda/std/__simd/flag.h
+  - libcudacxx/include/cuda/std/__simd/load.h
+  - libcudacxx/include/cuda/std/__simd/store.h
+  - libcudacxx/include/cuda/std/__simd/utility.h
+  - libcudacxx/test/libcudacxx/std/numerics/simd/simd.flags/multiple_overaligned.fail.cpp
+  - libcudacxx/test/libcudacxx/std/numerics/simd/simd.flags/multiple_overaligned.pass.cpp
+  - libcudacxx/test/libcudacxx/std/numerics/simd/simd.loadstore/combined_flags.pass.cpp
+- number: 11715
+  title: '[libcu++] Make sure cuda::std:.get works for cuda::complex'
+  date: '2026-09-29'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 5 authoritative changed file(s)'
+  files_changed:
+  - libcudacxx/include/cuda/__complex/complex.h
+  - libcudacxx/test/libcudacxx/cuda/complex/complex.number/complex.tuple/get.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/complex/complex.number/complex.tuple/tuple_element_compiles.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/complex/complex.number/complex.tuple/tuple_size_compiles.pass.cpp
+  - libcudacxx/test/libcudacxx/std/numerics/complex.number/complex.tuple/get.pass.cpp
+- number: 12010
+  title: Make `cuda::is_arithmetic` private for now
+  date: '2026-10-15'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 7 authoritative changed file(s)'
+  files_changed:
+  - docs/libcudacxx/extended_api/type_traits.rst
+  - docs/libcudacxx/extended_api/type_traits/is_arithmetic.rst
+  - libcudacxx/include/cuda/__type_traits/is_arithmetic.h
+  - libcudacxx/include/cuda/type_traits
+  - libcudacxx/test/libcudacxx/cuda/type_traits/is_arithmetic.no_nvfp_conversions_and_operators.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/type_traits/is_arithmetic.pass.cpp
+  - libcudacxx/test/libcudacxx/cuda/type_traits/is_arithmetic.specialization.pass.cpp
+- number: 11762
+  title: '[libcu++] Don''t include full `<cuda/ptx>` header from `<cuda/barrier>`'
+  date: '2026-09-30'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - libcudacxx/include/cuda/barrier
+- number: 12210
+  title: '[Backport branch/3.6.x] [libcu++] Optimize `cuda::bit_fns`'
+  date: '2026-10-26'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - docs/libcudacxx/extended_api/bit/bit_fns.rst
+  - libcudacxx/include/cuda/__bit/bit_fns.h
+  - libcudacxx/test/libcudacxx/cuda/bit/bit_fns.pass.cpp
+- number: 11617
+  title: '[cuda.compute]: exclude numba-cuda-mlir 0.5.3'
+  date: '2026-09-23'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - python/cuda_cccl/pyproject.toml
+- number: 11344
+  title: C2H cuda::buffer support
+  date: '2026-10-19'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): c2h/include/c2h/buffer_generators.cuh, c2h/include/c2h/checked_allocator.cuh, c2h/include/c2h/checked_memory_resource.cuh, c2h/include/c2h/detail/checked_memory.cuh,
+    c2h/include/c2h/detail/current_device.cuh, c2h/include/c2h/detail/env.cuh, c2h/include/c2h/detail/generators.cuh'
+  files_changed:
+  - c2h/generators.cu
+  - c2h/generators_gen_values.cu
+  - c2h/generators_vector.cu
+  - c2h/include/c2h/buffer_generators.cuh
+  - c2h/include/c2h/catch2_main.h
+  - c2h/include/c2h/catch2_test_helper.h
+  - c2h/include/c2h/checked_allocator.cuh
+  - c2h/include/c2h/checked_memory_resource.cuh
+  - c2h/include/c2h/detail/catch2_seed.h
+  - c2h/include/c2h/detail/checked_memory.cuh
+  - c2h/include/c2h/detail/current_device.cuh
+  - c2h/include/c2h/detail/env.cuh
+  - c2h/include/c2h/detail/generators.cuh
+  - c2h/include/c2h/generator_common.h
+  - c2h/include/c2h/generators.h
+  - cub/test/catch2_test_c2h_buffers.cu
+- number: 11877
+  title: Add Self-Contained `cuda::ptx` headers
+  date: '2026-10-08'
+  decision: defer
+  reason: authoritative PR evidence unavailable; needs-triage
+  files_changed: []
+- number: 12003
+  title: Optimize cuda::is_trivially_copyable_v compile-time
+  date: '2026-10-15'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - libcudacxx/include/cuda/__type_traits/is_trivially_copyable.h
+  - libcudacxx/include/cuda/std/__type_traits/aggregate_members_all_of.h
+- number: 11853
+  title: '[libcu++] Expose `cuda::std::constant_wrapper`'
+  date: '2026-10-07'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 34 authoritative changed file(s)'
+  files_changed:
+  - cudax/examples/coop/group/simple.cu
+  - cudax/test/coop/algorithm/any_of/threads_within_warp.cu
+  - cudax/test/coop/algorithm/invoke_one.cu
+  - cudax/test/coop/algorithm/shuffle/threads_within_warp.cu
+  - cudax/test/coop/algorithm/shuffle_down/threads_within_warp.cu
+  - cudax/test/coop/algorithm/shuffle_up/threads_within_warp.cu
+  - cudax/test/coop/group/cg_interop.cu
+  - cudax/test/coop/group/cooperative_algorithm.cu
+  - cudax/test/coop/group/generic_group.cu
+  - cudax/test/coop/group/group_stacking.cu
+  - cudax/test/coop/group/group_view.cu
+  - cudax/test/coop/group/mapping/composite_mapping.cu
+  - cudax/test/coop/group/mapping/group_by.cu
+  - cudax/test/coop/group/mapping/take.cu
+  - cudax/test/coop/group/virtual_group.cu
+  - cudax/test/coop/group/virtual_group_stacking.cu
+  - libcudacxx/include/cuda/std/__utility/constant_wrapper.h
+  - libcudacxx/include/cuda/std/version
+  - libcudacxx/test/libcudacxx/std/utilities/const.wrap.class/adl.compile.pass.cpp
+  - libcudacxx/test/libcudacxx/std/utilities/const.wrap.class/assign.pass.cpp
+  - libcudacxx/test/libcudacxx/std/utilities/const.wrap.class/binary_ops.pass.cpp
+  - libcudacxx/test/libcudacxx/std/utilities/const.wrap.class/call.pass.cpp
+  - libcudacxx/test/libcudacxx/std/utilities/const.wrap.class/comma.pass.cpp
+  - libcudacxx/test/libcudacxx/std/utilities/const.wrap.class/comp.pass.cpp
+  - libcudacxx/test/libcudacxx/std/utilities/const.wrap.class/convert.pass.cpp
+  - libcudacxx/test/libcudacxx/std/utilities/const.wrap.class/cw.pass.cpp
+  - libcudacxx/test/libcudacxx/std/utilities/const.wrap.class/general.pass.cpp
+  - libcudacxx/test/libcudacxx/std/utilities/const.wrap.class/kernel_parameter.array.pass.cpp
+  - libcudacxx/test/libcudacxx/std/utilities/const.wrap.class/kernel_parameter.pass.cpp
+  - libcudacxx/test/libcudacxx/std/utilities/const.wrap.class/mem_ptr.pass.cpp
+  - libcudacxx/test/libcudacxx/std/utilities/const.wrap.class/pseudo_mutators.pass.cpp
+  - libcudacxx/test/libcudacxx/std/utilities/const.wrap.class/subscript.pass.cpp
+  - libcudacxx/test/libcudacxx/std/utilities/const.wrap.class/types.compile.pass.cpp
+  - libcudacxx/test/libcudacxx/std/utilities/const.wrap.class/unary_ops.pass.cpp
+- number: 11199
+  title: Topk tuning/b300 keys cluster
+  date: '2026-09-11'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/device/dispatch/dispatch_batched_topk.cuh, cub/cub/device/dispatch/tuning/tuning_batched_topk.cuh'
+  files_changed:
+  - cub/cub/device/dispatch/dispatch_batched_topk.cuh
+  - cub/cub/device/dispatch/tuning/tuning_batched_topk.cuh
+- number: 11741
+  title: Allow `baseline_topk_policy` to hold a variable number of worker policies
+  date: '2026-10-01'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/device/dispatch/tuning/structural_inplace_vector.cuh, cub/cub/device/dispatch/tuning/tuning_batched_topk.cuh'
+  files_changed:
+  - cub/benchmarks/bench/segmented_topk/fixed/keys.cu
+  - cub/benchmarks/bench/segmented_topk/variable/indexed_common.cuh
+  - cub/benchmarks/bench/segmented_topk/variable/keys_common.cuh
+  - cub/cub/device/dispatch/tuning/structural_inplace_vector.cuh
+  - cub/cub/device/dispatch/tuning/tuning_batched_topk.cuh
+- number: 11835
+  title: Treat -0.0 and +0.0 as equal in DeviceBatchedTopK ranking
+  date: '2026-10-09'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/agent/agent_batched_topk_cluster.cuh, cub/cub/device/dispatch/dispatch_topk.cuh'
+  files_changed:
+  - cub/cub/agent/agent_batched_topk_cluster.cuh
+  - cub/cub/device/dispatch/dispatch_topk.cuh
+  - cub/test/catch2_test_device_segmented_topk_pairs.cu
+  - docs/cub/device_topk_requirements.rst
+- number: 11286
+  title: Add sm107 tunings for Device::Topk::*Keys
+  date: '2026-09-09'
+  decision: defer
+  reason: authoritative PR evidence unavailable; needs-triage
+  files_changed: []
+- number: 11080
+  title: Segmented TopK tuning on B300 `indexed.cluster`
+  date: '2026-09-10'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/device/dispatch/dispatch_batched_topk.cuh, cub/cub/device/dispatch/tuning/tuning_batched_topk.cuh'
+  files_changed:
+  - cub/cub/device/dispatch/dispatch_batched_topk.cuh
+  - cub/cub/device/dispatch/tuning/tuning_batched_topk.cuh
+- number: 12062
+  title: '[Docs] Fixes tied-element counts in the top-k requirements docs'
+  date: '2026-10-19'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - docs/cub/device_topk_requirements.rst
+- number: 11284
+  title: Add key type classification to the TopK policy selector
+  date: '2026-09-09'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/device/dispatch/tuning/tuning_topk.cuh'
+  files_changed:
+  - cub/cub/device/dispatch/tuning/tuning_topk.cuh
+- number: 11275
+  title: '[CUB] Plumb value/offset types into the TopK policy selector'
+  date: '2026-09-08'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/device/device_topk.cuh, cub/cub/device/dispatch/dispatch_topk.cuh, cub/cub/device/dispatch/tuning/tuning_topk.cuh'
+  files_changed:
+  - cub/cub/device/device_topk.cuh
+  - cub/cub/device/dispatch/dispatch_topk.cuh
+  - cub/cub/device/dispatch/tuning/tuning_topk.cuh
+- number: 11196
+  title: 'Fix compile breaks in tuning-only benchmark variant builds for `cub::TopK`, `cub::RLE lookahead` and `find_if` '
+  date: '2026-09-04'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 4 authoritative changed file(s)'
+  files_changed:
+  - cub/benchmarks/bench/find_if/base.cu
+  - cub/benchmarks/bench/run_length_encode/encode.lookahead.cu
+  - cub/benchmarks/bench/topk/keys.cu
+  - cub/benchmarks/bench/topk/pairs.cu
+- number: 11225
+  title: Fix analysis script score
+  date: '2026-09-09'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 4 authoritative changed file(s)'
+  files_changed:
+  - benchmarks/scripts/analyze.py
+  - benchmarks/scripts/cccl/bench/bench.py
+  - benchmarks/scripts/cccl/bench/storage.py
+  - benchmarks/scripts/tests/test_score.py
+- number: 11219
+  title: '[libcu++] Add CUDA logical endpoint abstractions PART 1'
+  date: '2026-09-16'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 7 authoritative changed file(s)'
+  files_changed:
+  - libcudacxx/include/cuda/__driver/driver_api.h
+  - libcudacxx/include/cuda/__logical_endpoint/common.h
+  - libcudacxx/include/cuda/__logical_endpoint/fwd.h
+  - libcudacxx/include/cuda/__logical_endpoint/multicast.h
+  - libcudacxx/include/cuda/__logical_endpoint/unicast.h
+  - libcudacxx/include/cuda/logical_endpoint
+  - libcudacxx/test/libcudacxx/cuda/logical_endpoint/logical_endpoint.pass.cpp
+- number: 11197
+  title: Add sm107 tunings for DevicePartition::Flagged
+  date: '2026-09-11'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/device/dispatch/tuning/tuning_select_if.cuh'
+  files_changed:
+  - cub/cub/device/dispatch/tuning/tuning_select_if.cuh
+- number: 11584
+  title: '[CUB] Add `_CUB_LOG_KERNEL_LAUNCH` macro and migrate kernel-launch logging'
+  date: '2026-09-22'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/detail/logging.cuh, cub/cub/device/dispatch/dispatch_adjacent_difference.cuh, cub/cub/device/dispatch/dispatch_for.cuh, cub/cub/device/dispatch/dispatch_histogram.cuh,
+    cub/cub/device/dispatch/dispatch_radix_sort.cuh, cub/cub/device/dispatch/dispatch_reduce.cuh, cub/cub/device/dispatch/dispatch_reduce_by_key.cuh, cub/cub/device/dispatch/dispatch_reduce_deterministic.cuh,
+    cub/cub/device/dispatch/dispatch_rle.cuh, cub/cub/device/dispatch/dispatch_rle_encode.cuh, cub/cub/device/dispatch/dispatch_scan.cuh, cub/cub/device/dispatch/dispatch_scan_by_key.cuh, cub/cub/device/dispatch/dispatch_segmented_radix_sort.cuh,
+    cub/cub/device/dispatch/dispatch_segmented_reduce.cuh, cub/cub/device/dispatch/dispatch_segmented_sort.cuh, cub/cub/device/dispatch/dispatch_select_if.cuh, cub/cub/device/dispatch/dispatch_streaming_reduce_by_key.cuh,
+    cub/cub/device/dispatch/dispatch_three_way_partition.cuh, cub/cub/device/dispatch/dispatch_topk.cuh, cub/cub/device/dispatch/dispatch_unique_by_key.cuh'
+  files_changed:
+  - cub/cub/detail/logging.cuh
+  - cub/cub/device/dispatch/dispatch_adjacent_difference.cuh
+  - cub/cub/device/dispatch/dispatch_for.cuh
+  - cub/cub/device/dispatch/dispatch_histogram.cuh
+  - cub/cub/device/dispatch/dispatch_radix_sort.cuh
+  - cub/cub/device/dispatch/dispatch_reduce.cuh
+  - cub/cub/device/dispatch/dispatch_reduce_by_key.cuh
+  - cub/cub/device/dispatch/dispatch_reduce_deterministic.cuh
+  - cub/cub/device/dispatch/dispatch_rle.cuh
+  - cub/cub/device/dispatch/dispatch_rle_encode.cuh
+  - cub/cub/device/dispatch/dispatch_scan.cuh
+  - cub/cub/device/dispatch/dispatch_scan_by_key.cuh
+  - cub/cub/device/dispatch/dispatch_segmented_radix_sort.cuh
+  - cub/cub/device/dispatch/dispatch_segmented_reduce.cuh
+  - cub/cub/device/dispatch/dispatch_segmented_sort.cuh
+  - cub/cub/device/dispatch/dispatch_select_if.cuh
+  - cub/cub/device/dispatch/dispatch_streaming_reduce_by_key.cuh
+  - cub/cub/device/dispatch/dispatch_three_way_partition.cuh
+  - cub/cub/device/dispatch/dispatch_topk.cuh
+  - cub/cub/device/dispatch/dispatch_unique_by_key.cuh
+- number: 11060
+  title: Reduces the latency of air-based block-level top-k
+  date: '2026-09-04'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/block/block_topk.cuh, cub/cub/block/specializations/block_topk_air.cuh'
+  files_changed:
+  - cub/cub/block/block_topk.cuh
+  - cub/cub/block/specializations/block_topk_air.cuh
+  - cub/test/catch2_test_block_topk.cu
+- number: 11263
+  title: '[CUB] `misc-const-correctness`'
+  date: '2026-09-08'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/agent/agent_batch_memcpy.cuh, cub/cub/agent/agent_batched_topk.cuh, cub/cub/agent/agent_find.cuh, cub/cub/agent/agent_find_bound_sorted_values.cuh,
+    cub/cub/agent/agent_histogram.cuh, cub/cub/agent/agent_merge.cuh, cub/cub/agent/agent_merge_sort.cuh, cub/cub/agent/agent_radix_sort_downsweep.cuh, cub/cub/agent/agent_radix_sort_histogram.cuh, cub/cub/agent/agent_radix_sort_onesweep.cuh,
+    cub/cub/agent/agent_radix_sort_upsweep.cuh, cub/cub/agent/agent_reduce.cuh, cub/cub/agent/agent_reduce_by_key.cuh, cub/cub/agent/agent_rle.cuh, cub/cub/agent/agent_scan.cuh, cub/cub/agent/agent_scan_by_key.cuh,
+    cub/cub/agent/agent_segmented_radix_sort.cuh, cub/cub/agent/agent_select_if.cuh, cub/cub/agent/agent_three_way_partition.cuh, cub/cub/agent/agent_topk.cuh, cub/cub/agent/agent_unique_by_key.cuh, cub/cub/agent/single_pass_scan_operators.cuh,
+    cub/cub/block/block_exchange.cuh, cub/cub/block/block_radix_rank.cuh, cub/cub/block/block_radix_sort.cuh, cub/cub/block/block_scan.cuh, cub/cub/block/block_store.cuh, cub/cub/block/radix_rank_sort_operations.cuh,
+    cub/cub/block/specializations/block_histogram_sort.cuh, cub/cub/block/specializations/block_reduce_raking.cuh, cub/cub/block/specializations/block_reduce_warp_reductions.cuh, cub/cub/block/specializations/block_topk_air.cuh,
+    cub/cub/detail/fast_modulo_division.cuh, cub/cub/detail/launcher/cuda_runtime.cuh, cub/cub/detail/rfa.cuh, cub/cub/detail/temporary_storage.cuh, cub/cub/detail/warpspeed/allocators/smem_allocator.cuh,
+    cub/cub/detail/warpspeed/resource/smem_resource.cuh, cub/cub/detail/warpspeed/resource/smem_resource_raw.cuh, cub/cub/detail/warpspeed/sync_handler.cuh, cub/cub/device/device_for.cuh, cub/cub/device/device_reduce.cuh,
+    cub/cub/device/device_scan.cuh, cub/cub/device/device_segmented_reduce.cuh, cub/cub/device/device_segmented_scan.cuh, cub/cub/device/dispatch/dispatch_adjacent_difference.cuh, cub/cub/device/dispatch/dispatch_batch_memcpy.cuh,
+    cub/cub/device/dispatch/dispatch_batched_topk.cuh, cub/cub/device/dispatch/dispatch_find.cuh, cub/cub/device/dispatch/dispatch_for.cuh, cub/cub/device/dispatch/dispatch_histogram.cuh, cub/cub/device/dispatch/dispatch_merge_sort.cuh,
+    cub/cub/device/dispatch/dispatch_radix_sort.cuh, cub/cub/device/dispatch/dispatch_reduce.cuh, cub/cub/device/dispatch/dispatch_reduce_by_key.cuh, cub/cub/device/dispatch/dispatch_reduce_deterministic.cuh,
+    cub/cub/device/dispatch/dispatch_rle.cuh, cub/cub/device/dispatch/dispatch_scan_by_key.cuh, cub/cub/device/dispatch/dispatch_segmented_radix_sort.cuh, cub/cub/device/dispatch/dispatch_segmented_reduce.cuh,
+    cub/cub/device/dispatch/dispatch_select_if.cuh, cub/cub/device/dispatch/dispatch_streaming_reduce_by_key.cuh, cub/cub/device/dispatch/dispatch_three_way_partition.cuh, cub/cub/device/dispatch/dispatch_topk.cuh,
+    cub/cub/device/dispatch/dispatch_unique_by_key.cuh, cub/cub/device/dispatch/kernels/kernel_histogram.cuh, cub/cub/device/dispatch/kernels/kernel_radix_sort.cuh, cub/cub/device/dispatch/kernels/kernel_reduce.cuh,
+    cub/cub/device/dispatch/kernels/kernel_reduce_deterministic.cuh, cub/cub/device/dispatch/kernels/kernel_segmented_radix_sort.cuh, cub/cub/device/dispatch/kernels/kernel_segmented_scan.cuh, cub/cub/device/dispatch/kernels/kernel_transform.cuh,
+    cub/cub/grid/grid_even_share.cuh, cub/cub/iterator/arg_index_input_iterator.cuh, cub/cub/iterator/tex_obj_input_iterator.cuh, cub/cub/thread/thread_reduce.cuh, cub/cub/util_allocator.cuh, cub/cub/util_debug.cuh,
+    cub/cub/util_device.cuh, cub/cub/util_ptx.cuh, cub/cub/util_type.cuh, cub/cub/warp/specializations/warp_reduce_shfl.cuh, cub/cub/warp/specializations/warp_scan_shfl.cuh, cub/cub/warp/warp_bitonic_sort.cuh'
+  files_changed:
+  - cub/cub/agent/agent_batch_memcpy.cuh
+  - cub/cub/agent/agent_batched_topk.cuh
+  - cub/cub/agent/agent_find.cuh
+  - cub/cub/agent/agent_find_bound_sorted_values.cuh
+  - cub/cub/agent/agent_histogram.cuh
+  - cub/cub/agent/agent_merge.cuh
+  - cub/cub/agent/agent_merge_sort.cuh
+  - cub/cub/agent/agent_radix_sort_downsweep.cuh
+  - cub/cub/agent/agent_radix_sort_histogram.cuh
+  - cub/cub/agent/agent_radix_sort_onesweep.cuh
+  - cub/cub/agent/agent_radix_sort_upsweep.cuh
+  - cub/cub/agent/agent_reduce.cuh
+  - cub/cub/agent/agent_reduce_by_key.cuh
+  - cub/cub/agent/agent_rle.cuh
+  - cub/cub/agent/agent_scan.cuh
+  - cub/cub/agent/agent_scan_by_key.cuh
+  - cub/cub/agent/agent_segmented_radix_sort.cuh
+  - cub/cub/agent/agent_select_if.cuh
+  - cub/cub/agent/agent_three_way_partition.cuh
+  - cub/cub/agent/agent_topk.cuh
+  - cub/cub/agent/agent_unique_by_key.cuh
+  - cub/cub/agent/single_pass_scan_operators.cuh
+  - cub/cub/block/block_exchange.cuh
+  - cub/cub/block/block_radix_rank.cuh
+  - cub/cub/block/block_radix_sort.cuh
+  - cub/cub/block/block_scan.cuh
+  - cub/cub/block/block_store.cuh
+  - cub/cub/block/radix_rank_sort_operations.cuh
+  - cub/cub/block/specializations/block_histogram_sort.cuh
+  - cub/cub/block/specializations/block_reduce_raking.cuh
+  - cub/cub/block/specializations/block_reduce_warp_reductions.cuh
+  - cub/cub/block/specializations/block_topk_air.cuh
+  - cub/cub/detail/fast_modulo_division.cuh
+  - cub/cub/detail/launcher/cuda_runtime.cuh
+  - cub/cub/detail/rfa.cuh
+  - cub/cub/detail/temporary_storage.cuh
+  - cub/cub/detail/warpspeed/allocators/smem_allocator.cuh
+  - cub/cub/detail/warpspeed/resource/smem_resource.cuh
+  - cub/cub/detail/warpspeed/resource/smem_resource_raw.cuh
+  - cub/cub/detail/warpspeed/sync_handler.cuh
+  - cub/cub/device/device_for.cuh
+  - cub/cub/device/device_reduce.cuh
+  - cub/cub/device/device_scan.cuh
+  - cub/cub/device/device_segmented_reduce.cuh
+  - cub/cub/device/device_segmented_scan.cuh
+  - cub/cub/device/dispatch/dispatch_adjacent_difference.cuh
+  - cub/cub/device/dispatch/dispatch_batch_memcpy.cuh
+  - cub/cub/device/dispatch/dispatch_batched_topk.cuh
+  - cub/cub/device/dispatch/dispatch_find.cuh
+  - cub/cub/device/dispatch/dispatch_for.cuh
+  - cub/cub/device/dispatch/dispatch_histogram.cuh
+  - cub/cub/device/dispatch/dispatch_merge_sort.cuh
+  - cub/cub/device/dispatch/dispatch_radix_sort.cuh
+  - cub/cub/device/dispatch/dispatch_reduce.cuh
+  - cub/cub/device/dispatch/dispatch_reduce_by_key.cuh
+  - cub/cub/device/dispatch/dispatch_reduce_deterministic.cuh
+  - cub/cub/device/dispatch/dispatch_rle.cuh
+  - cub/cub/device/dispatch/dispatch_scan_by_key.cuh
+  - cub/cub/device/dispatch/dispatch_segmented_radix_sort.cuh
+  - cub/cub/device/dispatch/dispatch_segmented_reduce.cuh
+  - cub/cub/device/dispatch/dispatch_select_if.cuh
+  - cub/cub/device/dispatch/dispatch_streaming_reduce_by_key.cuh
+  - cub/cub/device/dispatch/dispatch_three_way_partition.cuh
+  - cub/cub/device/dispatch/dispatch_topk.cuh
+  - cub/cub/device/dispatch/dispatch_unique_by_key.cuh
+  - cub/cub/device/dispatch/kernels/kernel_histogram.cuh
+  - cub/cub/device/dispatch/kernels/kernel_radix_sort.cuh
+  - cub/cub/device/dispatch/kernels/kernel_reduce.cuh
+  - cub/cub/device/dispatch/kernels/kernel_reduce_deterministic.cuh
+  - cub/cub/device/dispatch/kernels/kernel_segmented_radix_sort.cuh
+  - cub/cub/device/dispatch/kernels/kernel_segmented_scan.cuh
+  - cub/cub/device/dispatch/kernels/kernel_transform.cuh
+  - cub/cub/grid/grid_even_share.cuh
+  - cub/cub/iterator/arg_index_input_iterator.cuh
+  - cub/cub/iterator/tex_obj_input_iterator.cuh
+  - cub/cub/thread/thread_reduce.cuh
+  - cub/cub/util_allocator.cuh
+  - cub/cub/util_debug.cuh
+  - cub/cub/util_device.cuh
+  - cub/cub/util_ptx.cuh
+  - cub/cub/util_type.cuh
+  - cub/cub/warp/specializations/warp_reduce_shfl.cuh
+  - cub/cub/warp/specializations/warp_scan_shfl.cuh
+  - cub/cub/warp/warp_bitonic_sort.cuh
+- number: 11155
+  title: '`misc-anonymous-namespace-in-header`'
+  date: '2026-09-04'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): nvbench_helper/nvbench_helper/nvbench_helper.cuh'
+  files_changed:
+  - .clang-tidy
+  - cub/benchmarks/bench/segmented_topk/variable/common.cuh
+  - cudax/test/common/group_testing.cuh
+  - cudax/test/common/testing.cuh
+  - cudax/test/common/utility.cuh
+  - cudax/test/execution/common/checked_receiver.cuh
+  - cudax/test/execution/common/dummy_scheduler.cuh
+  - cudax/test/execution/common/error_scheduler.cuh
+  - cudax/test/execution/common/stopped_scheduler.cuh
+  - cudax/test/graph/graph_buffer_smoke.cu
+  - cudax/test/graph/graph_node_ops_smoke.cu
+  - libcudacxx/include/cuda/std/__tuple_dir/ignore.h
+  - libcudacxx/test/libcudacxx/cuda/ccclrt/common/testing.cuh
+  - libcudacxx/test/libcudacxx/cuda/ccclrt/common/utility.cuh
+  - libcudacxx/test/libcudacxx/cuda/ccclrt/event/event_smoke.cu
+  - libcudacxx/test/libcudacxx/cuda/memory_resource/resources/pool_availability.cuh
+  - nvbench_helper/nvbench_helper/nvbench_helper.cuh
+  - thrust/testing/unittest/assertions.h
+- number: 11264
+  title: '[CUB tests] `misc-const-correctness`'
+  date: '2026-09-08'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/examples/block/example_block_radix_sort.cu, cub/examples/block/example_block_reduce_dyn_smem.cu'
+  files_changed:
+  - cub/benchmarks/bench/for_each/extents.cu
+  - cub/benchmarks/bench/merge/merge_common.cuh
+  - cub/benchmarks/bench/scan/applications/P1/non-commutative-bicyclic-monoid.cu
+  - cub/benchmarks/bench/scan/applications/P1/rabin-karp-second-fingerprinting.cu
+  - cub/benchmarks/bench/segmented_radix_sort/keys.cu
+  - cub/benchmarks/bench/segmented_sort/keys.cu
+  - cub/benchmarks/bench/select/flagged.cu
+  - cub/benchmarks/bench/select/if.cu
+  - cub/benchmarks/bench/transform/applications/P1/bfloat16.h
+  - cub/benchmarks/bench/transform/applications/P1/pytorch.cu
+  - cub/benchmarks/bench/transform/tile/pytorch.cu
+  - cub/examples/block/example_block_radix_sort.cu
+  - cub/examples/block/example_block_reduce.cu
+  - cub/examples/block/example_block_reduce_dyn_smem.cu
+  - cub/examples/block/example_block_scan.cu
+  - cub/examples/device/example_device_env_memory_resource.cu
+  - cub/examples/device/example_device_partition_if.cu
+  - cub/examples/device/example_device_radix_sort_custom.cu
+  - cub/examples/device/example_device_reduce.cu
+  - cub/examples/device/example_device_scan.cu
+  - cub/examples/device/example_device_select_if.cu
+  - cub/examples/device/example_device_sort_find_non_trivial_runs.cu
+  - cub/examples/device/example_device_topk_keys.cu
+  - cub/examples/device/example_device_topk_pairs.cu
+  - cub/test/catch2_radix_sort_helper.cuh
+  - cub/test/catch2_segmented_sort_helper.cuh
+  - cub/test/catch2_test_block_adjacent_difference.cu
+  - cub/test/catch2_test_block_histogram.cu
+  - cub/test/catch2_test_block_load.cu
+  - cub/test/catch2_test_block_load_to_shared.cu
+  - cub/test/catch2_test_block_prefetch.cu
+  - cub/test/catch2_test_block_radix_sort_custom.cu
+  - cub/test/catch2_test_block_radix_sort_keys.cu
+  - cub/test/catch2_test_block_radix_sort_pairs.cu
+  - cub/test/catch2_test_block_reduce.cu
+  - cub/test/catch2_test_block_run_length_decode.cu
+  - cub/test/catch2_test_block_scan.cu
+  - cub/test/catch2_test_block_scan_api.cu
+  - cub/test/catch2_test_block_shuffle.cu
+  - cub/test/catch2_test_block_store.cu
+  - cub/test/catch2_test_block_topk.cu
+  - cub/test/catch2_test_c2h_checked_cuda_allocator.cu
+  - cub/test/catch2_test_debug.cu
+  - cub/test/catch2_test_device_adjacent_difference_api.cu
+  - cub/test/catch2_test_device_adjacent_difference_env.cu
+  - cub/test/catch2_test_device_adjacent_difference_env_api.cu
+  - cub/test/catch2_test_device_adjacent_difference_substract_left.cu
+  - cub/test/catch2_test_device_adjacent_difference_substract_right.cu
+  - cub/test/catch2_test_device_batched_topk_env_api.cu
+  - cub/test/catch2_test_device_copy_batched.cu
+  - cub/test/catch2_test_device_copy_env.cu
+  - cub/test/catch2_test_device_copy_env_api.cu
+  - cub/test/catch2_test_device_copy_mdspan.cu
+  - cub/test/catch2_test_device_copy_mdspan_api.cu
+  - cub/test/catch2_test_device_decoupled_look_back.cu
+  - cub/test/catch2_test_device_exclusive_scan_noncommutative.cu
+  - cub/test/catch2_test_device_find.cu
+  - cub/test/catch2_test_device_find_api.cu
+  - cub/test/catch2_test_device_find_bound_sorted_values.cu
+  - cub/test/catch2_test_device_find_bound_sorted_values_env.cu
+  - cub/test/catch2_test_device_find_bound_sorted_values_env_api.cu
+  - cub/test/catch2_test_device_find_env.cu
+  - cub/test/catch2_test_device_find_env_api.cu
+  - cub/test/catch2_test_device_for_api.cu
+  - cub/test/catch2_test_device_for_each_in_extents.cu
+  - cub/test/catch2_test_device_for_each_in_extents_api.cu
+  - cub/test/catch2_test_device_for_each_in_layout.cu
+  - cub/test/catch2_test_device_for_each_in_layout_api.cu
+  - cub/test/catch2_test_device_for_env.cu
+  - cub/test/catch2_test_device_for_env_api.cu
+  - cub/test/catch2_test_device_histogram.cu
+  - cub/test/catch2_test_device_histogram_api.cu
+  - cub/test/catch2_test_device_histogram_custom_policy_hub.cu
+  - cub/test/catch2_test_device_histogram_env.cu
+  - cub/test/catch2_test_device_histogram_env_api.cu
+  - cub/test/catch2_test_device_memcpy_batched.cu
+  - cub/test/catch2_test_device_memcpy_env.cu
+  - cub/test/catch2_test_device_memcpy_env_api.cu
+  - cub/test/catch2_test_device_merge.cu
+  - cub/test/catch2_test_device_merge_api.cu
+  - cub/test/catch2_test_device_merge_env.cu
+  - cub/test/catch2_test_device_merge_env_api.cu
+  - cub/test/catch2_test_device_merge_sort.cu
+  - cub/test/catch2_test_device_merge_sort_env.cu
+  - cub/test/catch2_test_device_merge_sort_env_api.cu
+  - cub/test/catch2_test_device_merge_sort_iterators.cu
+  - cub/test/catch2_test_device_partition_api.cu
+  - cub/test/catch2_test_device_partition_env.cu
+  - cub/test/catch2_test_device_partition_env_api.cu
+  - cub/test/catch2_test_device_partition_flagged.cu
+  - cub/test/catch2_test_device_partition_if.cu
+  - cub/test/catch2_test_device_radix_sort_custom.cu
+  - cub/test/catch2_test_device_radix_sort_env.cu
+  - cub/test/catch2_test_device_radix_sort_env_api.cu
+  - cub/test/catch2_test_device_reduce.cu
+  - cub/test/catch2_test_device_reduce.cuh
+  - cub/test/catch2_test_device_reduce_arg_minmax.cu
+  - cub/test/catch2_test_device_reduce_arg_minmax_env.cu
+  - cub/test/catch2_test_device_reduce_arg_minmax_env_api.cu
+  - cub/test/catch2_test_device_reduce_by_key.cu
+  - cub/test/catch2_test_device_reduce_by_key_custom_policy_hub.cu
+  - cub/test/catch2_test_device_reduce_by_key_iterators.cu
+  - cub/test/catch2_test_device_reduce_by_key_vsmem.cu
+  - cub/test/catch2_test_device_reduce_deferred.cu
+  - cub/test/catch2_test_device_reduce_deterministic.cu
+  - cub/test/catch2_test_device_reduce_env.cu
+  - cub/test/catch2_test_device_reduce_env_api.cu
+  - cub/test/catch2_test_device_reduce_iterators.cu
+  - cub/test/catch2_test_device_reduce_nondeterministic.cu
+  - cub/test/catch2_test_device_run_length_encode.cu
+  - cub/test/catch2_test_device_run_length_encode_api.cu
+  - cub/test/catch2_test_device_run_length_encode_env.cu
+  - cub/test/catch2_test_device_run_length_encode_env_api.cu
+  - cub/test/catch2_test_device_run_length_encode_non_trivial_runs.cu
+  - cub/test/catch2_test_device_scan.cu
+  - cub/test/catch2_test_device_scan.cuh
+  - cub/test/catch2_test_device_scan_alignment.cu
+  - cub/test/catch2_test_device_scan_api.cu
+  - cub/test/catch2_test_device_scan_by_key.cu
+  - cub/test/catch2_test_device_scan_by_key_env.cu
+  - cub/test/catch2_test_device_scan_by_key_env_api.cu
+  - cub/test/catch2_test_device_scan_by_key_iterators.cu
+  - cub/test/catch2_test_device_scan_by_key_large_offsets.cu
+  - cub/test/catch2_test_device_scan_custom_policy_hub.cu
+  - cub/test/catch2_test_device_scan_deterministic.cu
+  - cub/test/catch2_test_device_scan_env.cu
+  - cub/test/catch2_test_device_scan_env_api.cu
+  - cub/test/catch2_test_device_scan_iterators.cu
+  - cub/test/catch2_test_device_scan_large_offsets.cu
+  - cub/test/catch2_test_device_scan_noncommutative.cu
+  - cub/test/catch2_test_device_segmented_radix_sort_env.cu
+  - cub/test/catch2_test_device_segmented_radix_sort_env_api.cu
+  - cub/test/catch2_test_device_segmented_radix_sort_keys.cu
+  - cub/test/catch2_test_device_segmented_radix_sort_pairs.cu
+  - cub/test/catch2_test_device_segmented_reduce.cu
+  - cub/test/catch2_test_device_segmented_reduce_api.cu
+  - cub/test/catch2_test_device_segmented_reduce_env.cu
+  - cub/test/catch2_test_device_segmented_reduce_env_api.cu
+  - cub/test/catch2_test_device_segmented_reduce_iterators_64bit.cu
+  - cub/test/catch2_test_device_segmented_reduce_large_offsets.cu
+  - cub/test/catch2_test_device_segmented_scan.cu
+  - cub/test/catch2_test_device_segmented_scan_api.cu
+  - cub/test/catch2_test_device_segmented_scan_env.cu
+  - cub/test/catch2_test_device_segmented_scan_env_api.cu
+  - cub/test/catch2_test_device_segmented_scan_multi_segment.cu
+  - cub/test/catch2_test_device_segmented_scan_noncommutative.cu
+  - cub/test/catch2_test_device_segmented_sort_custom_policy_hub.cu
+  - cub/test/catch2_test_device_segmented_sort_keys.cu
+  - cub/test/catch2_test_device_segmented_sort_keys_env.cu
+  - cub/test/catch2_test_device_segmented_sort_keys_env_api.cu
+  - cub/test/catch2_test_device_segmented_sort_pairs.cu
+  - cub/test/catch2_test_device_segmented_sort_pairs_env.cu
+  - cub/test/catch2_test_device_segmented_sort_pairs_env_api.cu
+  - cub/test/catch2_test_device_segmented_topk_keys.cu
+  - cub/test/catch2_test_device_segmented_topk_pairs.cu
+  - cub/test/catch2_test_device_select_api.cu
+  - cub/test/catch2_test_device_select_env.cu
+  - cub/test/catch2_test_device_select_env_api.cu
+  - cub/test/catch2_test_device_select_flagged.cu
+  - cub/test/catch2_test_device_select_flagged_if.cu
+  - cub/test/catch2_test_device_select_if.cu
+  - cub/test/catch2_test_device_select_if_vsmem.cu
+  - cub/test/catch2_test_device_select_unique.cu
+  - cub/test/catch2_test_device_select_unique_by_key.cu
+  - cub/test/catch2_test_device_select_unique_by_key_env.cu
+  - cub/test/catch2_test_device_three_way_partition.cu
+  - cub/test/catch2_test_device_topk_api.cu
+  - cub/test/catch2_test_device_topk_env.cu
+  - cub/test/catch2_test_device_topk_env_api.cu
+  - cub/test/catch2_test_device_topk_pairs.cu
+  - cub/test/catch2_test_device_transform.cu
+  - cub/test/catch2_test_device_transform_api.cu
+  - cub/test/catch2_test_device_transform_env.cu
+  - cub/test/catch2_test_device_transform_reduce.cu
+  - cub/test/catch2_test_env_launch_helper.h
+  - cub/test/catch2_test_grid_even_share.cu
+  - cub/test/catch2_test_iterator.cu
+  - cub/test/catch2_test_launch_wrapper.cu
+  - cub/test/catch2_test_memcpy_vectorized_copy.cu
+  - cub/test/catch2_test_nvrtc.cu
+  - cub/test/catch2_test_radix_operations.cu
+  - cub/test/catch2_test_temporary_storage_layout.cu
+  - cub/test/catch2_test_thread_operators.cu
+  - cub/test/catch2_test_thread_scan_exclusive_partial.cu
+  - cub/test/catch2_test_thread_scan_inclusive_partial.cu
+  - cub/test/catch2_test_util_device.cu
+  - cub/test/catch2_test_util_type.cu
+  - cub/test/catch2_test_vsmem.cu
+  - cub/test/catch2_test_warp_bitonic_sort.cu
+  - cub/test/catch2_test_warp_exchange.cuh
+  - cub/test/catch2_test_warp_load.cu
+  - cub/test/catch2_test_warp_merge_sort.cu
+  - cub/test/catch2_test_warp_scan.cu
+  - cub/test/catch2_test_warp_scan_api.cu
+  - cub/test/catch2_test_warp_scan_partial_helper.cuh
+  - cub/test/catch2_test_warp_store.cu
+  - cub/test/internal/catch2_test_fast_div_mod.cu
+  - cub/test/mersenne.h
+  - cub/test/test_allocator.cu
+  - cub/test/test_block_radix_rank.cu
+  - cub/test/test_device_batch_copy.cu
+  - cub/test/test_nvtx_disabled.cu
+  - cub/test/test_nvtx_in_usercode.cu
+  - cub/test/test_nvtx_in_usercode_explicit.cu
+  - cub/test/test_nvtx_standalone.cu
+  - cub/test/test_util.h
+  - cub/test/thread_reduce/catch2_test_thread_reduce.cu
+  - cub/test/thread_reduce/catch2_test_thread_reduce_partial.cu
+  - cub/test/warp/catch2_test_warp_reduce.cu
+  - cub/test/warp/catch2_test_warp_reduce_batched.cu
+  - cub/test/warp/catch2_test_warp_reduce_batched_api.cu
+  - cub/test/warp/catch2_test_warp_segmented_reduce.cu
+- number: 9224
+  title: Implement Segmented TopK using Thread-Block-Clusters
+  date: '2026-08-12'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): cub/cub/agent/agent_batched_topk.cuh, cub/cub/agent/agent_batched_topk_cluster.cuh, cub/cub/detail/choose_offset.cuh, cub/cub/detail/launcher/cuda_runtime.cuh,
+    cub/cub/detail/segmented_params.cuh, cub/cub/device/device_batched_topk.cuh, cub/cub/device/dispatch/dispatch_batched_topk.cuh, cub/cub/device/dispatch/kernels/kernel_batched_topk.cuh, cub/cub/device/dispatch/tuning/tuning_batched_topk.cuh'
+  files_changed:
+  - .clang-format
+  - cub/benchmarks/bench/segmented_topk/fixed/keys.cu
+  - cub/benchmarks/bench/segmented_topk/variable/common.cuh
+  - cub/benchmarks/bench/segmented_topk/variable/indexed.cluster.cu
+  - cub/benchmarks/bench/segmented_topk/variable/indexed.cu
+  - cub/benchmarks/bench/segmented_topk/variable/indexed_common.cuh
+  - cub/benchmarks/bench/segmented_topk/variable/keys.cluster.cu
+  - cub/benchmarks/bench/segmented_topk/variable/keys.cu
+  - cub/benchmarks/bench/segmented_topk/variable/keys_common.cuh
+  - cub/cub/agent/agent_batched_topk.cuh
+  - cub/cub/agent/agent_batched_topk_cluster.cuh
+  - cub/cub/detail/choose_offset.cuh
+  - cub/cub/detail/launcher/cuda_runtime.cuh
+  - cub/cub/detail/segmented_params.cuh
+  - cub/cub/device/device_batched_topk.cuh
+  - cub/cub/device/dispatch/dispatch_batched_topk.cuh
+  - cub/cub/device/dispatch/kernels/kernel_batched_topk.cuh
+  - cub/cub/device/dispatch/tuning/tuning_batched_topk.cuh
+  - cub/cub/util_device.cuh
+  - cub/test/CMakeLists.txt
+  - cub/test/catch2_test_device_segmented_topk_cluster_layout.cu
+  - cub/test/catch2_test_device_segmented_topk_keys.cu
+  - cub/test/catch2_test_device_segmented_topk_pairs.cu
+  - cub/test/catch2_test_device_topk_common.cuh
+  - cub/test/test_device_batched_topk_dynamic_cluster_disabled_fail.cu
+  - cub/test/test_device_batched_topk_forced_baseline_oversize_fail.cu
+  - cub/test/test_device_batched_topk_requirements_fail.cu
+  - cub/test/test_device_batched_topk_unsupported_arch_fail.cu
+  - docs/cub/device_topk_requirements.rst
+  - libcudacxx/include/cuda/std/__cccl/cuda_capabilities.h
+  - thrust/thrust/system/cuda/detail/core/triple_chevron_launch.h
+- number: 10870
+  title: Replace CachingDeviceAllocator in CUB examples
+  date: '2026-08-19'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 12 authoritative changed file(s)'
+  files_changed:
+  - cub/examples/device/example_device_partition_flagged.cu
+  - cub/examples/device/example_device_partition_if.cu
+  - cub/examples/device/example_device_radix_sort.cu
+  - cub/examples/device/example_device_reduce.cu
+  - cub/examples/device/example_device_scan.cu
+  - cub/examples/device/example_device_select_flagged.cu
+  - cub/examples/device/example_device_select_if.cu
+  - cub/examples/device/example_device_select_unique.cu
+  - cub/examples/device/example_device_sort_find_non_trivial_runs.cu
+  - cub/examples/device/example_device_topk_keys.cu
+  - cub/examples/device/example_device_topk_pairs.cu
+  - cub/test/test_block_radix_rank.cu
+- number: 11726
+  title: '[libcu++] Fix tuple_cat with explicit constructors'
+  date: '2026-09-30'
+  decision: defer
+  reason: authoritative PR evidence unavailable; needs-triage
+  files_changed: []

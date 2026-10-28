@@ -1,5 +1,5 @@
 repo: Dao-AILab/flash-attention
-searched_at: '2026-05-20'
+searched_at: '2026-10-27'
 keywords_used:
 - flash attention
 - sm100
@@ -9,10 +9,10 @@ keywords_used:
 - hopper
 - fp8
 - tma
-total_candidates: 146
-included: 34
-excluded: 12
-deferred: 100
+total_candidates: 243
+included: 76
+excluded: 66
+deferred: 101
 prs:
 - number: 2441
   pr: 2441
@@ -5873,3 +5873,973 @@ prs:
   - flash_attn/ops/triton/rotary.py
   - tests/test_rotary.py
   artifact_dir: evidence/pull-bundles/flash-attention/gh-911
+- number: 2900
+  title: '[ROCM] add FLASH_ATTENTION_USE_SYSTEM_AITER flag and commit bump'
+  date: '2026-09-22'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - README.md
+  - setup.py
+  - third_party/aiter
+- number: 3067
+  title: '[CuTe] Format config.py with ruff so the Lint workflow passes again'
+  date: '2026-10-22'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - flash_attn/cute/config.py
+- number: 2983
+  title: '[CuTe, Fwd, SM100] Prevent NaN contamination from unused V cache entries'
+  date: '2026-10-21'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: flash_attn/cute/copy_utils.py, flash_attn/cute/flash_fwd_sm100.py'
+  files_changed:
+  - flash_attn/cute/copy_utils.py
+  - flash_attn/cute/flash_fwd_sm100.py
+  - tests/cute/test_flash_attn.py
+- number: 2899
+  title: Compile with c++20 for pytorch 2.13+
+  date: '2026-09-19'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - setup.py
+- number: 2948
+  title: '[CuTe] Allow apache-tvm-ffi 0.1.11'
+  date: '2026-10-02'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - flash_attn/cute/pyproject.toml
+- number: 2891
+  title: Support seqused_q/seqused_k in SM100 HD256 backward
+  date: '2026-09-24'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 6 authoritative changed file(s)'
+  files_changed:
+  - flash_attn/cute/interface.py
+  - flash_attn/cute/sm100_hd256_2cta_fmha_backward.py
+  - flash_attn/cute/sm100_hd256_2cta_fmha_backward_dkdvkernel.py
+  - flash_attn/cute/sm100_hd256_2cta_fmha_backward_dqkernel.py
+  - tests/cute/test_flash_attn.py
+  - tests/cute/test_hd256_varlen_scheduler.py
+- number: 2869
+  title: '[CuTe, SM100] Stop the non-causal hdim 128 softmax warps spilling'
+  date: '2026-09-10'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - flash_attn/cute/flash_fwd_sm100.py
+- number: 2974
+  title: 'Release 2.8.3.post2: backport weights_only=True torch.load fix (CVE-2026-31253)'
+  date: '2026-10-06'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 7 authoritative changed file(s)'
+  files_changed:
+  - flash_attn/__init__.py
+  - flash_attn/models/llama.py
+  - flash_attn/utils/pretrained.py
+  - hopper/setup.py
+  - setup.py
+  - training/src/eval.py
+  - training/src/utils/checkpoint.py
+- number: 2928
+  title: '[CuTe, SM100] S/P ping-pong to overlap QK with softmax in decode'
+  date: '2026-10-03'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: flash_attn/cute/flash_fwd_sm100.py, flash_attn/cute/interface.py'
+  files_changed:
+  - flash_attn/cute/flash_fwd_sm100.py
+  - flash_attn/cute/interface.py
+  - flash_attn/cute/utils.py
+  - tests/cute/test_flash_attn.py
+- number: 2893
+  title: '[CuTe, SM100] Sparse MLA bwd: keep P normalization and dS product in fp32'
+  date: '2026-09-23'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: flash_attn/cute/flash_bwd_mla_sm100.py'
+  files_changed:
+  - AI/SPARSE_MLA_RECOMPUTE_P.md
+  - flash_attn/cute/flash_bwd_mla_sm100.py
+- number: 2746
+  title: Remove SM100 Functions from Hopper Flash Attention 3
+  date: '2026-07-29'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - hopper/utils.h
+- number: 2967
+  title: '[CuTe, SM100] Unify hd256 backward (4/7): pack the query heads of a KV head into the Q tile (GQA)'
+  date: '2026-10-23'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: flash_attn/cute/block_info.py, flash_attn/cute/flash_bwd_postprocess.py, flash_attn/cute/flash_bwd_preprocess.py, flash_attn/cute/flash_bwd_sm100.py,
+    flash_attn/cute/interface.py, flash_attn/cute/pack_gqa.py, flash_attn/cute/seqlen_info.py'
+  files_changed:
+  - flash_attn/cute/block_info.py
+  - flash_attn/cute/flash_bwd_postprocess.py
+  - flash_attn/cute/flash_bwd_preprocess.py
+  - flash_attn/cute/flash_bwd_sm100.py
+  - flash_attn/cute/interface.py
+  - flash_attn/cute/mask.py
+  - flash_attn/cute/pack_gqa.py
+  - flash_attn/cute/seqlen_info.py
+  - flash_attn/cute/utils.py
+  - tests/cute/test_flash_attn_bwd_pack_gqa.py
+- number: 2978
+  title: '[CuTe, SM100] Key MLA forward compilation on the KV head count'
+  date: '2026-10-07'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - flash_attn/cute/interface.py
+  - tests/cute/test_flash_attn_mla.py
+- number: 2965
+  title: '[CuTe, SM100] Unify hd256 backward (2/5): 64-row KV tile per CTA (M=64 TMEM layout) with GQA, varlen and deterministic support'
+  date: '2026-10-15'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: flash_attn/cute/flash_bwd_postprocess.py, flash_attn/cute/flash_bwd_sm100.py'
+  files_changed:
+  - flash_attn/cute/flash_bwd_postprocess.py
+  - flash_attn/cute/flash_bwd_sm100.py
+  - flash_attn/cute/interface.py
+  - flash_attn/cute/utils.py
+  - tests/cute/test_flash_attn_bwd_tile_n.py
+- number: 2923
+  title: '[CuTe, SM100] Chunk hd256 SplitKV output to retain two KV stages'
+  date: '2026-10-02'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: flash_attn/cute/flash_fwd_sm100.py'
+  files_changed:
+  - flash_attn/cute/flash_fwd_sm100.py
+- number: 2966
+  title: '[CuTe, SM100] Unify hd256 backward (3/5): hdim 256 on FlashAttentionBackwardSm100 (opt-in)'
+  date: '2026-10-16'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: flash_attn/cute/bwd_accum_tile.py, flash_attn/cute/flash_bwd_sm100.py'
+  files_changed:
+  - flash_attn/cute/bwd_accum_tile.py
+  - flash_attn/cute/flash_bwd_postprocess.py
+  - flash_attn/cute/flash_bwd_sm100.py
+  - flash_attn/cute/interface.py
+  - flash_attn/cute/utils.py
+  - tests/cute/test_flash_attn.py
+  - tests/cute/test_flash_attn_race_condition.py
+- number: 2938
+  title: '[Cute, Sm100] 1CTA MLA forward (dense + sparse top-k), MLA dispatch heuristic, sparse MLA backward at any head count'
+  date: '2026-09-30'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: flash_attn/cute/blackwell_helpers.py, flash_attn/cute/flash_bwd_mla_dq_dqv_sm100_h64.py, flash_attn/cute/flash_bwd_mla_sm100.py, flash_attn/cute/interface.py,
+    flash_attn/cute/topk_gather_kv.py'
+  files_changed:
+  - AI/SPARSE_MLA_1CTA.md
+  - AI/SPARSE_MLA_64H.md
+  - AI/SPARSE_MLA_RECOMPUTE_P.md
+  - CLAUDE.md
+  - benchmarks/benchmark_sparse_mla_fwd.py
+  - flash_attn/cute/blackwell_helpers.py
+  - flash_attn/cute/cache_utils.py
+  - flash_attn/cute/cute_dsl_utils.py
+  - flash_attn/cute/flash_bwd_mla_dk_sm100.py
+  - flash_attn/cute/flash_bwd_mla_dq_dqv_sm100.py
+  - flash_attn/cute/flash_bwd_mla_dq_dqv_sm100_h64.py
+  - flash_attn/cute/flash_bwd_mla_sm100.py
+  - flash_attn/cute/flash_fwd_mla_1cta_kb64_sm100.py
+  - flash_attn/cute/flash_fwd_mla_1cta_sm100.py
+  - flash_attn/cute/flash_fwd_mla_sm100.py
+  - flash_attn/cute/flash_fwd_sm100.py
+  - flash_attn/cute/interface.py
+  - flash_attn/cute/pack_gqa.py
+  - flash_attn/cute/testing.py
+  - flash_attn/cute/topk_gather_kv.py
+  - tests/cute/conftest.py
+  - tests/cute/test_cache_utils.py
+  - tests/cute/test_flash_attn.py
+  - tests/cute/test_flash_attn_mla.py
+  - tools/two_pass_tests.sh
+- number: 2872
+  title: Fix Windows builds with CUDA 13 and PyTorch 2.15
+  date: '2026-09-30'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - setup.py
+- number: 2696
+  title: add tcgen.ld.red support to sm103a arch
+  date: '2026-07-11'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: flash_attn/cute/flash_fwd_sm100.py, flash_attn/cute/softmax.py'
+  files_changed:
+  - flash_attn/cute/block_sparse_utils.py
+  - flash_attn/cute/flash_fwd_sm100.py
+  - flash_attn/cute/softmax.py
+- number: 2035
+  title: '[Cute] Fix head dim 64 bwd'
+  date: '2025-12-02'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: flash_attn/cute/flash_bwd_sm100.py'
+  files_changed:
+  - flash_attn/cute/flash_bwd_sm100.py
+  - tests/cute/test_flash_attn.py
+- number: 852
+  title: Add in Macros  for defining __grid_constant__
+  date: '2024-03-15'
+  decision: include
+  reason: 'retain: added device-code construct in: csrc/flash_attn/src/flash_bwd_launch_template.h, csrc/flash_attn/src/flash_fwd_launch_template.h'
+  files_changed:
+  - csrc/flash_attn/flash_api.cpp
+  - csrc/flash_attn/src/flash_bwd_launch_template.h
+  - csrc/flash_attn/src/flash_fwd_launch_template.h
+- number: 2787
+  title: Fix removed Quack packed subtraction API
+  date: '2026-08-11'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - flash_attn/cute/flash_bwd_sm100.py
+  - flash_attn/cute/utils.py
+- number: 2293
+  title: Fix sm100 fwd missing tSrQs init regression
+  date: '2026-03-01'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - flash_attn/cute/flash_fwd_sm100.py
+- number: 2917
+  title: '[CuTe, SM100] hd256 fwd: derive lengths and KV ranges from BlockInfo/SeqlenInfoQK'
+  date: '2026-09-25'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: flash_attn/cute/interface.py, flash_attn/cute/sm100_hd256_2cta_fmha_forward.py'
+  files_changed:
+  - flash_attn/cute/block_info.py
+  - flash_attn/cute/flash_fwd_sm100.py
+  - flash_attn/cute/interface.py
+  - flash_attn/cute/sm100_hd256_2cta_fmha_forward.py
+  - flash_attn/cute/tile_scheduler.py
+  - tests/cute/test_flash_attn.py
+- number: 1925
+  title: '[CuteDSL] Explicitly cast for Flash Combine'
+  date: '2025-10-07'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: flash_attn/cute/utils.py'
+  files_changed:
+  - flash_attn/cute/utils.py
+- number: 1425
+  title: Remove unused 224 cu kernels
+  date: '2025-01-07'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 10 authoritative changed file(s)'
+  files_changed:
+  - csrc/flash_attn/src/flash_bwd_hdim224_bf16_sm80.cu
+  - csrc/flash_attn/src/flash_bwd_hdim224_fp16_sm80.cu
+  - csrc/flash_attn/src/flash_fwd_hdim224_bf16_causal_sm80.cu
+  - csrc/flash_attn/src/flash_fwd_hdim224_bf16_sm80.cu
+  - csrc/flash_attn/src/flash_fwd_hdim224_fp16_causal_sm80.cu
+  - csrc/flash_attn/src/flash_fwd_hdim224_fp16_sm80.cu
+  - csrc/flash_attn/src/flash_fwd_split_hdim224_bf16_causal_sm80.cu
+  - csrc/flash_attn/src/flash_fwd_split_hdim224_bf16_sm80.cu
+  - csrc/flash_attn/src/flash_fwd_split_hdim224_fp16_causal_sm80.cu
+  - csrc/flash_attn/src/flash_fwd_split_hdim224_fp16_sm80.cu
+- number: 2092
+  title: cutedsl 4.3.4
+  date: '2025-12-22'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - flash_attn/cute/pyproject.toml
+- number: 2763
+  title: '[CuTe, SM80/SM120] Guard invalid varlen forward tiles'
+  date: '2026-09-08'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: flash_attn/cute/flash_fwd.py'
+  files_changed:
+  - flash_attn/cute/flash_fwd.py
+- number: 2731
+  title: Numeric tweaks to fp8
+  date: '2026-07-28'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - flash_attn/cute/flash_fwd_sm100.py
+  - tests/cute/test_flash_attn.py
+- number: 1085
+  title: Fix ima for split-kv kernel
+  date: '2024-07-23'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - csrc/flash_attn/flash_api.cpp
+- number: 3034
+  title: '[CuTe, SM100] Fix 2CTA CLC tile coords and make forward work-tile coordinates logical'
+  date: '2026-10-24'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: flash_attn/cute/flash_fwd_sm100.py, flash_attn/cute/tile_scheduler.py'
+  files_changed:
+  - flash_attn/cute/flash_fwd_sm100.py
+  - flash_attn/cute/tile_scheduler.py
+  - tests/cute/test_flash_attn.py
+  - tests/cute/test_fwd_work_coords.py
+- number: 2952
+  title: '[CuTe, SM100] Allow deterministic=True in the hd256 backward'
+  date: '2026-10-04'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - flash_attn/cute/interface.py
+  - flash_attn/cute/sm100_hd256_2cta_fmha_backward.py
+  - tests/cute/test_flash_attn.py
+- number: 3012
+  title: '[CuTe, Bwd, SM100] Bound the K/V TMA loads by seqlen_k so unused rows cannot poison dQ (packed varlen and dense seqused_k)'
+  date: '2026-10-22'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: flash_attn/cute/copy_utils.py, flash_attn/cute/flash_bwd_sm100.py'
+  files_changed:
+  - flash_attn/cute/copy_utils.py
+  - flash_attn/cute/flash_bwd_sm100.py
+  - flash_attn/cute/seqlen_info.py
+  - tests/cute/test_flash_attn.py
+- number: 2962
+  title: '[CuTe, SM100] Unify hd256 forward and recover the remaining stack'
+  date: '2026-10-04'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: flash_attn/cute/flash_fwd_sm100.py'
+  files_changed:
+  - flash_attn/cute/flash_fwd_sm100.py
+  - flash_attn/cute/interface.py
+  - flash_attn/cute/pipeline.py
+  - flash_attn/cute/sm100_hd256_2cta_fmha_backward_dqkernel.py
+  - flash_attn/cute/sm100_hd256_2cta_fmha_forward.py
+  - flash_attn/cute/tile_scheduler.py
+  - tests/cute/test_flash_attn.py
+  - tests/cute/test_flash_attn_hd256_features.py
+  - tests/cute/test_hd256_varlen_scheduler.py
+  - tests/cute/test_tmem_barrier.py
+- number: 2924
+  title: '[CuTe, SM100] Normalize paged and used-length scheduler hints'
+  date: '2026-10-03'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - flash_attn/cute/interface.py
+  - tests/cute/test_hd256_varlen_scheduler.py
+- number: 2960
+  title: '[Cute, Sm100] bwd postprocess: load 2-CTA dQaccum directly into registers'
+  date: '2026-10-05'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: flash_attn/cute/flash_bwd_postprocess.py'
+  files_changed:
+  - flash_attn/cute/flash_bwd_postprocess.py
+- number: 2927
+  title: '[CuTe, SM100] Test hd256 forward features on the general kernel'
+  date: '2026-10-03'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - tests/cute/test_flash_attn_hd256_features.py
+- number: 2916
+  title: '[CuTe, SM100] SplitKV for the hd256 2CTA forward kernel'
+  date: '2026-09-25'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: flash_attn/cute/interface.py, flash_attn/cute/sm100_hd256_2cta_fmha_forward.py'
+  files_changed:
+  - flash_attn/cute/block_info.py
+  - flash_attn/cute/flash_fwd_sm100.py
+  - flash_attn/cute/interface.py
+  - flash_attn/cute/sm100_hd256_2cta_fmha_forward.py
+  - flash_attn/cute/tile_scheduler.py
+  - tests/cute/test_flash_attn.py
+- number: 2807
+  title: '[CuTe, SM100, HD256] optimize SM100 HD256 varlen scheduling and epilogues'
+  date: '2026-09-14'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: flash_attn/cute/sm100_hd256_2cta_fmha_backward_dkdvkernel.py, flash_attn/cute/sm100_hd256_2cta_fmha_backward_dqkernel.py, flash_attn/cute/sm100_hd256_2cta_fmha_forward.py,
+    flash_attn/cute/tile_scheduler.py'
+  files_changed:
+  - flash_attn/cute/interface.py
+  - flash_attn/cute/sm100_hd256_2cta_fmha_backward.py
+  - flash_attn/cute/sm100_hd256_2cta_fmha_backward_dkdvkernel.py
+  - flash_attn/cute/sm100_hd256_2cta_fmha_backward_dqkernel.py
+  - flash_attn/cute/sm100_hd256_2cta_fmha_forward.py
+  - flash_attn/cute/tile_scheduler.py
+  - tests/cute/test_flash_attn.py
+  - tests/cute/test_flash_attn_varlen.py
+  - tests/cute/test_hd256_varlen_scheduler.py
+- number: 2925
+  title: '[CuTe, SM100] Run hd256 forward on FlashAttentionForwardSm100; delete the dedicated kernel'
+  date: '2026-10-03'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 7 authoritative changed file(s)'
+  files_changed:
+  - flash_attn/cute/flash_fwd_sm100.py
+  - flash_attn/cute/interface.py
+  - flash_attn/cute/sm100_hd256_2cta_fmha_backward_dqkernel.py
+  - flash_attn/cute/sm100_hd256_2cta_fmha_forward.py
+  - flash_attn/cute/tile_scheduler.py
+  - tests/cute/test_flash_attn.py
+  - tests/cute/test_hd256_varlen_scheduler.py
+- number: 2920
+  title: '[CuTe, SM100] Keep the SplitKV heuristic at one split or more'
+  date: '2026-10-01'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - flash_attn/cute/interface.py
+  - tests/cute/test_flash_attn.py
+- number: 2964
+  title: '[CuTe, SM100] Unify hd256 backward (1/5): tests first, named 2CTA schedules and TMEM widths'
+  date: '2026-10-06'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: flash_attn/cute/flash_bwd_sm100.py'
+  files_changed:
+  - flash_attn/cute/flash_bwd_sm100.py
+  - tests/cute/eager_reference.py
+  - tests/cute/test_flash_attn_hd256_bwd.py
+  - tests/cute/test_flash_attn_race_condition.py
+  - tests/cute/test_hd256_varlen_scheduler.py
+- number: 2911
+  title: '[CuTe, SM100] Sparse MLA recompute-P: allow 64 Q heads'
+  date: '2026-09-23'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - AI/SPARSE_MLA_RECOMPUTE_P.md
+  - flash_attn/cute/interface.py
+  - tests/cute/test_flash_attn.py
+- number: 2908
+  title: '[CuTe, SM100] Sparse MLA training: dpsum from an O residual'
+  date: '2026-09-23'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: flash_attn/cute/flash_bwd_preprocess.py, flash_attn/cute/flash_fwd_mla_sm100.py'
+  files_changed:
+  - AI/SPARSE_MLA_DPSUM_PRECISION.md
+  - AI/SPARSE_MLA_RECOMPUTE_P.md
+  - flash_attn/cute/flash_bwd_preprocess.py
+  - flash_attn/cute/flash_fwd_mla_sm100.py
+  - flash_attn/cute/interface.py
+  - tests/cute/test_flash_attn.py
+- number: 2907
+  title: '[CuTe, SM100] Sparse MLA training fwd: exact running softmax max'
+  date: '2026-09-23'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: flash_attn/cute/flash_bwd_mla_sm100.py'
+  files_changed:
+  - AI/SPARSE_MLA_EXACT_SOFTMAX_MAX.md
+  - AI/SPARSE_MLA_RECOMPUTE_P.md
+  - flash_attn/cute/flash_bwd_mla_sm100.py
+  - flash_attn/cute/flash_fwd_mla_sm100.py
+  - flash_attn/cute/interface.py
+  - tests/cute/test_flash_attn.py
+- number: 2906
+  title: '[CuTe, SM100] Write real zeros for block-sparse empty tiles'
+  date: '2026-09-24'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: flash_attn/cute/flash_fwd_sm100.py'
+  files_changed:
+  - flash_attn/cute/block_sparse_utils.py
+  - flash_attn/cute/flash_fwd_sm100.py
+  - tests/cute/test_mask_mod.py
+- number: 2732
+  title: '[CuTe] Add typed forward configurations'
+  date: '2026-10-19'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - flash_attn/cute/config.py
+  - flash_attn/cute/flash_fwd_sm100.py
+  - tests/cute/test_fwd_config.py
+- number: 2819
+  title: '[CuTe] Speed up scalar SM100 mask compilation'
+  date: '2026-08-28'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - flash_attn/cute/mask.py
+- number: 2880
+  title: '[CuTe, SM100] Preserve hd256 output alignment for vectorized stores'
+  date: '2026-09-11'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: flash_attn/cute/cute_dsl_utils.py'
+  files_changed:
+  - flash_attn/cute/cute_dsl_utils.py
+  - flash_attn/cute/sm100_hd256_2cta_fmha_forward.py
+  - tests/cute/test_flash_attn.py
+- number: 2926
+  title: '[CuTe, SM100] Count Q heads in the SplitKV heuristic when not packing GQA'
+  date: '2026-10-03'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - flash_attn/cute/interface.py
+- number: 3071
+  title: '[CuTe] Bound ragged K/V TMA loads with per-CTA descriptor updates instead of a wrap-around descriptor'
+  date: '2026-10-23'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: flash_attn/cute/flash_bwd_sm100.py, flash_attn/cute/flash_bwd_sm90.py, flash_attn/cute/flash_fwd_sm100.py, flash_attn/cute/flash_fwd_sm90.py'
+  files_changed:
+  - flash_attn/cute/copy_utils.py
+  - flash_attn/cute/flash_bwd_sm100.py
+  - flash_attn/cute/flash_bwd_sm90.py
+  - flash_attn/cute/flash_fwd_sm100.py
+  - flash_attn/cute/flash_fwd_sm90.py
+  - flash_attn/cute/interface.py
+  - tests/cute/test_flash_attn.py
+- number: 3007
+  title: '[Tests] CUDA graph capture/replay coverage for FA4 (CuTe) and FA2 entry points'
+  date: '2026-10-16'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 5 authoritative changed file(s)'
+  files_changed:
+  - .github/workflows/ci.yml
+  - tests/cute/host_sync.py
+  - tests/cute/test_cuda_graph.py
+  - tests/cute/test_hd256_varlen_scheduler.py
+  - tests/test_flash_attn.py
+- number: 2758
+  title: '[CuTe, SM120] Support automatic num_splits'
+  date: '2026-10-13'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - flash_attn/cute/interface.py
+  - tests/cute/test_flash_attn.py
+- number: 2798
+  title: '[CuTe] Relax CUTLASS DSL requirement'
+  date: '2026-08-15'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 5 authoritative changed file(s)'
+  files_changed:
+  - CLAUDE.md
+  - flash_attn/cute/flash_bwd_sm100.py
+  - flash_attn/cute/pyproject.toml
+  - flash_attn/cute/utils.py
+  - tools/ci/docker/Dockerfile
+- number: 3013
+  title: '[CuTe, SM90] Bound the K/V TMA loads by seqlen_k (fwd + bwd, packed varlen and dense seqused_k)'
+  date: '2026-10-22'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: flash_attn/cute/flash_bwd_sm90.py'
+  files_changed:
+  - flash_attn/cute/flash_bwd_sm90.py
+  - flash_attn/cute/flash_fwd_sm90.py
+  - tests/cute/test_flash_attn.py
+- number: 2912
+  title: '[CuTe, SM100] Sparse MLA bwd preprocess: stop the lse_log2 store at the sequence''s rows'
+  date: '2026-09-23'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - AI/SPARSE_MLA_RECOMPUTE_P.md
+  - flash_attn/cute/flash_bwd_preprocess.py
+  - tests/cute/test_flash_attn.py
+- number: 2816
+  title: '[CuTe, SM100] Sparse MLA bwd: in-kernel recompute-P + token-chunked backward'
+  date: '2026-09-16'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: flash_attn/cute/flash_bwd_mla_sm100.py'
+  files_changed:
+  - AI/SPARSE_MLA_RECOMPUTE_P.md
+  - flash_attn/cute/flash_bwd_mla_sm100.py
+  - flash_attn/cute/interface.py
+  - tests/cute/test_flash_attn.py
+- number: 2867
+  title: One more deprecation;
+  date: '2026-09-13'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: flash_attn/cute/flash_bwd_mla_dk_sm100.py, flash_attn/cute/flash_fwd_mla_sm100.py'
+  files_changed:
+  - flash_attn/cute/flash_bwd_mla_dk_sm100.py
+  - flash_attn/cute/flash_bwd_mla_dq_dqv_sm100.py
+  - flash_attn/cute/flash_bwd_mla_sm100.py
+  - flash_attn/cute/flash_bwd_postprocess.py
+  - flash_attn/cute/flash_bwd_sm100.py
+  - flash_attn/cute/flash_bwd_sm90.py
+  - flash_attn/cute/flash_fwd_combine.py
+  - flash_attn/cute/flash_fwd_mla_sm100.py
+  - flash_attn/cute/flash_fwd_sm100.py
+  - flash_attn/cute/flash_fwd_sm90.py
+  - flash_attn/cute/paged_kv.py
+  - flash_attn/cute/prepare_scheduler.py
+  - flash_attn/cute/sm100_hd256_2cta_fmha_backward_dkdvkernel.py
+  - flash_attn/cute/sm100_hd256_2cta_fmha_backward_dqkernel.py
+  - flash_attn/cute/sm100_hd256_2cta_fmha_forward.py
+  - flash_attn/cute/tile_scheduler.py
+  - flash_attn/cute/utils.py
+- number: 2883
+  title: '[CuTe, SM100] Support 1..128 Q heads in sparse MLA via in-kernel TMA padding'
+  date: '2026-09-22'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: flash_attn/cute/flash_bwd_mla_sm100.py, flash_attn/cute/flash_fwd_mla_sm100.py, flash_attn/cute/pack_gqa.py'
+  files_changed:
+  - flash_attn/cute/flash_bwd_mla_dq_dqv_sm100.py
+  - flash_attn/cute/flash_bwd_mla_sm100.py
+  - flash_attn/cute/flash_bwd_preprocess.py
+  - flash_attn/cute/flash_fwd_mla_sm100.py
+  - flash_attn/cute/interface.py
+  - flash_attn/cute/pack_gqa.py
+  - flash_attn/cute/softmax.py
+  - tests/cute/test_flash_attn.py
+- number: 2768
+  title: Add an Attention Sink to Flash MLA for SM100
+  date: '2026-09-10'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: flash_attn/cute/flash_bwd_postprocess.py, flash_attn/cute/interface.py, flash_attn/cute/softmax.py'
+  files_changed:
+  - flash_attn/cute/block_sparse_utils.py
+  - flash_attn/cute/flash_bwd_postprocess.py
+  - flash_attn/cute/flash_fwd_mla_sm100.py
+  - flash_attn/cute/flash_fwd_sm100.py
+  - flash_attn/cute/interface.py
+  - flash_attn/cute/softmax.py
+  - tests/cute/test_flash_attn.py
+- number: 2755
+  title: '[CuTe, SM100] Sparse MLA bwd: don''t scatter dK/dV at -1 sentinel indices'
+  date: '2026-08-04'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: flash_attn/cute/flash_bwd_mla_dk_sm100.py'
+  files_changed:
+  - flash_attn/cute/flash_bwd_mla_dk_sm100.py
+  - flash_attn/cute/flash_bwd_mla_sm100.py
+  - flash_attn/cute/interface.py
+  - flash_attn/cute/testing.py
+  - tests/cute/test_flash_attn.py
+- number: 2690
+  title: 'ci: add MLA absorbed coverage to FA4 CI'
+  date: '2026-06-29'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - .github/workflows/ci.yml
+- number: 2776
+  title: '[CuTe, Bwd] Return zero gradients for empty Q/K workloads'
+  date: '2026-09-14'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - flash_attn/cute/interface.py
+  - tests/cute/test_flash_attn.py
+- number: 2745
+  title: '[CuTe] Fix forward dynamic-shape correctness'
+  date: '2026-08-07'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: flash_attn/cute/flash_fwd_sm100.py'
+  files_changed:
+  - flash_attn/cute/cute_dsl_utils.py
+  - flash_attn/cute/flash_fwd_sm100.py
+  - flash_attn/cute/interface.py
+  - flash_attn/cute/paged_kv.py
+  - tests/cute/test_cute_dsl_utils.py
+  - tests/cute/test_flash_attn.py
+  - tests/cute/test_flash_attn_combine.py
+  - tests/cute/test_score_mod.py
+- number: 2686
+  title: '[Cute] Assume 16B stride divisibility for SM100 backward LSE/dPsum bulk-copy inputs'
+  date: '2026-06-29'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - flash_attn/cute/flash_bwd_mla_sm100.py
+  - flash_attn/cute/flash_bwd_sm100.py
+- number: 2717
+  title: '[CuTe, SM100] Fix FP8 e4m3 accuracy: make max_offset dtype-aware to avoid P saturation'
+  date: '2026-07-19'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - flash_attn/cute/flash_fwd_sm100.py
+  - tests/cute/test_flash_attn.py
+- number: 2621
+  title: '[Cute,Bwd,Sm100] add sparse MLA (Deepseek v4) backward kernels'
+  date: '2026-06-20'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: flash_attn/cute/flash_bwd_mla_dk_sm100.py, flash_attn/cute/flash_bwd_mla_dq_dqv_sm100.py, flash_attn/cute/flash_bwd_mla_sm100.py, flash_attn/cute/flash_bwd_preprocess.py,
+    flash_attn/cute/flash_fwd_mla_sm100.py, flash_attn/cute/interface.py, flash_attn/cute/tile_scheduler.py'
+  files_changed:
+  - benchmarks/benchmark_attn.py
+  - flash_attn/cute/bench_utils.py
+  - flash_attn/cute/flash_bwd_mla_dk_sm100.py
+  - flash_attn/cute/flash_bwd_mla_dq_dqv_sm100.py
+  - flash_attn/cute/flash_bwd_mla_sm100.py
+  - flash_attn/cute/flash_bwd_preprocess.py
+  - flash_attn/cute/flash_fwd_mla_sm100.py
+  - flash_attn/cute/interface.py
+  - flash_attn/cute/named_barrier.py
+  - flash_attn/cute/tile_scheduler.py
+  - flash_attn/cute/topk_gather_kv.py
+  - tests/cute/test_flash_attn.py
+- number: 2483
+  title: '[Tests,MLA] Close coverage gaps in test_flash_attn_mla_absorbed'
+  date: '2026-04-27'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - tests/cute/test_flash_attn.py
+- number: 2558
+  title: '[CuTe,Fwd,Sm100] refactor mla sm100 forward and add page table'
+  date: '2026-06-01'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: flash_attn/cute/paged_kv.py'
+  files_changed:
+  - benchmarks/benchmark_mla_paged_kv.py
+  - flash_attn/cute/cute_dsl_utils.py
+  - flash_attn/cute/flash_fwd_mla_sm100.py
+  - flash_attn/cute/interface.py
+  - flash_attn/cute/paged_kv.py
+  - flash_attn/cute/testing.py
+  - flash_attn/cute/topk_gather_kv.py
+  - tests/cute/test_flash_attn.py
+- number: 2559
+  title: '[CuTe,Sm100] Varlen Dynamic Persistent scheduler and metadata'
+  date: '2026-08-02'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: flash_attn/cute/cu_blocks_kernel.py, flash_attn/cute/flash_fwd_combine.py, flash_attn/cute/flash_fwd_sm100.py, flash_attn/cute/interface.py,
+    flash_attn/cute/prepare_scheduler.py, flash_attn/cute/tile_scheduler.py'
+  files_changed:
+  - benchmarks/benchmark_varlen_sched.py
+  - flash_attn/cute/block_info.py
+  - flash_attn/cute/cu_blocks_kernel.py
+  - flash_attn/cute/flash_bwd.py
+  - flash_attn/cute/flash_bwd_mla_sm100.py
+  - flash_attn/cute/flash_bwd_postprocess.py
+  - flash_attn/cute/flash_bwd_preprocess.py
+  - flash_attn/cute/flash_bwd_sm100.py
+  - flash_attn/cute/flash_bwd_sm90.py
+  - flash_attn/cute/flash_fwd.py
+  - flash_attn/cute/flash_fwd_combine.py
+  - flash_attn/cute/flash_fwd_mla_sm100.py
+  - flash_attn/cute/flash_fwd_sm100.py
+  - flash_attn/cute/flash_fwd_sm90.py
+  - flash_attn/cute/interface.py
+  - flash_attn/cute/prepare_scheduler.py
+  - flash_attn/cute/sm100_hd256_2cta_fmha_backward_dkdvkernel.py
+  - flash_attn/cute/sm100_hd256_2cta_fmha_backward_dqkernel.py
+  - flash_attn/cute/sm100_hd256_2cta_fmha_forward.py
+  - flash_attn/cute/tile_scheduler.py
+  - flash_attn/cute/utils.py
+  - tests/cute/test_flash_attn.py
+  - tests/cute/test_flash_attn_combine.py
+- number: 2629
+  title: '[Cute,Sm100,Fwd] use correction warps if not tma store; remove outdated packgqa guard'
+  date: '2026-06-05'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - flash_attn/cute/flash_fwd_sm100.py
+  - flash_attn/cute/interface.py
+- number: 2901
+  title: '[ROCm/CK] Fix num_splits heuristic, which could never return more than 1'
+  date: '2026-09-24'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 4 authoritative changed file(s)'
+  files_changed:
+  - csrc/flash_attn_ck/flash_common.cpp
+  - csrc/flash_attn_ck/flash_common.hpp
+  - csrc/flash_attn_ck/mha_fwd_kvcache.cpp
+  - csrc/flash_attn_ck/mha_varlen_fwd.cpp
+- number: 2536
+  title: Enable split-kv for blocksparse tensors
+  date: '2026-05-19'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: flash_attn/cute/block_sparse_utils.py'
+  files_changed:
+  - flash_attn/cute/block_sparse_utils.py
+  - flash_attn/cute/flash_fwd_sm100.py
+  - flash_attn/cute/interface.py
+  - tests/cute/test_mask_mod.py
+  - tests/cute/test_mask_mod_varlen.py
+- number: 2711
+  title: Add paged-KV block_table bounds check in mha_fwd_kvcache
+  date: '2026-07-16'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - csrc/flash_attn/flash_api.cpp
+  - tests/test_flash_attn.py
+- number: 2448
+  title: expose num_splits for FA2 and add option for kernel blocksize alignment
+  date: '2026-04-16'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - csrc/flash_attn/flash_api.cpp
+  - csrc/flash_attn/src/flash_fwd_launch_template.h
+- number: 2006
+  title: '[Cute,Fwd,Sm100] fix major regression with split kv'
+  date: '2025-11-12'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - flash_attn/cute/flash_fwd_sm100.py
+- number: 970
+  title: Support unpadded LSE layout
+  date: '2024-06-27'
+  decision: include
+  reason: 'retain: added device-code construct in: csrc/flash_attn/src/flash_fwd_kernel.h'
+  files_changed:
+  - csrc/flash_attn/flash_api.cpp
+  - csrc/flash_attn/src/flash.h
+  - csrc/flash_attn/src/flash_bwd_kernel.h
+  - csrc/flash_attn/src/flash_bwd_preprocess_kernel.h
+  - csrc/flash_attn/src/flash_fwd_kernel.h
+  - flash_attn/flash_attn_interface.py
+  - tests/test_flash_attn.py
+- number: 754
+  title: Add split-kv and M<->H swap to varlen forward decoding attention
+  date: '2024-01-21'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - csrc/flash_attn/flash_api.cpp
+- number: 2903
+  title: '[CuTe, SM90] Fit forward tile to the block-sparse block size'
+  date: '2026-09-24'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - flash_attn/cute/block_sparsity.py
+  - flash_attn/cute/interface.py
+  - tests/cute/test_mask_mod.py
+- number: 2702
+  title: 'hopper/setup.py: harden tarfile extraction against path traversal and symlink escape'
+  date: '2026-07-12'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - hopper/setup.py
+- number: 2692
+  title: add linearize scheduling to combine kernel for full cudagraph
+  date: '2026-07-27'
+  decision: include
+  reason: 'retain: added device-code construct in: hopper/flash_fwd_combine_kernel.h'
+  files_changed:
+  - hopper/flash_fwd_combine_kernel.h
+  - hopper/flash_fwd_combine_launch_template.h
+  - hopper/test_flash_attn.py
+  - hopper/utils.h
+- number: 2547
+  title: '[CuTe, Flex] Allow score mod use in varlen backward'
+  date: '2026-07-23'
+  decision: defer
+  reason: authoritative PR evidence unavailable; needs-triage
+  files_changed: []
+- number: 2458
+  title: '[FA3] uv installation support'
+  date: '2026-07-03'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 5 authoritative changed file(s)'
+  files_changed:
+  - .gitignore
+  - README.md
+  - hopper/flash_attn_3/__init__.py
+  - hopper/flash_attn_3/flash_attn_config.py
+  - hopper/flash_attn_3/flash_attn_interface.py
+- number: 2532
+  title: ' Build Fix: Update abi3 tag to cp310 and minimum python version to 3.10'
+  date: '2026-05-22'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - hopper/setup.py
+- number: 2315
+  title: '[Cute, SM90, bwd] Wire seqused_q/k through backward pass'
+  date: '2026-03-12'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 0 authoritative changed file(s)'
+  files_changed: []
+- number: 1949
+  title: Fix hopper cuda 13 build
+  date: '2025-10-21'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - hopper/setup.py
+- number: 1952
+  title: '[NVIDIA] cutlass v4.3.0'
+  date: '2025-10-21'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - csrc/cutlass
+  - flash_attn/cute/pyproject.toml
+- number: 2642
+  title: '[Fwd,Sm100] Tune FP8 causal hd128 ex2_emu_freq (8 vs inherited 16)'
+  date: '2026-06-16'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - flash_attn/cute/flash_fwd_sm100.py
+- number: 2640
+  title: Fix SM100 FP8 fwd with cutlass-dsl >=4.5.2 (MmaF8F6F4Op)
+  date: '2026-06-10'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - flash_attn/cute/blackwell_helpers.py
+- number: 2590
+  title: 'Include sm_110 in Blackwell-family arch gating (follow-up to #2572)'
+  date: '2026-05-26'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - flash_attn/cute/flash_bwd_postprocess.py
+  - flash_attn/cute/flash_bwd_sm100.py
+  - flash_attn/cute/interface.py
+- number: 2519
+  title: '[ROCm Windows] fix build failed'
+  date: '2026-05-06'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - setup.py
+- number: 2888
+  title: '[CuTe, SM90] Fix swapped backward MMA layout and use 2-stage hdim256 config'
+  date: '2026-09-14'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - flash_attn/cute/flash_bwd_postprocess.py
+  - flash_attn/cute/interface.py
+  - tests/cute/test_flash_attn.py
+- number: 2698
+  title: '[CuTe,Bwd,Sm100] Support head_dim not a multiple of 32 in backward'
+  date: '2026-09-08'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: flash_attn/cute/flash_bwd_sm100.py'
+  files_changed:
+  - flash_attn/cute/flash_bwd_preprocess.py
+  - flash_attn/cute/flash_bwd_sm100.py
+  - tests/cute/test_flash_attn.py
+- number: 2775
+  title: '[CuTe, Fwd] Fix PackGQA predication for padded head dimensions'
+  date: '2026-09-15'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: flash_attn/cute/pack_gqa.py'
+  files_changed:
+  - flash_attn/cute/pack_gqa.py
+  - tests/cute/test_flash_attn.py
+- number: 2756
+  title: '[CuTe,Bwd,Sm90] Fix: wait for bwd_preprocess on the block-sparse path, matching the dense path'
+  date: '2026-08-05'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - flash_attn/cute/block_sparse_utils.py
+  - flash_attn/cute/flash_bwd_sm90.py
+- number: 2810
+  title: '[CuTe, SM100] hd256 2-CTA: support seqused_q/seqused_k and the decoder paged-KV shape'
+  date: '2026-09-11'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - flash_attn/cute/interface.py
+  - flash_attn/cute/sm100_hd256_2cta_fmha_forward.py
+  - tests/cute/test_flash_attn.py
+- number: 2656
+  title: '[NVIDIA][CuTe,Fwd,sm120] Implement Pack-GQA on SM120 (+ graceful SplitKV fallback)'
+  date: '2026-07-07'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: flash_attn/cute/flash_fwd.py'
+  files_changed:
+  - flash_attn/cute/flash_fwd.py
+  - flash_attn/cute/interface.py
+  - tests/cute/test_flash_attn.py
+  - tests/cute/test_flash_attn_fast.py

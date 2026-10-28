@@ -1,5 +1,5 @@
 repo: triton-lang/triton
-searched_at: '2026-05-20'
+searched_at: '2026-10-27'
 keywords_used:
 - blackwell
 - sm100
@@ -10,10 +10,10 @@ keywords_used:
 - dot_scaled
 - wgmma
 - tl.dot
-total_candidates: 60
-included: 2
-excluded: 1
-deferred: 57
+total_candidates: 265
+included: 61
+excluded: 142
+deferred: 62
 prs:
 - number: 10324
   pr: 10324
@@ -2033,3 +2033,2619 @@ prs:
   deletions: 2
   changed_file_count: 3
   artifact_dir: evidence/pull-bundles/triton/gh-10184
+- number: 12213
+  title: '[triton_kernels] Support four-column Blackwell activation scale alignment'
+  date: '2026-10-09'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: python/triton_kernels/triton_kernels/tensor_details/layout_details/blackwell_scale.py'
+  files_changed:
+  - python/triton_kernels/tests/test_tensor.py
+  - python/triton_kernels/triton_kernels/tensor_details/layout_details/blackwell_scale.py
+- number: 12446
+  title: '[triton_kernels] Reduce single-slice metadata and encoded scale conversion overhead'
+  date: '2026-10-22'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: python/triton_kernels/triton_kernels/tensor_details/layout_details/blackwell_scale.py, python/triton_kernels/triton_kernels/tensor_details/ragged_tensor.py'
+  files_changed:
+  - python/triton_kernels/tests/test_tensor.py
+  - python/triton_kernels/tests/test_tensor_details/test_layout_blackwell.py
+  - python/triton_kernels/triton_kernels/tensor_details/layout_details/blackwell_scale.py
+  - python/triton_kernels/triton_kernels/tensor_details/ragged_tensor.py
+- number: 12135
+  title: '[KERNELS] Support NVFP4 activations with MXFP4 weights by upcasting via MXFP8'
+  date: '2026-10-06'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: python/triton_kernels/triton_kernels/matmul.py, python/triton_kernels/triton_kernels/matmul_details/_matmul.py, python/triton_kernels/triton_kernels/matmul_details/_p_matmul.py,
+    python/triton_kernels/triton_kernels/matmul_details/opt_flags_details/opt_flags_nvidia.py, python/triton_kernels/triton_kernels/numerics_details/mxfp_details/_upcast_from_mxfp.py'
+  files_changed:
+  - python/triton_kernels/tests/test_matmul.py
+  - python/triton_kernels/tests/test_mxfp.py
+  - python/triton_kernels/triton_kernels/matmul.py
+  - python/triton_kernels/triton_kernels/matmul_details/_matmul.py
+  - python/triton_kernels/triton_kernels/matmul_details/_p_matmul.py
+  - python/triton_kernels/triton_kernels/matmul_details/opt_flags_details/opt_flags_nvidia.py
+  - python/triton_kernels/triton_kernels/numerics_details/mxfp_details/_upcast_from_mxfp.py
+- number: 12400
+  title: '[Gluon] Fix accumulator release and reject partial attention tiles'
+  date: '2026-10-20'
+  decision: defer
+  reason: authoritative PR evidence unavailable; needs-triage
+  files_changed: []
+- number: 11669
+  title: Update Blackwell ptxas to 13.4.59
+  date: '2026-09-10'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - cmake/nvidia-toolchain-version.json
+- number: 12188
+  title: '[NVIDIA] Use CUDA 13.4 ptxas for all targets'
+  date: '2026-10-09'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 7 authoritative changed file(s)'
+  files_changed:
+  - .gitignore
+  - CMakeLists.txt
+  - cmake/nvidia-toolchain-version.json
+  - python/build_helpers.py
+  - python/triton/knobs.py
+  - setup.py
+  - third_party/nvidia/backend/compiler.py
+- number: 11827
+  title: Revert "[FPSan] Disable Blackwell loop fusion and warp specialization"
+  date: '2026-09-17'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - third_party/nvidia/backend/compiler.py
+- number: 12128
+  title: '[NVIDIA] Guard oversized shared-memory setup in loadBinary'
+  date: '2026-10-08'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - third_party/nvidia/backend/driver.c
+- number: 11722
+  title: '[FPSan] Disable Blackwell loop fusion and warp specialization'
+  date: '2026-09-12'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - third_party/nvidia/backend/compiler.py
+- number: 12086
+  title: '[BC-Breaking][NVIDIA] Optimize E5M2 to BF16 conversions'
+  date: '2026-10-05'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 5 authoritative changed file(s)'
+  files_changed:
+  - python/test/unit/language/test_conversions.py
+  - test/Conversion/tritongpu_to_llvm.mlir
+  - test/Conversion/tritongpu_to_llvm_blackwell_256bit.mlir
+  - test/Conversion/tritongpu_to_llvm_hopper.mlir
+  - third_party/nvidia/lib/TritonNVIDIAGPUToLLVM/ElementwiseOpToLLVM.cpp
+- number: 12482
+  title: '[NVWS] Find async MMA consumers of an aref inside scf.if'
+  date: '2026-10-24'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - test/NVWS/lower_aref.mlir
+  - third_party/nvidia/lib/Dialect/NVWS/Transforms/LowerAref.cpp
+- number: 11565
+  title: '[KERNELS] Accelerate Blackwell and Hopper layout conversions'
+  date: '2026-09-04'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: python/triton_kernels/triton_kernels/tensor_details/layout_details/blackwell_scale.py, python/triton_kernels/triton_kernels/tensor_details/layout_details/blackwell_value.py,
+    python/triton_kernels/triton_kernels/tensor_details/layout_details/blackwell_value_shuffled.py, python/triton_kernels/triton_kernels/tensor_details/layout_details/hopper_scale.py, python/triton_kernels/triton_kernels/tensor_details/layout_details/scale.py,
+    python/triton_kernels/triton_kernels/testing.py'
+  files_changed:
+  - python/triton/_compile_warmup.py
+  - python/triton/_compile_warmup_state.py
+  - python/triton/_internal_testing.py
+  - python/triton_kernels/tests/test_tensor.py
+  - python/triton_kernels/tests/test_tensor_details/test_layout_blackwell.py
+  - python/triton_kernels/tests/test_tensor_details/test_layout_hopper.py
+  - python/triton_kernels/triton_kernels/tensor_details/layout_details/blackwell_scale.py
+  - python/triton_kernels/triton_kernels/tensor_details/layout_details/blackwell_value.py
+  - python/triton_kernels/triton_kernels/tensor_details/layout_details/blackwell_value_shuffled.py
+  - python/triton_kernels/triton_kernels/tensor_details/layout_details/hopper_scale.py
+  - python/triton_kernels/triton_kernels/tensor_details/layout_details/scale.py
+  - python/triton_kernels/triton_kernels/testing.py
+- number: 11563
+  title: '[KERNELS] Convert between Blackwell FP4 layouts directly'
+  date: '2026-09-03'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: python/triton_kernels/triton_kernels/tensor_details/layout_details/blackwell_value_shuffled.py'
+  files_changed:
+  - python/triton_kernels/tests/test_tensor.py
+  - python/triton_kernels/triton_kernels/tensor_details/layout_details/blackwell_value_shuffled.py
+- number: 12035
+  title: '[BACKEND] Reland CUDA 13 ptxas for Hopper'
+  date: '2026-09-30'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - third_party/nvidia/backend/compiler.py
+- number: 11576
+  title: '[KERNELS] Consolidate Blackwell FP4 layout metadata and tests'
+  date: '2026-09-04'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: python/triton_kernels/triton_kernels/tensor_details/layout_details/blackwell_value.py, python/triton_kernels/triton_kernels/tensor_details/layout_details/blackwell_value_shuffled.py'
+  files_changed:
+  - python/triton_kernels/tests/test_tensor.py
+  - python/triton_kernels/tests/test_tensor_details/test_layout_blackwell.py
+  - python/triton_kernels/triton_kernels/tensor_details/layout_details/blackwell_value.py
+  - python/triton_kernels/triton_kernels/tensor_details/layout_details/blackwell_value_shuffled.py
+- number: 12341
+  title: '[GLUON] Reject async copies between mismatched element types'
+  date: '2026-10-22'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - include/triton/Dialect/TritonGPU/IR/TritonGPUOps.td
+  - test/TritonGPU/invalid.mlir
+- number: 11619
+  title: '[KERNELS] Add broadcastable MX scale pointer helpers'
+  date: '2026-09-08'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: python/triton_kernels/triton_kernels/tensor_details/layout_details/blackwell_scale.py, python/triton_kernels/triton_kernels/tensor_details/layout_details/hopper_scale.py'
+  files_changed:
+  - python/triton_kernels/tests/test_tensor_details/test_layout_blackwell.py
+  - python/triton_kernels/tests/test_tensor_details/test_layout_hopper.py
+  - python/triton_kernels/triton_kernels/tensor_details/layout_details/blackwell_scale.py
+  - python/triton_kernels/triton_kernels/tensor_details/layout_details/hopper_scale.py
+- number: 12476
+  title: '[TritonGPU] Fold only uniform select conditions into TMEM stores'
+  date: '2026-10-23'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - lib/Dialect/TritonGPU/Transforms/HoistTMEMAlloc.cpp
+  - test/TritonGPU/hoist-tmem-alloc.mlir
+- number: 11372
+  title: '[ConSan] Guard Blackwell attention compile and runtime'
+  date: '2026-09-08'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - .github/workflows/integration-tests-nvidia.yml
+  - python/test/microbenchmark/consan_performance.py
+  - python/test/microbenchmark/consan_performance_baselines.json
+- number: 11892
+  title: Tune Gluon fused MoE for Rubin
+  date: '2026-09-21'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - python/examples/gluon/05-moe-bmm1-fused-gather.py
+- number: 11618
+  title: '[KERNELS] Keep scale layout shape calculations in integer arithmetic'
+  date: '2026-09-08'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: python/triton_kernels/triton_kernels/tensor_details/layout_details/blackwell_scale.py, python/triton_kernels/triton_kernels/tensor_details/layout_details/cdna4_scale.py,
+    python/triton_kernels/triton_kernels/tensor_details/layout_details/hopper_scale.py'
+  files_changed:
+  - python/triton_kernels/tests/test_tensor.py
+  - python/triton_kernels/triton_kernels/tensor_details/layout_details/blackwell_scale.py
+  - python/triton_kernels/triton_kernels/tensor_details/layout_details/cdna4_scale.py
+  - python/triton_kernels/triton_kernels/tensor_details/layout_details/hopper_scale.py
+- number: 12041
+  title: '[triton_kernels] Support tiled storage for persistent ragged-K matmul'
+  date: '2026-10-01'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: python/triton_kernels/triton_kernels/matmul.py, python/triton_kernels/triton_kernels/matmul_details/_p_matmul.py, python/triton_kernels/triton_kernels/tensor.py,
+    python/triton_kernels/triton_kernels/tensor_details/layout.py, python/triton_kernels/triton_kernels/tensor_details/layout_details/tiled.py'
+  files_changed:
+  - python/triton_kernels/tests/test_matmul.py
+  - python/triton_kernels/tests/test_tensor.py
+  - python/triton_kernels/triton_kernels/matmul.py
+  - python/triton_kernels/triton_kernels/matmul_details/_p_matmul.py
+  - python/triton_kernels/triton_kernels/tensor.py
+  - python/triton_kernels/triton_kernels/tensor_details/layout.py
+  - python/triton_kernels/triton_kernels/tensor_details/layout_details/tiled.py
+- number: 11848
+  title: '[NVIDIA] Restore fractional cache policies for cp.async'
+  date: '2026-09-18'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - python/test/gluon/test_core.py
+  - test/Conversion/tritongpu_to_llvm.mlir
+  - third_party/nvidia/lib/TritonNVIDIAGPUToLLVM/LoadStoreOpToLLVM.cpp
+- number: 11854
+  title: '[BACKEND] Use CUDA 13 ptxas for Hopper'
+  date: '2026-09-18'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - third_party/nvidia/backend/compiler.py
+- number: 11766
+  title: '[NVIDIA] Cap vector atomics at 128 bits'
+  date: '2026-09-14'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - test/Conversion/tritongpu_to_llvm_blackwell_256bit.mlir
+  - third_party/nvidia/lib/TritonNVIDIAGPUToLLVM/LoadStoreOpToLLVM.cpp
+- number: 11974
+  title: '[FPSan] Avoid redundant per-thread work in vectorized scratch layouts'
+  date: '2026-09-26'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - lib/Dialect/TritonInstrument/Transforms/FpSanitizer.cpp
+  - python/test/gluon/test_fpsan.py
+  - test/TritonGPU/nvidia-fpsan.mlir
+- number: 12462
+  title: '[NVIDIA] Preserve separate FP32 adds around Ada FP8 dots'
+  date: '2026-10-22'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - third_party/nvidia/backend/compiler.py
+- number: 11495
+  title: '[KERNELS] Fuse forward FP4 layout conversion'
+  date: '2026-08-28'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: python/triton_kernels/triton_kernels/tensor_details/layout_details/base.py, python/triton_kernels/triton_kernels/tensor_details/layout_details/blackwell_value.py,
+    python/triton_kernels/triton_kernels/tensor_details/layout_details/blackwell_value_shuffled.py, python/triton_kernels/triton_kernels/tensor_details/layout_details/hopper_value.py, python/triton_kernels/triton_kernels/tensor_details/layout_details/strided.py'
+  files_changed:
+  - python/triton_kernels/tests/test_tensor.py
+  - python/triton_kernels/tests/test_tensor_details/test_layout_blackwell.py
+  - python/triton_kernels/tests/test_tensor_details/test_layout_hopper.py
+  - python/triton_kernels/triton_kernels/tensor_details/layout_details/base.py
+  - python/triton_kernels/triton_kernels/tensor_details/layout_details/blackwell_value.py
+  - python/triton_kernels/triton_kernels/tensor_details/layout_details/blackwell_value_shuffled.py
+  - python/triton_kernels/triton_kernels/tensor_details/layout_details/hopper_value.py
+  - python/triton_kernels/triton_kernels/tensor_details/layout_details/strided.py
+- number: 8941
+  title: Upgrade ptxas to 13.1 for Blackwell
+  date: '2025-12-11'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 6 authoritative changed file(s)'
+  files_changed:
+  - cmake/nvidia-toolchain-version.json
+  - lib/Dialect/TritonGPU/Transforms/AccelerateMatmul.cpp
+  - python/test/unit/tools/test_aot.py
+  - test/TritonGPU/accelerate-matmul.mlir
+  - test/TritonGPU/accelerate-matmul.mlir.nyi
+  - third_party/nvidia/backend/compiler.py
+- number: 11387
+  title: '[KERNELS] Convert Hopper and Blackwell FP4 directly to strided layouts'
+  date: '2026-08-24'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: python/triton_kernels/triton_kernels/tensor.py, python/triton_kernels/triton_kernels/tensor_details/layout_details/base.py, python/triton_kernels/triton_kernels/tensor_details/layout_details/blackwell_value.py,
+    python/triton_kernels/triton_kernels/tensor_details/layout_details/blackwell_value_shuffled.py, python/triton_kernels/triton_kernels/tensor_details/layout_details/hopper_value.py, python/triton_kernels/triton_kernels/tensor_details/layout_details/strided.py'
+  files_changed:
+  - python/triton_kernels/tests/test_tensor.py
+  - python/triton_kernels/tests/test_tensor_details/test_layout_blackwell.py
+  - python/triton_kernels/tests/test_tensor_details/test_layout_hopper.py
+  - python/triton_kernels/triton_kernels/tensor.py
+  - python/triton_kernels/triton_kernels/tensor_details/layout_details/base.py
+  - python/triton_kernels/triton_kernels/tensor_details/layout_details/blackwell_value.py
+  - python/triton_kernels/triton_kernels/tensor_details/layout_details/blackwell_value_shuffled.py
+  - python/triton_kernels/triton_kernels/tensor_details/layout_details/hopper_value.py
+  - python/triton_kernels/triton_kernels/tensor_details/layout_details/strided.py
+- number: 12472
+  title: '[WS] Partition tt.scan like tt.reduce in automatic warp specialization'
+  date: '2026-10-24'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 5 authoritative changed file(s)'
+  files_changed:
+  - lib/Dialect/TritonGPU/Transforms/WarpSpecialization/Partition.cpp
+  - lib/Dialect/TritonGPU/Transforms/WarpSpecialization/PartitionLoops.cpp
+  - lib/Dialect/TritonGPU/Transforms/WarpSpecialization/PartitionScheduling.cpp
+  - test/TritonGPU/partition-loops.mlir
+  - test/TritonGPU/partition-scheduling.mlir
+- number: 12418
+  title: '[NVIDIA] Preserve 16-bit copysign NaN payloads under FPSan'
+  date: '2026-10-21'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - python/src/llvm.cc
+  - python/test/unit/language/test_compile_only.py
+- number: 12304
+  title: '[NVIDIA] Account for BF16 mixed-precision adds in the vectorizer'
+  date: '2026-10-15'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - lib/Target/LLVMIR/LLVMIRNVPTXVectorizer.cpp
+  - test/LLVMIR/nvptx-vectorizer.ll
+- number: 12237
+  title: '[NVIDIA] Lower rounded float conversions with llvm.fptrunc.round'
+  date: '2026-10-21'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 6 authoritative changed file(s)'
+  files_changed:
+  - python/test/unit/language/test_conversions.py
+  - python/test/unit/runtime/test_bindings.py
+  - test/Conversion/tritongpu_to_llvm.mlir
+  - test/Conversion/tritongpu_to_llvm_hopper.mlir
+  - test/Conversion/tritongpu_to_ptx.mlir
+  - third_party/nvidia/lib/TritonNVIDIAGPUToLLVM/ElementwiseOpToLLVM.cpp
+- number: 12498
+  title: '[NVIDIA] Fold warpid to 0 for single-warp partitions in warp specialize to llvm conversion'
+  date: '2026-10-27'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - test/Conversion/warp_specialize_to_llvm.mlir
+  - third_party/nvidia/lib/TritonNVIDIAGPUToLLVM/ConvertWarpSpecializeToLLVM.cpp
+- number: 11699
+  title: '[BAKCEND] Use native FP16/BF16 conversions on SM90+'
+  date: '2026-09-13'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 9 authoritative changed file(s)'
+  files_changed:
+  - python/test/unit/language/test_frontend.py
+  - python/test/unit/runtime/test_interpreter.py
+  - python/triton/language/semantic.py
+  - python/triton/runtime/interpreter.py
+  - test/Conversion/amd/fp_to_fp.mlir
+  - test/Conversion/tritongpu_to_llvm.mlir
+  - test/Conversion/tritongpu_to_llvm_hopper.mlir
+  - third_party/amd/lib/TritonAMDGPUToLLVM/ConvertFpCastOpToLLVM.cpp
+  - third_party/nvidia/lib/TritonNVIDIAGPUToLLVM/ElementwiseOpToLLVM.cpp
+- number: 10931
+  title: '[frontend] Validate 16-byte stride alignment in make_tensor_descriptor'
+  date: '2026-09-29'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: python/triton/language/semantic.py'
+  files_changed:
+  - python/test/gluon/test_core.py
+  - python/test/unit/language/test_tensor_descriptor.py
+  - python/triton/experimental/gluon/language/nvidia/hopper/tma.py
+  - python/triton/language/semantic.py
+- number: 12000
+  title: '[Gluon][NVIDIA] Support L2 cache policies on TMA transfers'
+  date: '2026-09-30'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: python/triton/experimental/gluon/language/nvidia/hopper/tma.py'
+  files_changed:
+  - include/triton/Dialect/TritonNvidiaGPU/IR/TritonNvidiaGPUOps.td
+  - lib/Dialect/TritonGPU/Transforms/Pipeliner/LowerLoops.cpp
+  - lib/Dialect/TritonNvidiaGPU/IR/Ops.cpp
+  - lib/Dialect/TritonNvidiaGPU/Transforms/TMALowering.cpp
+  - python/src/gluon_ir.cc
+  - python/test/gluon/test_core.py
+  - python/test/gluon/test_frontend.py
+  - python/triton/experimental/gluon/language/nvidia/blackwell/tma.py
+  - python/triton/experimental/gluon/language/nvidia/hopper/tma.py
+  - test/Conversion/relayout_tritongpu.mlir
+  - test/Conversion/tma_multicast_to_llvm.mlir
+  - test/Conversion/tma_to_llvm.mlir
+  - test/NVWS/lower_aref.mlir
+  - test/TritonGPU/pipeline-lower-loop.mlir
+  - test/TritonNvidiaGPU/invalid.mlir
+  - test/TritonNvidiaGPU/tma_lowering.mlir
+  - third_party/nvidia/hopper/lib/Transforms/WarpSpecialization/WSLowerMem.cpp
+  - third_party/nvidia/lib/Dialect/NVWS/Transforms/LowerAref.cpp
+  - third_party/nvidia/lib/TritonNVIDIAGPUToLLVM/LoadStoreOpToLLVM.cpp
+- number: 11259
+  title: '[TEST] Correct SM12x core PTX expectations'
+  date: '2026-08-12'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - python/test/unit/language/test_core.py
+- number: 11421
+  title: '[LLVM] Update to llvm/llvm-project@ce3529423abd'
+  date: '2026-08-24'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 11 authoritative changed file(s)'
+  files_changed:
+  - cmake/llvm-info.json
+  - python/src/llvm.cc
+  - python/test/unit/language/test_compile_only.py
+  - test/Conversion/tritongpu_to_llvm.mlir
+  - test/Conversion/tritongpu_to_llvm_blackwell.mlir
+  - test/Conversion/tritongpu_to_llvm_hopper.mlir
+  - test/Conversion/tritonnvidiagpu_to_llvm.mlir
+  - test/LLVMIR/convert-to-llvmir-with-dbg-info.mlir
+  - third_party/amd/backend/compiler.py
+  - third_party/nvidia/backend/compiler.py
+  - third_party/nvidia/triton_nvidia.cc
+- number: 11176
+  title: Add CLC mode to triton_kernels matmul
+  date: '2026-08-06'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: python/triton_kernels/triton_kernels/matmul.py, python/triton_kernels/triton_kernels/matmul_details/_p_matmul.py, python/triton_kernels/triton_kernels/matmul_details/opt_flags.py'
+  files_changed:
+  - python/triton_kernels/tests/test_matmul_details/test_opt_flags_nvidia.py
+  - python/triton_kernels/triton_kernels/matmul.py
+  - python/triton_kernels/triton_kernels/matmul_details/_p_matmul.py
+  - python/triton_kernels/triton_kernels/matmul_details/opt_flags.py
+- number: 11003
+  title: '[TritonGPU] Preserve safe hoisting without remat splitting'
+  date: '2026-07-22'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - include/triton/Dialect/TritonGPU/Transforms/Passes.td
+  - lib/Dialect/TritonGPU/Transforms/RemoveLayoutConversions.cpp
+  - test/TritonGPU/remove-layout-conversions-disable-remat.mlir
+- number: 9546
+  title: '[GLUON][EXAMPLE] Two CTA matmul on blackwell'
+  date: '2026-02-24'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: python/examples/gluon/03-matmul-multicta.py'
+  files_changed:
+  - lib/Dialect/TritonNvidiaGPU/IR/Ops.cpp
+  - python/examples/gluon/03-matmul-multicta.py
+  - python/test/gluon/test_core.py
+  - python/triton/experimental/gluon/language/nvidia/blackwell/__init__.py
+  - python/triton/experimental/gluon/language/nvidia/blackwell/clc.py
+  - python/tutorials/gluon/12-cluster-launch-control.py
+  - third_party/nvidia/lib/NVGPUToLLVM/NVGPUToLLVMPass.cpp
+- number: 9361
+  title: '[Gluon] Add Cluster Launch Control (CLC) support for Blackwell GPUs'
+  date: '2026-02-06'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: python/tutorials/gluon/12-cluster-launch-control.py'
+  files_changed:
+  - include/triton/Dialect/TritonNvidiaGPU/IR/TritonNvidiaGPUOps.td
+  - lib/Dialect/TritonNvidiaGPU/IR/Ops.cpp
+  - python/src/gluon_ir.cc
+  - python/src/ir.cc
+  - python/test/gluon/test_core.py
+  - python/triton/experimental/gluon/language/nvidia/blackwell/__init__.py
+  - python/triton/experimental/gluon/language/nvidia/blackwell/clc.py
+  - python/tutorials/gluon/07-persistence.py
+  - python/tutorials/gluon/12-cluster-launch-control.py
+  - test/Conversion/clc_to_llvm.mlir
+  - third_party/nvidia/lib/TritonNVIDIAGPUToLLVM/BarrierOpToLLVM.cpp
+- number: 9734
+  title: '[NVIDIA] Fix PTX codegen segfaults on consumer Blackwell (sm_120)'
+  date: '2026-03-16'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - python/test/unit/language/test_compile_only.py
+  - third_party/nvidia/backend/compiler.py
+- number: 9044
+  title: '[Nvidia][cuBLAS] Block-scaled matmul baselining (mxfp8, nvfp4) '
+  date: '2025-12-19'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 5 authoritative changed file(s)'
+  files_changed:
+  - python/test/unit/runtime/test_blaslt.py
+  - python/tutorials/10-block-scaled-matmul.py
+  - third_party/nvidia/include/cublas_instance.h
+  - third_party/nvidia/include/cublas_types.h
+  - third_party/nvidia/triton_nvidia.cc
+- number: 9000
+  title: '[FRONTEND] Support scaled bmm'
+  date: '2025-12-18'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 4 authoritative changed file(s)'
+  files_changed:
+  - lib/Dialect/Triton/IR/Ops.cpp
+  - python/test/unit/language/test_compile_errors.py
+  - python/test/unit/language/test_matmul.py
+  - python/triton/language/semantic.py
+- number: 5726
+  title: '[Pipeliner] Enable automatic loop fusion'
+  date: '2025-02-07'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: python/tutorials/09-persistent-matmul.py'
+  files_changed:
+  - lib/Analysis/AxisInfo.cpp
+  - lib/Conversion/TritonToTritonGPU/TritonGPUConversion.cpp
+  - lib/Conversion/TritonToTritonGPU/TritonToTritonGPUPass.cpp
+  - lib/Dialect/TritonGPU/Transforms/FuseNestedLoops.cpp
+  - lib/Dialect/TritonGPU/Transforms/Pipeliner/PipelineExpander.cpp
+  - python/src/ir.cc
+  - python/src/passes.cc
+  - python/test/unit/language/test_core.py
+  - python/triton/compiler/code_generator.py
+  - python/triton/language/core.py
+  - python/tutorials/09-persistent-matmul.py
+  - test/Conversion/triton_to_tritongpu.mlir
+  - test/TritonGPU/coalesce.mlir
+  - test/TritonGPU/fuse-nested-loops.mlir
+  - test/TritonGPU/pipeline-loop-nest.mlir
+  - third_party/nvidia/backend/compiler.py
+- number: 12315
+  title: Add support for native types for fp4 and e8m0
+  date: '2026-10-15'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 65 authoritative changed file(s)'
+  files_changed:
+  - docs/python-api/triton-semantics.rst
+  - include/triton/Analysis/Utility.h
+  - include/triton/Conversion/MLIRTypes.h
+  - include/triton/Dialect/Triton/IR/TritonOps.td
+  - include/triton/Dialect/Triton/IR/TritonTypes.td
+  - include/triton/Dialect/Triton/IR/Utility.h
+  - include/triton/Dialect/TritonGPU/IR/TritonGPUAttrDefs.td
+  - include/triton/Dialect/TritonGPU/IR/TritonGPUOps.td
+  - include/triton/Dialect/TritonGPU/IR/TritonGPUTypes.td
+  - lib/Analysis/AxisInfo.cpp
+  - lib/Analysis/Utility.cpp
+  - lib/Conversion/TritonGPUToLLVM/ElementwiseOpToLLVM.cpp
+  - lib/Conversion/TritonGPUToLLVM/ReduceScanCommon.h
+  - lib/Conversion/TritonGPUToLLVM/TypeConverter.cpp
+  - lib/Dialect/Triton/IR/Ops.cpp
+  - lib/Dialect/Triton/IR/Types.cpp
+  - lib/Dialect/Triton/IR/Utility.cpp
+  - lib/Dialect/Triton/Transforms/RewriteTensorDescriptorToPointer.cpp
+  - lib/Dialect/TritonGPU/IR/Dialect.cpp
+  - lib/Dialect/TritonGPU/IR/Ops.cpp
+  - lib/Dialect/TritonGPU/IR/Types.cpp
+  - lib/Dialect/TritonGPU/Transforms/AccelerateMatmul.cpp
+  - lib/Dialect/TritonGPU/Transforms/Coalesce.cpp
+  - lib/Dialect/TritonGPU/Transforms/DecomposeScaledBlocked.cpp
+  - lib/Dialect/TritonGPU/Transforms/Pipeliner/LowerLoops.cpp
+  - lib/Dialect/TritonGPU/Transforms/Pipeliner/PipeliningUtility.cpp
+  - lib/Dialect/TritonGPU/Transforms/RemoveLayoutConversions.cpp
+  - lib/Dialect/TritonGPU/Transforms/Utility.cpp
+  - lib/Dialect/TritonGPU/Transforms/WarpSpecialization/OptimizePartitionWarps.cpp
+  - lib/Dialect/TritonNvidiaGPU/IR/Dialect.cpp
+  - lib/Dialect/TritonNvidiaGPU/IR/NvmmaSmemAttrs.cpp
+  - lib/Dialect/TritonNvidiaGPU/IR/Ops.cpp
+  - lib/Dialect/TritonNvidiaGPU/Transforms/PromoteLHSToTMem.cpp
+  - lib/Dialect/TritonNvidiaGPU/Transforms/TMALowering.cpp
+  - lib/Dialect/TritonNvidiaGPU/Transforms/TMAUtilities.cpp
+  - python/src/ir.cc
+  - python/test/unit/language/test_frontend.py
+  - python/test/unit/runtime/test_specialize.py
+  - python/triton/_utils.py
+  - python/triton/experimental/gluon/language/__init__.py
+  - python/triton/experimental/gluon/language/_core.py
+  - python/triton/experimental/gluon/language/amd/_ops.py
+  - python/triton/experimental/gluon/language/amd/cdna5/__init__.py
+  - python/triton/language/__init__.py
+  - python/triton/language/core.py
+  - python/triton/language/semantic.py
+  - test/Conversion/amd/tritongpu_wmma_dot_scaled_to_llvm.mlir
+  - test/Conversion/tritongpu_to_llvm.mlir
+  - test/Conversion/tritongpu_to_llvm_blackwell.mlir
+  - test/TritonGPU/amd/amd-optimize-buffer-ops-base-ptr-increment.mlir
+  - test/TritonGPU/amd/amd-optimize-descriptor-encoding.mlir
+  - third_party/amd/include/Dialect/TritonAMDGPU/IR/TritonAMDGPUOps.td
+  - third_party/amd/lib/Dialect/TritonAMDGPU/IR/Dialect.cpp
+  - third_party/amd/lib/TritonAMDGPUToLLVM/DotOpToLLVM/MFMA.cpp
+  - third_party/amd/lib/TritonAMDGPUToLLVM/DotOpToLLVM/WMMA.cpp
+  - third_party/amd/lib/TritonAMDGPUTransforms/AccelerateAMDMatmul.cpp
+  - third_party/amd/lib/TritonAMDGPUTransforms/BlockPingpong.cpp
+  - third_party/amd/lib/TritonAMDGPUTransforms/ConvertToBufferOps.cpp
+  - third_party/amd/lib/TritonAMDGPUTransforms/InThreadTranspose.cpp
+  - third_party/amd/lib/TritonAMDGPUTransforms/OptimizeBufferOpPtr.cpp
+  - third_party/amd/lib/TritonAMDGPUTransforms/OptimizeDescriptorEncoding.cpp
+  - third_party/amd/lib/TritonAMDGPUTransforms/Pipeliner/LDSEncoding.cpp
+  - third_party/amd/lib/TritonAMDGPUTransforms/Utility.cpp
+  - third_party/nvidia/lib/TritonNVIDIAGPUToLLVM/DotOpToLLVM/MMAv2.cpp
+  - third_party/nvidia/lib/TritonNVIDIAGPUToLLVM/TensorMemoryToLLVM.cpp
+- number: 12140
+  title: '[AMD][FpSan] Support compact scaled FP4 upcasts'
+  date: '2026-10-07'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - python/test/gluon/test_fpsan.py
+  - test/TritonGPU/amd/amd-fpsan.mlir
+  - third_party/amd/lib/TritonAMDGPUTransforms/FpSanitizer.cpp
+- number: 11914
+  title: Fix FP4 TMA Alignment
+  date: '2026-09-22'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: python/triton_kernels/triton_kernels/matmul_details/_p_matmul.py, python/triton_kernels/triton_kernels/tensor.py'
+  files_changed:
+  - python/triton_kernels/triton_kernels/matmul_details/_p_matmul.py
+  - python/triton_kernels/triton_kernels/tensor.py
+- number: 12285
+  title: '[KERNELS] Absorb NVFP4 row scales during MXFP8 conversion'
+  date: '2026-10-14'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: python/triton_kernels/triton_kernels/matmul_details/_matmul.py, python/triton_kernels/triton_kernels/matmul_details/_p_matmul.py, python/triton_kernels/triton_kernels/matmul_details/opt_flags.py,
+    python/triton_kernels/triton_kernels/matmul_details/opt_flags_details/opt_flags_nvidia.py, python/triton_kernels/triton_kernels/numerics_details/mxfp_details/_upcast_from_mxfp.py'
+  files_changed:
+  - python/triton_kernels/tests/test_matmul.py
+  - python/triton_kernels/tests/test_mxfp.py
+  - python/triton_kernels/triton_kernels/matmul_details/_matmul.py
+  - python/triton_kernels/triton_kernels/matmul_details/_p_matmul.py
+  - python/triton_kernels/triton_kernels/matmul_details/opt_flags.py
+  - python/triton_kernels/triton_kernels/matmul_details/opt_flags_details/opt_flags_nvidia.py
+  - python/triton_kernels/triton_kernels/numerics_details/mxfp_details/_upcast_from_mxfp.py
+- number: 12236
+  title: '[LLVM] Update LLVM to 18f9e623'
+  date: '2026-10-21'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 49 authoritative changed file(s)'
+  files_changed:
+  - CMakeLists.txt
+  - cmake/llvm-info.json
+  - include/triton/Dialect/Triton/IR/TritonDialect.td
+  - include/triton/Dialect/Triton/IR/TritonOps.td
+  - include/triton/Dialect/TritonGPU/IR/TritonGPUDialect.td
+  - include/triton/Dialect/TritonInstrument/IR/TritonInstrumentDialect.td
+  - include/triton/Dialect/TritonNvidiaGPU/IR/TritonNvidiaGPUDialect.td
+  - include/triton/Tools/LLVMOptions.h
+  - lib/Conversion/TritonGPUToLLVM/ElementwiseOpToLLVM.cpp
+  - lib/Tools/LLVMOptions.cpp
+  - python/src/llvm.cc
+  - python/test/unit/cuda/test_libdevice_cuda.py
+  - python/test/unit/language/test_compile_only.py
+  - python/test/unit/language/test_core.py
+  - python/test/unit/test_knobs.py
+  - test/Conversion/amd/async-ops-alias-scopes.mlir
+  - test/Conversion/amd/builtin_func_to_llvm.mlir
+  - test/Conversion/amd/in_thread_transpose.mlir
+  - test/Conversion/amd/math-denorm-handling.mlir
+  - test/Conversion/amd/tritongpu_to_llvm.mlir
+  - test/Conversion/tritongpu_to_llvm.mlir
+  - test/Conversion/tritongpu_to_llvm_blackwell.mlir
+  - test/Conversion/tritongpu_to_llvm_blackwell_256bit.mlir
+  - test/Conversion/tritongpu_to_llvm_hopper.mlir
+  - test/Conversion/tritongpu_to_llvm_rubin.mlir
+  - test/Conversion/tritongpu_to_ptx.mlir
+  - test/Conversion/tritongpu_to_ptx_mmav3.mlir
+  - test/Conversion/tritonnvidiagpu_to_llvm.mlir
+  - test/Conversion/warp_specialize_to_llvm.mlir
+  - test/LLVMIR/convert-to-llvmir-with-dbg-info.mlir
+  - test/LLVMIR/insert-dbg-intrinsic.mlir
+  - test/LLVMIR/nvptx-vectorizer.ll
+  - third_party/amd/backend/compiler.py
+  - third_party/amd/include/Dialect/TritonAMDGPU/IR/TritonAMDGPUDialect.td
+  - third_party/amd/lib/TritonAMDGPUToLLVM/ConvertWarpSpecializeToLLVM.cpp
+  - third_party/amd/lib/TritonAMDGPUToLLVM/DotOpToLLVM/MFMA.cpp
+  - third_party/amd/lib/TritonAMDGPUToLLVM/TDMUtility.cpp
+  - third_party/amd/lib/TritonAMDGPUToLLVM/TargetInfo.cpp
+  - third_party/amd/python/test/test_amd_codegen.py
+  - third_party/amd/python/test/test_gluon_cdna5.py
+  - third_party/nvidia/backend/compiler.py
+  - third_party/nvidia/include/Dialect/NVGPU/IR/NVGPUDialect.td
+  - third_party/nvidia/include/Dialect/NVWS/IR/NVWSDialect.td
+  - third_party/nvidia/language/cuda/utils.py
+  - third_party/nvidia/lib/TritonNVIDIAGPUToLLVM/ElementwiseOpToLLVM.cpp
+  - third_party/nvidia/lib/TritonNVIDIAGPUToLLVM/PTXAsmFormat.cpp
+  - third_party/proton/Dialect/include/Dialect/ProtonGPU/IR/ProtonGPUDialect.td
+  - unittest/Tools/CMakeLists.txt
+  - unittest/Tools/LLVMOptionsTest.cpp
+- number: 11998
+  title: '[NVIDIA] Only try 128-byte swizzling for padded FP4 descriptors'
+  date: '2026-09-28'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - include/triton/Dialect/TritonGPU/IR/TritonGPUAttrDefs.td
+  - lib/Dialect/TritonGPU/IR/Dialect.cpp
+  - lib/Dialect/TritonNvidiaGPU/Transforms/OptimizeDescriptorEncoding.cpp
+- number: 11935
+  title: '[BAKCEND] Fix FP4 TMA descriptor selection for small block K'
+  date: '2026-09-24'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - lib/Dialect/TritonNvidiaGPU/Transforms/OptimizeDescriptorEncoding.cpp
+  - python/test/unit/language/test_tensor_descriptor.py
+  - test/TritonNvidiaGPU/optimize_descriptor_encoding.mlir
+- number: 11647
+  title: '[BACKEND] Add native upcast fp4 to bf16/f16'
+  date: '2026-09-09'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 4 authoritative changed file(s)'
+  files_changed:
+  - test/Conversion/tritongpu_to_llvm_blackwell_256bit.mlir
+  - third_party/nvidia/lib/TritonNVIDIAGPUToLLVM/Fp4ToFpOpToLLVM.cpp
+  - third_party/nvidia/lib/TritonNVIDIAGPUToLLVM/PatternTritonGPUOpToLLVM.h
+  - third_party/nvidia/lib/TritonNVIDIAGPUToLLVM/TritonGPUToLLVM.cpp
+- number: 11648
+  title: '[KERNELS] Correct shared-memory budgeting for FP4 reduction epilogues'
+  date: '2026-09-09'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: python/triton_kernels/triton_kernels/matmul.py, python/triton_kernels/triton_kernels/matmul_details/opt_flags.py, python/triton_kernels/triton_kernels/matmul_details/opt_flags_details/opt_flags_nvidia.py'
+  files_changed:
+  - python/triton_kernels/tests/test_matmul.py
+  - python/triton_kernels/tests/test_matmul_details/test_opt_flags_nvidia.py
+  - python/triton_kernels/triton_kernels/matmul.py
+  - python/triton_kernels/triton_kernels/matmul_details/opt_flags.py
+  - python/triton_kernels/triton_kernels/matmul_details/opt_flags_details/opt_flags_nvidia.py
+- number: 12073
+  title: '[AMD][Gluon] Adds a standalone Gluon example for clustered warp-pipeline GEMMs on AMD CDNA5.'
+  date: '2026-10-05'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - third_party/amd/python/examples/gluon/f16_gemm_warp_pipeline_cdna5.py
+  - third_party/amd/python/examples/gluon/gemm_warp_pipeline_cdna5.py
+- number: 11624
+  title: '[Triton] Fix E8M0 scale decoding'
+  date: '2026-09-11'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: python/triton_kernels/triton_kernels/numerics_details/mxfp.py, python/triton_kernels/triton_kernels/numerics_details/mxfp_details/_upcast_from_mxfp.py,
+    python/triton_kernels/triton_kernels/reduce.py, python/triton_kernels/triton_kernels/tensor_details/layout_details/hopper_value.py'
+  files_changed:
+  - include/triton/Dialect/TritonGPU/Transforms/DecomposeScaledBlocked.h
+  - include/triton/Dialect/TritonGPU/Transforms/Passes.td
+  - lib/Dialect/TritonGPU/Transforms/AccelerateMatmul.cpp
+  - lib/Dialect/TritonGPU/Transforms/DecomposeScaledBlocked.cpp
+  - lib/Dialect/TritonInstrument/Transforms/FpSanitizer.cpp
+  - python/test/gluon/test_core.py
+  - python/test/gluon/test_fpsan.py
+  - python/test/unit/language/test_core.py
+  - python/test/unit/language/test_matmul.py
+  - python/test/unit/language/test_mxfp.py
+  - python/test/unit/language/test_pipeliner.py
+  - python/test/unit/runtime/test_interpreter.py
+  - python/test/unit/tools/test_triton_to_gluon.py
+  - python/triton/runtime/interpreter.py
+  - python/triton/tools/mxfp.py
+  - python/triton/tools/triton_to_gluon_translator/common_helpers.py
+  - python/triton_kernels/tests/test_mxfp.py
+  - python/triton_kernels/tests/test_reduce.py
+  - python/triton_kernels/tests/test_tensor_details/test_layout_hopper.py
+  - python/triton_kernels/triton_kernels/numerics_details/mxfp.py
+  - python/triton_kernels/triton_kernels/numerics_details/mxfp_details/_upcast_from_mxfp.py
+  - python/triton_kernels/triton_kernels/reduce.py
+  - python/triton_kernels/triton_kernels/tensor_details/layout_details/hopper_value.py
+  - python/tutorials/10-block-scaled-matmul.py
+  - test/TritonGPU/accelerate-matmul.mlir
+  - test/TritonGPU/amd/accelerate-amd-matmul-mfma-decompose-scaled-dot.mlir
+  - test/TritonGPU/amd/amd-scaled-upcast-gfx950.mlir
+  - test/TritonGPU/fpsan.mlir
+  - third_party/amd/include/TritonAMDGPUTransforms/Passes.td
+  - third_party/amd/lib/TritonAMDGPUDialectToLLVM/ScaledUpcastToLLVM.cpp
+  - third_party/amd/lib/TritonAMDGPUToLLVM/Utility.cpp
+  - third_party/amd/lib/TritonAMDGPUToLLVM/Utility.h
+  - third_party/amd/lib/TritonAMDGPUTransforms/AccelerateAMDMatmul.cpp
+  - third_party/amd/lib/TritonAMDGPUTransforms/FpSanitizer.cpp
+  - third_party/amd/python/test/test_gluon_cdna4.py
+  - third_party/amd/python/test/test_gluon_scaled_upcast.py
+  - third_party/amd/python/test/test_mxfp_gemm_tdm.py
+- number: 11496
+  title: '[KERNELS] Fuse compact Hopper FP4 inverse layout conversion'
+  date: '2026-08-28'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: python/triton_kernels/triton_kernels/tensor_details/layout_details/hopper_value.py'
+  files_changed:
+  - python/triton_kernels/tests/test_tensor_details/test_layout_hopper.py
+  - python/triton_kernels/triton_kernels/tensor_details/layout_details/hopper_value.py
+- number: 11760
+  title: Absorb compatible layouts into broadcasts
+  date: '2026-09-29'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 5 authoritative changed file(s)'
+  files_changed:
+  - lib/Dialect/TritonGPU/Transforms/Utility.cpp
+  - python/test/unit/language/test_core.py
+  - python/test/unit/language/test_matmul.py
+  - test/TritonGPU/amd/accelerate-amd-matmul-mfma-decompose-scaled-dot.mlir
+  - test/TritonGPU/combine.mlir
+- number: 11504
+  title: '[KERNELS] Allow layout conversion into existing storage'
+  date: '2026-09-01'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: python/triton_kernels/triton_kernels/tensor.py, python/triton_kernels/triton_kernels/tensor_details/layout_details/base.py, python/triton_kernels/triton_kernels/tensor_details/layout_details/blackwell_value.py,
+    python/triton_kernels/triton_kernels/tensor_details/layout_details/blackwell_value_shuffled.py, python/triton_kernels/triton_kernels/tensor_details/layout_details/hopper_value.py, python/triton_kernels/triton_kernels/tensor_details/layout_details/strided.py'
+  files_changed:
+  - python/triton_kernels/tests/test_tensor.py
+  - python/triton_kernels/tests/test_tensor_details/test_layout_blackwell.py
+  - python/triton_kernels/tests/test_tensor_details/test_layout_hopper.py
+  - python/triton_kernels/triton_kernels/tensor.py
+  - python/triton_kernels/triton_kernels/tensor_details/layout_details/base.py
+  - python/triton_kernels/triton_kernels/tensor_details/layout_details/blackwell_value.py
+  - python/triton_kernels/triton_kernels/tensor_details/layout_details/blackwell_value_shuffled.py
+  - python/triton_kernels/triton_kernels/tensor_details/layout_details/hopper_value.py
+  - python/triton_kernels/triton_kernels/tensor_details/layout_details/strided.py
+- number: 11286
+  title: '[triton_kernels] add FP4 matmul metadata'
+  date: '2026-08-14'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: python/triton_kernels/triton_kernels/matmul_details/_common.py'
+  files_changed:
+  - python/triton_kernels/tests/test_matmul_metadata.py
+  - python/triton_kernels/triton_kernels/matmul_details/_common.py
+- number: 11438
+  title: '[NVIDIA] Subtile packed FP4 MMA to K96 on SM103'
+  date: '2026-08-25'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 5 authoritative changed file(s)'
+  files_changed:
+  - include/triton/Dialect/TritonNvidiaGPU/IR/TargetFeatures.h
+  - python/test/gluon/test_core.py
+  - test/Conversion/tritongpu_to_llvm_blackwell.mlir
+  - third_party/nvidia/lib/TritonNVIDIAGPUToLLVM/DotOpToLLVM/MMAHelpers.h
+  - third_party/nvidia/lib/TritonNVIDIAGPUToLLVM/DotOpToLLVM/MMAv5.cpp
+- number: 11470
+  title: '[AMD][GLUON] Expose helper function to compute scaled_upcast fp4 layout'
+  date: '2026-09-08'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 10 authoritative changed file(s)'
+  files_changed:
+  - python/src/gluon_ir.cc
+  - python/test/gluon/test_frontend.py
+  - python/triton/experimental/gluon/language/amd/__init__.py
+  - python/triton/experimental/gluon/language/amd/_ops.py
+  - python/triton/experimental/gluon/language/amd/cdna3/__init__.py
+  - python/triton/experimental/gluon/language/amd/cdna4/__init__.py
+  - third_party/amd/include/Dialect/TritonAMDGPU/IR/Dialect.h
+  - third_party/amd/lib/Dialect/TritonAMDGPU/IR/Dialect.cpp
+  - third_party/amd/python/test/test_gluon_cdna5.py
+  - third_party/amd/python/test/test_gluon_scaled_upcast.py
+- number: 11198
+  title: '[gluon] Allow offline FP4 descriptor construction'
+  date: '2026-08-07'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - python/test/unit/runtime/test_specialize.py
+  - python/triton/experimental/gluon/nvidia/hopper.py
+- number: 11423
+  title: Tune 2CTA block-scale matmul for Rubin
+  date: '2026-08-26'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - python/examples/gluon/04-2cta-block-scale-matmul.py
+- number: 11613
+  title: '[AccelerateMatmul] Forward lhs/rhs_k_pack flags when transposing a scaled dot'
+  date: '2026-09-06'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - lib/Dialect/TritonGPU/Transforms/AccelerateMatmul.cpp
+  - python/test/unit/language/test_matmul.py
+  - test/TritonGPU/accelerate-matmul.mlir
+- number: 11468
+  title: '[Analysis] Reuse BufferRegion analysis in Membar'
+  date: '2026-08-27'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 21 authoritative changed file(s)'
+  files_changed:
+  - include/triton/Analysis/Allocation.h
+  - include/triton/Analysis/BufferRegion.h
+  - include/triton/Analysis/Function.h
+  - include/triton/Analysis/Membar.h
+  - include/triton/Analysis/MemoryFrontier.h
+  - lib/Analysis/Allocation.cpp
+  - lib/Analysis/BufferRegion.cpp
+  - lib/Analysis/Membar.cpp
+  - lib/Dialect/TritonNvidiaGPU/Transforms/ClusterBarrierInsertion.cpp
+  - lib/Dialect/TritonNvidiaGPU/Transforms/ConSanNVIDIA.cpp
+  - lib/Dialect/TritonNvidiaGPU/Transforms/ProxyFenceInsertion.cpp
+  - lib/Dialect/TritonNvidiaGPU/Transforms/TMemBarrierInsertion.cpp
+  - python/src/passes.cc
+  - test/Analysis/test-allocation.mlir
+  - test/Analysis/test-buffer-region-layout-alias.mlir
+  - test/Analysis/test-membar.mlir
+  - test/TritonGPU/proxy_fence_insertion.mlir
+  - test/TritonNvidiaGPU/membar-cluster.mlir
+  - test/TritonNvidiaGPU/tmem_barrier_insertion.mlir
+  - test/lib/Analysis/TestBufferRegion.cpp
+  - unittest/Analysis/UtilityTest.cpp
+- number: 11668
+  title: '[triton_kernels] Add explicit nearest-even NVFP4 scale rounding'
+  date: '2026-09-10'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: python/triton_kernels/triton_kernels/numerics_details/mxfp.py, python/triton_kernels/triton_kernels/numerics_details/mxfp_details/_downcast_to_mxfp.py'
+  files_changed:
+  - python/triton_kernels/tests/test_mxfp.py
+  - python/triton_kernels/triton_kernels/numerics_details/mxfp.py
+  - python/triton_kernels/triton_kernels/numerics_details/mxfp_details/_downcast_to_mxfp.py
+- number: 11377
+  title: '[AMD][BACKEND][GLUON] Add `scaled_downcast` for MXFP4/MXFP8'
+  date: '2026-08-21'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 24 authoritative changed file(s)'
+  files_changed:
+  - include/triton/Dialect/TritonGPU/IR/Dialect.h
+  - include/triton/Dialect/TritonGPU/IR/TritonGPUOpInterfaces.td
+  - lib/Dialect/TritonGPU/IR/Dialect.cpp
+  - lib/Dialect/TritonGPU/Transforms/RemoveLayoutConversions.cpp
+  - lib/Dialect/TritonGPU/Transforms/Utility.cpp
+  - python/src/gluon_ir.cc
+  - python/test/gluon/test_frontend.py
+  - python/triton/experimental/gluon/language/amd/_ops.py
+  - python/triton/experimental/gluon/language/amd/cdna4/__init__.py
+  - python/triton/experimental/gluon/language/amd/cdna5/__init__.py
+  - test/TritonGPU/amd/amd-scaled-downcast-gfx1250.mlir
+  - test/TritonGPU/amd/amd-scaled-downcast-gfx950.mlir
+  - third_party/amd/include/Dialect/TritonAMDGPU/IR/TargetFeatures.h
+  - third_party/amd/include/Dialect/TritonAMDGPU/IR/TritonAMDGPUOps.td
+  - third_party/amd/include/TritonAMDGPUToLLVM/PatternTritonAMDGPUToLLVM.h
+  - third_party/amd/lib/Dialect/TritonAMDGPU/IR/Dialect.cpp
+  - third_party/amd/lib/Dialect/TritonAMDGPU/IR/TargetFeatures.cpp
+  - third_party/amd/lib/TritonAMDGPUDialectToLLVM/CMakeLists.txt
+  - third_party/amd/lib/TritonAMDGPUDialectToLLVM/ScaledDowncastToLLVM.cpp
+  - third_party/amd/lib/TritonAMDGPUDialectToLLVM/TritonAMDGPUToLLVMPatterns.cpp
+  - third_party/amd/lib/TritonAMDGPUToLLVM/TargetInfo.cpp
+  - third_party/amd/lib/TritonAMDGPUToLLVM/TargetInfo.h
+  - third_party/amd/python/test/test_gluon_cdna4.py
+  - third_party/amd/python/test/test_gluon_cdna5.py
+- number: 11924
+  title: '[Backend] Fix FP8 conversion rounding'
+  date: '2026-09-23'
+  decision: defer
+  reason: authoritative PR evidence unavailable; needs-triage
+  files_changed: []
+- number: 12167
+  title: '[AMD] Saturate infinities in RDNA4 HW OCP FP8 downcasts'
+  date: '2026-10-08'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 5 authoritative changed file(s)'
+  files_changed:
+  - python/test/unit/language/test_conversions.py
+  - python/test/unit/language/test_core.py
+  - test/Conversion/amd/ocp_fp8_cvt_lowering.mlir
+  - third_party/amd/lib/TritonAMDGPUToLLVM/ConvertFpCastOpToLLVM.cpp
+  - third_party/amd/lib/TritonAMDGPUTransforms/InThreadTranspose.cpp
+- number: 12492
+  title: '[AMD] Speed up SW fp8e4nv -> fp16 upcast with packed fmul'
+  date: '2026-10-26'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - python/test/unit/language/test_conversions.py
+  - test/Conversion/amd/fp_to_fp.mlir
+  - third_party/amd/lib/TritonAMDGPUToLLVM/ConvertFpCastOpToLLVM.cpp
+- number: 11809
+  title: '[AMD] Use hardware OCP FP8 upcasts on RDNA4'
+  date: '2026-10-08'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - python/test/unit/language/test_conversions.py
+  - test/Conversion/amd/ocp_fp8_cvt_lowering.mlir
+  - third_party/amd/lib/TritonAMDGPUToLLVM/ConvertFpCastOpToLLVM.cpp
+- number: 12129
+  title: '[Standard] Add any/all reductions'
+  date: '2026-10-05'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: python/triton/language/standard.py'
+  files_changed:
+  - docs/gluon/api/language.rst
+  - docs/python-api/triton.language.rst
+  - python/test/unit/language/test_standard.py
+  - python/triton/experimental/gluon/language/__init__.py
+  - python/triton/experimental/gluon/language/_standard.py
+  - python/triton/language/__init__.py
+  - python/triton/language/core.py
+  - python/triton/language/standard.py
+- number: 11743
+  title: '[KERNELS] Test mixed FP8 matmul against explicit upcasts'
+  date: '2026-09-12'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - python/triton_kernels/tests/test_matmul.py
+- number: 11652
+  title: '[KERNELS] Support unscaled FP8 E4M3 matmul with FP16/BF16'
+  date: '2026-09-10'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: python/triton_kernels/triton_kernels/matmul.py, python/triton_kernels/triton_kernels/matmul_details/_common.py, python/triton_kernels/triton_kernels/matmul_details/_matmul.py,
+    python/triton_kernels/triton_kernels/matmul_details/_p_matmul.py, python/triton_kernels/triton_kernels/matmul_details/opt_flags.py, python/triton_kernels/triton_kernels/matmul_details/opt_flags_details/opt_flags_amd.py,
+    python/triton_kernels/triton_kernels/matmul_details/opt_flags_details/opt_flags_nvidia.py'
+  files_changed:
+  - python/triton_kernels/tests/test_matmul.py
+  - python/triton_kernels/triton_kernels/matmul.py
+  - python/triton_kernels/triton_kernels/matmul_details/_common.py
+  - python/triton_kernels/triton_kernels/matmul_details/_matmul.py
+  - python/triton_kernels/triton_kernels/matmul_details/_p_matmul.py
+  - python/triton_kernels/triton_kernels/matmul_details/opt_flags.py
+  - python/triton_kernels/triton_kernels/matmul_details/opt_flags_details/opt_flags_amd.py
+  - python/triton_kernels/triton_kernels/matmul_details/opt_flags_details/opt_flags_nvidia.py
+- number: 11461
+  title: '[Tutorial] Fix FP8 attention V descriptor offsets'
+  date: '2026-09-19'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - python/tutorials/06-fused-attention.py
+- number: 12134
+  title: '[Release][Cherry-Pick] [AMD] Add initial GFX1250-strict Support (#11945)'
+  date: '2026-10-06'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 32 authoritative changed file(s)'
+  files_changed:
+  - python/triton/language/target_info.py
+  - python/triton/tools/triton_to_gluon_translator/amd_helpers.py
+  - test/Conversion/amd/async_ops_to_llvm_gfx1250.mlir
+  - test/Conversion/amd/cluster_load.mlir
+  - test/Conversion/amd/tritongpu_tdm_to_llvm.mlir
+  - test/Conversion/amd/tritongpu_to_llvm_gfx1250.mlir
+  - test/Conversion/amd/tritongpu_wmma_dot_scaled_to_llvm.mlir
+  - test/Conversion/amd/tritongpu_wmma_dot_to_llvm.mlir
+  - test/TritonGPU/amd/accelerate-amd-matmul-wmma-gfx1250.mlir
+  - test/TritonGPU/amd/amd-scaled-upcast-gfx1250.mlir
+  - third_party/amd/backend/compiler.py
+  - third_party/amd/include/Dialect/TritonAMDGPU/IR/TargetFeatures.h
+  - third_party/amd/include/TritonAMDGPUTransforms/WmmaGroup.h
+  - third_party/amd/lib/Dialect/TritonAMDGPU/IR/TargetFeatures.cpp
+  - third_party/amd/lib/TritonAMDGPUDialectToLLVM/ScaledUpcastToLLVM.cpp
+  - third_party/amd/lib/TritonAMDGPUToLLVM/ConvertFpCastOpToLLVM.cpp
+  - third_party/amd/lib/TritonAMDGPUToLLVM/DotOpToLLVM.cpp
+  - third_party/amd/lib/TritonAMDGPUToLLVM/DotOpToLLVM/WMMA.cpp
+  - third_party/amd/lib/TritonAMDGPUToLLVM/LoadStoreOpToLLVM.cpp
+  - third_party/amd/lib/TritonAMDGPUToLLVM/PatternTritonGPUOpToLLVM.h
+  - third_party/amd/lib/TritonAMDGPUToLLVM/TargetInfo.cpp
+  - third_party/amd/lib/TritonAMDGPUToLLVM/TargetInfo.h
+  - third_party/amd/lib/TritonAMDGPUToLLVM/TritonGPUToLLVM.cpp
+  - third_party/amd/lib/TritonAMDGPUTransforms/AccelerateAMDMatmul.cpp
+  - third_party/amd/lib/TritonAMDGPUTransforms/WmmaGroup.cpp
+  - third_party/amd/python/examples/gluon/f16_fa_cdna5.py
+  - third_party/amd/python/examples/gluon/f16_gemm_cdna5.py
+  - third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py
+  - third_party/amd/python/test/test_gluon_cdna5.py
+  - third_party/amd/python/test/test_warp_pipeline_gfx9.py
+  - third_party/amd/python/triton_amd.cc
+  - third_party/proton/Dialect/lib/ProtonGPUToLLVM/ProtonAMDGPUToLLVM/TargetInfo.cpp
+- number: 11579
+  title: '[NFC][AMD] Add mixed FP8/BF8 WMMA lowering tests'
+  date: '2026-09-16'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - test/Conversion/amd/tritongpu_wmma_dot_to_llvm.mlir
+- number: 11486
+  title: '[AMD] Use hardware cvt instructions for OCP fp8 casts on gfx1170'
+  date: '2026-10-07'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - test/Conversion/amd/ocp_fp8_cvt_lowering.mlir
+  - test/Conversion/amd/tritongpu_to_llvm_gfx1250.mlir
+  - third_party/amd/lib/TritonAMDGPUToLLVM/ConvertFpCastOpToLLVM.cpp
+- number: 10676
+  title: '[TRITONGPU] Support two-cta mode'
+  date: '2026-10-26'
+  decision: defer
+  reason: authoritative PR evidence unavailable; needs-triage
+  files_changed: []
+- number: 12028
+  title: '[INTERPRETER] Preserve cast rounding modes and fix shared RTNE'
+  date: '2026-10-04'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - python/test/unit/language/test_core.py
+  - python/test/unit/runtime/test_interpreter.py
+  - python/triton/runtime/interpreter.py
+- number: 11441
+  title: '[Frontend] Restore arith.truncf for most fp8 constants'
+  date: '2026-08-25'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - python/test/gluon/test_frontend.py
+  - python/triton/language/semantic.py
+- number: 11340
+  title: '[NVIDIA] Use native packed BF16/FP8 conversions'
+  date: '2026-08-18'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - test/Conversion/tritongpu_to_llvm_blackwell_256bit.mlir
+  - third_party/nvidia/lib/TritonNVIDIAGPUToLLVM/ElementwiseOpToLLVM.cpp
+- number: 11664
+  title: '[BACKEND] Use LL to simplify MMAv2 operand mapping and support FP64 large K'
+  date: '2026-09-10'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 5 authoritative changed file(s)'
+  files_changed:
+  - lib/Dialect/TritonGPU/IR/Dialect.cpp
+  - python/test/regression/test_cast_matmul.py
+  - test/Conversion/tritongpu_to_llvm.mlir
+  - test/TritonGPU/invalid.mlir
+  - third_party/nvidia/lib/TritonNVIDIAGPUToLLVM/DotOpToLLVM/MMAv2.cpp
+- number: 11786
+  title: '[Pipeliner] Only add extra buffer for loads that are already pipelined'
+  date: '2026-09-18'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - lib/Dialect/TritonGPU/Transforms/Pipeliner/LowerLoops.cpp
+  - test/TritonGPU/pipeline-lower-loop.mlir
+- number: 11507
+  title: '[TEST] Fix pytest warnings'
+  date: '2026-09-01'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 5 authoritative changed file(s)'
+  files_changed:
+  - python/test/gluon/test_core.py
+  - python/test/gluon/test_lowerings.py
+  - python/test/unit/language/test_compile_errors.py
+  - python/test/unit/language/test_core.py
+  - third_party/amd/python/test/test_gluon_cdna5.py
+- number: 10883
+  title: '[BC Breaking] fix(language): promote fp8 division and modulo to float32'
+  date: '2026-07-23'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - docs/python-api/triton-semantics.rst
+  - python/test/unit/language/test_frontend.py
+  - python/triton/language/semantic.py
+- number: 11783
+  title: Preserve NaNs in AMD TF32 matmuls
+  date: '2026-09-18'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - python/test/unit/language/test_core.py
+  - test/TritonGPU/amd/mfma-xf32.mlir
+  - third_party/amd/lib/TritonAMDGPUToLLVM/DotOpToLLVM/MFMA.cpp
+- number: 11317
+  title: '[NVIDIA] Optimize scalarized masked loads, stores, and cache policies'
+  date: '2026-08-16'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - AGENTS.md
+  - test/Conversion/tritongpu_to_llvm.mlir
+  - third_party/nvidia/lib/TritonNVIDIAGPUToLLVM/LoadStoreOpToLLVM.cpp
+- number: 12421
+  title: '[ConSan] Track TMA write footprints per issuing CTA'
+  date: '2026-10-22'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 8 authoritative changed file(s)'
+  files_changed:
+  - include/triton/Analysis/BufferRegion.h
+  - include/triton/Dialect/TritonInstrument/IR/Utility.h
+  - lib/Analysis/BufferRegion.cpp
+  - lib/Dialect/TritonInstrument/IR/Utility.cpp
+  - lib/Dialect/TritonInstrument/Transforms/ConcurrencySanitizer.cpp
+  - python/test/gluon/test_consan.py
+  - test/TritonGPU/amd/amd-consan.mlir
+  - test/TritonGPU/consan.mlir
+- number: 12420
+  title: '[NVIDIA] Reject TMA views smaller than their CTA splits'
+  date: '2026-10-22'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - lib/Dialect/TritonNvidiaGPU/IR/Ops.cpp
+  - test/TritonNvidiaGPU/invalid.mlir
+- number: 12419
+  title: '[ConSan] Fix TMA recipient tracking for shared-memory subviews'
+  date: '2026-10-22'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 7 authoritative changed file(s)'
+  files_changed:
+  - include/triton/Dialect/TritonNvidiaGPU/IR/TMAUtils.h
+  - include/triton/Dialect/TritonNvidiaGPU/Transforms/TMAUtilities.h
+  - lib/Dialect/TritonInstrument/Transforms/ConcurrencySanitizer.cpp
+  - lib/Dialect/TritonNvidiaGPU/IR/CMakeLists.txt
+  - lib/Dialect/TritonNvidiaGPU/IR/TMAUtils.cpp
+  - test/TritonGPU/consan.mlir
+  - third_party/nvidia/lib/TritonNVIDIAGPUToLLVM/LoadStoreOpToLLVM.cpp
+- number: 12338
+  title: '[GSan] Add memory access profiler'
+  date: '2026-10-22'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): python/triton/experimental/gsan/src/TMA.cuh'
+  files_changed:
+  - .gitignore
+  - CMakeLists.txt
+  - python/src/main.cc
+  - python/test/unit/backend/test_gsan_profile.py
+  - python/triton/_internal_testing.py
+  - python/triton/experimental/gsan/__init__.py
+  - python/triton/experimental/gsan/_allocator.py
+  - python/triton/experimental/gsan/_allocator_common.py
+  - python/triton/experimental/gsan/_profile_allocator.py
+  - python/triton/experimental/gsan/profile.py
+  - python/triton/experimental/gsan/src/AllocationProfile.cu
+  - python/triton/experimental/gsan/src/AllocationProfile.h
+  - python/triton/experimental/gsan/src/AllocatorCommon.h
+  - python/triton/experimental/gsan/src/AllocatorPython.h
+  - python/triton/experimental/gsan/src/Compat.h
+  - python/triton/experimental/gsan/src/GSan.h
+  - python/triton/experimental/gsan/src/GSanAllocator.cc
+  - python/triton/experimental/gsan/src/GSanLibrary.cu
+  - python/triton/experimental/gsan/src/ProfileAllocator.cc
+  - python/triton/experimental/gsan/src/ProfileAllocatorRuntime.h
+  - python/triton/experimental/gsan/src/ProfileCUDAAllocator.cc
+  - python/triton/experimental/gsan/src/TMA.cuh
+  - python/triton/experimental/gsan/src/gsan_profile.cc
+  - python/triton/experimental/gsan/symmetric_memory.py
+  - scripts/validate_gsan_profile.sh
+  - third_party/nvidia/CMakeLists.txt
+  - third_party/nvidia/backend/compiler.py
+  - third_party/nvidia/backend/driver.py
+- number: 11862
+  title: '[KERNELS] Don''t take the TMA scatter path on sm_12x'
+  date: '2026-09-21'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: python/triton_kernels/triton_kernels/matmul.py, python/triton_kernels/triton_kernels/target_info.py'
+  files_changed:
+  - python/triton_kernels/triton_kernels/matmul.py
+  - python/triton_kernels/triton_kernels/target_info.py
+- number: 11690
+  title: '[MEMBAR] Refine TMA and mbarrier synchronization'
+  date: '2026-10-05'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 12 authoritative changed file(s)'
+  files_changed:
+  - include/triton/Analysis/Membar.h
+  - lib/Analysis/Membar.cpp
+  - lib/Dialect/TritonNvidiaGPU/Transforms/ClusterBarrierInsertion.cpp
+  - lib/Dialect/TritonNvidiaGPU/Transforms/TMemBarrierInsertion.cpp
+  - python/test/gluon/test_core.py
+  - test/Analysis/test-membar-ttng.mlir
+  - test/TritonNvidiaGPU/membar-cluster.mlir
+  - test/TritonNvidiaGPU/membar.mlir
+  - third_party/amd/include/TritonAMDGPUToLLVM/MembarUtility.h
+  - third_party/amd/lib/TritonAMDGPUToLLVM/MembarUtility.cpp
+  - third_party/nvidia/include/TritonNVIDIAGPUToLLVM/Utility.h
+  - third_party/nvidia/lib/TritonNVIDIAGPUToLLVM/Membar.cpp
+- number: 12402
+  title: '[Gluon] Predicate TMEM copies and fix tutorial synchronization'
+  date: '2026-10-21'
+  decision: defer
+  reason: authoritative PR evidence unavailable; needs-triage
+  files_changed: []
+- number: 11908
+  title: '[ConSan] Synchronize allocation poisoning across CTAs'
+  date: '2026-10-20'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 4 authoritative changed file(s)'
+  files_changed:
+  - lib/Dialect/TritonInstrument/Transforms/ConcurrencySanitizer.cpp
+  - python/test/gluon/test_consan.py
+  - test/TritonGPU/amd/amd-consan.mlir
+  - test/TritonGPU/consan.mlir
+- number: 11697
+  title: '[MEMBAR] Distribute TMA expectations across producer warps'
+  date: '2026-10-05'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 10 authoritative changed file(s)'
+  files_changed:
+  - include/triton/Dialect/TritonNvidiaGPU/IR/TritonNvidiaGPUOpInterfaces.td
+  - include/triton/Dialect/TritonNvidiaGPU/IR/TritonNvidiaGPUOps.td
+  - lib/Dialect/TritonNvidiaGPU/IR/Ops.cpp
+  - lib/Dialect/TritonNvidiaGPU/Transforms/ConSanNVIDIA.cpp
+  - lib/Dialect/TritonNvidiaGPU/Transforms/OptimizeMBarrierArrivals.cpp
+  - test/Conversion/tritongpu_to_llvm_rubin.mlir
+  - test/Conversion/tritonnvidiagpu_to_llvm.mlir
+  - test/TritonGPU/consan.mlir
+  - test/TritonNvidiaGPU/membar.mlir
+  - third_party/nvidia/lib/TritonNVIDIAGPUToLLVM/BarrierOpToLLVM.cpp
+- number: 12049
+  title: '[Python] Release Gluon layout and builder references'
+  date: '2026-10-02'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - python/src/gluon_ir.cc
+  - python/src/ir.cc
+  - python/test/unit/runtime/test_bindings.py
+- number: 12321
+  title: '[NVIDIA] Reland non-aligned warp-specialized barriers'
+  date: '2026-10-16'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - test/Conversion/warp_specialize_to_llvm.mlir
+  - third_party/nvidia/lib/TritonNVIDIAGPUToLLVM/ConvertWarpSpecializeToLLVM.cpp
+- number: 11706
+  title: '[Gluon] Preserve scalar promotion in TMA alignment checks'
+  date: '2026-09-11'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - python/triton/experimental/gluon/language/nvidia/hopper/tma.py
+- number: 11751
+  title: '[INTERPRETER] Honor round_f32_to_tf32 on host tensor descriptor loads'
+  date: '2026-09-14'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - python/test/unit/cuda/test_tma_descriptor.py
+  - python/test/unit/language/test_tensor_descriptor.py
+  - python/triton/runtime/interpreter.py
+- number: 11481
+  title: '[Membar] Schedule thread synchronization with Membar analysis'
+  date: '2026-10-05'
+  decision: include
+  reason: 'retain: added device-code construct in: lib/Analysis/Membar.cpp'
+  files_changed:
+  - include/triton/Analysis/BufferIndexAnalysis.h
+  - include/triton/Analysis/Function.h
+  - include/triton/Analysis/Membar.h
+  - lib/Analysis/BufferIndexAnalysis.cpp
+  - lib/Analysis/Membar.cpp
+  - test/Analysis/test-membar-ttng.mlir
+  - test/Analysis/test-membar.mlir
+  - test/Conversion/amd/amdgpu_membar.mlir
+  - test/Conversion/amd/async-ops-alias-scopes.mlir
+  - test/Conversion/amd/load_store.mlir
+  - test/Conversion/amd/warp_id_to_llvm.mlir
+  - test/Conversion/lower_tensor_memory_to_llvm.mlir
+  - test/Conversion/tritongpu_to_llvm_blackwell.mlir
+  - test/Conversion/tritongpu_to_llvm_hopper.mlir
+  - test/Conversion/tritongpu_to_llvm_rubin.mlir
+  - test/Conversion/tritonnvidiagpu_to_llvm.mlir
+  - test/TritonNvidiaGPU/membar-cluster.mlir
+  - test/TritonNvidiaGPU/membar.mlir
+  - test/TritonNvidiaGPU/tmem_barrier_insertion.mlir
+  - third_party/nvidia/backend/compiler.py
+  - third_party/nvidia/lib/TritonNVIDIAGPUToLLVM/BarrierOpToLLVM.cpp
+  - third_party/nvidia/lib/TritonNVIDIAGPUToLLVM/DotOpToLLVM.cpp
+  - third_party/nvidia/lib/TritonNVIDIAGPUToLLVM/DotOpToLLVM/MMAv5.cpp
+  - third_party/nvidia/lib/TritonNVIDIAGPUToLLVM/Membar.cpp
+  - third_party/nvidia/lib/TritonNVIDIAGPUToLLVM/TMAToLLVM.cpp
+  - third_party/nvidia/lib/TritonNVIDIAGPUToLLVM/TensorMemoryToLLVM.cpp
+- number: 11695
+  title: '[IR] Canonicalize operations with false predicates'
+  date: '2026-09-11'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 11 authoritative changed file(s)'
+  files_changed:
+  - include/triton/Dialect/Triton/IR/OpInterfaces.h
+  - include/triton/Dialect/Triton/IR/TritonOpInterfaces.td
+  - include/triton/Dialect/Triton/IR/TritonOps.td
+  - include/triton/Dialect/TritonNvidiaGPU/IR/TritonNvidiaGPUOps.td
+  - lib/Dialect/Gluon/Transforms/Canonicalize.cpp
+  - lib/Dialect/Triton/IR/OpInterfaces.cpp
+  - lib/Dialect/Triton/IR/Ops.cpp
+  - lib/Dialect/TritonNvidiaGPU/IR/Ops.cpp
+  - test/Triton/canonicalize.mlir
+  - test/TritonGPU/canonicalize.mlir
+  - test/TritonNvidiaGPU/canonicalize.mlir
+- number: 11673
+  title: '[GPU] Preserve warp context in noinline helpers'
+  date: '2026-09-11'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 12 authoritative changed file(s)'
+  files_changed:
+  - include/triton/Dialect/TritonGPU/IR/Dialect.h
+  - lib/Conversion/TritonGPUToLLVM/AllocateWarpGroups.cpp
+  - lib/Conversion/TritonGPUToLLVM/FuncOpToLLVM.cpp
+  - lib/Conversion/TritonGPUToLLVM/Utility.cpp
+  - lib/Dialect/TritonGPU/IR/Dialect.cpp
+  - python/test/gluon/test_core.py
+  - test/Conversion/amd/tritongpu_to_llvm.mlir
+  - test/Conversion/amd/tritongpu_to_llvm_gfx1250.mlir
+  - test/Conversion/tritongpu_to_llvm.mlir
+  - third_party/amd/lib/TritonAMDGPUToLLVM/FuncOpToLLVM.cpp
+  - third_party/amd/lib/TritonAMDGPUToLLVM/WarpIdOpToLLVM.cpp
+  - third_party/nvidia/lib/NVGPUToLLVM/NVGPUToLLVMPass.cpp
+- number: 11626
+  title: '[ConSan] Track async-copy completion through mbarriers'
+  date: '2026-09-08'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 8 authoritative changed file(s)'
+  files_changed:
+  - include/triton/Dialect/TritonInstrument/IR/FunctionBuilder.h
+  - include/triton/Dialect/TritonInstrument/IR/Utility.h
+  - include/triton/Dialect/TritonInstrument/Transforms/ConSanTargetHooks.h
+  - lib/Dialect/TritonInstrument/IR/FunctionBuilder.cpp
+  - lib/Dialect/TritonInstrument/IR/Utility.cpp
+  - lib/Dialect/TritonInstrument/Transforms/ConcurrencySanitizer.cpp
+  - lib/Dialect/TritonNvidiaGPU/Transforms/ConSanNVIDIA.cpp
+  - python/test/gluon/test_consan.py
+- number: 11411
+  title: '[MEMBAR] Track aliased shared memory effects'
+  date: '2026-08-23'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - lib/Dialect/TritonNvidiaGPU/Transforms/ClusterBarrierInsertion.cpp
+  - test/TritonNvidiaGPU/membar-cluster.mlir
+- number: 11928
+  title: '[triton_kernels] Fix gathered activation scale indexing'
+  date: '2026-09-23'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: python/triton_kernels/triton_kernels/matmul.py, python/triton_kernels/triton_kernels/matmul_details/_p_matmul.py'
+  files_changed:
+  - python/triton_kernels/tests/test_matmul.py
+  - python/triton_kernels/triton_kernels/matmul.py
+  - python/triton_kernels/triton_kernels/matmul_details/_p_matmul.py
+- number: 11416
+  title: '[Test] Exercise both TMA expectation orders with exact outputs'
+  date: '2026-08-24'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - python/test/gluon/test_core.py
+- number: 11347
+  title: Add matmul tuning constraints for swap_xw, group_m and use_output_tma
+  date: '2026-08-18'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: python/triton_kernels/triton_kernels/matmul.py, python/triton_kernels/triton_kernels/matmul_details/opt_flags.py, python/triton_kernels/triton_kernels/matmul_details/opt_flags_details/opt_flags_nvidia.py'
+  files_changed:
+  - python/triton_kernels/tests/test_matmul_details/test_opt_flags_split_k.py
+  - python/triton_kernels/triton_kernels/matmul.py
+  - python/triton_kernels/triton_kernels/matmul_details/opt_flags.py
+  - python/triton_kernels/triton_kernels/matmul_details/opt_flags_details/opt_flags_nvidia.py
+- number: 11162
+  title: '[ConSan] Reject overlapping unordered TMA operations'
+  date: '2026-08-05'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - lib/Dialect/TritonInstrument/Transforms/ConcurrencySanitizer.cpp
+  - python/test/gluon/test_consan.py
+  - test/TritonGPU/consan.mlir
+- number: 11116
+  title: ' [NVWS][CLC] Add warp-specilaization to CLC'
+  date: '2026-08-05'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: python/tutorials/09-persistent-matmul.py'
+  files_changed:
+  - include/triton/Dialect/TritonGPU/Transforms/Partition.h
+  - include/triton/Dialect/TritonGPU/Transforms/PartitionSchedulingUtility.h
+  - include/triton/Dialect/TritonGPU/Transforms/Passes.td
+  - include/triton/Dialect/TritonGPU/Transforms/PipeliningUtility.h
+  - include/triton/Dialect/TritonGPU/Transforms/WarpSpecialization.h
+  - lib/Dialect/TritonGPU/Transforms/CMakeLists.txt
+  - lib/Dialect/TritonGPU/Transforms/Pipeliner/PipeliningUtility.cpp
+  - lib/Dialect/TritonGPU/Transforms/WarpSpecialization/AutomaticWarpSpecialization.cpp
+  - lib/Dialect/TritonGPU/Transforms/WarpSpecialization/NormalizeWSWhileLoops.cpp
+  - lib/Dialect/TritonGPU/Transforms/WarpSpecialization/Partition.cpp
+  - lib/Dialect/TritonGPU/Transforms/WarpSpecialization/PartitionAttrs.h
+  - lib/Dialect/TritonGPU/Transforms/WarpSpecialization/PartitionLoops.cpp
+  - lib/Dialect/TritonGPU/Transforms/WarpSpecialization/PartitionScheduling.cpp
+  - lib/Dialect/TritonGPU/Transforms/WarpSpecialization/PartitionSchedulingUtility.cpp
+  - python/test/unit/language/test_clc.py
+  - python/test/unit/language/test_warp_specialization.py
+  - python/tutorials/09-persistent-matmul.py
+  - test/NVWS/aref-tmem-insertion.mlir
+  - test/NVWS/assign_stage_phase.mlir
+  - test/NVWS/hoist_tmem_store.mlir
+  - test/NVWS/insert_aref.mlir
+  - test/NVWS/invalid.mlir
+  - test/NVWS/lower_aref.mlir
+  - test/NVWS/ops.mlir
+  - test/TritonGPU/automatic-warp-specialization.mlir
+  - test/TritonGPU/normalize-ws-while-loops.mlir
+  - test/TritonGPU/partition-loops.mlir
+  - test/TritonGPU/partition-scheduling.mlir
+  - test/TritonNvidiaGPU/to-clc.mlir
+  - third_party/nvidia/include/Dialect/NVWS/IR/NVWSAttrDefs.td
+  - third_party/nvidia/include/Dialect/NVWS/IR/NVWSOps.td
+  - third_party/nvidia/lib/Dialect/NVWS/IR/Ops.cpp
+  - third_party/nvidia/lib/Dialect/NVWS/Transforms/AssignStagePhase.cpp
+  - third_party/nvidia/lib/Dialect/NVWS/Transforms/HoistTmemStore.cpp
+  - third_party/nvidia/lib/Dialect/NVWS/Transforms/InsertAref.cpp
+  - third_party/nvidia/lib/Dialect/NVWS/Transforms/InsertTmemAref.cpp
+  - third_party/nvidia/lib/Dialect/NVWS/Transforms/LowerAref.cpp
+  - third_party/nvidia/lib/Dialect/NVWS/Transforms/Utilities.cpp
+  - third_party/nvidia/lib/Dialect/NVWS/Transforms/Utilities.h
+- number: 11973
+  title: '[BACKEND] Reject TCGen05 ops on unsupported targets'
+  date: '2026-09-29'
+  decision: include
+  reason: 'retain: added device-code construct in: lib/Dialect/TritonNvidiaGPU/IR/Ops.cpp'
+  files_changed:
+  - docs/gluon/api/nvidia.blackwell.rst
+  - include/triton/Conversion/TritonGPUToLLVM/TargetInfoBase.h
+  - include/triton/Dialect/TritonNvidiaGPU/IR/TargetFeatures.h
+  - include/triton/Dialect/TritonNvidiaGPU/IR/TritonNvidiaGPUOps.td
+  - lib/Dialect/TritonNvidiaGPU/IR/Ops.cpp
+  - test/Analysis/test-buffer-region.mlir
+  - test/TritonGPU/consan.mlir
+  - test/TritonGPU/dot-operands.mlir
+  - test/TritonGPU/fence-inserstion.mlir
+  - test/TritonNvidiaGPU/canonicalize.mlir
+  - test/TritonNvidiaGPU/invalid.mlir
+  - test/TritonNvidiaGPU/membar-cluster.mlir
+  - third_party/nvidia/lib/TritonNVIDIAGPUToLLVM/TargetInfo.h
+- number: 11805
+  title: '[NVIDIA] Support padded tcgen05.mma layouts'
+  date: '2026-10-01'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 35 authoritative changed file(s)'
+  files_changed:
+  - AGENTS.md
+  - include/triton/Dialect/TritonGPU/IR/LinearLayoutConversions.h
+  - include/triton/Dialect/TritonNvidiaGPU/IR/Dialect.h
+  - include/triton/Dialect/TritonNvidiaGPU/IR/NvmmaSmemAttrs.h
+  - include/triton/Tools/LayoutUtils.h
+  - lib/Analysis/BufferRegion.cpp
+  - lib/Analysis/Membar.cpp
+  - lib/Dialect/TritonGPU/IR/Dialect.cpp
+  - lib/Dialect/TritonGPU/IR/LinearLayoutConversions.cpp
+  - lib/Dialect/TritonGPU/IR/Types.cpp
+  - lib/Dialect/TritonNvidiaGPU/IR/Dialect.cpp
+  - lib/Dialect/TritonNvidiaGPU/IR/NvmmaSmemAttrs.cpp
+  - lib/Dialect/TritonNvidiaGPU/IR/Ops.cpp
+  - lib/Tools/LayoutUtils.cpp
+  - python/src/gluon_ir.cc
+  - python/test/gluon/test_core.py
+  - python/test/gluon/test_fpsan.py
+  - python/test/gluon/test_frontend.py
+  - python/triton/experimental/gluon/language/nvidia/blackwell/__init__.py
+  - test/Analysis/test-buffer-region-layout-alias.mlir
+  - test/Conversion/invalid_dot_op.mlir
+  - test/Conversion/lower_tensor_memory_to_llvm.mlir
+  - test/NVWS/aref-tmem-insertion.mlir
+  - test/NVWS/assign_stage_phase.mlir
+  - test/TritonGPU/ops.mlir
+  - test/TritonNvidiaGPU/invalid.mlir
+  - test/TritonNvidiaGPU/test_tensor_memory_allocation.mlir
+  - test/TritonNvidiaGPU/tmem_barrier_insertion.mlir
+  - third_party/amd/lib/TritonAMDGPUToLLVM/DotOpToLLVM/WMMA.cpp
+  - third_party/nvidia/lib/TritonNVIDIAGPUToLLVM/DotOpToLLVM/MMAHelpers.h
+  - third_party/nvidia/lib/TritonNVIDIAGPUToLLVM/DotOpToLLVM/MMAv5.cpp
+  - unittest/Dialect/TritonGPU/LinearLayoutConversionsTest.cpp
+  - unittest/Dialect/TritonNvidiaGPU/NvmmaSmemAttrsTest.cpp
+  - unittest/Tools/LayoutUtilsTest.cpp
+  - unittest/Tools/LinearLayoutTest.cpp
+- number: 11464
+  title: '[MEMBAR] Schedule`tcgen05_wait::{ld,st}`'
+  date: '2026-08-27'
+  decision: include
+  reason: 'retain: added device-code construct in: third_party/nvidia/lib/TritonNVIDIAGPUToLLVM/TensorMemoryToLLVM.cpp'
+  files_changed:
+  - include/triton/Analysis/Membar.h
+  - include/triton/Analysis/Utility.h
+  - include/triton/Dialect/TritonNvidiaGPU/IR/TritonNvidiaGPUAttrDefs.td
+  - include/triton/Dialect/TritonNvidiaGPU/IR/TritonNvidiaGPUOps.td
+  - include/triton/Dialect/TritonNvidiaGPU/Transforms/Passes.td
+  - lib/Analysis/Membar.cpp
+  - lib/Analysis/Utility.cpp
+  - lib/Dialect/TritonInstrument/Transforms/ConcurrencySanitizer.cpp
+  - lib/Dialect/TritonNvidiaGPU/Transforms/TMemBarrierInsertion.cpp
+  - python/test/gluon/test_core.py
+  - test/Conversion/lower_tensor_memory_to_llvm.mlir
+  - test/Conversion/tritongpu_to_llvm_blackwell.mlir
+  - test/TritonGPU/consan.mlir
+  - test/TritonNvidiaGPU/tmem_barrier_insertion.mlir
+  - third_party/nvidia/lib/TritonNVIDIAGPUToLLVM/TensorMemoryToLLVM.cpp
+  - third_party/nvidia/lib/TritonNVIDIAGPUToLLVM/TritonGPUToLLVM.cpp
+- number: 11918
+  title: '[Gluon] Skip unsupported cluster sizes in Gluon tests'
+  date: '2026-09-28'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: python/triton/_internal_testing.py'
+  files_changed:
+  - python/test/gluon/test_core.py
+  - python/test/gluon/test_lowerings.py
+  - python/triton/_internal_testing.py
+- number: 11216
+  title: '[ConSan] Invalidate stale reader visibility'
+  date: '2026-08-10'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - lib/Dialect/TritonInstrument/IR/FunctionBuilder.cpp
+  - python/test/gluon/test_consan.py
+- number: 11159
+  title: '[FPSAN] Reduce MMA emulation overhead'
+  date: '2026-08-04'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - lib/Dialect/TritonInstrument/Transforms/FpSanitizer.cpp
+  - lib/Dialect/TritonNvidiaGPU/IR/TensorMemoryUtils.cpp
+  - test/TritonGPU/nvidia-fpsan.mlir
+- number: 11122
+  title: '[PROTON] Intra kernel async event profiling'
+  date: '2026-08-03'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: third_party/proton/proton/language.py'
+  files_changed:
+  - test/Proton/amd/add_sched_barriers.mlir
+  - test/Proton/amd/protongpu_to_llvm.mlir
+  - test/Proton/nvidia/protongpu_to_llvm.mlir
+  - test/Proton/ops.mlir
+  - test/Proton/proton_to_protongpu.mlir
+  - test/Proton/scope_id.mlir
+  - test/lib/Proton/TestScopeIdAllocation.cpp
+  - third_party/proton/Dialect/include/Analysis/ScopeIdAllocation.h
+  - third_party/proton/Dialect/include/Conversion/ProtonGPUToLLVM/Utility.h
+  - third_party/proton/Dialect/include/Dialect/Proton/IR/ProtonOps.td
+  - third_party/proton/Dialect/include/Dialect/ProtonGPU/IR/ProtonGPUOps.td
+  - third_party/proton/Dialect/lib/Analysis/ScopeIdAllocation.cpp
+  - third_party/proton/Dialect/lib/Dialect/ProtonGPU/IR/Ops.cpp
+  - third_party/proton/Dialect/lib/Dialect/ProtonGPU/Transforms/ProtonGPUTransformsPass.cpp
+  - third_party/proton/Dialect/lib/ProtonGPUToLLVM/ProtonAMDGPUToLLVM/AMDPatternProtonGPUOpToLLVM.cpp
+  - third_party/proton/Dialect/lib/ProtonGPUToLLVM/ProtonNvidiaGPUToLLVM/NvidiaPatternProtonGPUOpToLLVM.cpp
+  - third_party/proton/Dialect/lib/ProtonGPUToLLVM/Utility.cpp
+  - third_party/proton/Dialect/lib/ProtonToProtonGPU/ProtonToProtonGPUPass.cpp
+  - third_party/proton/Dialect/triton_proton.cc
+  - third_party/proton/docs/intra-kernel.md
+  - third_party/proton/proton/language.py
+  - third_party/proton/test/test_instrumentation.py
+  - third_party/proton/tutorials/intra_kernel/example_events.py
+- number: 10936
+  title: '[NVIDIA] Initial support for Rubin'
+  date: '2026-07-17'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: python/tutorials/10-block-scaled-matmul.py'
+  files_changed:
+  - include/triton/Dialect/TritonNvidiaGPU/IR/TargetFeatures.h
+  - lib/Dialect/TritonGPU/Transforms/AccelerateMatmul.cpp
+  - lib/Dialect/TritonNvidiaGPU/Transforms/TensorMemoryAllocation.cpp
+  - python/examples/gluon/05-moe-bmm1-fused-gather.py
+  - python/test/gluon/test_core.py
+  - python/test/unit/language/test_compile_only.py
+  - python/test/unit/language/test_core.py
+  - python/test/unit/language/test_matmul.py
+  - python/test/unit/runtime/test_autotuner.py
+  - python/triton/_internal_testing.py
+  - python/triton/compiler/compiler.py
+  - python/triton/tools/triton_to_gluon_translator/target.py
+  - python/tutorials/10-block-scaled-matmul.py
+  - test/Conversion/nvgpu_to_llvm.mlir
+  - test/Conversion/tritongpu_to_llvm_blackwell.mlir
+  - test/Conversion/tritongpu_to_llvm_rubin.mlir
+  - test/NVWS/aref-tmem-insertion.mlir
+  - test/TritonGPU/accelerate-matmul.mlir
+  - third_party/nvidia/backend/compiler.py
+  - third_party/nvidia/backend/driver.c
+  - third_party/nvidia/lib/Dialect/NVWS/Transforms/InsertTmemAref.cpp
+  - third_party/nvidia/lib/NVGPUToLLVM/NVGPUToLLVMPass.cpp
+  - third_party/nvidia/lib/TritonNVIDIAGPUToLLVM/DotOpToLLVM/MMAHelpers.h
+  - third_party/nvidia/lib/TritonNVIDIAGPUToLLVM/DotOpToLLVM/MMAv5.cpp
+  - third_party/nvidia/lib/TritonNVIDIAGPUToLLVM/PatternTritonGPUOpToLLVM.h
+  - third_party/nvidia/lib/TritonNVIDIAGPUToLLVM/TargetInfo.h
+  - third_party/nvidia/lib/TritonNVIDIAGPUToLLVM/TritonGPUToLLVM.cpp
+- number: 10941
+  title: '[Rubin] Misc MMA enhancement and `mbarrier.arrive.multicast` support'
+  date: '2026-07-18'
+  decision: include
+  reason: 'retain: added device-code construct in: include/triton/Dialect/TritonNvidiaGPU/IR/Dialect.h'
+  files_changed:
+  - include/triton/Dialect/TritonNvidiaGPU/IR/Dialect.h
+  - include/triton/Dialect/TritonNvidiaGPU/IR/TritonNvidiaGPUAttrDefs.td
+  - include/triton/Dialect/TritonNvidiaGPU/IR/TritonNvidiaGPUOps.td
+  - lib/Dialect/TritonGPU/IR/LinearLayoutConversions.cpp
+  - lib/Dialect/TritonGPU/Transforms/AccelerateMatmul.cpp
+  - lib/Dialect/TritonNvidiaGPU/IR/Dialect.cpp
+  - lib/Dialect/TritonNvidiaGPU/IR/Ops.cpp
+  - lib/Dialect/TritonNvidiaGPU/Transforms/ClusterBarrierInsertion.cpp
+  - lib/Dialect/TritonNvidiaGPU/Transforms/MMALowering.cpp
+  - python/src/gluon_ir.cc
+  - python/test/gluon/test_core.py
+  - python/test/gluon/test_frontend.py
+  - python/test/unit/language/test_matmul.py
+  - python/triton/experimental/gluon/language/nvidia/ampere/mbarrier.py
+  - python/triton/experimental/gluon/language/nvidia/blackwell/__init__.py
+  - python/triton/experimental/gluon/language/nvidia/hopper/mbarrier.py
+  - test/Conversion/tritongpu_to_llvm_rubin.mlir
+  - test/Conversion/tritonnvidiagpu_to_llvm.mlir
+  - test/TritonGPU/accelerate-matmul.mlir
+  - test/TritonNvidiaGPU/invalid.mlir
+  - test/TritonNvidiaGPU/membar-cluster.mlir
+  - test/TritonNvidiaGPU/ops.mlir
+  - third_party/nvidia/lib/TritonNVIDIAGPUToLLVM/BarrierOpToLLVM.cpp
+  - third_party/nvidia/lib/TritonNVIDIAGPUToLLVM/DotOpToLLVM/MMAv5.cpp
+  - unittest/Dialect/TritonGPU/LinearLayoutConversionsTest.cpp
+- number: 10551
+  title: '[Blackwell] Add pass to combine TMEM load followed by row reduction for sm103+'
+  date: '2026-07-07'
+  decision: include
+  reason: 'retain: added device-code construct in: lib/Dialect/TritonNvidiaGPU/Transforms/FuseTMemLoadReduce.cpp'
+  files_changed:
+  - include/triton/Dialect/TritonNvidiaGPU/IR/TargetFeatures.h
+  - include/triton/Dialect/TritonNvidiaGPU/IR/TensorMemoryUtils.h
+  - include/triton/Dialect/TritonNvidiaGPU/Transforms/Passes.td
+  - lib/Dialect/TritonNvidiaGPU/IR/Ops.cpp
+  - lib/Dialect/TritonNvidiaGPU/IR/TensorMemoryUtils.cpp
+  - lib/Dialect/TritonNvidiaGPU/Transforms/CMakeLists.txt
+  - lib/Dialect/TritonNvidiaGPU/Transforms/FuseTMemLoadReduce.cpp
+  - test/TritonNvidiaGPU/fuse_tmem_load_reduce.mlir
+  - third_party/nvidia/backend/compiler.py
+  - third_party/nvidia/triton_nvidia.cc
+- number: 10922
+  title: '[BACKEND] Emit .{release,acquire}.cluster in barrier ops'
+  date: '2026-07-17'
+  decision: defer
+  reason: authoritative PR evidence unavailable; needs-triage
+  files_changed: []
+- number: 10409
+  title: '[TESTING] Fix expected error in 2CTA consan test'
+  date: '2026-05-29'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - python/test/gluon/test_consan.py
+- number: 10454
+  title: '[FPSAN] Broaden FPSan MMA dtype and minimum-shape coverage'
+  date: '2026-06-03'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - python/test/gluon/test_fpsan.py
+- number: 10451
+  title: '[FRONTEND] Fix passing tuples to constexpr kernel arguments'
+  date: '2026-06-09'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 5 authoritative changed file(s)'
+  files_changed:
+  - python/test/unit/language/test_core.py
+  - python/test/unit/language/test_frontend.py
+  - python/test/unit/language/test_tuple.py
+  - python/triton/compiler/code_generator.py
+  - python/triton/runtime/jit.py
+- number: 11124
+  title: '[NVIDIA] Add core Triton CLC support'
+  date: '2026-08-04'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: python/tutorials/09-persistent-matmul.py'
+  files_changed:
+  - include/triton/Dialect/TritonNvidiaGPU/IR/TritonNvidiaGPUOps.td
+  - include/triton/Dialect/TritonNvidiaGPU/Transforms/Passes.td
+  - lib/Dialect/TritonNvidiaGPU/IR/Ops.cpp
+  - lib/Dialect/TritonNvidiaGPU/Transforms/CLCLowering.cpp
+  - lib/Dialect/TritonNvidiaGPU/Transforms/CMakeLists.txt
+  - lib/Dialect/TritonNvidiaGPU/Transforms/ToCLC.cpp
+  - python/test/unit/language/test_clc.py
+  - python/triton/_internal_testing.py
+  - python/tutorials/09-persistent-matmul.py
+  - python/tutorials/10-block-scaled-matmul.py
+  - test/TritonNvidiaGPU/clc-lowering.mlir
+  - test/TritonNvidiaGPU/to-clc.mlir
+  - third_party/nvidia/backend/compiler.py
+  - third_party/nvidia/triton_nvidia.cc
+- number: 11067
+  title: '[WS] Fix use-list iterator invalidation in cloneMultiPartitionDataOps'
+  date: '2026-07-28'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - lib/Dialect/TritonGPU/Transforms/WarpSpecialization/PartitionScheduling.cpp
+  - test/TritonGPU/partition-scheduling.mlir
+- number: 10345
+  title: '[TEST] Add 2CTA tcgen05 Gluon coverage for transposed LHS shared layout'
+  date: '2026-05-27'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - python/test/gluon/test_core.py
+- number: 10202
+  title: '[gluon][nvidia] Add support for fp4 and fp8 in TMEM for MMA LHS'
+  date: '2026-06-09'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 19 authoritative changed file(s)'
+  files_changed:
+  - include/triton/Dialect/TritonNvidiaGPU/IR/TritonNvidiaGPUAttrDefs.td
+  - lib/Dialect/TritonGPU/IR/Dialect.cpp
+  - lib/Dialect/TritonGPU/IR/LinearLayoutConversions.cpp
+  - lib/Dialect/TritonGPU/Transforms/AccelerateMatmul.cpp
+  - lib/Dialect/TritonNvidiaGPU/IR/Dialect.cpp
+  - lib/Dialect/TritonNvidiaGPU/IR/Ops.cpp
+  - lib/Dialect/TritonNvidiaGPU/Transforms/PromoteLHSToTMem.cpp
+  - python/src/gluon_ir.cc
+  - python/test/gluon/test_core.py
+  - python/test/gluon/test_frontend.py
+  - python/triton/experimental/gluon/language/nvidia/blackwell/__init__.py
+  - test/Conversion/tritongpu_to_llvm_blackwell.mlir
+  - test/TritonGPU/promote-lhs-to-tmem.mlir
+  - test/TritonNvidiaGPU/invalid.mlir
+  - test/TritonNvidiaGPU/ops.mlir
+  - test/TritonNvidiaGPU/test_tensor_memory_allocation.mlir
+  - third_party/nvidia/hopper/lib/Transforms/WarpSpecialization/WSDataPartition.cpp
+  - third_party/nvidia/lib/TritonNVIDIAGPUToLLVM/DotOpToLLVM/MMAv5.cpp
+  - unittest/Dialect/TritonGPU/LinearLayoutConversionsTest.cpp
+- number: 10180
+  title: '[Backend] Respect IEEE input precision for tcgen05'
+  date: '2026-05-01'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - lib/Analysis/Utility.cpp
+  - test/TritonGPU/accelerate-matmul.mlir
+- number: 8687
+  title: '[WS] Nested loop support'
+  date: '2025-12-02'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 23 authoritative changed file(s)'
+  files_changed:
+  - include/triton/Dialect/Triton/IR/Utility.h
+  - include/triton/Dialect/TritonGPU/Transforms/Utility.h
+  - lib/Dialect/TritonGPU/Transforms/OptimizeAccumulatorInit.cpp
+  - lib/Dialect/TritonGPU/Transforms/Pipeliner/MMAv5PipelineUtility.cpp
+  - lib/Dialect/TritonGPU/Transforms/Pipeliner/PipeliningUtility.cpp
+  - lib/Dialect/TritonGPU/Transforms/Utility.cpp
+  - lib/Dialect/TritonGPU/Transforms/WarpSpecialization/AutomaticWarpSpecialization.cpp
+  - lib/Dialect/TritonGPU/Transforms/WarpSpecialization/Partition.cpp
+  - lib/Dialect/TritonGPU/Transforms/WarpSpecialization/PartitionScheduling.cpp
+  - python/test/unit/language/test_warp_specialization.py
+  - test/NVWS/hoist_tmem_store.mlir
+  - test/NVWS/insert_aref.mlir
+  - test/TritonGPU/automatic-warp-specialization.mlir
+  - test/TritonGPU/partition-scheduling.mlir
+  - third_party/nvidia/include/Dialect/NVWS/Transforms/Passes.td
+  - third_party/nvidia/lib/Dialect/NVWS/Transforms/AssignStagePhase.cpp
+  - third_party/nvidia/lib/Dialect/NVWS/Transforms/CMakeLists.txt
+  - third_party/nvidia/lib/Dialect/NVWS/Transforms/HoistTmemStore.cpp
+  - third_party/nvidia/lib/Dialect/NVWS/Transforms/InsertAref.cpp
+  - third_party/nvidia/lib/Dialect/NVWS/Transforms/InsertTmemAref.cpp
+  - third_party/nvidia/lib/Dialect/NVWS/Transforms/LowerAref.cpp
+  - third_party/nvidia/lib/Dialect/NVWS/Transforms/Utilities.cpp
+  - third_party/nvidia/lib/Dialect/NVWS/Transforms/Utilities.h
+- number: 10650
+  title: Tensor scales in matmul.
+  date: '2026-06-18'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: python/triton_kernels/triton_kernels/matmul.py, python/triton_kernels/triton_kernels/matmul_details/_matmul.py, python/triton_kernels/triton_kernels/matmul_details/_p_matmul.py,
+    python/triton_kernels/triton_kernels/numerics_details/mxfp.py, python/triton_kernels/triton_kernels/numerics_details/mxfp_details/_upcast_from_mxfp.py'
+  files_changed:
+  - python/triton_kernels/tests/test_matmul.py
+  - python/triton_kernels/triton_kernels/matmul.py
+  - python/triton_kernels/triton_kernels/matmul_details/_matmul.py
+  - python/triton_kernels/triton_kernels/matmul_details/_p_matmul.py
+  - python/triton_kernels/triton_kernels/numerics_details/mxfp.py
+  - python/triton_kernels/triton_kernels/numerics_details/mxfp_details/_upcast_from_mxfp.py
+- number: 11629
+  title: '[AMD] Use AMD dot_scaled decomposition path for RDNA'
+  date: '2026-09-07'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - test/TritonGPU/amd/accelerate-amd-matmul-wmma-gen1.mlir
+  - test/TritonGPU/amd/accelerate-amd-matmul-wmma-gen2.mlir
+  - third_party/amd/lib/TritonAMDGPUTransforms/AccelerateAMDMatmul.cpp
+- number: 10316
+  title: Enable microscaled lhs with dense FP16/BF16 matmul weights
+  date: '2026-05-21'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: python/triton_kernels/triton_kernels/matmul_details/_matmul.py, python/triton_kernels/triton_kernels/matmul_details/_p_matmul.py, python/triton_kernels/triton_kernels/matmul_details/opt_flags.py,
+    python/triton_kernels/triton_kernels/matmul_details/opt_flags_details/opt_flags_nvidia.py, python/triton_kernels/triton_kernels/numerics_details/mxfp_details/_upcast_from_mxfp.py'
+  files_changed:
+  - python/triton_kernels/tests/test_matmul.py
+  - python/triton_kernels/tests/test_mxfp.py
+  - python/triton_kernels/triton_kernels/matmul_details/_matmul.py
+  - python/triton_kernels/triton_kernels/matmul_details/_p_matmul.py
+  - python/triton_kernels/triton_kernels/matmul_details/opt_flags.py
+  - python/triton_kernels/triton_kernels/matmul_details/opt_flags_details/opt_flags_nvidia.py
+  - python/triton_kernels/triton_kernels/numerics_details/mxfp_details/_upcast_from_mxfp.py
+- number: 11163
+  title: '[BACKEND] Pin LLVM at b010a18d'
+  date: '2026-08-05'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 8 authoritative changed file(s)'
+  files_changed:
+  - bin/RegisterTritonDialects.h
+  - cmake/llvm-info.json
+  - lib/Target/LLVMIR/LLVMDILocalVariable.cpp
+  - python/src/llvm.cc
+  - test/Conversion/amd/tritongpu_tdm_to_llvm.mlir
+  - test/TritonGPU/amd/accelerate-amd-matmul-wmma-gfx1250.mlir
+  - third_party/amd/lib/TritonAMDGPUToLLVM/TDMUtility.cpp
+  - third_party/nvidia/backend/compiler.py
+- number: 10219
+  title: '[Gluon] Unwrap constexpr bool in dot_scaled and associative_scan'
+  date: '2026-05-05'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: python/triton/language/semantic.py'
+  files_changed:
+  - python/triton/experimental/gluon/language/_semantic.py
+  - python/triton/language/semantic.py
+- number: 10010
+  title: '[SM121] Enable native block-scaled dot_scaled for DGX Spark (GB10)'
+  date: '2026-04-13'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - lib/Dialect/TritonGPU/Transforms/AccelerateMatmul.cpp
+- number: 9742
+  title: '[AMD] Fix bugs about CGALayout and shapePerCTA in AccelerateAMDMatmul'
+  date: '2026-03-16'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - test/TritonGPU/amd/accelerate-amd-matmul-wmma-gfx1250.mlir
+  - third_party/amd/lib/TritonAMDGPUTransforms/AccelerateAMDMatmul.cpp
+- number: 8653
+  title: '[BACKEND] Set 2CTA mode as a global flag'
+  date: '2025-11-06'
+  decision: include
+  reason: 'retain: added device-code construct in: third_party/nvidia/lib/TritonNVIDIAGPUToLLVM/DotOpToLLVM/MMAv5.cpp, third_party/nvidia/lib/TritonNVIDIAGPUToLLVM/TensorMemoryToLLVM.cpp'
+  files_changed:
+  - include/triton/Dialect/TritonNvidiaGPU/IR/Dialect.h
+  - include/triton/Dialect/TritonNvidiaGPU/Transforms/Passes.td
+  - lib/Dialect/TritonNvidiaGPU/Transforms/CMakeLists.txt
+  - lib/Dialect/TritonNvidiaGPU/Transforms/CheckMatmulTwoCTAs.cpp
+  - test/Conversion/tritongpu_to_llvm_blackwell.mlir
+  - third_party/nvidia/backend/compiler.py
+  - third_party/nvidia/lib/NVGPUToLLVM/NVGPUToLLVMPass.cpp
+  - third_party/nvidia/lib/TritonNVIDIAGPUToLLVM/DotOpToLLVM/MMAv5.cpp
+  - third_party/nvidia/lib/TritonNVIDIAGPUToLLVM/TensorMemoryToLLVM.cpp
+  - third_party/nvidia/triton_nvidia.cc
+- number: 8564
+  title: '[FRONTEND] Add scales dimension checks for dot_scaled'
+  date: '2025-10-29'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 7 authoritative changed file(s)'
+  files_changed:
+  - include/triton/Dialect/Triton/IR/TritonOps.td
+  - lib/Dialect/Triton/IR/Ops.cpp
+  - python/test/unit/language/test_compile_errors.py
+  - python/triton/language/semantic.py
+  - test/Conversion/tritongpu_to_llvm_sm120.mlir
+  - test/Triton/invalid.mlir
+  - test/TritonGPU/accelerate-matmul.mlir
+- number: 8658
+  title: '[FRONTEND] Fix missing handling for None acc in dot_scaled'
+  date: '2025-11-07'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - python/triton/language/core.py
+- number: 7799
+  title: '[AMD][Gluon] Add support for CDNA4 mfma scale'
+  date: '2025-08-14'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - python/test/gluon/test_core.py
+  - python/test/gluon/test_frontend.py
+  - python/triton/experimental/gluon/language/amd/cdna4/__init__.py
+- number: 8433
+  title: '[DOC] Clarify lhs_scale and rhs_scale requirements in dot_scaled'
+  date: '2025-10-14'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - python/triton/language/core.py
+- number: 7954
+  title: '[AMD] Enable dot_scaled on gfx11'
+  date: '2025-08-27'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 5 authoritative changed file(s)'
+  files_changed:
+  - lib/Dialect/TritonGPU/IR/Dialect.cpp
+  - python/test/unit/language/test_core.py
+  - python/triton/_internal_testing.py
+  - test/TritonGPU/invalid-attributes.mlir
+  - third_party/amd/lib/TritonAMDGPUTransforms/AccelerateAMDMatmul.cpp
+- number: 7839
+  title: '[AMD]Enable Scaled Dot Decomposition'
+  date: '2025-09-10'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 16 authoritative changed file(s)'
+  files_changed:
+  - include/triton/Dialect/TritonGPU/IR/CMakeLists.txt
+  - include/triton/Dialect/TritonGPU/IR/TritonGPUInterfaces.h
+  - include/triton/Dialect/TritonGPU/IR/TritonGPUOpInterfaces.td
+  - include/triton/Dialect/TritonGPU/Transforms/DecomposeScaledBlocked.h
+  - lib/Analysis/CMakeLists.txt
+  - lib/Dialect/TritonGPU/IR/CMakeLists.txt
+  - lib/Dialect/TritonGPU/IR/Dialect.cpp
+  - lib/Dialect/TritonGPU/Transforms/DecomposeScaledBlocked.cpp
+  - lib/Dialect/TritonGPU/Transforms/RemoveLayoutConversions.cpp
+  - lib/Dialect/TritonGPU/Transforms/Utility.cpp
+  - test/TritonGPU/amd/accelerate-amd-matmul-mfma-decompose-scaled-dot.mlir
+  - test/TritonGPU/amd/accelerate-amd-matmul-mfma-gfx950.mlir
+  - third_party/amd/include/Dialect/TritonAMDGPU/IR/TritonAMDGPUOps.td
+  - third_party/amd/lib/Dialect/TritonAMDGPU/IR/Dialect.cpp
+  - third_party/amd/lib/TritonAMDGPUTransforms/AccelerateAMDMatmul.cpp
+  - third_party/amd/test/lib/Analysis/CMakeLists.txt
+- number: 6263
+  title: '[Backend] Make dot_scaled as anchor in RemoveLayoutConversion'
+  date: '2025-03-24'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - lib/Dialect/TritonGPU/Transforms/RemoveLayoutConversions.cpp
+  - test/TritonGPU/combine.mlir
+- number: 5985
+  title: '[AMD]Support mixed mxfp8 x mxfp4 dot_scaled for gfx950'
+  date: '2025-02-25'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 7 authoritative changed file(s)'
+  files_changed:
+  - include/triton/Dialect/TritonGPU/IR/LinearLayoutConversions.h
+  - lib/Dialect/TritonGPU/IR/LinearLayoutConversions.cpp
+  - python/test/unit/language/test_core.py
+  - python/test/unit/language/test_matmul.py
+  - test/TritonGPU/amd/accelerate-amd-matmul-mfma-gfx950.mlir
+  - third_party/amd/lib/TritonAMDGPUToLLVM/DotOpToLLVM/MFMA.cpp
+  - third_party/amd/lib/TritonAMDGPUTransforms/AccelerateAMDMatmul.cpp
+- number: 7697
+  title: '[AMD] Enable Pingpong by default on gfx950 arch'
+  date: '2025-07-30'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - third_party/amd/backend/compiler.py
+  - third_party/amd/lib/TritonAMDGPUTransforms/BlockPingpong.cpp
+- number: 7481
+  title: '[AMD][BACKEND] Enable LDS transpose loading for fp4 packed along K types'
+  date: '2025-07-12'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - test/Conversion/amd/ds_transpose.mlir
+  - third_party/amd/lib/TritonAMDGPUToLLVM/MemoryOpToLLVM.cpp
+- number: 7458
+  title: '[AMD] Support async load in ping-pong pass'
+  date: '2025-07-18'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 10 authoritative changed file(s)'
+  files_changed:
+  - lib/Dialect/TritonGPU/IR/Dialect.cpp
+  - python/src/passes.h
+  - test/TritonGPU/amd/amd-block-pingpong.mlir
+  - test/TritonGPU/amd/mfma-double-rate.mlir
+  - third_party/amd/backend/compiler.py
+  - third_party/amd/include/TritonAMDGPUTransforms/Passes.td
+  - third_party/amd/lib/TritonAMDGPUToLLVM/DotOpToLLVM/MFMA.cpp
+  - third_party/amd/lib/TritonAMDGPUTransforms/BlockPingpong.cpp
+  - third_party/amd/lib/TritonAMDGPUTransforms/StreamPipeline.cpp
+  - third_party/amd/python/triton_amd.cc
+- number: 7626
+  title: '[AMD] Emit LocalAllocOp + LocalLoadPackedTransposedOp for M/N packed FP4'
+  date: '2025-07-31'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - test/TritonGPU/amd/accelerate-amd-matmul-mfma-gfx950.mlir
+  - test/TritonGPU/loop-pipeline-hip.mlir
+  - third_party/amd/lib/TritonAMDGPUTransforms/AccelerateAMDMatmul.cpp
+- number: 6420
+  title: '[Feature] Support different packing formats in dot_scaled op'
+  date: '2025-04-08'
+  decision: include
+  reason: 'retain: added device-code construct in: lib/Dialect/TritonGPU/Transforms/AccelerateMatmul.cpp'
+  files_changed:
+  - include/triton/Dialect/Triton/IR/TritonOpInterfaces.td
+  - include/triton/Dialect/Triton/IR/TritonOps.td
+  - include/triton/Dialect/TritonNvidiaGPU/IR/TritonNvidiaGPUOps.td
+  - lib/Dialect/Triton/IR/OpInterfaces.cpp
+  - lib/Dialect/Triton/IR/Ops.cpp
+  - lib/Dialect/TritonGPU/Transforms/AccelerateMatmul.cpp
+  - lib/Dialect/TritonGPU/Transforms/DecomposeScaledBlocked.cpp
+  - lib/Dialect/TritonNvidiaGPU/IR/Ops.cpp
+  - lib/Dialect/TritonNvidiaGPU/Transforms/MMALowering.cpp
+  - python/src/ir.cc
+  - python/test/unit/language/test_matmul.py
+  - python/triton/language/core.py
+  - python/triton/language/semantic.py
+  - test/Conversion/tritongpu_to_llvm_blackwell.mlir
+  - test/TritonGPU/accelerate-matmul.mlir
+  - test/TritonNvidiaGPU/mma_lowering.mlir
+  - third_party/amd/lib/TritonAMDGPUTransforms/AccelerateAMDMatmul.cpp
+  - third_party/nvidia/lib/TritonNVIDIAGPUToLLVM/DotOpToLLVM/MMAv5.cpp
+- number: 7918
+  title: '[NVIDIA] Add native MXFP FP8 scaled_dot for SM120'
+  date: '2025-08-29'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 12 authoritative changed file(s)'
+  files_changed:
+  - include/triton/Dialect/Triton/IR/TritonOpInterfaces.td
+  - include/triton/Dialect/TritonGPU/IR/LinearLayoutConversions.h
+  - lib/Dialect/TritonGPU/IR/LinearLayoutConversions.cpp
+  - lib/Dialect/TritonGPU/Transforms/AccelerateMatmul.cpp
+  - lib/Dialect/TritonGPU/Transforms/DecomposeScaledBlocked.cpp
+  - python/test/unit/language/test_core.py
+  - python/test/unit/language/test_matmul.py
+  - test/Conversion/tritongpu_to_llvm_sm120.mlir
+  - test/TritonGPU/accelerate-matmul.mlir
+  - third_party/nvidia/lib/TritonNVIDIAGPUToLLVM/DotOpToLLVM.cpp
+  - third_party/nvidia/lib/TritonNVIDIAGPUToLLVM/DotOpToLLVM/MMAv2.cpp
+  - unittest/Dialect/TritonGPU/LinearLayoutConversionsTest.cpp
+- number: 6159
+  title: '[AMD] Enable LDS transpose loading for fp8 types'
+  date: '2025-03-13'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 11 authoritative changed file(s)'
+  files_changed:
+  - include/triton/Dialect/TritonGPU/IR/LinearLayoutConversions.h
+  - lib/Dialect/TritonGPU/IR/LinearLayoutConversions.cpp
+  - test/Conversion/amd/ds_transpose.mlir
+  - test/TritonGPU/amd/accelerate-amd-matmul-mfma-gfx950.mlir
+  - test/TritonGPU/loop-pipeline-hip.mlir
+  - third_party/amd/lib/TritonAMDGPUToLLVM/ConvertLayoutOpToLLVM/SharedToDotOperandMFMA.cpp
+  - third_party/amd/lib/TritonAMDGPUToLLVM/DotOpToLLVM/MFMA.cpp
+  - third_party/amd/lib/TritonAMDGPUToLLVM/MemoryOpToLLVM.cpp
+  - third_party/amd/lib/TritonAMDGPUToLLVM/Utility.cpp
+  - third_party/amd/lib/TritonAMDGPUToLLVM/Utility.h
+  - third_party/amd/lib/TritonAMDGPUTransforms/AccelerateAMDMatmul.cpp
+- number: 6776
+  title: '[TMA] Split large dimensions up into chunks of 256 elements'
+  date: '2025-05-14'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 16 authoritative changed file(s)'
+  files_changed:
+  - include/triton/Dialect/TritonNvidiaGPU/Transforms/TMAUtilities.h
+  - include/triton/Tools/LayoutUtils.h
+  - include/triton/Tools/LinearLayout.h
+  - lib/Dialect/TritonGPU/IR/LinearLayoutConversions.cpp
+  - lib/Dialect/TritonGPU/Transforms/OptimizeDotOperands.cpp
+  - lib/Dialect/TritonNvidiaGPU/Transforms/OptimizeDescriptorEncoding.cpp
+  - lib/Dialect/TritonNvidiaGPU/Transforms/TMAUtilities.cpp
+  - lib/Tools/LinearLayout.cpp
+  - python/src/ir.cc
+  - python/test/unit/cuda/test_tensor_descriptor.py
+  - python/test/unit/language/test_tensor_descriptor.py
+  - test/Conversion/tritonnvidiagpu_to_llvm.mlir
+  - test/TritonGPU/dot-operands.mlir
+  - third_party/nvidia/lib/TritonNVIDIAGPUToLLVM/LoadStoreOpToLLVM.cpp
+  - third_party/nvidia/lib/TritonNVIDIAGPUToLLVM/TensorMemoryToLLVM.cpp
+  - unittest/Dialect/TritonGPU/LinearLayoutConversionsTest.cpp
+- number: 6269
+  title: '[BACKEND] Fix wrong K dimension for dot_scaled op'
+  date: '2025-03-21'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - test/Conversion/tritongpu_to_llvm_blackwell.mlir
+  - third_party/nvidia/lib/TritonNVIDIAGPUToLLVM/DotOpToLLVM/MMAv5.cpp
+- number: 5924
+  title: Propagate DotOp thru Join & improve shmem load into LinearEnc
+  date: '2025-02-20'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 13 authoritative changed file(s)'
+  files_changed:
+  - include/triton/Dialect/Triton/IR/Dialect.h
+  - include/triton/Dialect/TritonGPU/IR/TritonGPUAttrDefs.td
+  - include/triton/Dialect/TritonGPU/Transforms/Utility.h
+  - include/triton/Tools/LayoutUtils.h
+  - lib/Dialect/Triton/IR/Ops.cpp
+  - lib/Dialect/TritonGPU/IR/Dialect.cpp
+  - lib/Dialect/TritonGPU/Transforms/AccelerateMatmul.cpp
+  - lib/Dialect/TritonGPU/Transforms/RemoveLayoutConversions.cpp
+  - lib/Dialect/TritonGPU/Transforms/Utility.cpp
+  - lib/Tools/LayoutUtils.cpp
+  - test/TritonGPU/accelerate-matmul.mlir
+  - test/TritonGPU/combine.mlir
+  - unittest/Dialect/TritonGPU/DialectTest.cpp
+- number: 5543
+  title: '[AMD] Support fp16 upcast in scaled dot'
+  date: '2025-01-10'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 15 authoritative changed file(s)'
+  files_changed:
+  - include/triton/Dialect/Triton/IR/TritonAttrDefs.td
+  - include/triton/Dialect/TritonGPU/IR/TritonGPUOps.td
+  - lib/Dialect/TritonGPU/IR/Ops.cpp
+  - lib/Dialect/TritonGPU/Transforms/AccelerateMatmul.cpp
+  - python/src/ir.cc
+  - python/test/unit/language/test_core.py
+  - python/triton/language/core.py
+  - python/triton/language/semantic.py
+  - third_party/amd/include/TritonAMDGPUToLLVM/GCNAsmFormat.h
+  - third_party/amd/lib/TritonAMDGPUToLLVM/ElementwiseOpToLLVM.cpp
+  - third_party/amd/lib/TritonAMDGPUToLLVM/GCNAsmFormat.cpp
+  - third_party/amd/lib/TritonAMDGPUToLLVM/UpcastMXFPToLLVM.cpp
+  - third_party/amd/lib/TritonAMDGPUToLLVM/Utility.cpp
+  - third_party/amd/lib/TritonAMDGPUToLLVM/Utility.h
+  - third_party/amd/lib/TritonAMDGPUTransforms/AccelerateAMDMatmul.cpp
+- number: 5796
+  title: '[mlir][dialect] Refactor DotLike trait into a DotOpInterface + Enable verification of scaled_dot'
+  date: '2025-02-05'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 17 authoritative changed file(s)'
+  files_changed:
+  - include/triton/Dialect/Triton/IR/OpInterfaces.h
+  - include/triton/Dialect/Triton/IR/Traits.h
+  - include/triton/Dialect/Triton/IR/TritonInterfaces.td
+  - include/triton/Dialect/Triton/IR/TritonOpInterfaces.td
+  - include/triton/Dialect/Triton/IR/TritonOps.td
+  - include/triton/Dialect/TritonNvidiaGPU/IR/TritonNvidiaGPUOps.td
+  - lib/Dialect/Triton/IR/OpInterfaces.cpp
+  - lib/Dialect/Triton/IR/Ops.cpp
+  - lib/Dialect/TritonGPU/Transforms/AccelerateMatmul.cpp
+  - lib/Dialect/TritonGPU/Transforms/OptimizeAccumulatorInit.cpp
+  - lib/Dialect/TritonGPU/Transforms/Pipeliner/AssignLatencies.cpp
+  - lib/Dialect/TritonGPU/Transforms/Pipeliner/MatmulLoopPipeline.cpp
+  - lib/Dialect/TritonNvidiaGPU/IR/Ops.cpp
+  - lib/Dialect/TritonNvidiaGPU/Transforms/FenceInsertion.cpp
+  - test/Triton/invalid.mlir
+  - third_party/amd/lib/TritonAMDGPUTransforms/AccelerateAMDMatmul.cpp
+  - third_party/amd/lib/TritonAMDGPUTransforms/StreamPipeline.cpp
+- number: 11329
+  title: '[NVIDIA] Faster MMA descriptor arithmetic'
+  date: '2026-08-16'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - test/Conversion/tritongpu_to_llvm_blackwell.mlir
+  - third_party/nvidia/lib/TritonNVIDIAGPUToLLVM/DotOpToLLVM/MMAHelpers.h
+- number: 10357
+  title: '[Gluon] Add support for nv local_store_async'
+  date: '2026-05-29'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 12 authoritative changed file(s)'
+  files_changed:
+  - include/triton/Dialect/TritonNvidiaGPU/IR/TritonNvidiaGPUOps.td
+  - lib/Dialect/TritonNvidiaGPU/IR/Ops.cpp
+  - lib/Dialect/TritonNvidiaGPU/Transforms/ConSanNVIDIA.cpp
+  - python/src/gluon_ir.cc
+  - python/test/gluon/test_consan.py
+  - python/test/gluon/test_core.py
+  - python/test/gluon/test_frontend.py
+  - python/triton/experimental/gluon/language/nvidia/blackwell/__init__.py
+  - python/triton/experimental/gluon/language/nvidia/hopper/__init__.py
+  - test/Conversion/tritonnvidiagpu_to_llvm.mlir
+  - test/TritonNvidiaGPU/invalid.mlir
+  - third_party/nvidia/lib/TritonNVIDIAGPUToLLVM/MemoryOpToLLVM.cpp
+- number: 9530
+  title: '[Hopper] Move dummy moves before wgmma.fence'
+  date: '2026-02-23'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - test/Conversion/tritongpu_to_llvm_hopper.mlir
+  - third_party/nvidia/lib/TritonNVIDIAGPUToLLVM/DotOpToLLVM/WGMMA.cpp
+- number: 9514
+  title: '[Hopper] Add dummy mov before RS WGMMA to fix synchronization'
+  date: '2026-02-19'
+  decision: include
+  reason: 'retain: added device-code construct in: third_party/nvidia/lib/TritonNVIDIAGPUToLLVM/DotOpToLLVM/WGMMA.cpp'
+  files_changed:
+  - test/Conversion/tritongpu_to_llvm_hopper.mlir
+  - third_party/nvidia/lib/TritonNVIDIAGPUToLLVM/DotOpToLLVM/WGMMA.cpp
+- number: 9931
+  title: '[NVIDIA] Support swizzle 0 TMA + MMA for Hopper and Blackwell'
+  date: '2026-04-10'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 6 authoritative changed file(s)'
+  files_changed:
+  - include/triton/Dialect/TritonGPU/Transforms/DescriptorMemoryLayouts.h
+  - lib/Dialect/TritonGPU/Transforms/DescriptorMemoryLayouts.cpp
+  - lib/Dialect/TritonGPU/Transforms/OptimizeDotOperands.cpp
+  - lib/Dialect/TritonNvidiaGPU/Transforms/OptimizeDescriptorEncoding.cpp
+  - test/TritonGPU/dot-operands.mlir
+  - test/TritonNvidiaGPU/optimize_descriptor_encoding.mlir
+- number: 9152
+  title: '[WGMMA] Limit rs-dot splitting to only 2 splits'
+  date: '2026-01-07'
+  decision: include
+  reason: 'retain: added device-code construct in: lib/Dialect/TritonGPU/Transforms/Pipeliner/WGMMAPipeline.cpp'
+  files_changed:
+  - lib/Dialect/TritonGPU/Transforms/Pipeliner/WGMMAPipeline.cpp
+  - test/TritonGPU/loop-pipeline-hopper.mlir
+- number: 9274
+  title: Fix dotCanBeProperlyAsync when wgmma is not yielded by loop
+  date: '2026-01-22'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - lib/Dialect/TritonGPU/Transforms/Pipeliner/WGMMAPipeline.cpp
+  - test/TritonGPU/loop-pipeline-hopper.mlir
+- number: 5813
+  title: '[Blackwell][TUTORIALS] Add tutorial 10-block-scaled-matmul.py'
+  date: '2025-02-05'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: python/tutorials/10-block-scaled-matmul.py'
+  files_changed:
+  - python/test/unit/language/test_mxfp.py
+  - python/triton/tools/mxfp.py
+  - python/tutorials/10-block-scaled-matmul.py
+- number: 9021
+  title: '[Backend] Delay wgmma wait(0) to first use of the accumulator'
+  date: '2025-12-17'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - lib/Dialect/TritonGPU/Transforms/Pipeliner/WGMMAPipeline.cpp
+  - test/TritonGPU/samples/descriptor-matmul-pipeline.mlir
+  - test/TritonGPU/samples/simulated-grouped-gemm.mlir
+- number: 8964
+  title: '[BACKEND] Add missing waits in WGMMA rhs in register pipelining'
+  date: '2025-12-11'
+  decision: include
+  reason: 'retain: added device-code construct in: lib/Dialect/TritonGPU/Transforms/Pipeliner/WGMMAPipeline.cpp'
+  files_changed:
+  - lib/Dialect/TritonGPU/Transforms/Pipeliner/WGMMAPipeline.cpp
+  - test/TritonGPU/loop-pipeline-hopper.mlir
+- number: 9179
+  title: Revert "[Backend] Delay wgmma wait(0) to first use of the accumulator"
+  date: '2026-01-09'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - lib/Dialect/TritonGPU/Transforms/Pipeliner/WGMMAPipeline.cpp
+  - test/TritonGPU/samples/descriptor-matmul-pipeline.mlir
+  - test/TritonGPU/samples/simulated-grouped-gemm.mlir
+- number: 8997
+  title: '[Reapply][BACKEND] Add missing waits in WGMMA rhs in register pipelining'
+  date: '2025-12-17'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: python/triton_kernels/triton_kernels/matmul.py, python/triton_kernels/triton_kernels/matmul_details/_matmul.py'
+  files_changed:
+  - lib/Dialect/TritonGPU/Transforms/Pipeliner/WGMMAPipeline.cpp
+  - python/triton_kernels/triton_kernels/matmul.py
+  - python/triton_kernels/triton_kernels/matmul_details/_matmul.py
+  - test/TritonGPU/loop-pipeline-hopper.mlir
+- number: 8970
+  title: Revert "[BACKEND] Add missing waits in WGMMA rhs in register pipelining"
+  date: '2025-12-11'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - lib/Dialect/TritonGPU/Transforms/Pipeliner/WGMMAPipeline.cpp
+  - test/TritonGPU/loop-pipeline-hopper.mlir
+- number: 8873
+  title: '[TESTING] Add gluon TMA + MMA Hopper/Blackwell test'
+  date: '2025-12-03'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - python/test/gluon/test_core.py
+- number: 8554
+  title: '[SWP] Fix wgmma pipelined operand underallocation'
+  date: '2025-10-28'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - lib/Dialect/TritonGPU/Transforms/Pipeliner/LowerLoops.cpp
+  - test/TritonGPU/pipeline-lower-loop.mlir
+- number: 8917
+  title: '[Kernels] Support hopper hbm swizzling in persistent matmul'
+  date: '2025-12-08'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: python/triton_kernels/triton_kernels/matmul.py, python/triton_kernels/triton_kernels/matmul_details/_matmul.py, python/triton_kernels/triton_kernels/matmul_details/_p_matmul.py,
+    python/triton_kernels/triton_kernels/matmul_details/opt_flags.py, python/triton_kernels/triton_kernels/tensor_details/layout_details/blackwell_scale.py, python/triton_kernels/triton_kernels/tensor_details/layout_details/hopper_scale.py,
+    python/triton_kernels/triton_kernels/tensor_details/layout_details/hopper_value.py'
+  files_changed:
+  - python/triton_kernels/triton_kernels/matmul.py
+  - python/triton_kernels/triton_kernels/matmul_details/_matmul.py
+  - python/triton_kernels/triton_kernels/matmul_details/_p_matmul.py
+  - python/triton_kernels/triton_kernels/matmul_details/opt_flags.py
+  - python/triton_kernels/triton_kernels/tensor_details/layout_details/blackwell_scale.py
+  - python/triton_kernels/triton_kernels/tensor_details/layout_details/hopper_scale.py
+  - python/triton_kernels/triton_kernels/tensor_details/layout_details/hopper_value.py
+- number: 8579
+  title: '[BACKEND] Fix unnecessary cvt caused by wgmma wait op'
+  date: '2025-10-29'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - test/Conversion/nvgpu_to_llvm.mlir
+  - third_party/nvidia/lib/NVGPUToLLVM/NVGPUToLLVMPass.cpp
+- number: 8561
+  title: 'Fix handling of 3D DotOp with M=1 '
+  date: '2025-11-04'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - test/Conversion/tritongpu_to_llvm.mlir
+  - third_party/nvidia/lib/TritonNVIDIAGPUToLLVM/DotOpToLLVM.cpp
+- number: 8107
+  title: '[Dialect][Nvidia] Verify WGMMA kWidth'
+  date: '2025-09-09'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - lib/Dialect/TritonNvidiaGPU/IR/Ops.cpp
+  - test/TritonNvidiaGPU/invalid.mlir
+- number: 8378
+  title: '[BACKEND] Fix swizzling=0 support for matrix descriptors and generalize wgmma lowering'
+  date: '2025-10-07'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 7 authoritative changed file(s)'
+  files_changed:
+  - lib/Dialect/TritonGPU/IR/Dialect.cpp
+  - lib/Dialect/TritonNvidiaGPU/IR/Ops.cpp
+  - python/test/gluon/test_core.py
+  - third_party/nvidia/lib/TritonNVIDIAGPUToLLVM/DotOpToLLVM/MMAHelpers.h
+  - third_party/nvidia/lib/TritonNVIDIAGPUToLLVM/DotOpToLLVM/MMAv5.cpp
+  - third_party/nvidia/lib/TritonNVIDIAGPUToLLVM/DotOpToLLVM/WGMMA.cpp
+  - third_party/nvidia/lib/TritonNVIDIAGPUToLLVM/TensorMemoryToLLVM.cpp
+- number: 8684
+  title: '[BACKEND] Gluon multicta + 2cta support'
+  date: '2025-12-02'
+  decision: include
+  reason: 'retain: added device-code construct in: third_party/nvidia/lib/TritonNVIDIAGPUToLLVM/DotOpToLLVM/MMAv5.cpp'
+  files_changed:
+  - lib/Dialect/TritonGPU/IR/LinearLayoutConversions.cpp
+  - lib/Dialect/TritonNvidiaGPU/IR/Ops.cpp
+  - python/test/gluon/test_core.py
+  - python/test/unit/test_perf_warning.py
+  - python/triton/experimental/gluon/language/_layouts.py
+  - python/triton/experimental/gluon/language/amd/_layouts.py
+  - test/Conversion/tritongpu_to_llvm_blackwell.mlir
+  - test/TritonGPU/accelerate-matmul.mlir
+  - third_party/nvidia/lib/NVGPUToLLVM/NVGPUToLLVMPass.cpp
+  - third_party/nvidia/lib/TritonNVIDIAGPUToLLVM/DotOpToLLVM/MMAv5.cpp
+- number: 8211
+  title: '[release/3.5.x] Revert "[BACKEND] hint to LLVM that we can bound threadIdx.x (#7249)"'
+  date: '2025-09-19'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 4 authoritative changed file(s)'
+  files_changed:
+  - lib/Conversion/TritonGPUToLLVM/Utility.cpp
+  - test/Conversion/amd/mfma-shortcut.mlir
+  - test/Conversion/reduce_to_llvm.mlir
+  - test/Conversion/tritonnvidiagpu_to_llvm.mlir
+- number: 7708
+  title: '[TritonNvidiaGPU] Tighten WGMMA verifiers'
+  date: '2025-07-31'
+  decision: include
+  reason: 'retain: added device-code construct in: lib/Dialect/TritonNvidiaGPU/IR/Ops.cpp'
+  files_changed:
+  - include/triton/Dialect/TritonNvidiaGPU/IR/TritonNvidiaGPUOps.td
+  - lib/Dialect/TritonNvidiaGPU/IR/Ops.cpp
+  - python/triton/experimental/gluon/language/nvidia/hopper/__init__.py
+  - third_party/nvidia/hopper/lib/Transforms/WarpSpecialization/WSDataPartition.cpp
+  - third_party/nvidia/lib/TritonNVIDIAGPUToLLVM/DotOpToLLVM/WGMMA.cpp
+- number: 7712
+  title: '[ConSan] Support for WGMMA. Checks on non-async shmem and tmem accesses'
+  date: '2025-08-01'
+  decision: include
+  reason: 'retain: added device-code construct in: lib/Dialect/TritonInstrument/Transforms/ConcurrencySanitizer.cpp'
+  files_changed:
+  - include/triton/Dialect/TritonInstrument/IR/TritonInstrumentAttrDefs.td
+  - include/triton/Dialect/TritonInstrument/IR/TritonInstrumentOps.td
+  - lib/Conversion/TritonGPUToLLVM/AssertOpToLLVM.cpp
+  - lib/Conversion/TritonInstrumentToLLVM/InstrumentationToLLVM.cpp
+  - lib/Dialect/TritonInstrument/IR/Ops.cpp
+  - lib/Dialect/TritonInstrument/Transforms/ConcurrencySanitizer.cpp
+  - python/test/gluon/test_consan.py
+  - test/Conversion/tritoninstrument_to_llvm.mlir
+  - test/TritonGPU/consan.mlir
+- number: 7760
+  title: '[Gluon] Add warpgroup_mma_accumulator object'
+  date: '2025-08-05'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 4 authoritative changed file(s)'
+  files_changed:
+  - python/test/gluon/test_consan.py
+  - python/test/gluon/test_frontend.py
+  - python/triton/experimental/gluon/language/nvidia/hopper/__init__.py
+  - python/triton/experimental/gluon/language/nvidia/hopper/tma.py
+- number: 11771
+  title: '[NVIDIA] Fix loading pointer elements from shared memory'
+  date: '2026-09-15'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - python/test/gluon/test_core.py
+  - test/Conversion/tritongpu_to_llvm.mlir
+  - third_party/nvidia/lib/TritonNVIDIAGPUToLLVM/TargetInfo.cpp
+- number: 10766
+  title: '[TRITON] Fold split(join(a,b)) -> (a,b) and join(split(x)) -> x'
+  date: '2026-08-31'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 4 authoritative changed file(s)'
+  files_changed:
+  - include/triton/Dialect/Triton/IR/TritonOps.td
+  - lib/Dialect/Triton/IR/Ops.cpp
+  - test/Hopper/WarpSpecialization/ws_data_partition.mlir
+  - test/Triton/canonicalize.mlir
+- number: 10798
+  title: '[DOCS] Document bf16x dot input precision modes'
+  date: '2026-07-06'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - python/triton/language/core.py
+- number: 10405
+  title: '[FRONTEND] Add descriptive messages to bare asserts'
+  date: '2026-05-28'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: python/triton/language/semantic.py'
+  files_changed:
+  - python/triton/language/core.py
+  - python/triton/language/semantic.py
+- number: 10353
+  title: Use `acc` dtype if `out_dtype` is not specified for `tl.dot`
+  date: '2026-05-27'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - python/test/unit/language/test_frontend.py
+  - python/triton/language/core.py
+  - python/triton/language/semantic.py
+- number: 10634
+  title: float64 matmul support
+  date: '2026-06-17'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: python/triton_kernels/triton_kernels/matmul.py, python/triton_kernels/triton_kernels/matmul_details/_common.py, python/triton_kernels/triton_kernels/matmul_details/_matmul.py,
+    python/triton_kernels/triton_kernels/matmul_details/_p_matmul.py, python/triton_kernels/triton_kernels/matmul_details/opt_flags.py, python/triton_kernels/triton_kernels/reduce.py'
+  files_changed:
+  - python/triton_kernels/tests/test_matmul.py
+  - python/triton_kernels/tests/test_matmul_details/test_opt_flags_split_k.py
+  - python/triton_kernels/triton_kernels/matmul.py
+  - python/triton_kernels/triton_kernels/matmul_details/_common.py
+  - python/triton_kernels/triton_kernels/matmul_details/_matmul.py
+  - python/triton_kernels/triton_kernels/matmul_details/_p_matmul.py
+  - python/triton_kernels/triton_kernels/matmul_details/opt_flags.py
+  - python/triton_kernels/triton_kernels/reduce.py
+- number: 10585
+  title: '[AMD] Restrict BlockPingPong scheduling for loop-variant masked loads'
+  date: '2026-06-16'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - test/TritonGPU/amd/amd-block-pingpong.mlir
+  - third_party/amd/lib/TritonAMDGPUTransforms/BlockPingpong.cpp
+- number: 10305
+  title: '[AMD] Guard MFMA store layout for small N dimensions'
+  date: '2026-05-15'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - lib/Dialect/TritonGPU/IR/LinearLayoutConversions.cpp
+  - test/TritonGPU/amd/amd-optimize-epilogue.mlir
+- number: 9717
+  title: '[Tools][Translator] Add AMD backend support for Triton-to-Gluon translator'
+  date: '2026-04-15'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: python/triton/tools/triton_to_gluon_translator/amd_helpers.py, python/triton/tools/triton_to_gluon_translator/common_helpers.py'
+  files_changed:
+  - python/test/unit/tools/test_slice_kernel.py
+  - python/test/unit/tools/test_triton_to_gluon.py
+  - python/triton/_internal_testing.py
+  - python/triton/tools/triton_to_gluon_translator/amd_helpers.py
+  - python/triton/tools/triton_to_gluon_translator/common_helpers.py
+  - python/triton/tools/triton_to_gluon_translator/inline_helpers.py
+  - python/triton/tools/triton_to_gluon_translator/nvidia_helpers.py
+  - python/triton/tools/triton_to_gluon_translator/slice_kernel.py
+  - python/triton/tools/triton_to_gluon_translator/target.py
+  - python/triton/tools/triton_to_gluon_translator/translator.py
+- number: 9616
+  title: '[BACKEND] Extended combiner regarding dot-scale ops'
+  date: '2026-03-03'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - lib/Dialect/Triton/Transforms/Combine.cpp
+  - test/Triton/combine.mlir
+- number: 10060
+  title: '[BACKEND] Extend support for small MMAv2 FP64: single 8x8x4 instructions.'
+  date: '2026-04-20'
+  decision: include
+  reason: 'retain: added device-code construct in: lib/Dialect/TritonGPU/IR/LinearLayoutConversions.cpp'
+  files_changed:
+  - lib/Dialect/TritonGPU/IR/Dialect.cpp
+  - lib/Dialect/TritonGPU/IR/LinearLayoutConversions.cpp
+  - lib/Dialect/TritonGPU/Transforms/Utility.cpp
+  - python/test/unit/language/test_core.py
+  - test/Conversion/tritongpu_to_llvm.mlir
+  - test/TritonGPU/accelerate-matmul.mlir
+  - third_party/nvidia/backend/compiler.py
+  - third_party/nvidia/lib/TritonNVIDIAGPUToLLVM/DotOpToLLVM/MMAv2.cpp
+- number: 8818
+  title: '[TEST] Fix for test nondeterminism on tl.dot-BF16xN input_precision'
+  date: '2025-11-24'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - python/test/unit/language/test_core.py
+- number: 8542
+  title: '[FRONTEND] support multidimensional batches in tl.trans and tl.dot'
+  date: '2025-10-26'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - python/test/unit/language/test_core.py
+  - python/triton/language/core.py
+- number: 8111
+  title: '[AMD][GLUON] Expose WMMA for RDNA3 and RDNA4'
+  date: '2025-09-09'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 5 authoritative changed file(s)'
+  files_changed:
+  - python/test/gluon/test_core.py
+  - python/test/gluon/test_frontend.py
+  - python/triton/experimental/gluon/language/amd/__init__.py
+  - python/triton/experimental/gluon/language/amd/rdna3/__init__.py
+  - python/triton/experimental/gluon/language/amd/rdna4/__init__.py
+- number: 7592
+  title: '[BACKEND] Implement BF16x3 trick'
+  date: '2025-10-19'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 12 authoritative changed file(s)'
+  files_changed:
+  - include/triton/Dialect/Triton/IR/TritonAttrDefs.td
+  - include/triton/Dialect/Triton/IR/TritonOps.td
+  - include/triton/Dialect/TritonGPU/Transforms/Passes.td
+  - lib/Dialect/TritonGPU/Transforms/F32DotTC.cpp
+  - python/src/ir.cc
+  - python/src/passes.cc
+  - python/test/unit/language/test_core.py
+  - python/triton/language/semantic.py
+  - test/TritonGPU/bf16x3-matmul.mlir
+  - test/TritonGPU/tf32x3-matmul.mlir
+  - third_party/amd/backend/compiler.py
+  - third_party/nvidia/backend/compiler.py
+- number: 6038
+  title: '[AMD]Lower fp8 tl.dot to scaled mfma on gfx950'
+  date: '2025-02-27'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 5 authoritative changed file(s)'
+  files_changed:
+  - test/TritonGPU/amd/accelerate-amd-matmul-mfma-gfx950.mlir
+  - third_party/amd/include/TritonAMDGPUTransforms/MfmaGroup.h
+  - third_party/amd/lib/TritonAMDGPUToLLVM/DotOpToLLVM/MFMA.cpp
+  - third_party/amd/lib/TritonAMDGPUTransforms/AccelerateAMDMatmul.cpp
+  - third_party/amd/lib/TritonAMDGPUTransforms/MfmaGroup.cpp
+- number: 7398
+  title: '[TMA] Fix lowering TMA load when 2 users of differing encodings'
+  date: '2025-07-07'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - lib/Dialect/TritonGPU/Transforms/Utility.cpp
+  - test/TritonNvidiaGPU/tma_lowering.mlir

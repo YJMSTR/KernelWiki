@@ -1,5 +1,5 @@
 repo: Dao-AILab/quack
-searched_at: '2026-05-20'
+searched_at: '2026-10-27'
 keywords_used:
 - cute
 - tma
@@ -7,10 +7,10 @@ keywords_used:
 - attention
 - hopper
 - blackwell
-total_candidates: 51
-included: 2
-excluded: 0
-deferred: 49
+total_candidates: 67
+included: 6
+excluded: 11
+deferred: 50
 prs:
 - number: 137
   pr: 137
@@ -1651,3 +1651,183 @@ prs:
   deletions: 51
   changed_file_count: 5
   artifact_dir: evidence/pull-bundles/quack/gh-138
+- number: 174
+  title: Bump CuTe-DSL to 4.6.1
+  date: '2026-07-16'
+  decision: defer
+  reason: authoritative PR evidence unavailable; needs-triage
+  files_changed: []
+- number: 181
+  title: Revert electone clean up in PR-#164
+  date: '2026-08-07'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: quack/copy_utils.py'
+  files_changed:
+  - pyproject.toml
+  - quack/copy_utils.py
+- number: 164
+  title: Avoid pre-electing bulk G2S copies
+  date: '2026-07-02'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: quack/copy_utils.py'
+  files_changed:
+  - quack/copy_utils.py
+- number: 147
+  title: 'NFC: replace deprecated APIs: cute.core.ThrMma and cute.core.ThrCopy'
+  date: '2026-05-29'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - quack/copy_utils.py
+  - quack/layout_utils.py
+- number: 151
+  title: Fix compatibility issues with CuTe DSL 4.6.0+
+  date: '2026-06-19'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 5 authoritative changed file(s)'
+  files_changed:
+  - pyproject.toml
+  - quack/complex.py
+  - quack/rounding.py
+  - quack/trace.py
+  - quack/utils.py
+- number: 165
+  title: '[DSL] Update to cutlass-dsl==4.6.0'
+  date: '2026-07-02'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - pyproject.toml
+- number: 146
+  title: '[Gemm] HotFix: Fix epi_load_barrier participant count when num_ab_load_warps > 1 in SM100'
+  date: '2026-05-28'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - quack/gemm_sm100.py
+- number: 169
+  title: '[GEMM] BlockScaledOperand API for block-scaled operands + mixed fp8 A/B'
+  date: '2026-07-15'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 19 authoritative changed file(s)'
+  files_changed:
+  - AI/blockscaled_api.md
+  - benchmarks/benchmark_gemm.py
+  - quack/blockscaled/__init__.py
+  - quack/blockscaled/operand.py
+  - quack/blockscaled/quantize.py
+  - quack/blockscaled/utils.py
+  - quack/cute_dsl_utils.py
+  - quack/epi_autotune.py
+  - quack/epi_torch_op.py
+  - quack/gemm.py
+  - quack/gemm_act.py
+  - quack/gemm_epilogue.py
+  - quack/gemm_host.py
+  - quack/gemm_interface.py
+  - quack/gemm_sm100.py
+  - quack/gemm_tvm_ffi_utils.py
+  - tests/test_blockscaled_operand.py
+  - tests/test_gemm_blockscaled_interface.py
+  - tests/test_gemm_sm100_blockscaled.py
+- number: 72
+  title: Update CuTe-DSL link in README
+  date: '2026-02-06'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - README.md
+- number: 170
+  title: '[GEMM] Full blockscaled MXFP4/6/8 QMMA and MXFP4/NVFP4 OMMA support for SM100 GEMM'
+  date: '2026-07-15'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: quack/gemm_sm100.py, quack/gemm_tvm_ffi_utils.py, quack/sm100_utils.py'
+  files_changed:
+  - AI/blockscaled_api.md
+  - AI/probe_fp6_pitch.py
+  - benchmarks/benchmark_gemm.py
+  - quack/blockscaled/__init__.py
+  - quack/blockscaled/operand.py
+  - quack/blockscaled/quantize.py
+  - quack/blockscaled/utils.py
+  - quack/gemm.py
+  - quack/gemm_host.py
+  - quack/gemm_interface.py
+  - quack/gemm_sm100.py
+  - quack/gemm_tvm_ffi_utils.py
+  - quack/sm100_utils.py
+  - tests/test_blockscaled_operand.py
+  - tests/test_gemm_blockscaled_interface.py
+  - tests/test_gemm_sm100_blockscaled.py
+- number: 152
+  title: 'Epi Mixins: Add support for variadic aux outputs for epi visitors'
+  date: '2026-06-14'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 8 authoritative changed file(s)'
+  files_changed:
+  - quack/activation.py
+  - quack/gemm_act.py
+  - quack/gemm_base.py
+  - quack/gemm_dact.py
+  - quack/gemm_default_epi.py
+  - quack/gemm_norm_act.py
+  - quack/gemm_sq_reduce.py
+  - quack/gemm_symmetric.py
+- number: 177
+  title: '[Dist GEMM] Blockscaled AllGather+GEMM'
+  date: '2026-07-21'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 4 authoritative changed file(s)'
+  files_changed:
+  - benchmarks/benchmark_blockscaled_all_gather_gemm.py
+  - quack/distributed/__init__.py
+  - quack/distributed/all_gather_gemm.py
+  - tests/test_blockscaled_distributed_gemm.py
+- number: 193
+  title: Relax nvidia-cutlass-dsl pin to >=4.7
+  date: '2026-08-31'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - pyproject.toml
+- number: 172
+  title: '[Epi] Expose pre-activation alpha through `gemm_act`'
+  date: '2026-07-15'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 4 authoritative changed file(s)'
+  files_changed:
+  - quack/epilogues.py
+  - quack/gemm_act.py
+  - quack/gemm_interface.py
+  - tests/test_linear.py
+- number: 158
+  title: '[GEMM] Add SplitK Serial,Parallel,Separate modes to all GEMM classes and dtypes'
+  date: '2026-07-07'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: quack/blockscaled/utils.py, quack/gemm.py, quack/gemm_base.py, quack/gemm_default_epi.py, quack/gemm_sm100.py, quack/gemm_sm120.py, quack/gemm_sm90.py,
+    quack/split_k_reduce.py, quack/tile_scheduler.py, quack/utils.py'
+  files_changed:
+  - benchmarks/benchmark_gemm.py
+  - quack/blockscaled/utils.py
+  - quack/cute_dsl_utils.py
+  - quack/gemm.py
+  - quack/gemm_base.py
+  - quack/gemm_config.py
+  - quack/gemm_default_epi.py
+  - quack/gemm_interface.py
+  - quack/gemm_sm100.py
+  - quack/gemm_sm120.py
+  - quack/gemm_sm90.py
+  - quack/gemm_tvm_ffi_utils.py
+  - quack/split_k_reduce.py
+  - quack/tile_scheduler.py
+  - quack/utils.py
+  - tests/test_gemm_sm100_blockscaled.py
+  - tests/test_gemm_split_k.py
+- number: 179
+  title: '[DSL] Relax CUTLASS version constraint'
+  date: '2026-08-05'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - pyproject.toml

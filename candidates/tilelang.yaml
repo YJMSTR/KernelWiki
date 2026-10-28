@@ -1,5 +1,5 @@
 repo: tile-ai/tilelang
-searched_at: '2026-05-20'
+searched_at: '2026-10-27'
 keywords_used:
 - blackwell
 - hopper
@@ -9,10 +9,10 @@ keywords_used:
 - tilelang
 - tma
 - cute
-total_candidates: 215
-included: 43
-excluded: 11
-deferred: 161
+total_candidates: 376
+included: 84
+excluded: 129
+deferred: 163
 prs:
 - number: 1945
   pr: 1945
@@ -9631,3 +9631,2631 @@ prs:
   - src/op/copy.h
   files_reviewed_count: 20
   scope_disposition: removed
+- number: 3365
+  title: Fix constant row indices for TMA gather and scatter
+  date: '2026-10-27'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - testing/python/language/test_tilelang_language_tma_gather_scatter.py
+  - tilelang/language/copy_op.py
+- number: 3286
+  title: '[CUDA] SM120 block-scaled register-A GEMM: unroll K atoms and load scales once per atom'
+  date: '2026-10-26'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: maint/gemm/gemm_sm120/benchmark_sm120_nvfp4_fragment_a_gemm.py'
+  files_changed:
+  - maint/gemm/gemm_sm120/benchmark_sm120_nvfp4_fragment_a_gemm.py
+  - testing/python/language/test_tilelang_language_nvf4_mma_block_scale.py
+  - tilelang/cuda/intrinsics/macro/mma_sm120_macro_generator.py
+  - tilelang/cuda/op/gemm/gemm_mma_sm120.py
+- number: 3144
+  title: '[BugFix][Carver] Compare sm_version numerically in plan_rasterization'
+  date: '2026-09-03'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - testing/python/carver/test_tilelang_carver_policy_rasterization.py
+  - tilelang/carver/roller/policy/tensorcore.py
+- number: 3053
+  title: '[CUDA] Remove `T.{reads,writes}` for `T.tma_{gather4,scatter4}`'
+  date: '2026-08-20'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - src/tl_templates/cuda/copy_sm100.h
+  - testing/python/language/test_tilelang_language_tma_gather_scatter.py
+- number: 2965
+  title: '[BugFix][Hopper][Blackwell] Read the WGMMA/UMMA K-panel stride from the layout instead of the operand extent'
+  date: '2026-09-02'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: tilelang/cuda/intrinsics/macro/wgmma_macro_generator.py'
+  files_changed:
+  - testing/python/cuda/test_tilelang_cuda_tcgen05_operand_layout.py
+  - testing/python/cuda/test_tilelang_cuda_wgmma_operand_layout.py
+  - testing/python/kernel/test_tilelang_kernel_gemm_sliced_operand.py
+  - tilelang/cuda/intrinsics/macro/tcgen05_macro_generator.py
+  - tilelang/cuda/intrinsics/macro/wgmma_macro_generator.py
+  - tilelang/cuda/intrinsics/macro/wgmma_sp_macro_generator.py
+- number: 3139
+  title: '[CUDA] Add async-proxy fences for sparse MMA intrinsics'
+  date: '2026-09-04'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - src/cuda/transform/inject_fence_proxy.cc
+  - testing/python/transform/test_tilelang_transform_inject_fence_proxy.py
+- number: 2417
+  title: '[Feature] Support stmatrix m16n8 on Blackwell'
+  date: '2026-06-23'
+  decision: include
+  reason: 'retain: added device-code construct in: src/tl_templates/cuda/ldsm.h'
+  files_changed:
+  - src/cuda/codegen/codegen_cuda.cc
+  - src/cuda/codegen/codegen_cutedsl.cc
+  - src/cuda/op/copy.cc
+  - src/cuda/target_utils.cc
+  - src/cuda/target_utils.h
+  - src/op/builtin.cc
+  - src/op/builtin.h
+  - src/rocm/codegen/codegen_hip.cc
+  - src/tl_templates/cuda/common.h
+  - src/tl_templates/cuda/ldsm.h
+  - src/transform/lower_tile_op.cc
+  - testing/python/language/test_tilelang_language_copy.py
+  - tilelang/cuda/target.py
+- number: 3204
+  title: '[CUDA] Fuse exact FP4 to FP8 conversion through FP32'
+  date: '2026-09-22'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 4 authoritative changed file(s)'
+  files_changed:
+  - src/cuda/codegen/codegen_cuda.cc
+  - src/cuda/target_utils.cc
+  - src/tl_templates/cuda/cuda_fp4.h
+  - testing/python/language/test_tilelang_language_vectorized_cast.py
+- number: 3245
+  title: Reject unsupported GEMM dtype combos before CUDA codegen
+  date: '2026-10-11'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - src/cuda/op/gemm.cc
+  - testing/python/cuda/test_cuda_gemm_mma_sync_dispatch.py
+- number: 2700
+  title: '[Bugfix] Emit st.bulk destination as a shared write to fix missing barrier and potential compilation-introduced races'
+  date: '2026-07-21'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - src/cuda/op/fill.cc
+- number: 3158
+  title: '[Refactor][CUDA] Replace per-lane-count vector constructors with variadic packers'
+  date: '2026-09-03'
+  decision: include
+  reason: 'retain: added device-code construct in: src/tl_templates/cuda/copy_sm100.h'
+  files_changed:
+  - src/cuda/codegen/codegen_cuda.cc
+  - src/tl_templates/cuda/common.h
+  - src/tl_templates/cuda/copy_sm100.h
+  - src/tl_templates/cuda/cuda_fp4.h
+  - src/tl_templates/cuda/cuda_fp8.h
+  - testing/python/issue/test_tilelang_issue_2480.py
+  - testing/python/language/test_tilelang_language_vectorize_matrix.py
+- number: 2673
+  title: '[BugFix] Zero-extend signed int32 lanes in 256-bit vector pack'
+  date: '2026-07-16'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - src/cuda/codegen/codegen_cuda.cc
+- number: 3203
+  title: '[Refactor][Language] Move backend-specific op hints into their owning dialects'
+  date: '2026-09-11'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 43 authoritative changed file(s)'
+  files_changed:
+  - docs/programming_guides/instructions.md
+  - examples/amd/example_amd_flash_attn_bwd.py
+  - examples/amd/example_amd_flash_attn_fwd.py
+  - examples/gemm_fp8/example_tilelang_gemm_amd.py
+  - examples/gemm_fp8/example_tilelang_gemm_amd_fp8_preshuffle.py
+  - src/cuda/codegen/codegen_cuda.cc
+  - src/op/copy.cc
+  - src/op/copy.h
+  - src/op/gemm.cc
+  - src/op/gemm.h
+  - src/op/gemm_sp.cc
+  - src/op/gemm_sp.h
+  - src/op/reducer.cc
+  - src/rocm/codegen/codegen_hip.cc
+  - testing/python/amd/test_tilelang_gemm_mfma_intrinsic.py
+  - testing/python/amd/test_tilelang_gemm_mfma_preshuffle.py
+  - testing/python/amd/test_tilelang_gfx950_copy_async.py
+  - testing/python/amd/test_tilelang_test_amd.py
+  - testing/python/issue/test_tilelang_issue_3035.py
+  - testing/python/language/test_tilelang_language_dialect.py
+  - testing/python/language/test_tilelang_language_dialect_op_hints.py
+  - tilelang/cuda/language/__init__.py
+  - tilelang/cuda/language/atomic.py
+  - tilelang/cuda/language/copy_op.py
+  - tilelang/cuda/language/gemm_op.py
+  - tilelang/cuda/language/loop.py
+  - tilelang/cuda/language/reduce_op.py
+  - tilelang/language/__init__.py
+  - tilelang/language/atomic.py
+  - tilelang/language/builtin.py
+  - tilelang/language/common.py
+  - tilelang/language/copy_op.py
+  - tilelang/language/experimental/gemm_sp_op.py
+  - tilelang/language/gemm_op.py
+  - tilelang/language/loop.py
+  - tilelang/language/math_intrinsics.py
+  - tilelang/language/reduce_op.py
+  - tilelang/rocm/language/__init__.py
+  - tilelang/rocm/language/gemm_op.py
+  - tilelang/tileop/gemm/__init__.py
+  - tilelang/tileop/gemm/gemm_base.py
+  - tilelang/tileop/gemm_sp/__init__.py
+  - tilelang/tileop/gemm_sp/gemm_sp_base.py
+- number: 2863
+  title: '[Testing] Gate CUDA-only tests so non-CUDA backends can run the suite'
+  date: '2026-08-04'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 28 authoritative changed file(s)'
+  files_changed:
+  - testing/python/components/test_storage_rewrite_detect_inplace.py
+  - testing/python/issue/test_tilelang_issue_2123.py
+  - testing/python/issue/test_tilelang_issue_2529.py
+  - testing/python/issue/test_tilelang_issue_2554.py
+  - testing/python/jit/test_tilelang_jit_diagnostics.py
+  - testing/python/kernel/test_tilelang_kernel_gemm.py
+  - testing/python/language/test_tilelang_cast_rounding.py
+  - testing/python/language/test_tilelang_language_atomic.py
+  - testing/python/language/test_tilelang_language_eager_jit.py
+  - testing/python/language/test_tilelang_language_float4_e2m1_unpacked_dtype.py
+  - testing/python/language/test_tilelang_language_reduce.py
+  - testing/python/language/test_tilelang_language_tma_1d.py
+  - testing/python/language/test_tilelang_language_tma_copy.py
+  - testing/python/target/test_tilelang_rocm_target.py
+  - testing/python/tools/test_tilelang_tools_cuda_iket.py
+  - testing/python/transform/test_readonly_param_const_codegen.py
+  - testing/python/transform/test_tilelang_transform_fuse_mbarrier_arrive_expect_tx.py
+  - testing/python/transform/test_tilelang_transform_inject_set_max_nreg.py
+  - testing/python/transform/test_tilelang_transform_layout_inference.py
+  - testing/python/transform/test_tilelang_transform_lexical_alloc_scope.py
+  - testing/python/transform/test_tilelang_transform_lower_hopper_intrin.py
+  - testing/python/transform/test_tilelang_transform_lower_ldgstg.py
+  - testing/python/transform/test_tilelang_transform_lower_shared_barrier.py
+  - testing/python/transform/test_tilelang_transform_lower_tile_op.py
+  - testing/python/transform/test_tilelang_transform_pipeline_planning.py
+  - testing/python/transform/test_tilelang_transform_plan_update_buffer_allocation_location.py
+  - testing/python/transform/test_tilelang_transform_producer_consumer_ws.py
+  - testing/python/transform/test_tilelang_transform_producer_consumer_ws_persistent.py
+- number: 2406
+  title: '[BugFix] Fix warp-specialized register over-subscription'
+  date: '2026-06-16'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - src/cuda/transform/annotate_warp_group_reg_alloc.cc
+- number: 2364
+  title: '[CUDA] Add SM120 NVF4 block-scale MMA support'
+  date: '2026-07-30'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): maint/gemm/gemm_sm120/cutlass_nvf4_ref.cu'
+  files_changed:
+  - examples/dequantize_gemm/quantize/__init__.py
+  - examples/dequantize_gemm/quantize/nvfp4.py
+  - examples/gemm_sm120/sm120_nvfp4_blockscaled_gemm.py
+  - maint/gemm/gemm_sm120/benchmark_sm120_nvfp4_blockscaled_gemm.py
+  - maint/gemm/gemm_sm120/correctness_evaluation_nvf4_vs_cutlass.py
+  - maint/gemm/gemm_sm120/cutlass_nvf4_ref.cu
+  - maint/gemm/gemm_sm120/tilelang_nvfp4_quantizer.py
+  - src/cuda/codegen/codegen_cuda.cc
+  - src/cuda/codegen/codegen_cuda.h
+  - src/cuda/op/gemm.cc
+  - src/op/builtin.cc
+  - src/op/builtin.h
+  - src/tl_templates/cuda/instruction/mma_block_scale.h
+  - src/transform/merge_shared_memory_allocations.cc
+  - testing/python/language/test_tilelang_language_nvf4_mma_block_scale.py
+  - testing/python/quantize/test_tilelang_quantize_nvfp4_scale_layout.py
+  - tilelang/cuda/intrinsics/__init__.py
+  - tilelang/cuda/intrinsics/layout/mma_layout.py
+  - tilelang/cuda/intrinsics/macro/__init__.py
+  - tilelang/cuda/intrinsics/macro/mma_macro_generator.py
+  - tilelang/cuda/intrinsics/macro/mma_sm120_macro_generator.py
+  - tilelang/cuda/language/intrinsics.py
+  - tilelang/cuda/language/tir.py
+  - tilelang/cuda/op/gemm/__init__.py
+  - tilelang/cuda/op/gemm/gemm_mma_sm120.py
+  - tilelang/language/ast/ir.py
+  - tilelang/language/gemm_op.py
+  - tilelang/language/tir/exports.py
+  - tilelang/language/tir/op.py
+- number: 2751
+  title: '[TIR] Inject source spans into tirx IR and surface source locations in compiler errors'
+  date: '2026-07-28'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 20 authoritative changed file(s)'
+  files_changed:
+  - src/cuda/op/atomic_add.cc
+  - src/cuda/op/copy.cc
+  - src/cuda/op/gemm.cc
+  - src/cuda/op/gemm_sp.cc
+  - src/op/copy.cc
+  - src/op/parallel.cc
+  - src/span_utils.cc
+  - src/span_utils.h
+  - src/transform/inject_pipeline.cc
+  - src/transform/layout_inference.cc
+  - testing/python/language/test_tilelang_language_span.py
+  - testing/python/language/test_tilelang_language_tcgen05_gemm.py
+  - tilelang/backend/pass_pipeline/pipeline.py
+  - tilelang/env.py
+  - tilelang/errors.py
+  - tilelang/ir.py
+  - tilelang/language/allocate.py
+  - tilelang/language/eager/ast.py
+  - tilelang/language/eager/builder.py
+  - tilelang/language/eager/utils.py
+- number: 2871
+  title: '[CuTeDSL] Port backend intrinsics to CUTLASS DSL primitives'
+  date: '2026-08-08'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: maint/host_checks/cutedsl_launcher_overhead.py, maint/host_checks/cutedsl_tma_launcher_overhead.py, tilelang/contrib/cutedsl/atomic.py,
+    tilelang/contrib/cutedsl/cluster.py, tilelang/contrib/cutedsl/cpasync.py, tilelang/contrib/cutedsl/gemm_tcgen05.py, tilelang/contrib/cutedsl/ieee_math.py, tilelang/contrib/cutedsl/ldsm.py, tilelang/contrib/cutedsl/math.py,
+    tilelang/contrib/cutedsl/quantize.py, tilelang/contrib/cutedsl/reduce.py, tilelang/contrib/cutedsl/threadblock_swizzle.py, tilelang/contrib/cutedsl/utils.py, tilelang/contrib/cutedsl/warp.py, tilelang/jit/adapter/cutedsl/checks.py,
+    tilelang/jit/adapter/cutedsl/wrapper.py'
+  files_changed:
+  - maint/host_checks/cutedsl_im2col_smoke.py
+  - maint/host_checks/cutedsl_launcher_overhead.py
+  - maint/host_checks/cutedsl_tma_launcher_overhead.py
+  - requirements-test-cuda.txt
+  - src/cuda/codegen/codegen_cutedsl.cc
+  - src/cuda/codegen/codegen_cutedsl.h
+  - src/cuda/codegen/rt_mod_cutedsl.cc
+  - testing/python/issue/test_tilelang_issue_2682.py
+  - testing/python/issue/test_tilelang_issue_2883.py
+  - tilelang/contrib/cutedsl/__init__.py
+  - tilelang/contrib/cutedsl/atomic.py
+  - tilelang/contrib/cutedsl/cluster.py
+  - tilelang/contrib/cutedsl/cpasync.py
+  - tilelang/contrib/cutedsl/gemm_tcgen05.py
+  - tilelang/contrib/cutedsl/ieee_math.py
+  - tilelang/contrib/cutedsl/ldsm.py
+  - tilelang/contrib/cutedsl/math.py
+  - tilelang/contrib/cutedsl/quantize.py
+  - tilelang/contrib/cutedsl/reduce.py
+  - tilelang/contrib/cutedsl/threadblock_swizzle.py
+  - tilelang/contrib/cutedsl/utils.py
+  - tilelang/contrib/cutedsl/warp.py
+  - tilelang/jit/adapter/cutedsl/checks.py
+  - tilelang/jit/adapter/cutedsl/wrapper.py
+- number: 3112
+  title: '[Lang] Reject non-positive arrive_count in alloc_barrier and alloc_cluster_barrier'
+  date: '2026-08-30'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - testing/python/language/test_tilelang_language_alloc.py
+  - tilelang/language/allocate.py
+- number: 2287
+  title: '[FIX] pass enable_2cta to ptx_tcgen05_mma_ts in tcgen05 macro generator'
+  date: '2026-05-28'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - tilelang/cuda/intrinsics/macro/tcgen05_macro_generator.py
+- number: 2785
+  title: '[CUDA] Support arbitrary TMEM layouts'
+  date: '2026-07-29'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: examples/gemm_sm100/gemm_tcgen5mma_ws.py, examples/gemm_sm100/gemm_tcgen5mma_ws_clc.py, examples/gemm_sm100/gemm_tcgen5mma_ws_persistent.py,
+    tilelang/cuda/intrinsics/layout/mma_sm100_layout.py, tilelang/cuda/intrinsics/macro/tcgen05_macro_generator.py'
+  files_changed:
+  - examples/deepseek_v4/test_tilelang_example_deepseek_v4.py
+  - examples/gemm_sm100/gemm_tcgen5mma_ws.py
+  - examples/gemm_sm100/gemm_tcgen5mma_ws_clc.py
+  - examples/gemm_sm100/gemm_tcgen5mma_ws_persistent.py
+  - src/cuda/op/copy.cc
+  - src/cuda/op/gemm.cc
+  - src/cuda/transform/lower_blackwell_2sm.cc
+  - src/cuda/transform/lower_shared_tmem.cc
+  - src/layout/cute_layout.cc
+  - src/layout/cute_layout.h
+  - src/layout/tcgen05_layout.cc
+  - src/layout/tcgen05_layout.h
+  - testing/python/cuda/test_tilelang_cuda_tcgen05_operand_layout.py
+  - testing/python/language/test_tilelang_language_atom_mma.py
+  - testing/python/language/test_tilelang_language_tcgen05_gemm.py
+  - testing/python/language/test_tilelang_language_tcgen05_sliced_operands.py
+  - testing/python/language/test_tilelang_language_tmem_copy.py
+  - testing/python/layout/test_tilelang_cute.py
+  - testing/python/layout/test_tilelang_tcgen05_expand.py
+  - testing/python/transform/test_tilelang_transform_tmem_physical_shape.py
+  - tilelang/cuda/intrinsics/layout/mma_sm100_layout.py
+  - tilelang/cuda/intrinsics/macro/tcgen05_macro_generator.py
+  - tilelang/cuda/op/gemm/gemm_tcgen05.py
+  - tilelang/ir.py
+  - tilelang/language/allocate.py
+  - tilelang/language/gemm_op.py
+  - tilelang/layout/cute.py
+- number: 2297
+  title: '[Backend][Transform] Move backend-specific transforms into separate namespaces'
+  date: '2026-06-02'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 131 authoritative changed file(s)'
+  files_changed:
+  - CMakeLists.txt
+  - docs/compiler_internals/inject_fence_proxy.md
+  - docs/runtime_internals/stubs.md
+  - docs/tutorials/debug_tools_for_tilelang.md
+  - src/backend/common/codegen/codegen_c.cc
+  - src/backend/common/codegen/codegen_c.h
+  - src/backend/common/codegen/codegen_c_host.cc
+  - src/backend/common/codegen/codegen_c_host.h
+  - src/backend/common/codegen/codegen_metal.cc
+  - src/backend/common/codegen/codegen_metal.h
+  - src/backend/common/codegen/codegen_utils.cc
+  - src/backend/common/codegen/codegen_utils.h
+  - src/backend/common/codegen/rt_mod_c.cc
+  - src/backend/common/target_utils.cc
+  - src/backend/common/target_utils.h
+  - src/backend/metal/codegen/rt_mod_metal.cc
+  - src/cpu/op/copy.cc
+  - src/cpu/op/fill.cc
+  - src/cpu/op/gemm.cc
+  - src/cpu/op/transpose.cc
+  - src/cuda/CMakeLists.txt
+  - src/cuda/codegen/codegen_cuda.cc
+  - src/cuda/codegen/codegen_cuda.h
+  - src/cuda/codegen/codegen_cutedsl.cc
+  - src/cuda/codegen/codegen_cutedsl.h
+  - src/cuda/codegen/codegen_py.cc
+  - src/cuda/codegen/codegen_py.h
+  - src/cuda/codegen/intrin_rule_cuda.cc
+  - src/cuda/codegen/ptx.cc
+  - src/cuda/codegen/ptx.h
+  - src/cuda/codegen/rt_mod_cuda.cc
+  - src/cuda/codegen/rt_mod_cutedsl.cc
+  - src/cuda/op/atomic_add.cc
+  - src/cuda/op/atomic_reduce.cc
+  - src/cuda/op/copy.cc
+  - src/cuda/op/copy.h
+  - src/cuda/op/copy_analysis.cc
+  - src/cuda/op/fill.cc
+  - src/cuda/op/finalize_reducer.cc
+  - src/cuda/op/gemm.cc
+  - src/cuda/op/gemm_sp.cc
+  - src/cuda/op/reduce.cc
+  - src/cuda/op/scan.cc
+  - src/cuda/op/transpose.cc
+  - src/cuda/runtime.cc
+  - src/cuda/runtime.h
+  - src/cuda/stubs/cuda.cc
+  - src/cuda/stubs/cuda.h
+  - src/cuda/stubs/cudart.cc
+  - src/cuda/stubs/dynlib.h
+  - src/cuda/stubs/nvrtc.cc
+  - src/cuda/stubs/vendor/cuda.h
+  - src/cuda/transform/annotate_warp_group_reg_alloc.cc
+  - src/cuda/transform/fuse_mbarrier_arrive_expect_tx.cc
+  - src/cuda/transform/inject_fence_proxy.cc
+  - src/cuda/transform/inject_tcgen05_fence.cc
+  - src/cuda/transform/lower_blackwell_2sm.cc
+  - src/cuda/transform/lower_hopper_intrin.cc
+  - src/cuda/transform/lower_l2_persistent_annotation.cc
+  - src/cuda/transform/lower_ldg_stg.cc
+  - src/cuda/transform/lower_pdl.cc
+  - src/cuda/transform/lower_shared_barrier.cc
+  - src/cuda/transform/lower_shared_tmem.cc
+  - src/cuda/transform/multi_version_buffer_rewriter.cc
+  - src/cuda/transform/multi_version_buffer_rewriter.h
+  - src/cuda/transform/persist_threadblock.cc
+  - src/cuda/transform/producer_consumer_ws.cc
+  - src/metal/CMakeLists.txt
+  - src/metal/codegen/rt_mod_metal.cc
+  - src/metal/op/copy.cc
+  - src/metal/op/fill.cc
+  - src/metal/op/gemm.cc
+  - src/metal/op/transpose.cc
+  - src/metal/op/utils.h
+  - src/op/builtin.cc
+  - src/op/gemm_sp.cc
+  - src/op/parallel.cc
+  - src/op/utils.h
+  - src/rocm/CMakeLists.txt
+  - src/rocm/codegen/codegen_hip.cc
+  - src/rocm/codegen/codegen_hip.h
+  - src/rocm/codegen/intrin_rule_hip.cc
+  - src/rocm/codegen/rt_mod_hip.cc
+  - src/rocm/op/atomic_add.cc
+  - src/rocm/op/atomic_reduce.cc
+  - src/rocm/op/copy.cc
+  - src/rocm/op/fill.cc
+  - src/rocm/op/finalize_reducer.cc
+  - src/rocm/op/gemm.cc
+  - src/rocm/op/reduce.cc
+  - src/rocm/op/scan.cc
+  - src/rocm/op/transpose.cc
+  - src/rocm/stubs/hip.cc
+  - src/rocm/stubs/hip.h
+  - src/rocm/stubs/hiprtc.cc
+  - src/rocm/stubs/vendor/hip_runtime.h
+  - src/transform/instruction_annotation.cc
+  - src/transform/layout_inference.cc
+  - src/transform/loop_vectorize.cc
+  - src/transform/lower_ptx_async_copy.cc
+  - src/transform/lower_tile_op.cc
+  - src/transform/merge_shared_memory_allocations.cc
+  - src/transform/pipeline/access_analysis.cc
+  - src/transform/pipeline/helpers.cc
+  - src/transform/pipeline/stage_analysis.h
+  - src/transform/pipeline_planning.cc
+  - src/transform/vectorize_loop.cc
+  - src/webgpu/op/copy.cc
+  - src/webgpu/op/fill.cc
+  - src/webgpu/op/transpose.cc
+  - testing/python/amd/test_tilelang_hip_codegen.py
+  - testing/python/issue/test_tilelang_issue_sm120_tma_smem_alignment.py
+  - testing/python/transform/test_tilelang_transform_fuse_mbarrier_arrive_expect_tx.py
+  - testing/python/transform/test_tilelang_transform_inject_fence_proxy.py
+  - testing/python/transform/test_tilelang_transform_inject_set_max_nreg.py
+  - testing/python/transform/test_tilelang_transform_inject_tcgen05_fence.py
+  - testing/python/transform/test_tilelang_transform_lexical_alloc_scope.py
+  - testing/python/transform/test_tilelang_transform_lower_hopper_intrin.py
+  - testing/python/transform/test_tilelang_transform_lower_ldgstg.py
+  - testing/python/transform/test_tilelang_transform_lower_shared_barrier.py
+  - testing/python/transform/test_tilelang_transform_lower_shared_tmem.py
+  - testing/python/transform/test_tilelang_transform_plan_update_buffer_allocation_location.py
+  - testing/python/transform/test_tilelang_transform_producer_consumer_ws.py
+  - tilelang/backend/README.md
+  - tilelang/cuda/_ffi_api.py
+  - tilelang/cuda/pipeline.py
+  - tilelang/cuda/transform/__init__.py
+  - tilelang/metal/transform/__init__.py
+  - tilelang/metal/transform/mark_host_metal_context.py
+  - tilelang/metal/transform/metal_fragment_to_simdgroup.py
+  - tilelang/transform/__init__.py
+- number: 2260
+  title: '[Feature] Add stochastic rounding cast for f32 -> fp8/fp4 on CUDA'
+  date: '2026-05-28'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 10 authoritative changed file(s)'
+  files_changed:
+  - src/backend/cuda/codegen/codegen_cuda.cc
+  - src/tl_templates/cuda/cuda_fp4.h
+  - src/tl_templates/cuda/cuda_fp8.h
+  - src/transform/common/loop_vectorization_utils.h
+  - src/transform/loop_vectorize.cc
+  - src/transform/vectorize_loop.cc
+  - testing/python/language/test_tilelang_cast_rounding.py
+  - tilelang/analysis/layout_visual.py
+  - tilelang/language/tir/ir.py
+  - tilelang/language/tir/ir.pyi
+- number: 3502
+  title: '[Test] Optimize testing infrastructure with cached IR traversal'
+  date: '2026-10-14'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 11 authoritative changed file(s)'
+  files_changed:
+  - testing/python/transform/test_tilelang_transform_Inject_software_pipeline.py
+  - testing/python/transform/test_tilelang_transform_inject_tcgen05_fence.py
+  - testing/python/transform/test_tilelang_transform_legalize_safe_memory_access.py
+  - testing/python/transform/test_tilelang_transform_lower_hopper_intrin.py
+  - testing/python/transform/test_tilelang_transform_lower_ldgstg.py
+  - testing/python/transform/test_tilelang_transform_lower_shared_barrier.py
+  - testing/python/transform/test_tilelang_transform_lower_tile_op.py
+  - testing/python/transform/test_tilelang_transform_materialize_ws_schedule.py
+  - testing/python/transform/test_tilelang_transform_thread_sync.py
+  - testing/python/transform/test_tilelang_transform_tmem_arena_packing.py
+  - tilelang/testing/ir.py
+- number: 3359
+  title: '[BugFix][CUDA] Honor tensor-device streams in NVRTC and CuTeDSL'
+  date: '2026-10-27'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: tilelang/jit/adapter/cutedsl/adapter.py'
+  files_changed:
+  - tilelang/jit/adapter/cutedsl/adapter.py
+  - tilelang/jit/adapter/nvrtc/adapter.py
+- number: 3224
+  title: '[Example] FP8 sparse MLA forward for DeepSeek V3.2 on Hopper'
+  date: '2026-09-16'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: examples/deepseek_v32/sparse_mla_fwd_fp8.py'
+  files_changed:
+  - examples/deepseek_v32/README.md
+  - examples/deepseek_v32/regression_tilelang_example_deepseek_v32.py
+  - examples/deepseek_v32/sparse_mla_fwd_fp8.py
+  - examples/deepseek_v32/test_tilelang_example_deepseek_v32.py
+- number: 3579
+  title: '[BugFix][Transform] Respect nonzero loop minima in vectorization'
+  date: '2026-10-20'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 10 authoritative changed file(s)'
+  files_changed:
+  - src/cuda/op/copy.cc
+  - src/transform/loop_vectorize.cc
+  - src/transform/loop_vectorize.h
+  - testing/python/cpu/test_tilelang_cpu_parallel_safety.py
+  - testing/python/issue/test_tilelang_issue_2616.py
+  - testing/python/issue/test_tilelang_issue_2669.py
+  - testing/python/transform/test_tilelang_transform_decouple_type_cast.py
+  - testing/python/transform/test_tilelang_transform_legalize_vectorized_loop.py
+  - testing/python/transform/test_tilelang_transform_loop_vectorize.py
+  - tilelang/transform/decouple_type_cast.py
+- number: 3356
+  title: '[BugFix][Transform] Unroll the epilogue of a pipeline with a runtime trip count'
+  date: '2026-10-27'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - src/transform/inject_pipeline.cc
+- number: 2931
+  title: '[BugFix][Hopper] Select the widest legal WGMMA N instead of gcd'
+  date: '2026-08-11'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - testing/python/issue/test_tilelang_issue_2928.py
+  - tilelang/cuda/intrinsics/macro/wgmma_macro_generator.py
+  - tilelang/cuda/intrinsics/macro/wgmma_sp_macro_generator.py
+- number: 3041
+  title: '[Analysis] Reject `T.Parallel` indexing of local buffers'
+  date: '2026-08-17'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 8 authoritative changed file(s)'
+  files_changed:
+  - examples/dequantize_gemm/example_dequant_gemm_bf16_mxfp4_cdna4.py
+  - examples/dequantize_gemm/example_dequant_gemm_bf16_mxfp4_hopper.py
+  - testing/python/analysis/test_tilelang_parallel_local_index_checker.py
+  - testing/python/cpu/test_tilelang_cpu_gemm.py
+  - testing/python/llvm/test_tilelang_llvm_gemm.py
+  - tilelang/analysis/__init__.py
+  - tilelang/analysis/parallel_local_index_checker.py
+  - tilelang/engine/semantic_check.py
+- number: 3313
+  title: '[Test] Improve testing infrastructure'
+  date: '2026-10-11'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 12 authoritative changed file(s)'
+  files_changed:
+  - testing/python/issue/test_tilelang_issue_2123.py
+  - testing/python/transform/test_tilelang_transform_fuse_mbarrier_arrive_expect_tx.py
+  - testing/python/transform/test_tilelang_transform_inject_tcgen05_fence.py
+  - testing/python/transform/test_tilelang_transform_legalize_safe_memory_access.py
+  - testing/python/transform/test_tilelang_transform_lower_hopper_intrin.py
+  - testing/python/transform/test_tilelang_transform_lower_ldgstg.py
+  - testing/python/transform/test_tilelang_transform_lower_shared_barrier.py
+  - testing/python/transform/test_tilelang_transform_lower_shared_tmem.py
+  - testing/python/transform/test_tilelang_transform_lower_tile_op.py
+  - testing/python/transform/test_tilelang_transform_tmem_arena_packing.py
+  - testing/python/transform/test_tilelang_transform_tmem_physical_shape.py
+  - tilelang/testing/ir.py
+- number: 2891
+  title: '[BugFix][Carver] Parse lettered SM arch strings in check_sm_version'
+  date: '2026-08-07'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - testing/python/carver/test_tilelang_carver_sm_version.py
+  - tilelang/carver/arch/cuda.py
+  - tilelang/carver/matmul_analysis.py
+- number: 3414
+  title: '[BugFix] Preserve parameter identity in NVRTC and CuTeDSL wrappers'
+  date: '2026-10-10'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: tilelang/jit/adapter/cutedsl/adapter.py, tilelang/jit/adapter/cutedsl/wrapper.py'
+  files_changed:
+  - tilelang/jit/adapter/cutedsl/adapter.py
+  - tilelang/jit/adapter/cutedsl/wrapper.py
+  - tilelang/jit/adapter/nvrtc/adapter.py
+  - tilelang/jit/adapter/nvrtc/wrapper.py
+  - tilelang/jit/adapter/utils.py
+- number: 3221
+  title: '[Transform] Restore bind-before-use order when merging constraint sets'
+  date: '2026-09-14'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - src/transform/common/constr_visitor.h
+  - src/transform/constr_set_analysis.cc
+  - testing/python/transform/test_tilelang_transform_constr_set_merge.py
+- number: 2464
+  title: '[BugFix] Ignore flat Bind nodes in ForBodyContainsSeqStmt'
+  date: '2026-06-29'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - src/transform/loop_vectorize.cc
+- number: 3238
+  title: '[Transform][CUDA] Plan atomic vector widths from destination addresses'
+  date: '2026-09-16'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: maint/layout_inference/cases/atomic_destination.py'
+  files_changed:
+  - maint/layout_inference/README.md
+  - maint/layout_inference/cases/atomic_destination.py
+  - maint/layout_inference/expected/atomic_destination.json
+  - src/transform/loop_vectorize.cc
+  - src/transform/loop_vectorize.h
+  - src/transform/vectorize_loop.cc
+  - testing/python/language/test_tilelang_language_atomic.py
+  - testing/python/transform/test_tilelang_transform_loop_vectorize.py
+- number: 2846
+  title: '[CUDA][TMA] Separate atomic-add dtype support from layout encoding'
+  date: '2026-08-03'
+  decision: include
+  reason: 'retain: added device-code construct in: src/cuda/op/copy.cc, src/cuda/op/tma_layout.cc, src/cuda/op/tma_layout.h'
+  files_changed:
+  - src/cuda/op/atomic_add.cc
+  - src/cuda/op/copy.cc
+  - src/cuda/op/tma_layout.cc
+  - src/cuda/op/tma_layout.h
+  - testing/python/language/test_tilelang_language_atomic.py
+- number: 2830
+  title: '[BugFix] Reject unsupported TMA atomic add dtypes'
+  date: '2026-08-01'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - src/cuda/op/atomic_add.cc
+  - testing/python/language/test_tilelang_language_atomic.py
+- number: 2718
+  title: '[Transform] Replace CPU fallback thread placeholder with a constant-zero logical thread index'
+  date: '2026-07-21'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 40 authoritative changed file(s)'
+  files_changed:
+  - src/backend/common/op/atomic_reduce.h
+  - src/backend/common/op/fill.h
+  - src/backend/common/op/reduce.h
+  - src/backend/common/op/transpose.h
+  - src/cuda/op/atomic_add.cc
+  - src/cuda/op/copy.cc
+  - src/cuda/op/fill.cc
+  - src/metal/op/copy.cc
+  - src/metal/op/fill.cc
+  - src/metal/op/transpose.cc
+  - src/op/copy.cc
+  - src/op/gemm.cc
+  - src/op/gemm_sp.cc
+  - src/op/operator.h
+  - src/op/parallel.cc
+  - src/op/parallel.h
+  - src/rocm/op/atomic_add.cc
+  - src/rocm/op/copy.cc
+  - src/transform/layout_inference.cc
+  - src/transform/loop_partition.cc
+  - src/transform/loop_partition.h
+  - src/transform/lower_tile_op.cc
+  - src/webgpu/op/fill.cc
+  - src/webgpu/op/transpose.cc
+  - testing/python/transform/test_tilelang_transform_lower_tile_op.py
+  - tilelang/cpu/op/gemm/gemm_scalar.py
+  - tilelang/cuda/op/gemm/gemm_mma.py
+  - tilelang/cuda/op/gemm/gemm_mma_sm70.py
+  - tilelang/cuda/op/gemm/gemm_tcgen05.py
+  - tilelang/cuda/op/gemm/gemm_wgmma.py
+  - tilelang/cuda/op/gemm_sp/gemm_sp_mma.py
+  - tilelang/cuda/op/gemm_sp/gemm_sp_wgmma.py
+  - tilelang/metal/op/gemm/gemm_metal.py
+  - tilelang/rocm/op/gemm/gemm_mfma.py
+  - tilelang/rocm/op/gemm/gemm_wmma.py
+  - tilelang/tileop/gemm/__init__.py
+  - tilelang/tileop/gemm/gemm_base.py
+  - tilelang/tileop/gemm_sp/__init__.py
+  - tilelang/tileop/gemm_sp/gemm_sp_base.py
+  - tilelang/tileop/gemm_sp/gemm_sp_wgmma.py
+- number: 2935
+  title: '[Refactor][BugFix] Refactor the loop vectorization plan with ConstraintKind'
+  date: '2026-08-11'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - src/transform/loop_vectorize.cc
+  - testing/python/language/test_tilelang_language_vectorize.py
+- number: 3087
+  title: '[Bugfix] Fix wait parity for explicit mbarriers in pipelined loops'
+  date: '2026-08-26'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 6 authoritative changed file(s)'
+  files_changed:
+  - src/op/operator.h
+  - src/transform/inject_pipeline.cc
+  - src/transform/lower_tile_op.cc
+  - testing/python/language/test_tilelang_language_tcgen05_gemm.py
+  - testing/python/transform/test_tilelang_transform_Inject_software_pipeline.py
+  - testing/python/transform/test_tilelang_transform_lower_tile_op.py
+- number: 3237
+  title: '[Do not review][Op][Language][CUDA] Add common block-scaled GEMM semantics and backend dispatch'
+  date: '2026-09-17'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: tilelang/cuda/op/gemm/gemm_tcgen05_blockscaled.py, tilelang/language/gemm_op.py'
+  files_changed:
+  - docs/programming_guides/instructions.md
+  - examples/blockscaled_gemm_sm100/mxfp8_illustrated.md
+  - src/cuda/op/gemm.cc
+  - src/cuda/op/gemm_blockscaled.cc
+  - src/cuda/transform/inject_tcgen05_fence.cc
+  - src/cuda/transform/materialize_ws_schedule.cc
+  - src/cuda/transform/producer_consumer_ws.cc
+  - src/op/gemm.cc
+  - src/op/gemm.h
+  - src/op/gemm_blockscaled.cc
+  - src/op/gemm_blockscaled.h
+  - testing/python/language/test_tilelang_language_dialect.py
+  - testing/python/language/test_tilelang_language_dialect_op_hints.py
+  - testing/python/language/test_tilelang_language_gemm_blockscaled.py
+  - testing/python/transform/test_tilelang_transform_inject_tcgen05_fence.py
+  - testing/python/transform/test_tilelang_transform_materialize_ws_schedule.py
+  - tilelang/cuda/intrinsics/macro/tcgen05_macro_generator.py
+  - tilelang/cuda/language/__init__.py
+  - tilelang/cuda/language/gemm_op.py
+  - tilelang/cuda/language/intrinsics.py
+  - tilelang/cuda/op/gemm/__init__.py
+  - tilelang/cuda/op/gemm/gemm_mma_sm120.py
+  - tilelang/cuda/op/gemm/gemm_tcgen05.py
+  - tilelang/cuda/op/gemm/gemm_tcgen05_blockscaled.py
+  - tilelang/language/__init__.py
+  - tilelang/language/common.py
+  - tilelang/language/gemm_op.py
+  - tilelang/tileop/__init__.py
+  - tilelang/tileop/gemm/__init__.py
+  - tilelang/tileop/gemm/gemm_base.py
+  - tilelang/tileop/gemm_blockscaled/__init__.py
+  - tilelang/tileop/gemm_blockscaled/gemm_blockscaled_base.py
+- number: 3050
+  title: '[TIR][Transform] Handle grid barriers and unbounded pointer ranges'
+  date: '2026-08-19'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - src/transform/thread_storage_sync.cc
+  - testing/python/transform/test_tilelang_transform_thread_sync.py
+- number: 3171
+  title: '[Layout] Consider scalar reducer plans in register-count search'
+  date: '2026-09-07'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: maint/layout_inference/cases/reducer_scalar_candidates.py'
+  files_changed:
+  - maint/layout_inference/README.md
+  - maint/layout_inference/cases/reducer_scalar_candidates.py
+  - maint/layout_inference/expected/reducer_scalar_candidates.json
+  - src/op/operator.h
+  - src/op/parallel.cc
+  - src/op/parallel.h
+  - src/transform/layout_inference/layout_cost_model.cc
+  - src/transform/layout_inference/layout_cost_model.h
+  - src/transform/layout_inference/layout_inference.cc
+  - testing/python/transform/test_tilelang_transform_reducer_scalar_candidates.py
+- number: 3121
+  title: '[BugFix] Always vectorize `T.Parallel` loops'
+  date: '2026-08-31'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 14 authoritative changed file(s)'
+  files_changed:
+  - src/backend/common/op/atomic_reduce.h
+  - src/backend/common/op/transpose.h
+  - src/cuda/op/atomic_add.cc
+  - src/cuda/op/copy.cc
+  - src/metal/op/transpose.cc
+  - src/op/copy.cc
+  - src/rocm/op/atomic_add.cc
+  - src/rocm/op/copy.cc
+  - src/transform/loop_partition.cc
+  - src/transform/loop_partition.h
+  - src/transform/lower_tile_op.cc
+  - src/webgpu/op/transpose.cc
+  - testing/python/issue/test_tilelang_issue_1734.py
+  - testing/python/language/test_tilelang_language_parallel.py
+- number: 3207
+  title: '[BugFix][JIT] Allocate a dynamic-shape output that precedes its sizing input'
+  date: '2026-09-21'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 5 authoritative changed file(s)'
+  files_changed:
+  - testing/python/jit/test_tilelang_jit_cython.py
+  - testing/python/jit/test_tilelang_jit_tvm_ffi.py
+  - tilelang/jit/adapter/cython/adapter.py
+  - tilelang/jit/adapter/cython/cython_wrapper.pyx
+  - tilelang/jit/adapter/tvm_ffi.py
+- number: 2881
+  title: '[BugFix] Deduplicate replicated reducer updates'
+  date: '2026-08-06'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 4 authoritative changed file(s)'
+  files_changed:
+  - src/transform/loop_partition.cc
+  - src/transform/loop_partition.h
+  - src/transform/lower_tile_op.cc
+  - testing/python/language/test_tilelang_language_reduce.py
+- number: 2469
+  title: '[BugFix] Fix LayoutInference divide-by-zero on non-power-of-two broadcast'
+  date: '2026-07-03'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - src/layout/utils.cc
+  - testing/python/transform/test_tilelang_transform_layout_inference.py
+- number: 3577
+  title: '[Ascend][DeepGEMM] Align GEMM heuristics and epilogues'
+  date: '2026-10-21'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: examples/ascend/deepgemm/kernels/bf16_gemm.py, examples/ascend/deepgemm/kernels/compute.py, examples/ascend/deepgemm/kernels/epilogue.py,
+    examples/ascend/deepgemm/kernels/fp8_gemm.py, examples/ascend/deepgemm/kernels/transform_sf.py'
+  files_changed:
+  - examples/ascend/deepgemm/__init__.py
+  - examples/ascend/deepgemm/_heuristics.pyx
+  - examples/ascend/deepgemm/api.py
+  - examples/ascend/deepgemm/bench_deepgemm.py
+  - examples/ascend/deepgemm/config.py
+  - examples/ascend/deepgemm/epilogue.py
+  - examples/ascend/deepgemm/kernels/__init__.py
+  - examples/ascend/deepgemm/kernels/bf16_gemm.py
+  - examples/ascend/deepgemm/kernels/common.py
+  - examples/ascend/deepgemm/kernels/compute.py
+  - examples/ascend/deepgemm/kernels/copy.py
+  - examples/ascend/deepgemm/kernels/epilogue.py
+  - examples/ascend/deepgemm/kernels/fp8_gemm.py
+  - examples/ascend/deepgemm/kernels/kmn/__init__.py
+  - examples/ascend/deepgemm/kernels/kmn/bf16_gemm.py
+  - examples/ascend/deepgemm/kernels/kmn/compute.py
+  - examples/ascend/deepgemm/kernels/kmn/fp8_gemm.py
+  - examples/ascend/deepgemm/kernels/mnk/__init__.py
+  - examples/ascend/deepgemm/kernels/mnk/compute.py
+  - examples/ascend/deepgemm/kernels/transform_sf.py
+  - examples/ascend/deepgemm/test_deepgemm.py
+  - maint/scripts/ascend_perf_regression.py
+  - src/ascend/codegen/codegen_ascend.cc
+  - src/ascend/op/builtin.cc
+  - src/ascend/op/builtin.h
+  - src/tl_templates/ascend/simd_inst.h
+  - testing/ascend/language/simdvf/test_simdvf_data_movement.py
+  - testing/ascend/language/test_tilelang_ascend_intrinsics.py
+  - tilelang/ascend/language/simd.py
+- number: 3589
+  title: '[Ascend] Add FP4 x FP4 support to DeepGEMM examples'
+  date: '2026-10-23'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 8 authoritative changed file(s)'
+  files_changed:
+  - examples/ascend/deepgemm/api.py
+  - examples/ascend/deepgemm/config.py
+  - examples/ascend/deepgemm/kernels/compute.py
+  - examples/ascend/deepgemm/kernels/epilogue.py
+  - examples/ascend/deepgemm/kernels/fp8_gemm.py
+  - examples/ascend/deepgemm/test_deepgemm.py
+  - src/ascend/transform/insert_oob_padding.cc
+  - testing/ascend/transform/test_ascend_copy_bounds.py
+- number: 3439
+  title: '[BugFix][CUDA] Gate fp8 T.gemm on SM89 instead of trapping at launch'
+  date: '2026-10-07'
+  decision: include
+  reason: 'retain: added device-code construct in: src/cuda/op/gemm.cc'
+  files_changed:
+  - src/cuda/op/gemm.cc
+  - testing/python/kernel/test_tilelang_kernel_fp8_gemm_arch_gate.py
+- number: 3511
+  title: '[Ascend] Support partial L0 copies with explicit pitch'
+  date: '2026-10-20'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 24 authoritative changed file(s)'
+  files_changed:
+  - src/ascend/layout/ascend_layouts.cc
+  - src/ascend/layout/ascend_layouts.h
+  - src/ascend/op/copy.cc
+  - src/ascend/op/copy.h
+  - src/ascend/transform/auto_schedule/dependency_analysis.cc
+  - src/ascend/transform/auto_schedule/dependency_analysis.h
+  - src/ascend/transform/auto_schedule/ir_structure.cc
+  - src/ascend/transform/auto_schedule/ir_structure.h
+  - src/ascend/transform/auto_schedule/memory_detector.h
+  - src/ascend/transform/auto_schedule/scheduled_tir.cc
+  - src/ascend/transform/auto_schedule/task_analysis.h
+  - src/ascend/transform/lower_tile_op.cc
+  - src/ascend/transform/normalize_fractal_storage.cc
+  - testing/ascend/_ir.py
+  - testing/ascend/auto_schedule/test_access_footprints.py
+  - testing/ascend/auto_schedule/test_cross_core_flags.py
+  - testing/ascend/auto_schedule/test_flag_allocation.py
+  - testing/ascend/auto_schedule/test_schedule_integration.py
+  - testing/ascend/auto_schedule/test_sync_access_footprints.py
+  - testing/ascend/auto_schedule/test_sync_dependencies.py
+  - testing/ascend/layout/test_ascend_partial_l0_copy.py
+  - testing/ascend/transform/test_ascend_lower_copy.py
+  - testing/ascend/transform/test_ascend_normalize_fractal_storage.py
+  - tilelang/ascend/language/copy_op.py
+- number: 3297
+  title: '[BugFix][CUDA] Support uint8 sparse GEMM operands'
+  date: '2026-10-08'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - testing/python/tilelibrary/test_tilelang_tilelibrary_gemm_sp.py
+  - tilelang/cuda/intrinsics/macro/mma_sp_macro_generator.py
+- number: 3581
+  title: '[Ascend][PTO] Avoid exponential MAD direction predicate growth'
+  date: '2026-10-22'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - src/ascend/codegen/codegen_pto.cc
+  - testing/ascend/language/test_tilelang_ascend_pto_mad_direction.py
+- number: 3335
+  title: '[BugFix][Layout] Reject an unsupported operand dtype in sm8x sparse metadata'
+  date: '2026-10-26'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - tilelang/layout/gemm_sp.py
+- number: 3441
+  title: '[Fix] Preserve shared region offsets in LDSM copies'
+  date: '2026-10-07'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 5 authoritative changed file(s)'
+  files_changed:
+  - src/cuda/codegen/codegen_cuda.cc
+  - src/cuda/op/copy.cc
+  - src/tl_templates/cuda/ldsm.h
+  - testing/python/language/test_tilelang_language_copy.py
+  - testing/python/language/test_tilelang_language_copy_ldmatrix.py
+- number: 3191
+  title: '[Build] Optimize default single-config builds'
+  date: '2026-09-28'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - CMakeLists.txt
+- number: 3308
+  title: '[Public Release 9/30] Introduce Ascend 950 backend'
+  date: '2026-09-29'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: examples/ascend/deepgemm/kernels/copy.py, examples/ascend/deepgemm/kernels/epilogue.py, examples/ascend/deepgemm/kernels/kmn/bf16_gemm.py,
+    examples/ascend/deepgemm/kernels/kmn/fp8_gemm.py, examples/ascend/deepgemm/kernels/mnk/bf16_gemm.py, examples/ascend/deepgemm/kernels/mnk/fp8_gemm.py, examples/ascend/deepgemm/kernels/transform_sf.py,
+    examples/ascend/example_gemm.py, examples/ascend/example_gemm_splitk.py, examples/ascend/example_per_token_cast_to_fp8.py, examples/ascend/example_rmsnorm.py, examples/ascend/example_vecadd.py, examples/ascend/flash_attention/core.py,
+    examples/ascend/flash_attention/core_bwd.py, tilelang/ascend/op/gemm/gemm_mad.py, tilelang/ascend/op/gemm/gemm_mad_blockscaled.py, tilelang/profiler/msprof.py'
+  files_changed:
+  - .agents/skills/tilelang-ascend/SKILL.md
+  - .agents/skills/tilelang-ascend/agents/openai.yaml
+  - .agents/skills/tilelang-ascend/references/profiling.md
+  - .agents/skills/tilelang-ascend/references/synchronization.md
+  - .agents/skills/tilelang-semantic/SKILL.md
+  - .claude/skills/tilelang-ascend
+  - .github/workflows/ci.yml
+  - CMakeLists.txt
+  - README.md
+  - cmake/BackendOptions.cmake
+  - docs/get_started/Installation.md
+  - docs/runtime_internals/stubs.md
+  - docs/spelling_wordlist.txt
+  - examples/ascend/README.md
+  - examples/ascend/deepgemm/__init__.py
+  - examples/ascend/deepgemm/_heuristics.pyx
+  - examples/ascend/deepgemm/api.py
+  - examples/ascend/deepgemm/bench_deepgemm.py
+  - examples/ascend/deepgemm/config.py
+  - examples/ascend/deepgemm/kernels/__init__.py
+  - examples/ascend/deepgemm/kernels/common.py
+  - examples/ascend/deepgemm/kernels/copy.py
+  - examples/ascend/deepgemm/kernels/epilogue.py
+  - examples/ascend/deepgemm/kernels/kmn/__init__.py
+  - examples/ascend/deepgemm/kernels/kmn/bf16_gemm.py
+  - examples/ascend/deepgemm/kernels/kmn/compute.py
+  - examples/ascend/deepgemm/kernels/kmn/fp8_gemm.py
+  - examples/ascend/deepgemm/kernels/mnk/__init__.py
+  - examples/ascend/deepgemm/kernels/mnk/bf16_gemm.py
+  - examples/ascend/deepgemm/kernels/mnk/compute.py
+  - examples/ascend/deepgemm/kernels/mnk/fp8_gemm.py
+  - examples/ascend/deepgemm/kernels/transform_sf.py
+  - examples/ascend/deepgemm/test_deepgemm.py
+  - examples/ascend/example_gemm.py
+  - examples/ascend/example_gemm_splitk.py
+  - examples/ascend/example_per_token_cast_to_fp8.py
+  - examples/ascend/example_rmsnorm.py
+  - examples/ascend/example_vecadd.py
+  - examples/ascend/flash_attention/README.md
+  - examples/ascend/flash_attention/core.py
+  - examples/ascend/flash_attention/core_bwd.py
+  - examples/ascend/flash_attention/example_gqa.py
+  - examples/ascend/flash_attention/example_gqa_bwd.py
+  - examples/ascend/flash_attention/example_gqa_manual_schedule.py
+  - examples/ascend/flash_attention/example_mha.py
+  - examples/ascend/flash_attention/test_gqa.py
+  - examples/ascend/flash_attention/test_gqa_bwd.py
+  - examples/ascend/flash_attention/test_mha.py
+  - examples/ascend/test_gemm.py
+  - examples/ascend/test_gemm_splitk.py
+  - examples/ascend/test_per_token_cast_to_fp8.py
+  - examples/ascend/test_rmsnorm.py
+  - examples/ascend/test_vecadd.py
+  - images/ascend-950-backend-architecture.png
+  - images/ascend-950-throughput.png
+  - maint/scripts/ascend_perf_regression.py
+  - maint/scripts/run_local_ci_test_ascend.sh
+  - maint/scripts/run_perf_regression_ascend.sh
+  - pyproject.toml
+  - src/ascend/CMakeLists.txt
+  - src/ascend/codegen/codegen_ascend.cc
+  - src/ascend/codegen/codegen_ascend.h
+  - src/ascend/codegen/intrin_rule_ascend.cc
+  - src/ascend/codegen/rt_mod_ascend.cc
+  - src/ascend/ir.cc
+  - src/ascend/layout/ascend_layouts.cc
+  - src/ascend/layout/ascend_layouts.h
+  - src/ascend/op/ascend_mte_plan.h
+  - src/ascend/op/builtin.cc
+  - src/ascend/op/builtin.h
+  - src/ascend/op/copy.cc
+  - src/ascend/op/copy.h
+  - src/ascend/op/fill.cc
+  - src/ascend/op/finalize_reducer.cc
+  - src/ascend/op/gemm.cc
+  - src/ascend/op/gemm_blockscaled.cc
+  - src/ascend/op/oob_padding.cc
+  - src/ascend/op/oob_padding.h
+  - src/ascend/op/reduce.cc
+  - src/ascend/op/reduce.h
+  - src/ascend/op/utils.h
+  - src/ascend/runtime/ascend_device_api.cc
+  - src/ascend/runtime/ascend_module.cc
+  - src/ascend/stubs/ascendcl.cc
+  - src/ascend/stubs/ascendcl.h
+  - src/ascend/target.cc
+  - src/ascend/target_utils.cc
+  - src/ascend/target_utils.h
+  - src/ascend/transform/annotate_multi_buffer_eligible.cc
+  - src/ascend/transform/ascend_pipe.h
+  - src/ascend/transform/ascend_simdvf_lower_parallel.cc
+  - src/ascend/transform/assign_core.cc
+  - src/ascend/transform/attr.h
+  - src/ascend/transform/auto_schedule.cc
+  - src/ascend/transform/auto_schedule/buffer_alias_analysis.h
+  - src/ascend/transform/auto_schedule/buffer_lifetime_analysis.h
+  - src/ascend/transform/auto_schedule/dependency_analysis.cc
+  - src/ascend/transform/auto_schedule/dependency_analysis.h
+  - src/ascend/transform/auto_schedule/ir_structure.cc
+  - src/ascend/transform/auto_schedule/ir_structure.h
+  - src/ascend/transform/auto_schedule/kernel_rewriter.h
+  - src/ascend/transform/auto_schedule/memory_detector.h
+  - src/ascend/transform/auto_schedule/multi_buffer.h
+  - src/ascend/transform/auto_schedule/scheduled_tir.cc
+  - src/ascend/transform/auto_schedule/scheduled_tir.h
+  - src/ascend/transform/auto_schedule/task_analysis.h
+  - src/ascend/transform/auto_schedule/task_annotations.h
+  - src/ascend/transform/buffer_alias.h
+  - src/ascend/transform/buffer_version.h
+  - src/ascend/transform/core_mask.h
+  - src/ascend/transform/estimate_latency.cc
+  - src/ascend/transform/estimate_latency.h
+  - src/ascend/transform/infer_buffer_aliases.cc
+  - src/ascend/transform/insert_nd2nz.cc
+  - src/ascend/transform/insert_oob_padding.cc
+  - src/ascend/transform/insert_sync.cc
+  - src/ascend/transform/layout_inference.cc
+  - src/ascend/transform/legalize_simd_merging.cc
+  - src/ascend/transform/lower_scheduled_tir.cc
+  - src/ascend/transform/lower_tile_op.cc
+  - src/ascend/transform/mark_scalar_dcache_bypass.cc
+  - src/ascend/transform/materialize_multi_buffer.cc
+  - src/ascend/transform/materialize_schedule_units.cc
+  - src/ascend/transform/merge_ub_allocations.cc
+  - src/ascend/transform/merge_ub_common.h
+  - src/ascend/transform/normalize_buffer_version.cc
+  - src/ascend/transform/normalize_conflict_hints.cc
+  - src/ascend/transform/normalize_control_flow_for_schedule.cc
+  - src/ascend/transform/normalize_fractal_storage.cc
+  - src/ascend/transform/prepare_multi_buffer.cc
+  - src/ascend/transform/remove_no_op.cc
+  - src/ascend/transform/resolve_core.cc
+  - src/ascend/transform/restore_while_loops.cc
+  - src/ascend/transform/rewrite_buffer_version_layout.cc
+  - src/ascend/transform/rewrite_dual_copy.cc
+  - src/ascend/transform/rewrite_flag_to_buf.cc
+  - src/ascend/transform/rewrite_fp4_to_fp4x2.cc
+  - src/ascend/transform/thread_storage_sync.cc
+  - src/ascend/transform/unroll_loop_skip_vf.cc
+  - src/ascend/transform/vf_regions.h
+  - src/backend/common/op/reduce.h
+  - src/backend/common/target_utils.h
+  - src/cuda/op/builtin.cc
+  - src/cuda/op/builtin.h
+  - src/cuda/op/reduce.cc
+  - src/ir.cc
+  - src/ir.h
+  - src/layout/layout.cc
+  - src/layout/layout.h
+  - src/op/builtin.cc
+  - src/op/builtin.h
+  - src/op/copy.h
+  - src/op/math.cc
+  - src/rocm/op/reduce.cc
+  - src/tl_templates/ascend/ascend_fp8.h
+  - src/tl_templates/ascend/common.h
+  - src/tl_templates/ascend/dcache_bypass.h
+  - src/tl_templates/ascend/debug.h
+  - src/tl_templates/ascend/gemm.h
+  - src/tl_templates/ascend/nd2nz_copy.h
+  - src/tl_templates/ascend/numeric_limits.h
+  - src/tl_templates/ascend/philox_rng.h
+  - src/tl_templates/ascend/random_kernel_base.h
+  - src/tl_templates/ascend/reduce.h
+  - src/tl_templates/ascend/simd_inst.h
+  - src/transform/common/attr.h
+  - src/transform/common/loop_fusion_utils.h
+  - src/transform/inject_assumes.cc
+  - src/transform/legalize_safe_memory_access.cc
+  - src/transform/loop_unswitching.cc
+  - src/transform/loop_vectorize.cc
+  - src/transform/lower_device_kernel_launch.cc
+  - src/transform/lower_opaque_block.cc
+  - src/transform/materialize_kernel_launch.cc
+  - src/transform/reducer_plan_materialize.cc
+  - src/transform/split_host_device.cc
+  - testing/ascend/README.md
+  - testing/ascend/_ir.py
+  - testing/ascend/analysis/test_ascend_vf_checker.py
+  - testing/ascend/auto_schedule/_reuse_utils.py
+  - testing/ascend/auto_schedule/_scheduled_ir.py
+  - testing/ascend/auto_schedule/_task_utils.py
+  - testing/ascend/auto_schedule/test_access_footprints.py
+  - testing/ascend/auto_schedule/test_buffer_epochs.py
+  - testing/ascend/auto_schedule/test_buffer_lifetimes.py
+  - testing/ascend/auto_schedule/test_buffer_materialization.py
+  - testing/ascend/auto_schedule/test_buffer_ownership.py
+  - testing/ascend/auto_schedule/test_buffer_plan_validation.py
+  - testing/ascend/auto_schedule/test_buffer_version_annotations.py
+  - testing/ascend/auto_schedule/test_conflict_hints.py
+  - testing/ascend/auto_schedule/test_control_flow.py
+  - testing/ascend/auto_schedule/test_core_resolution.py
+  - testing/ascend/auto_schedule/test_cross_core_flags.py
+  - testing/ascend/auto_schedule/test_epoch_guards.py
+  - testing/ascend/auto_schedule/test_estimate_latency.py
+  - testing/ascend/auto_schedule/test_flag_allocation.py
+  - testing/ascend/auto_schedule/test_reuse_integration.py
+  - testing/ascend/auto_schedule/test_schedule_integration.py
+  - testing/ascend/auto_schedule/test_schedule_units.py
+  - testing/ascend/auto_schedule/test_special_registers.py
+  - testing/ascend/auto_schedule/test_sync_access_footprints.py
+  - testing/ascend/auto_schedule/test_sync_boundaries.py
+  - testing/ascend/auto_schedule/test_sync_dependencies.py
+  - testing/ascend/auto_schedule/test_tasks.py
+  - testing/ascend/cache/test_tilelang_ascend_binary_cache.py
+  - testing/ascend/conftest.py
+  - testing/ascend/language/simdvf/test_simdvf_arithmetic.py
+  - testing/ascend/language/simdvf/test_simdvf_data_movement.py
+  - testing/ascend/language/simdvf/test_simdvf_histv2.py
+  - testing/ascend/language/simdvf/test_simdvf_mutable_reads.py
+  - testing/ascend/language/simtvf/test_simtvf_arithmetic.py
+  - testing/ascend/language/simtvf/test_simtvf_atomics.py
+  - testing/ascend/language/simtvf/test_simtvf_buffer_load_ssa.py
+  - testing/ascend/language/simtvf/test_simtvf_rng_vectorize.py
+  - testing/ascend/language/simtvf/test_simtvf_thread_binding.py
+  - testing/ascend/language/simtvf/test_simtvf_vectorized_codegen.py
+  - testing/ascend/language/simtvf/test_simtvf_vectorized_select.py
+  - testing/ascend/language/test_tilelang_ascend_buffer_reuse.py
+  - testing/ascend/language/test_tilelang_ascend_clamp.py
+  - testing/ascend/language/test_tilelang_ascend_copy.py
+  - testing/ascend/language/test_tilelang_ascend_copy_oob.py
+  - testing/ascend/language/test_tilelang_ascend_device_assert.py
+  - testing/ascend/language/test_tilelang_ascend_dma_codegen.py
+  - testing/ascend/language/test_tilelang_ascend_dma_copy.py
+  - testing/ascend/language/test_tilelang_ascend_dynamic_none.py
+  - testing/ascend/language/test_tilelang_ascend_dynamic_ub.py
+  - testing/ascend/language/test_tilelang_ascend_fill.py
+  - testing/ascend/language/test_tilelang_ascend_intrinsics.py
+  - testing/ascend/language/test_tilelang_ascend_l0_gemm_effective_k.py
+  - testing/ascend/language/test_tilelang_ascend_language_dialect.py
+  - testing/ascend/language/test_tilelang_ascend_make_tensor_ptr.py
+  - testing/ascend/language/test_tilelang_ascend_multibuffer_alignment.py
+  - testing/ascend/language/test_tilelang_ascend_mx_sf_slots.py
+  - testing/ascend/language/test_tilelang_ascend_nd2nz_scatter.py
+  - testing/ascend/language/test_tilelang_ascend_print.py
+  - testing/ascend/language/test_tilelang_ascend_reduce.py
+  - testing/ascend/language/test_tilelang_ascend_simd_vld_brc.py
+  - testing/ascend/language/test_tilelang_ascend_simdvf_cast.py
+  - testing/ascend/language/test_tilelang_ascend_simdvf_integer_predicate.py
+  - testing/ascend/language/test_tilelang_ascend_simdvf_merging.py
+  - testing/ascend/language/test_tilelang_ascend_simdvf_predicate_load_store.py
+  - testing/ascend/language/test_tilelang_ascend_simtvf_cast.py
+  - testing/ascend/language/test_tilelang_ascend_strided_view.py
+  - testing/ascend/language/test_tilelang_ascend_unroll.py
+  - testing/ascend/language/test_tilelang_ascend_vf_mode_codegen.py
+  - testing/ascend/language/test_tilelang_ascend_vf_var_scope.py
+  - testing/ascend/language/test_tilelang_ascend_warp_reduce.py
+  - testing/ascend/language/test_tilelang_ascend_warp_vote.py
+  - testing/ascend/layout/test_ascend_fractal_storage_integration.py
+  - testing/ascend/layout/test_ascend_l0_sliced_k.py
+  - testing/ascend/layout/test_ascend_l0_transpose.py
+  - testing/ascend/layout/test_tilelang_ascend_fractal_layout_tags.py
+  - testing/ascend/layout/test_tilelang_ascend_l0_gemm_matrix.py
+  - testing/ascend/layout/test_tilelang_ascend_nd2nz_matmul.py
+  - testing/ascend/layout/test_tilelang_ascend_padded_nz.py
+  - testing/ascend/runtime/test_dynamic_outputs.py
+  - testing/ascend/runtime/test_tilelang_ascend_kernel_cache.py
+  - testing/ascend/runtime/test_tvm_ffi_host_args.py
+  - testing/ascend/runtime/test_tvm_ffi_torch_stream.py
+  - testing/ascend/target/test_ascend_bisheng_arch.py
+  - testing/ascend/target/test_ascend_postproc.py
+  - testing/ascend/target/test_tilelang_ascend_target.py
+  - testing/ascend/transform/test_ascend_buffer_aliases.py
+  - testing/ascend/transform/test_ascend_copy_bounds.py
+  - testing/ascend/transform/test_ascend_insert_nd2nz.py
+  - testing/ascend/transform/test_ascend_legalize_simd_merging.py
+  - testing/ascend/transform/test_ascend_lower_copy.py
+  - testing/ascend/transform/test_ascend_lower_gemm.py
+  - testing/ascend/transform/test_ascend_mark_scalar_dcache_bypass.py
+  - testing/ascend/transform/test_ascend_materialize_kernel_launch.py
+  - testing/ascend/transform/test_ascend_merge_allocations.py
+  - testing/ascend/transform/test_ascend_normalize_fractal_storage.py
+  - testing/ascend/transform/test_ascend_remove_no_op.py
+  - testing/ascend/transform/test_ascend_restore_while_loops.py
+  - testing/ascend/transform/test_ascend_rewrite_dual_copy.py
+  - testing/ascend/transform/test_ascend_thread_sync.py
+  - testing/ascend/transform/test_ascend_unroll_loop_skip_vf.py
+  - testing/conftest.py
+  - testing/python/backend/test_tilelang_backend_auto_schedule.py
+  - testing/python/backend/test_tilelang_backend_module.py
+  - testing/python/cache/test_tilelang_cuda_binary_cache.py
+  - testing/python/cuda/test_cuda_fma_fmul.py
+  - testing/python/jit/test_tilelang_jit_cython.py
+  - testing/python/jit/test_tilelang_jit_tvm_ffi_executable.py
+  - testing/python/language/test_tilelang_language_persistent.py
+  - testing/python/language/test_tilelang_language_strided_view.py
+  - testing/python/language/test_tilelang_language_view.py
+  - testing/python/profiler/test_tilelang_profiler_backends.py
+  - testing/python/profiler/test_tilelang_profiler_device_scope.py
+  - testing/python/profiler/test_tilelang_profiler_event.py
+  - testing/python/transform/test_tilelang_transform_coalesced_width.py
+  - testing/python/transform/test_tilelang_transform_legalize_safe_memory_access.py
+  - testing/python/transform/test_tilelang_transform_loop_unswitching.py
+  - testing/python/transform/test_tilelang_transform_materialize_kernel_launch.py
+  - testing/python/utils/test_device_utils.py
+  - tilelang/__init__.py
+  - tilelang/ascend/README.md
+  - tilelang/ascend/__init__.py
+  - tilelang/ascend/analysis/__init__.py
+  - tilelang/ascend/analysis/vf_checker.py
+  - tilelang/ascend/backend.py
+  - tilelang/ascend/callback.py
+  - tilelang/ascend/codegen.py
+  - tilelang/ascend/debug.py
+  - tilelang/ascend/execution_backend.py
+  - tilelang/ascend/kernel_cache.py
+  - tilelang/ascend/language/__init__.py
+  - tilelang/ascend/language/allocate.py
+  - tilelang/ascend/language/annotations.py
+  - tilelang/ascend/language/copy_op.py
+  - tilelang/ascend/language/dma.py
+  - tilelang/ascend/language/frame.py
+  - tilelang/ascend/language/gemm_op.py
+  - tilelang/ascend/language/kernel.py
+  - tilelang/ascend/language/loop.py
+  - tilelang/ascend/language/mode.py
+  - tilelang/ascend/language/print.py
+  - tilelang/ascend/language/random.py
+  - tilelang/ascend/language/reduce_op.py
+  - tilelang/ascend/language/schedule_hint.py
+  - tilelang/ascend/language/simd.py
+  - tilelang/ascend/language/sync.py
+  - tilelang/ascend/language/tile_schedule.py
+  - tilelang/ascend/op/__init__.py
+  - tilelang/ascend/op/gemm/__init__.py
+  - tilelang/ascend/op/gemm/gemm_mad.py
+  - tilelang/ascend/op/gemm/gemm_mad_blockscaled.py
+  - tilelang/ascend/pipeline.py
+  - tilelang/ascend/target.py
+  - tilelang/ascend/torch_exchange.py
+  - tilelang/ascend/torch_npu_exchange.pyx
+  - tilelang/ascend/transform/__init__.py
+  - tilelang/ascend/transform/z3_scheduler.py
+  - tilelang/autotuner/param.py
+  - tilelang/autotuner/tuner.py
+  - tilelang/cache/__init__.py
+  - tilelang/cache/ascend_binary_cache.py
+  - tilelang/cache/binary_cache.py
+  - tilelang/cache/cuda_binary_cache.py
+  - tilelang/cache/kernel_cache.py
+  - tilelang/carver/arch/driver/__init__.py
+  - tilelang/carver/arch/driver/ascend_driver.py
+  - tilelang/contrib/__init__.py
+  - tilelang/contrib/bisheng.py
+  - tilelang/cuda/intrinsics/macro/mma_macro_generator.py
+  - tilelang/cuda/intrinsics/macro/tcgen05_macro_generator.py
+  - tilelang/cuda/intrinsics/macro/wgmma_macro_generator.py
+  - tilelang/cuda/intrinsics/macro/wgmma_sp_macro_generator.py
+  - tilelang/cuda/target.py
+  - tilelang/jit/__init__.py
+  - tilelang/jit/adapter/base.py
+  - tilelang/jit/adapter/cython/adapter.py
+  - tilelang/jit/adapter/cython/cython_wrapper.pyx
+  - tilelang/jit/adapter/libgen.py
+  - tilelang/jit/adapter/tvm_ffi.py
+  - tilelang/jit/adapter/utils.py
+  - tilelang/jit/adapter/wrapper.py
+  - tilelang/jit/kernel.py
+  - tilelang/language/annotations.py
+  - tilelang/language/customize.py
+  - tilelang/language/eager/builder.py
+  - tilelang/language/gemm_op.py
+  - tilelang/language/loop.py
+  - tilelang/language/proxy.py
+  - tilelang/language/reduce_op.py
+  - tilelang/layout/__init__.py
+  - tilelang/layout/ascend.py
+  - tilelang/layout/layout.py
+  - tilelang/metal/pipeline.py
+  - tilelang/profiler/__init__.py
+  - tilelang/profiler/bench.py
+  - tilelang/profiler/msprof.py
+  - tilelang/rocm/pipeline.py
+  - tilelang/testing/__init__.py
+  - tilelang/tools/lower_trace/core.py
+  - tilelang/transform/__init__.py
+  - tilelang/transform/pass_config.py
+  - tilelang/utils/device.py
+  - tilelang/webgpu/pipeline.py
+- number: 3209
+  title: '[BugFix][Metal] Respect GEMM buffer region offsets'
+  date: '2026-09-14'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - testing/python/metal/test_metal_gemm_region_offsets.py
+  - tilelang/metal/intrinsics/metal_macro_generator.py
+- number: 3156
+  title: '[ROCm] Support DeepSeek mHC pre and post kernels'
+  date: '2026-10-13'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: examples/deepseek_mhc/example_mhc_pre.py'
+  files_changed:
+  - examples/deepseek_mhc/example_mhc_pre.py
+  - testing/python/amd/test_tilelang_hip_deepseek_mhc.py
+- number: 3393
+  title: '[Feature][Autotune] Add opt-in structured trial reporting'
+  date: '2026-10-12'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - docs/programming_guides/autotuning.md
+  - tilelang/autotuner/report.py
+  - tilelang/autotuner/tuner.py
+- number: 3202
+  title: '[Cleanup][Language] Remove dead T.Pipelined(sync/group) and T.gemm_sp(k_pack) parameters'
+  date: '2026-09-11'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 4 authoritative changed file(s)'
+  files_changed:
+  - src/ir.cc
+  - tilelang/analysis/nested_loop_checker.py
+  - tilelang/language/experimental/gemm_sp_op.py
+  - tilelang/language/loop.py
+- number: 2905
+  title: '[Enhancement] Show kernel name in pass timing report'
+  date: '2026-08-08'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - testing/python/debug/test_pass_timing.py
+  - tilelang/utils/pass_timing.py
+- number: 3257
+  title: '[CUDA] Support SM120 block-scaled GEMM fragments and odd warp atom grids'
+  date: '2026-09-26'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: tilelang/cuda/op/gemm/gemm_mma_sm120.py'
+  files_changed:
+  - src/cuda/op/gemm_blockscaled.cc
+  - testing/python/language/test_tilelang_language_gemm_blockscaled.py
+  - testing/python/language/test_tilelang_language_nvf4_mma_block_scale.py
+  - tilelang/cuda/intrinsics/macro/mma_sm120_macro_generator.py
+  - tilelang/cuda/op/gemm/gemm_mma_sm120.py
+- number: 3330
+  title: '[Ascend] Improve PTO codegen for DeepGEMM kernels'
+  date: '2026-10-14'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 4 authoritative changed file(s)'
+  files_changed:
+  - src/ascend/codegen/codegen_pto.cc
+  - src/ascend/codegen/codegen_pto.h
+  - testing/ascend/language/test_tilelang_ascend_pto_mad_direction.py
+  - tilelang/ascend/README.md
+- number: 3284
+  title: '[CUDA] Reject conflicting SM120 scale fragment layouts'
+  date: '2026-09-27'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - testing/python/language/test_tilelang_language_nvf4_mma_block_scale.py
+  - tilelang/cuda/op/gemm/gemm_mma_sm120.py
+- number: 3125
+  title: '[BugFix] Reject non-bijective sm8x sparse metadata shapes'
+  date: '2026-10-22'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - tilelang/layout/gemm_sp.py
+- number: 3165
+  title: '[ROCm] Run portable example validation in CI'
+  date: '2026-09-18'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 10 authoritative changed file(s)'
+  files_changed:
+  - .github/workflows/ci.yml
+  - examples/deepseek_v32/sparse_mla_fwd.py
+  - examples/deepseek_v32/test_tilelang_example_deepseek_v32.py
+  - examples/grouped_gemm/example_grouped_gemm_bwd.py
+  - examples/grouped_gemm/example_grouped_gemm_fwd.py
+  - examples/grouped_gemm/test_example_grouped_gemm.py
+  - examples/seer_attention/block_sparse_attn_tilelang.py
+  - examples/seer_attention/test_block_sparse_attn_tilelang.py
+  - examples/topk/example_topk.py
+  - examples/topk/test_topk_tilelang.py
+- number: 3458
+  title: '[Ascend][CI] Validate the Ascend job on the self-built CANN 9.3 image'
+  date: '2026-10-09'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - .github/workflows/ci.yml
+  - examples/ascend/example_gemm_splitk.py
+- number: 3415
+  title: '[BugFix][Autotuner] Restore compatible input tensor reuse'
+  date: '2026-10-09'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - testing/python/autotune/test_tilelang_autotune_input_cache.py
+  - testing/python/autotune/test_tilelang_autotune_timeout.py
+  - tilelang/autotuner/tuner.py
+- number: 2818
+  title: '[BugFix][CUDA] Require explicit K padding for unsupported MMA tiles'
+  date: '2026-10-20'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 5 authoritative changed file(s)'
+  files_changed:
+  - testing/python/cuda/test_cuda_gemm_mma_sync_dispatch.py
+  - testing/python/cuda/test_cuda_mma_sm75_dispatch.py
+  - tilelang/cuda/intrinsics/macro/mma_macro_generator.py
+  - tilelang/cuda/intrinsics/macro/mma_sm75_macro_generator.py
+  - tilelang/cuda/op/gemm/gemm_mma.py
+- number: 3252
+  title: '[Testing] Drop duplicated codegen-smoke tests; fix fastmath self-comparison assertions'
+  date: '2026-09-19'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 6 authoritative changed file(s)'
+  files_changed:
+  - testing/python/cpu/test_tilelang_cpu_gemm.py
+  - testing/python/cpu/test_tilelang_cpu_tgemm.py
+  - testing/python/fastmath/test_mathops_fastmath.py
+  - testing/python/llvm/test_tilelang_llvm_gemm.py
+  - testing/python/llvm/test_tilelang_llvm_tgemm.py
+  - testing/python/math/test_math_fast_math.py
+- number: 3148
+  title: '[ROCm] Validate attention sink kernels'
+  date: '2026-09-03'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - testing/python/amd/test_tilelang_hip_attention_sink.py
+- number: 3146
+  title: '[ROCm] Validate block-causal attention kernels'
+  date: '2026-09-03'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - testing/python/amd/test_tilelang_hip_block_causal_attention.py
+- number: 3503
+  title: '[CUDA][WS] Restrict TMA-only producer in warp 0'
+  date: '2026-10-16'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - src/cuda/transform/producer_consumer_ws.cc
+  - testing/python/issue/test_tilelang_issue_tma_no_ws.py
+  - testing/python/issue/test_tilelang_issue_ws_simt_copy_full_producer_extent.py
+- number: 3152
+  title: '[ROCm] Support DeepSeek NSA forward and decode'
+  date: '2026-10-12'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - examples/deepseek_nsa/example_tilelang_nsa_decode.py
+  - examples/deepseek_nsa/example_tilelang_nsa_fwd.py
+  - testing/python/amd/test_tilelang_hip_deepseek_nsa.py
+- number: 2499
+  title: '[FEATURE] Add block-causal attention for dLLM example'
+  date: '2026-07-23'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: examples/block_causal_attention/block_causal_attention.py, examples/block_causal_attention/block_causal_attention_varlen.py'
+  files_changed:
+  - examples/block_causal_attention/block_causal_attention.py
+  - examples/block_causal_attention/block_causal_attention_varlen.py
+  - examples/block_causal_attention/test_block_causal_attention.py
+- number: 3254
+  title: '[ROCm] Add GLM-5.3 k-pool Top-K transform'
+  date: '2026-09-20'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: examples/kpool/example_glm53_kpool_compress.py, examples/kpool/example_glm53_kpool_decode_tail.py, examples/kpool/example_glm53_kpool_fp8_mqa_logits.py,
+    examples/kpool/example_glm53_kpool_topk_transform.py'
+  files_changed:
+  - examples/kpool/README.md
+  - examples/kpool/example_glm53_kpool_compress.py
+  - examples/kpool/example_glm53_kpool_decode_tail.py
+  - examples/kpool/example_glm53_kpool_fp8_mqa_logits.py
+  - examples/kpool/example_glm53_kpool_topk_transform.py
+  - testing/python/amd/test_tilelang_hip_glm53_kpool_compress.py
+  - testing/python/amd/test_tilelang_hip_glm53_kpool_decode_tail.py
+  - testing/python/amd/test_tilelang_hip_glm53_kpool_fp8_mqa_logits.py
+  - testing/python/amd/test_tilelang_hip_glm53_kpool_topk_transform.py
+  - testing/python/language/test_tilelang_language_fp8.py
+  - tilelang/language/fp8.py
+- number: 3131
+  title: Bump transformers from 5.5.0 to 5.10.1 in /examples/bitnet-1.58b
+  date: '2026-09-02'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - examples/bitnet-1.58b/requirements.txt
+- number: 3456
+  title: '[CI] Add intent-based CodeRabbit reviewer suggestions'
+  date: '2026-10-09'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - .coderabbit.yaml
+- number: 2836
+  title: '[CUDA] Adopt multi-staged buffers in examples'
+  date: '2026-08-04'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: examples/deepseek_mla/example_mla_decode_ws.py, examples/deepseek_v32/sparse_mla_bwd.py, examples/deepseek_v32/sparse_mla_fwd.py, examples/deepseek_v32/sparse_mla_fwd_pipelined.py,
+    examples/deepseek_v32/sparse_mla_fwd_seesaw.py, examples/flash_attention_sm100/gqa_fwd_bshd.py, examples/flash_attention_sm100/mha_fwd_bshd.py, examples/minference/example_vertical_slash_sparse_attn.py'
+  files_changed:
+  - examples/deepseek_mla/example_mla_decode_ws.py
+  - examples/deepseek_v32/README.md
+  - examples/deepseek_v32/sparse_mla_bwd.py
+  - examples/deepseek_v32/sparse_mla_fwd.py
+  - examples/deepseek_v32/sparse_mla_fwd_pipelined.py
+  - examples/deepseek_v32/sparse_mla_fwd_seesaw.py
+  - examples/flash_attention_sm100/gqa_fwd_bshd.py
+  - examples/flash_attention_sm100/mha_fwd_bshd.py
+  - examples/minference/example_vertical_slash_sparse_attn.py
+  - maint/gemm/gemm_sm120/benchmark_sm120_nvfp4_blockscaled_gemm.py
+  - src/transform/lower_tile_op.cc
+  - testing/python/language/test_tilelang_language_wgmma_gemm.py
+  - tilelang/cuda/intrinsics/macro/tcgen05_macro_generator.py
+  - tilelang/cuda/intrinsics/macro/wgmma_macro_generator.py
+  - tilelang/cuda/intrinsics/macro/wgmma_sp_macro_generator.py
+- number: 3185
+  title: '[Refactor] [CUDA] Rename `AutoSchedule` to `AutoWarpSpecialization`'
+  date: '2026-09-09'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: examples/aws/gemm.py'
+  files_changed:
+  - examples/aws/flash_attention.py
+  - examples/aws/gemm.py
+  - src/cuda/op/builtin.cc
+  - src/cuda/op/builtin.h
+  - src/cuda/transform/auto_schedule.cc
+  - src/cuda/transform/auto_schedule/common.h
+  - src/cuda/transform/auto_schedule/memory_detector.h
+  - src/cuda/transform/auto_schedule/preprocess_ir.cc
+  - src/cuda/transform/auto_schedule/preprocess_ir.h
+  - src/cuda/transform/auto_schedule/role_based_scheduler.cc
+  - src/cuda/transform/auto_schedule/role_based_scheduler.h
+  - src/cuda/transform/materialize_ws_schedule.cc
+  - testing/python/transform/test_tilelang_transform_auto_schedule.py
+  - tilelang/cuda/pipeline.py
+  - tilelang/cuda/transform/__init__.py
+  - tilelang/transform/pass_config.py
+- number: 2864
+  title: '[Examples] Gate CUDA-only and flash_attn-dependent example tests'
+  date: '2026-08-04'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - examples/blocksparse_attention/test_example_blocksparse_attention.py
+  - examples/gdn/test_example_gdn_compilation.py
+  - examples/gemm/test_example_gemm.py
+- number: 3219
+  title: '[BugFix][Vectorize] Keep atomic_add scalar for invariant/non-contiguous destinations'
+  date: '2026-09-16'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - src/transform/vectorize_loop.cc
+  - testing/python/language/test_tilelang_language_atomic.py
+- number: 2809
+  title: '[Enhancement] Speed up cold parallel/AOT compilation up to ~4x'
+  date: '2026-08-03'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 7 authoritative changed file(s)'
+  files_changed:
+  - benchmark/compile_speed/README.md
+  - benchmark/compile_speed/benchmark_compile_speed.py
+  - benchmark/compile_speed/kernel_zoo.py
+  - tilelang/autotuner/tuner.py
+  - tilelang/cache/kernel_cache.py
+  - tilelang/jit/__init__.py
+  - tilelang/utils/device.py
+- number: 2858
+  title: '[Typo] Correct source spelling errors'
+  date: '2026-08-04'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 12 authoritative changed file(s)'
+  files_changed:
+  - examples/flash_attention_sm100/gqa_bwd_bshd.py
+  - src/backend/common/codegen/codegen_c_host.h
+  - src/backend/common/op/reduce.h
+  - src/cuda/codegen/codegen_cutedsl.cc
+  - src/cuda/codegen/codegen_py.h
+  - src/cuda/op/copy.cc
+  - src/cuda/op/reduce.cc
+  - src/rocm/op/reduce.cc
+  - src/tl_templates/cuda/common.h
+  - src/tl_templates/cuda/cuda_fp4.h
+  - src/transform/tvm_ffi_binder.h
+  - testing/python/language/test_tilelang_language_scan.py
+- number: 2461
+  title: '[CI][BugFix] Flash bwd varlen: zero-init lse/Delta padding to avoid NaN in Dk'
+  date: '2026-06-26'
+  decision: defer
+  reason: authoritative PR evidence unavailable; needs-triage
+  files_changed: []
+- number: 2892
+  title: '[Feature] Warp specialization schedules and materialization'
+  date: '2026-08-11'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: examples/aws/flash_attention.py, examples/aws/gemm.py'
+  files_changed:
+  - examples/aws/flash_attention.py
+  - examples/aws/gemm.py
+  - examples/aws/test_example_aws.py
+  - src/cuda/op/copy_analysis.cc
+  - src/cuda/transform/materialize_ws_schedule.cc
+  - src/ir.cc
+  - src/transform/common/warp_specialize.h
+  - testing/python/language/test_tilelang_language_copy.py
+  - testing/python/language/test_tilelang_language_scan.py
+  - testing/python/transform/test_tilelang_transform_materialize_ws_schedule.py
+  - tilelang/cuda/pipeline.py
+  - tilelang/cuda/transform/__init__.py
+  - tilelang/language/annotations.py
+  - tilelang/language/atomic.py
+  - tilelang/language/common.py
+  - tilelang/language/copy_op.py
+  - tilelang/language/experimental/gemm_sp_op.py
+  - tilelang/language/fill_op.py
+  - tilelang/language/gemm_op.py
+  - tilelang/language/loop.py
+  - tilelang/language/reduce_op.py
+  - tilelang/language/scan_op.py
+  - tilelang/language/utils.py
+  - tilelang/language/ws_schedule.py
+- number: 2685
+  title: '[BugFix] Track GEMM accumulator writes in warp-specialization liveness collector'
+  date: '2026-07-17'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - src/cuda/transform/producer_consumer_ws.cc
+  - testing/python/transform/test_tilelang_transform_producer_consumer_ws.py
+- number: 2498
+  title: '[Testing][CI] Isolate perf regression runner imports'
+  date: '2026-06-30'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - maint/scripts/run_current_regression.py
+  - maint/scripts/run_perf_regression.sh
+- number: 2592
+  title: '[Example][DeepSeek-V3.2] Adaptive threads for sparse MLA backward'
+  date: '2026-07-22'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - examples/deepseek_v32/sparse_mla_bwd.py
+- number: 2868
+  title: '[Doc] Fix wrong loop bound in FlashAttention README example'
+  date: '2026-08-04'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - examples/flash_attention/README.md
+- number: 3310
+  title: '[Ascend] Add PTO backend for Ascend950'
+  date: '2026-09-30'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 36 authoritative changed file(s)'
+  files_changed:
+  - CMakeLists.txt
+  - pyproject.toml
+  - src/ascend/codegen/codegen_pto.cc
+  - src/ascend/codegen/codegen_pto.h
+  - src/ascend/codegen/rt_mod_pto.cc
+  - src/ascend/codegen/sfu_precision.h
+  - src/backend/common/codegen/codegen_py.cc
+  - src/backend/common/codegen/codegen_py.h
+  - src/cuda/codegen/codegen_cutedsl.h
+  - testing/python/backend/test_tilelang_backend_module.py
+  - tilelang/ascend/backend.py
+  - tilelang/ascend/codegen.py
+  - tilelang/ascend/execution_backend.py
+  - tilelang/ascend/target.py
+  - tilelang/autotuner/param.py
+  - tilelang/autotuner/tuner.py
+  - tilelang/backend/README.md
+  - tilelang/cache/__init__.py
+  - tilelang/cache/kernel_cache.py
+  - tilelang/contrib/ptodsl/__init__.py
+  - tilelang/contrib/ptodsl/common.py
+  - tilelang/contrib/ptodsl/dcache_bypass.py
+  - tilelang/contrib/ptodsl/gemm.py
+  - tilelang/contrib/ptodsl/mixed_kernel.py
+  - tilelang/contrib/ptodsl/rng.py
+  - tilelang/contrib/ptodsl/simd_inst.py
+  - tilelang/contrib/ptodsl/simt.py
+  - tilelang/contrib/ptodsl/sync.py
+  - tilelang/jit/__init__.py
+  - tilelang/jit/adapter/pto/__init__.py
+  - tilelang/jit/adapter/pto/adapter.py
+  - tilelang/jit/adapter/pto/cython_wrapper.pyx
+  - tilelang/jit/adapter/pto/libgen.py
+  - tilelang/jit/adapter/pto/wrapper.py
+  - tilelang/jit/adapter/utils.py
+  - tilelang/jit/kernel.py
+- number: 2474
+  title: '[CUDA] Reduce template include overhead'
+  date: '2026-07-01'
+  decision: include
+  reason: 'retain: added device-code construct in: src/tl_templates/cuda/intrin.h'
+  files_changed:
+  - .agents/skills/tilelang-tvm-ir/SKILL.md
+  - examples/conftest.py
+  - src/cuda/codegen/codegen_cuda.cc
+  - src/cuda/codegen/codegen_cuda.h
+  - src/cuda/codegen/codegen_cutedsl.cc
+  - src/cuda/transform/inject_fence_proxy.cc
+  - src/cuda/transform/lower_hopper_intrin.cc
+  - src/op/builtin.cc
+  - src/op/builtin.h
+  - src/rocm/codegen/codegen_hip.cc
+  - src/tl_templates/cuda/barrier.h
+  - src/tl_templates/cuda/common.h
+  - src/tl_templates/cuda/copy.h
+  - src/tl_templates/cuda/copy_sm100.h
+  - src/tl_templates/cuda/gemm.h
+  - src/tl_templates/cuda/gemm_mma.h
+  - src/tl_templates/cuda/gemm_sm100.h
+  - src/tl_templates/cuda/gemm_sm120.h
+  - src/tl_templates/cuda/gemm_sm70.h
+  - src/tl_templates/cuda/gemm_sm80.h
+  - src/tl_templates/cuda/gemm_sm89.h
+  - src/tl_templates/cuda/gemm_sm90.h
+  - src/tl_templates/cuda/intrin.h
+  - src/tl_templates/cuda/math.h
+  - src/tl_templates/cuda/reduce.h
+  - src/tl_templates/cuda/scan.h
+  - src/tl_templates/cuda/threadblock_swizzle.h
+  - src/transform/merge_shared_memory_allocations.cc
+  - testing/python/cuda/test_cuda_bfloat16_math_intrinsics.py
+  - testing/python/transform/test_tilelang_transform_inject_fence_proxy.py
+  - testing/python/transform/test_tilelang_transform_lower_hopper_intrin.py
+  - tilelang/jit/adapter/wrapper.py
+- number: 3276
+  title: '[CUDA] Keep FP8 vector copies packed'
+  date: '2026-09-25'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - src/tl_templates/cuda/cuda_fp8.h
+- number: 3548
+  title: '[BugFix][ROCm] Print fp4 (float4_e2m1fn) float constants in HIP codegen'
+  date: '2026-10-19'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - src/rocm/codegen/codegen_hip.cc
+- number: 3189
+  title: '[CUDA][Reduce] Fix non-finite constants and reject sub-byte accumulators'
+  date: '2026-10-26'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 7 authoritative changed file(s)'
+  files_changed:
+  - src/cuda/codegen/codegen_cuda.cc
+  - src/op/reduce.cc
+  - src/op/reduce.h
+  - src/op/reducer.cc
+  - testing/python/language/test_tilelang_language_reduce.py
+  - tilelang/language/allocate.py
+  - tilelang/language/reduce_op.py
+- number: 3628
+  title: '[Language] Revert NaN-propagating clamp lowering'
+  date: '2026-10-23'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 13 authoritative changed file(s)'
+  files_changed:
+  - docs/programming_guides/instructions.md
+  - src/cpu/codegen/codegen_c.cc
+  - src/cuda/codegen/codegen_cuda.cc
+  - src/cuda/codegen/codegen_cutedsl.cc
+  - src/op/builtin.cc
+  - src/op/builtin.h
+  - src/op/math.cc
+  - src/tl_templates/cpp/common.h
+  - src/tl_templates/cuda/math.h
+  - testing/ascend/language/test_tilelang_ascend_clamp.py
+  - testing/python/language/test_tilelang_language_clamp.py
+  - testing/python/target/test_tilelang_codegen_clamp.py
+  - tilelang/language/customize.py
+- number: 3350
+  title: '[BugFix] Validate the (source dtype, destination dtype, round) cast combinations'
+  date: '2026-10-21'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - src/cuda/codegen/codegen_cuda.cc
+  - testing/python/language/test_tilelang_cast_rounding.py
+- number: 3419
+  title: '[Perf] Reduce K-pool Hadamard barriers and decode validation waits'
+  date: '2026-10-08'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - examples/kpool/benchmark_glm53_kpool_hadamard.py
+  - examples/kpool/example_glm53_kpool_compress.py
+  - examples/kpool/example_glm53_kpool_decode_tail.py
+- number: 3104
+  title: '[ROCm] Preserve FP8 bits in warp shuffles'
+  date: '2026-08-29'
+  decision: include
+  reason: 'retain: added device-code construct in: src/tl_templates/hip/hip_fp8.h'
+  files_changed:
+  - src/tl_templates/hip/hip_fp8.h
+  - testing/python/language/test_tilelang_language_warp_sync.py
+- number: 3047
+  title: '[CUDA] Fix FP8 min/max codegen'
+  date: '2026-08-18'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - src/tl_templates/cuda/common.h
+  - testing/python/language/test_tilelang_language_clamp.py
+- number: 3205
+  title: '[BugFix][Language] Lower NaN-propagating clamp through device templates'
+  date: '2026-09-24'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 12 authoritative changed file(s)'
+  files_changed:
+  - docs/programming_guides/instructions.md
+  - src/cpu/codegen/codegen_c.cc
+  - src/cuda/codegen/codegen_cuda.cc
+  - src/cuda/codegen/codegen_cutedsl.cc
+  - src/op/builtin.cc
+  - src/op/builtin.h
+  - src/op/math.cc
+  - src/tl_templates/cpp/common.h
+  - src/tl_templates/cuda/math.h
+  - testing/python/language/test_tilelang_language_clamp.py
+  - testing/python/target/test_tilelang_codegen_clamp.py
+  - tilelang/language/customize.py
+- number: 2475
+  title: '[Enhancement] Add vectorized fp8x2 <-> fp16/bf16 cast codegen'
+  date: '2026-06-29'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 4 authoritative changed file(s)'
+  files_changed:
+  - src/cuda/codegen/codegen_cuda.cc
+  - src/cuda/target_utils.cc
+  - src/tl_templates/cuda/cuda_fp8.h
+  - testing/python/language/test_tilelang_language_vectorized_cast.py
+- number: 3056
+  title: '[CUDA] Fix warp shuffle for half, bfloat16, and FP8'
+  date: '2026-08-22'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - src/tl_templates/cuda/common.h
+  - testing/python/language/test_tilelang_language_warp_sync.py
+- number: 3558
+  title: '[BugFix] Preserve eager frontend Python source locations'
+  date: '2026-10-22'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - tilelang/language/eager/ast.py
+- number: 3469
+  title: '[Ascend] Vendor the PTODSL SIMT allreduce helpers'
+  date: '2026-10-12'
+  decision: exclude
+  reason: 'remove: distributed-system topic matched ''allreduce'' in PR title'
+  files_changed:
+  - testing/ascend/language/test_tilelang_ascend_reduce.py
+  - tilelang/contrib/ptodsl/__init__.py
+  - tilelang/contrib/ptodsl/allreduce.py
+  - tilelang/contrib/ptodsl/simt.py
+- number: 3517
+  title: '[Test] Eliminate unnecessary compilation time'
+  date: '2026-10-15'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - testing/python/issue/test_tilelang_issue_2994.py
+- number: 3489
+  title: '[Docs] Clarify regression test contribution policy'
+  date: '2026-10-12'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 8 authoritative changed file(s)'
+  files_changed:
+  - .agents/skills/tilelang-dev-guide/SKILL.md
+  - .agents/skills/tilelang-dev-guide/references/cpp-style.md
+  - .agents/skills/tilelang-simplification/SKILL.md
+  - .claude/skills/tilelang-cpp-style
+  - .claude/skills/tilelang-dev-guide
+  - CONTRIBUTING.md
+  - docs/developer_guide/testing_style.md
+  - docs/index.md
+- number: 3474
+  title: '[Ascend] Allow selecting target for examples'
+  date: '2026-10-14'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: examples/ascend/deepgemm/kernels/kmn/bf16_gemm.py, examples/ascend/deepgemm/kernels/kmn/fp8_gemm.py, examples/ascend/deepgemm/kernels/mnk/bf16_gemm.py,
+    examples/ascend/deepgemm/kernels/mnk/fp8_gemm.py, examples/ascend/deepgemm/kernels/transform_sf.py, examples/ascend/example_per_token_cast_to_fp8.py'
+  files_changed:
+  - .github/workflows/ci.yml
+  - examples/ascend/README.md
+  - examples/ascend/deepgemm/kernels/kmn/bf16_gemm.py
+  - examples/ascend/deepgemm/kernels/kmn/fp8_gemm.py
+  - examples/ascend/deepgemm/kernels/mnk/bf16_gemm.py
+  - examples/ascend/deepgemm/kernels/mnk/fp8_gemm.py
+  - examples/ascend/deepgemm/kernels/transform_sf.py
+  - examples/ascend/deepgemm/test_deepgemm.py
+  - examples/ascend/example_gemm.py
+  - examples/ascend/example_gemm_splitk.py
+  - examples/ascend/example_per_token_cast_to_fp8.py
+  - examples/ascend/example_rmsnorm.py
+  - examples/ascend/example_vecadd.py
+  - examples/ascend/test_gemm.py
+  - examples/ascend/test_gemm_splitk.py
+  - examples/ascend/test_rmsnorm.py
+  - examples/ascend/test_vecadd.py
+- number: 3576
+  title: '[CuTeDSL][Scan] Handle participating thread offsets'
+  date: '2026-10-20'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: tilelang/contrib/cutedsl/reduce.py'
+  files_changed:
+  - testing/python/target/test_tilelang_codegen_cutedsl_scan.py
+  - tilelang/contrib/cutedsl/reduce.py
+- number: 3494
+  title: '[Ascend] Fix cross-warp allreduce mixing independent reduction groups'
+  date: '2026-10-14'
+  decision: exclude
+  reason: 'remove: distributed-system topic matched ''allreduce'' in PR title'
+  files_changed:
+  - src/tl_templates/ascend/reduce.h
+  - testing/ascend/language/test_tilelang_ascend_reduce.py
+  - tilelang/contrib/ptodsl/allreduce.py
+- number: 3463
+  title: '[Testing][CUDA] Gate nested LDGSTG tests on CUDA support'
+  date: '2026-10-09'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - testing/python/transform/test_tilelang_transform_lower_ldgstg.py
+- number: 3461
+  title: '[BugFix] Honour TILELANG_CLEANUP_TEMP_FILES in the bisheng wrapper'
+  date: '2026-10-13'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - tilelang/contrib/bisheng.py
+- number: 3443
+  title: '[Testing][JIT] Remove unsupported BF16 scalar regression'
+  date: '2026-10-07'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - testing/python/jit/test_tilelang_jit_cython.py
+- number: 3582
+  title: '[BugFix][Ascend] Fix `T.warp_reduce_max/min` compile failure on PTO due to omitting redux signedness'
+  date: '2026-10-21'
+  decision: exclude
+  reason: 'remove: only distributed-system implementation path(s) qualified: tilelang/contrib/ptodsl/allreduce.py'
+  files_changed:
+  - src/ascend/codegen/codegen_pto.cc
+  - testing/ascend/language/test_tilelang_ascend_warp_reduce.py
+  - tilelang/contrib/ptodsl/__init__.py
+  - tilelang/contrib/ptodsl/allreduce.py
+- number: 3316
+  title: '[Ascend] Route PTO execution through PTO codegen'
+  date: '2026-10-15'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 9 authoritative changed file(s)'
+  files_changed:
+  - docs/get_started/targets.md
+  - testing/ascend/runtime/test_tilelang_ascend_kernel_cache.py
+  - testing/ascend/target/test_tilelang_ascend_target.py
+  - tilelang/ascend/README.md
+  - tilelang/ascend/target.py
+  - tilelang/backend/README.md
+  - tilelang/backend/__init__.py
+  - tilelang/backend/module.py
+  - tilelang/backend/target.py
+- number: 3536
+  title: '[BugFix] Fix T.cumsum on shared buffers under warp specialization'
+  date: '2026-10-19'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 4 authoritative changed file(s)'
+  files_changed:
+  - src/backend/common/op/scan.h
+  - src/tl_templates/cuda/scan.h
+  - src/tl_templates/hip/scan.h
+  - testing/python/language/test_tilelang_language_scan.py
+- number: 3352
+  title: '[BugFix] Bound a sliced fill by the end of the region, not just its extent'
+  date: '2026-10-27'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - src/op/fill.cc
+  - testing/python/language/test_tilelang_language_clear.py
+- number: 3385
+  title: 'fix(autodd): reject non-positive --jobs instead of hanging'
+  date: '2026-10-09'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - tilelang/autodd.py
+- number: 3332
+  title: '[BugFix][Language] Reject a float source in bitwise reduce'
+  date: '2026-10-11'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - testing/python/language/test_tilelang_language_reduce.py
+  - tilelang/ascend/language/reduce_op.py
+  - tilelang/language/reduce_op.py
+- number: 3649
+  title: '[BugFix] Allocate out_idx outputs on the caller-supplied launch stream'
+  date: '2026-10-26'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: tilelang/jit/adapter/cutedsl/adapter.py'
+  files_changed:
+  - testing/python/jit/test_tilelang_jit_output_stream.py
+  - tilelang/jit/adapter/base.py
+  - tilelang/jit/adapter/cutedsl/adapter.py
+  - tilelang/jit/adapter/cython/cython_wrapper.pyx
+  - tilelang/jit/adapter/nvrtc/adapter.py
+- number: 3602
+  title: '[BugFix][JIT] Resolve scalar parameters in output shapes'
+  date: '2026-10-26'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 7 authoritative changed file(s)'
+  files_changed:
+  - testing/ascend/runtime/test_tilelang_ascend_kernel_cache.py
+  - testing/python/jit/test_tilelang_jit_cython.py
+  - tilelang/jit/adapter/cython/adapter.py
+  - tilelang/jit/adapter/cython/cython_wrapper.pyx
+  - tilelang/jit/adapter/pto/adapter.py
+  - tilelang/jit/adapter/pto/cython_wrapper.pyx
+  - tilelang/jit/adapter/utils.py
+- number: 3382
+  title: '[BugFix] Preserve scalar bit counts in T.view'
+  date: '2026-10-09'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - testing/python/language/test_tilelang_language_strided_view.py
+  - tilelang/utils/language.py
+- number: 3643
+  title: '[BugFix][ThreadSync] Keep partial-sync barrier ids unique across storage scopes'
+  date: '2026-10-25'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - src/transform/thread_storage_sync.cc
+  - testing/python/transform/test_tilelang_transform_thread_sync.py
+- number: 3430
+  title: '[CUDA] Enable SM120 block-scaled MMA on SM121'
+  date: '2026-10-10'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: tilelang/contrib/cutedsl/cpasync.py'
+  files_changed:
+  - src/tl_templates/cuda/instruction/mma_block_scale.h
+  - testing/python/language/test_tilelang_language_nvf4_mma_block_scale.py
+  - testing/python/quantize/test_tilelang_quantize_nvfp4_scale_layout.py
+  - tilelang/contrib/cutedsl/cpasync.py
+- number: 3687
+  title: '[CI][Ascend] Split AscendC and PTO into separate jobs'
+  date: '2026-10-27'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 7 authoritative changed file(s)'
+  files_changed:
+  - .github/workflows/ci.yml
+  - testing/ascend/README.md
+  - testing/ascend/language/simtvf/test_simtvf_rng_vectorize.py
+  - testing/ascend/language/simtvf/test_simtvf_vectorized_codegen.py
+  - testing/ascend/language/test_tilelang_ascend_pto_mad_direction.py
+  - testing/ascend/runtime/test_tilelang_ascend_kernel_cache.py
+  - testing/ascend/target/test_tilelang_ascend_target.py
+- number: 3285
+  title: 'feat(cuda): support NVRTC device compilation with TVM-FFI'
+  date: '2026-10-26'
+  decision: defer
+  reason: authoritative PR evidence unavailable; needs-triage
+  files_changed: []
+- number: 3671
+  title: '[Docs] Define PR description guidelines and optional tool disclosure'
+  date: '2026-10-26'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - .agents/skills/tilelang-submit-pr/SKILL.md
+  - .github/PULL_REQUEST_TEMPLATE.md
+  - CONTRIBUTING.md
+- number: 3683
+  title: '[CUDA] Fix cache hints for bulk TMA loads'
+  date: '2026-10-26'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - src/tl_templates/cuda/copy_sm90.h
+  - testing/python/language/test_tilelang_language_tma_copy.py
+- number: 2822
+  title: '[BugFix][Transform] Preserve transitive pipeline copy dependencies'
+  date: '2026-10-21'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 6 authoritative changed file(s)'
+  files_changed:
+  - src/transform/common/pipeline_utils.h
+  - src/transform/inject_pipeline.cc
+  - src/transform/pipeline_planning.cc
+  - testing/python/issue/test_tilelang_issue_pipeline_transitive_copy_dependencies.py
+  - testing/python/transform/test_tilelang_transform_Inject_software_pipeline.py
+  - testing/python/transform/test_tilelang_transform_pipeline_planning.py
+- number: 3236
+  title: '[CPU] Import the CPU dialect in CPU tests'
+  date: '2026-09-16'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 10 authoritative changed file(s)'
+  files_changed:
+  - testing/python/cpu/test_tilelang_cpu_atomic.py
+  - testing/python/cpu/test_tilelang_cpu_bf16_legalize.py
+  - testing/python/cpu/test_tilelang_cpu_fp16_const.py
+  - testing/python/cpu/test_tilelang_cpu_gemm.py
+  - testing/python/cpu/test_tilelang_cpu_reduce.py
+  - testing/python/cpu/test_tilelang_cpu_tgemm.py
+  - testing/python/cpu/test_tilelang_cpu_transpose.py
+  - testing/python/cpu/test_tilelang_cpu_vec_type.py
+  - testing/python/cpu/test_tilelang_cpu_while_repro.py
+  - testing/python/language/test_tilelang_language_dialect_op_hints.py
+- number: 3122
+  title: '[Language] Remove deprecated T.symbolic alias'
+  date: '2026-09-04'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 14 authoritative changed file(s)'
+  files_changed:
+  - docs/programming_guides/language_basics.md
+  - examples/dsa_sparse_finetune/indexer_topk_reducesum.py
+  - testing/python/autotune/test_tilelang_autotune_eager_mode.py
+  - testing/python/autotune/test_tilelang_autotune_with_inputs.py
+  - testing/python/components/test_storage_rewrite_detect_inplace.py
+  - testing/python/components/test_tilelang_pass_config_disable_tma_lower.py
+  - testing/python/issue/test_tilelang_issue_1008.py
+  - testing/python/issue/test_tilelang_issue_1237.py
+  - testing/python/language/test_tilelang_language_annot.py
+  - testing/python/language/test_tilelang_language_int64.py
+  - testing/python/runtime/test_tilelang_runtime_dynamic_shared_memory.py
+  - tilelang/language/common.py
+  - tilelang/language/symbolics.py
+  - tilelang/transform/pass_config.py
+- number: 3347
+  title: '[BugFix] Reject an out-of-range constant negative index'
+  date: '2026-10-27'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - src/transform/legalize_negative_index.cc
+  - testing/python/transform/test_tilelang_transform_legalize_negative_index.py
+- number: 2803
+  title: '[BugFix] Skip descriptor TMA for device-bound copy bases'
+  date: '2026-07-29'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 9 authoritative changed file(s)'
+  files_changed:
+  - src/cuda/op/copy_analysis.cc
+  - src/cuda/transform/annotate_device_bound_tma_copies.cc
+  - src/op/builtin.h
+  - testing/python/language/test_tilelang_language_ptr.py
+  - testing/python/language/test_tilelang_language_tma_copy.py
+  - testing/python/transform/test_tilelang_transform_producer_consumer_ws.py
+  - tilelang/cuda/pipeline.py
+  - tilelang/cuda/transform/__init__.py
+  - tilelang/tools/pass_visualizer/core.py
+- number: 3089
+  title: '[Bugfix] Make TMA layouts region-aware to keep slices contiguous'
+  date: '2026-08-26'
+  decision: include
+  reason: 'retain: added device-code construct in: src/cuda/op/copy.cc'
+  files_changed:
+  - src/cuda/op/atomic_add.cc
+  - src/cuda/op/copy.cc
+  - src/cuda/op/tma_layout.cc
+  - src/cuda/op/tma_layout.h
+  - testing/python/language/test_tilelang_language_atomic.py
+  - testing/python/language/test_tilelang_language_tma_copy.py
+  - testing/python/transform/test_tilelang_transform_producer_consumer_ws.py
+- number: 3106
+  title: '[CUDA] Unify TMA copy lowering on CuTe algebra'
+  date: '2026-08-29'
+  decision: include
+  reason: 'retain: added device-code construct in: src/cuda/op/copy.cc, src/cuda/op/copy.h'
+  files_changed:
+  - src/cuda/op/atomic_add.cc
+  - src/cuda/op/copy.cc
+  - src/cuda/op/copy.h
+  - src/cuda/op/tma_layout.h
+  - src/cuda/transform/inject_fence_proxy.cc
+  - src/layout/cute_layout.cc
+  - src/layout/cute_layout.h
+  - src/layout/swizzle_mode.h
+  - src/transform/lower_tile_op.cc
+  - src/transform/thread_storage_sync.cc
+  - testing/python/language/test_tilelang_language_tma_copy.py
+  - testing/python/language/test_tilelang_language_tma_gather_scatter.py
+  - testing/python/layout/test_tilelang_cute.py
+  - testing/python/transform/test_tilelang_transform_im2col_fallback.py
+  - tilelang/layout/cute.py
+- number: 3059
+  title: '[Feature] [CUDA] Role-based automatic warp specialization'
+  date: '2026-09-04'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: examples/aws/flash_attention.py, examples/aws/gemm.py'
+  files_changed:
+  - examples/aws/flash_attention.py
+  - examples/aws/gemm.py
+  - examples/aws/test_example_aws.py
+  - src/cuda/CMakeLists.txt
+  - src/cuda/op/builtin.cc
+  - src/cuda/op/builtin.h
+  - src/cuda/op/copy.cc
+  - src/cuda/op/copy.h
+  - src/cuda/op/copy_analysis.cc
+  - src/cuda/op/gemm.cc
+  - src/cuda/op/gemm_sp.cc
+  - src/cuda/transform/auto_schedule.cc
+  - src/cuda/transform/auto_schedule/common.h
+  - src/cuda/transform/auto_schedule/memory_detector.h
+  - src/cuda/transform/auto_schedule/preprocess_ir.cc
+  - src/cuda/transform/auto_schedule/preprocess_ir.h
+  - src/cuda/transform/auto_schedule/role_based_scheduler.cc
+  - src/cuda/transform/auto_schedule/role_based_scheduler.h
+  - src/cuda/transform/lower_shared_tmem.cc
+  - src/cuda/transform/materialize_ws_schedule.cc
+  - src/cuda/transform/producer_consumer_ws.cc
+  - src/cuda/transform/ws_analysis.cc
+  - src/cuda/transform/ws_analysis.h
+  - src/op/utils.h
+  - src/transform/common/warp_specialize.h
+  - testing/python/transform/test_tilelang_transform_auto_schedule.py
+  - testing/python/transform/test_tilelang_transform_materialize_ws_schedule.py
+  - tilelang/cuda/pipeline.py
+  - tilelang/cuda/transform/__init__.py
+  - tilelang/language/annotations.py
+  - tilelang/language/common.py
+  - tilelang/language/warp_specialize.py
+  - tilelang/transform/pass_config.py
+- number: 2683
+  title: '[BugFix] Fallback non-16B cluster bulk copies'
+  date: '2026-07-27'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - src/cuda/codegen/codegen_cuda.cc
+  - src/cuda/op/copy.cc
+  - testing/python/cuda/test_tma_dsmem.py
+- number: 2137
+  title: '[codex] Fix 1D TMA store layout inference'
+  date: '2026-05-03'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - src/op/copy.cc
+  - testing/python/language/test_tilelang_language_tma_store.py
+- number: 2932
+  title: '[Enhancement] Expose cluster_mask on T.tma_copy'
+  date: '2026-08-11'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - testing/python/language/test_tilelang_language_tma_copy.py
+  - tilelang/language/copy_op.py
+- number: 3354
+  title: '[BugFix] Run a `T.ws(-1)` region on every thread'
+  date: '2026-10-27'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - src/ir.cc
+  - testing/python/issue/test_tilelang_issue_2978.py
+  - tilelang/cuda/language/warpgroup.py
+- number: 3304
+  title: '[Example] Add DeepSelect Top-K'
+  date: '2026-10-26'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: examples/deep_select/example_deep_select.py'
+  files_changed:
+  - examples/deep_select/benchmark_deep_select.py
+  - examples/deep_select/deep_select_config.py
+  - examples/deep_select/example_deep_select.py
+  - examples/deep_select/test_deep_select.py
+- number: 3345
+  title: '[BugFix] Reject a non-unit step in VectorizeLoop'
+  date: '2026-10-23'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - src/transform/vectorize_loop.cc
+- number: 3054
+  title: '[Skill] Add TileLang semantic validation skill'
+  date: '2026-08-20'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 6 authoritative changed file(s)'
+  files_changed:
+  - .agents/skills/tilelang-semantic/SKILL.md
+  - .agents/skills/tilelang-semantic/agents/openai.yaml
+  - .agents/skills/tilelang-semantic/references/loop-rules.md
+  - .agents/skills/tilelang-semantic/references/memory-concurrency.md
+  - .agents/skills/tilelang-semantic/references/operations-layout.md
+  - .agents/skills/tilelang-semantic/scripts/scan_loop_nesting.py
+- number: 2781
+  title: '[Enhancement] More compile-time guards for architecture-specific CUDA intrinsics'
+  date: '2026-07-27'
+  decision: include
+  reason: 'retain: added device-code construct in: src/tl_templates/cuda/barrier.h, src/tl_templates/cuda/instruction/wgmma.h, src/tl_templates/cuda/instruction/wgmma_sp.h, src/tl_templates/cuda/intrin.h'
+  files_changed:
+  - src/cuda/codegen/codegen_cuda.cc
+  - src/tl_templates/cuda/barrier.h
+  - src/tl_templates/cuda/cluster.h
+  - src/tl_templates/cuda/copy_sm100.h
+  - src/tl_templates/cuda/copy_sm90.h
+  - src/tl_templates/cuda/instruction/wgmma.h
+  - src/tl_templates/cuda/instruction/wgmma_sp.h
+  - src/tl_templates/cuda/intrin.h
+  - src/tl_templates/cuda/tcgen_05.h
+  - testing/python/issue/test_tilelang_issue_2504.py
+  - testing/python/issue/test_tilelang_issue_2602.py
+- number: 2960
+  title: '[Layout][Inference] Add IO-aware cost model for free-mode selection'
+  date: '2026-08-16'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: maint/layout_inference/cases/broadcast_read.py, maint/layout_inference/cases/elementwise_copy.py, maint/layout_inference/cases/fp8_copy.py,
+    maint/layout_inference/cases/mixed_dtype_chain.py, maint/layout_inference/cases/offset_region_copy.py, maint/layout_inference/cases/reduce_broadcast.py, maint/layout_inference/cases/shared_staging.py,
+    maint/layout_inference/cases/transposed_store.py, maint/layout_inference/common.py, maint/layout_inference/cute_model.py'
+  files_changed:
+  - .agents/skills/tilelang-layout/SKILL.md
+  - .agents/skills/tilelang-layout/agents/openai.yaml
+  - CMakeLists.txt
+  - maint/layout_inference/README.md
+  - maint/layout_inference/cases/broadcast_read.py
+  - maint/layout_inference/cases/elementwise_copy.py
+  - maint/layout_inference/cases/fp8_copy.py
+  - maint/layout_inference/cases/mixed_dtype_chain.py
+  - maint/layout_inference/cases/offset_region_copy.py
+  - maint/layout_inference/cases/reduce_broadcast.py
+  - maint/layout_inference/cases/shared_staging.py
+  - maint/layout_inference/cases/transposed_store.py
+  - maint/layout_inference/common.py
+  - maint/layout_inference/cute_model.py
+  - maint/layout_inference/expected/broadcast_read.json
+  - maint/layout_inference/expected/elementwise_copy.json
+  - maint/layout_inference/expected/fp8_copy.json
+  - maint/layout_inference/expected/mixed_dtype_chain.json
+  - maint/layout_inference/expected/offset_region_copy.json
+  - maint/layout_inference/expected/reduce_broadcast.json
+  - maint/layout_inference/expected/shared_staging.json
+  - maint/layout_inference/expected/transposed_store.json
+  - maint/layout_inference/oracle.py
+  - maint/layout_inference/run.py
+  - src/config.h
+  - src/op/builtin.cc
+  - src/op/builtin.h
+  - src/op/parallel.cc
+  - src/transform/layout_inference/layout_cost_model.cc
+  - src/transform/layout_inference/layout_cost_model.h
+  - src/transform/layout_inference/layout_inference.cc
+  - src/transform/layout_inference/parallel_loop_layout_validator.h
+  - src/transform/loop_vectorize.cc
+  - src/transform/loop_vectorize.h
+  - tilelang/transform/pass_config.py
+- number: 3055
+  title: '[Layout][Inference] Restore register-count as the default cost model'
+  date: '2026-08-20'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 12 authoritative changed file(s)'
+  files_changed:
+  - .agents/skills/tilelang-layout/SKILL.md
+  - maint/layout_inference/README.md
+  - maint/layout_inference/cases/broadcast_read.py
+  - maint/layout_inference/cases/elementwise_copy.py
+  - maint/layout_inference/common.py
+  - maint/layout_inference/run.py
+  - src/config.h
+  - src/op/builtin.h
+  - src/transform/layout_inference/layout_cost_model.cc
+  - src/transform/layout_inference/layout_cost_model.h
+  - testing/python/transform/test_tilelang_transform_layout_inference.py
+  - tilelang/transform/pass_config.py
+- number: 2812
+  title: '[Refactor] Remove intrinsic compatibility facade'
+  date: '2026-07-30'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - testing/python/language/test_tilelang_language_atom_mma.py
+  - testing/python/layout/test_tilelang_cute.py
+  - tilelang/intrinsics/__init__.py
+- number: 2790
+  title: 'fix: refine TCGEN05 architecture guards'
+  date: '2026-07-29'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 7 authoritative changed file(s)'
+  files_changed:
+  - src/cuda/codegen/codegen_cuda.cc
+  - src/tl_templates/cuda/common.h
+  - src/tl_templates/cuda/copy_sm100.h
+  - src/tl_templates/cuda/instruction/tcgen05mma.h
+  - src/tl_templates/cuda/tcgen_05.h
+  - testing/python/issue/test_tilelang_issue_2504.py
+  - testing/python/issue/test_tilelang_issue_2602.py
+- number: 2962
+  title: Add Windows ARM64 support to CI
+  date: '2026-10-19'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 12 authoritative changed file(s)'
+  files_changed:
+  - .github/scripts/install-cuda-windows-arm64.ps1
+  - .github/workflows/dist.yml
+  - CMakeLists.txt
+  - cmake/FindPipCUDAToolkit.cmake
+  - cmake/windows_arm64_clang_compat.h
+  - pyproject.toml
+  - requirements-dev.txt
+  - requirements.txt
+  - src/cuda/CMakeLists.txt
+  - src/layout/cute_layout.cc
+  - testing/python/contrib/test_tilelang_contrib_cc.py
+  - tilelang/contrib/msvc.py
+- number: 2811
+  title: '[CUDA] Extend the GEMM FMA fallback to SM75'
+  date: '2026-07-30'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - src/cuda/op/gemm.cc
+  - testing/python/cuda/test_cuda_mma_sm75_dispatch.py
+  - testing/python/kernel/test_tilelang_kernel_sm75_gemm_fma.py
+- number: 2452
+  title: '[Backend] [CUDA] Support GMMA/UMMA lowering for sliced SMEM layout (actually arbitrary layout)'
+  date: '2026-07-01'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: examples/warp_specialize/example_warp_specialize_flashmla.py, tilelang/cuda/intrinsics/macro/tcgen05_macro_generator.py, tilelang/cuda/intrinsics/macro/wgmma_macro_generator.py'
+  files_changed:
+  - examples/warp_specialize/example_warp_specialize_flashmla.py
+  - src/cuda/op/copy.cc
+  - src/layout/cute_layout.cc
+  - src/layout/cute_layout.h
+  - src/layout/gemm_layouts.cc
+  - src/layout/layout.h
+  - src/layout/swizzle_mode.cc
+  - src/layout/swizzle_mode.h
+  - src/op/gemm.cc
+  - src/op/gemm.h
+  - src/tl_templates/cuda/common.h
+  - testing/python/language/test_tilelang_language_tcgen05_gemm.py
+  - testing/python/language/test_tilelang_language_wgmma_gemm.py
+  - testing/python/layout/test_tilelang_cute.py
+  - tilelang/cuda/intrinsics/macro/tcgen05_macro_generator.py
+  - tilelang/cuda/intrinsics/macro/wgmma_macro_generator.py
+  - tilelang/cuda/intrinsics/macro/wgmma_sp_macro_generator.py
+  - tilelang/layout/__init__.py
+  - tilelang/layout/cute.py
+  - tilelang/layout/swizzle_mode.py
+  - tilelang/tileop/gemm/gemm_base.py
+- number: 2445
+  title: '[CUDA] Remove `__shfl_sync` from `tl_shuffle_elect`'
+  date: '2026-06-24'
+  decision: include
+  reason: 'retain: added device-code construct in: src/tl_templates/cuda/intrin.h'
+  files_changed:
+  - src/tl_templates/cuda/intrin.h
+  - tilelang/language/builtin.py
+- number: 2380
+  title: '[Backend] Support TMA lowering for arbitrary (swizzled) SMEM layout'
+  date: '2026-06-18'
+  decision: include
+  reason: 'retain: added device-code construct in: src/cuda/op/copy.cc, src/cuda/transform/producer_consumer_ws.cc, src/layout/cute_layout.cc, src/layout/cute_layout.h'
+  files_changed:
+  - examples/gemm/example_gemm_intrinsics.py
+  - src/cuda/op/copy.cc
+  - src/cuda/transform/producer_consumer_ws.cc
+  - src/layout/cute_layout.cc
+  - src/layout/cute_layout.h
+  - testing/python/kernel/test_tilelang_kernel_gemm_simt.py
+  - testing/python/layout/test_tilelang_cute.py
+  - tilelang/cuda/intrinsics/layout/mma_layout.py
+  - tilelang/layout/__init__.py
+  - tilelang/layout/_cute_ffi_api.py
+  - tilelang/layout/cute.py
+- number: 2737
+  title: '[CUDA][Pipeline] Fix 1D TMA selection for versioned layouts'
+  date: '2026-07-22'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 7 authoritative changed file(s)'
+  files_changed:
+  - src/cuda/op/copy.cc
+  - src/cuda/op/copy_analysis.cc
+  - src/layout/layout.cc
+  - src/layout/layout.h
+  - testing/python/issue/test_tilelang_issue_2528.py
+  - testing/python/layout/test_tilelang_layout_linearized_index.py
+  - tilelang/layout/layout.py
+- number: 2236
+  title: '[BugFix] Fix SM90 WGMMA B_type typo and update SM75 kNPerWarp'
+  date: '2026-05-21'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - src/backend/cuda/op/gemm.cc
+  - src/tl_templates/cuda/gemm_sm90.h
+- number: 2392
+  title: '[CUDA] Add SM75 MMA dispatchers for FP16 accumulation and UINT8'
+  date: '2026-06-13'
+  decision: include
+  reason: 'retain: added device-code construct in: src/tl_templates/cuda/instruction/mma.h'
+  files_changed:
+  - src/tl_templates/cuda/instruction/mma.h
+  - testing/python/cuda/test_cuda_mma_sm75_dispatch.py
+  - testing/python/kernel/test_tilelang_kernel_gemm_sm75.py
+- number: 2289
+  title: '[BugFix][CuTeDSL] Support TileKernels backend cases'
+  date: '2026-05-28'
+  decision: include
+  reason: 'retain: Python DSL device-kernel implementation added in: tilelang/contrib/cutedsl/math.py, tilelang/jit/adapter/cutedsl/wrapper.py'
+  files_changed:
+  - src/backend/cuda/codegen/codegen_cutedsl.cc
+  - src/backend/cuda/codegen/codegen_cutedsl.h
+  - tilelang/contrib/cutedsl/math.py
+  - tilelang/jit/adapter/cutedsl/wrapper.py
+- number: 2859
+  title: '[Refactor] Recycle `T.unroll(explicit=True)` for early explicit unrolling'
+  date: '2026-08-04'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 11 authoritative changed file(s)'
+  files_changed:
+  - maint/gemm/gemm_sm120/benchmark_sm120_nvfp4_blockscaled_gemm.py
+  - src/backend/common/op/reduce.h
+  - src/transform/loop_partition.cc
+  - src/transform/unroll_loop.cc
+  - testing/python/language/test_tilelang_language_atomic.py
+  - testing/python/layout/test_tilelang_cute.py
+  - testing/python/transform/test_tilelang_transform_unroll_loop.py
+  - tilelang/cuda/pipeline.py
+  - tilelang/language/loop.py
+  - tilelang/language/tir/ir.py
+  - tilelang/tools/pass_visualizer/core.py
+- number: 2719
+  title: '[BugFix] Reject contracting shared-buffer layouts in T.annotate_layout'
+  date: '2026-07-23'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 7 authoritative changed file(s)'
+  files_changed:
+  - src/layout/cute_layout.cc
+  - src/layout/layout.cc
+  - src/layout/layout.h
+  - src/layout/utils.cc
+  - src/layout/utils.h
+  - src/transform/layout_inference.cc
+  - testing/python/issue/test_tilelang_issue_2632.py

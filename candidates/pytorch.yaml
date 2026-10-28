@@ -1,5 +1,5 @@
 repo: pytorch/pytorch
-searched_at: '2026-05-20'
+searched_at: '2026-10-27'
 keywords_used:
 - blackwell
 - sm100
@@ -25,10 +25,10 @@ keywords_used:
 - gemm
 - triton+blackwell
 - fp8+kernel
-total_candidates: 201
-included: 25
-excluded: 110
-deferred: 66
+total_candidates: 273
+included: 26
+excluded: 179
+deferred: 68
 prs:
 - number: 180470
   title: '[release 2.12] Apply Release only changes to 2.12 branch'
@@ -1656,3 +1656,1016 @@ prs:
   - .github/workflows/inductor-periodic.yml
   files_reviewed_count: 13
   scope_disposition: removed
+- number: 199936
+  title: '[CD][CUDA13.4][Triton] Revert cu13.4 ptxas bundling workaround, no longer needed'
+  date: '2026-10-06'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - .ci/wheel/linux/build_env_setup.py
+- number: 193471
+  title: Adding NVIDIA B200 to device_info mapping
+  date: '2026-08-18'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - torch/_inductor/analysis/device_info.py
+- number: 194963
+  title: '[cuDNN] Add guards for cuDNN SDPA decode'
+  date: '2026-08-27'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 6 authoritative changed file(s)'
+  files_changed:
+  - aten/src/ATen/native/cudnn/MHA.cpp
+  - aten/src/ATen/native/transformers/cuda/attention.cu
+  - aten/src/ATen/native/transformers/cuda/attention_backward.cu
+  - aten/src/ATen/native/transformers/cuda/sdp_utils.cpp
+  - aten/src/ATen/native/transformers/cuda/sdp_utils.h
+  - test/test_transformers.py
+- number: 193058
+  title: '[CD][CUDA13.4][Triton] Bundle cu13.4 ptxas in nightly wheels for (PyTorch wheel self-contained) Rubin support'
+  date: '2026-08-13'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - .ci/manywheel/build_env_setup.py
+  - torch/_inductor/runtime/compile_tasks.py
+- number: 194970
+  title: '[release/2.14] Import SDPAParams in test_transformers to fix lint'
+  date: '2026-08-27'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - test/test_transformers.py
+- number: 188551
+  title: '[release/2.13] Bump binary build timeout 280 -> 400 minutes'
+  date: '2026-06-30'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - .github/templates/common.yml.j2
+  - .github/workflows/generated-linux-binary-manywheel-nightly.yml
+  - .github/workflows/generated-macos-arm64-binary-wheel-nightly.yml
+- number: 188443
+  title: '[release/2.13] Add CUDA 12.9 to TORCH_CUDA_ARCH_LIST tables'
+  date: '2026-06-29'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - .ci/manywheel/build_env_setup.py
+  - torch/cuda/__init__.py
+- number: 201512
+  title: '[inductor] Fix the prologue zero-mask analysis on low-precision rounding casts'
+  date: '2026-10-20'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - test/inductor/test_max_autotune.py
+  - torch/_inductor/analyze_preserves_zero_mask.py
+- number: 199819
+  title: '[release 2.15] Apply Release only changes to 2.15 branch'
+  date: '2026-10-05'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 123 authoritative changed file(s)'
+  files_changed:
+  - .ci/pytorch/common_utils.sh
+  - .github/ci_commit_pins/xla.txt
+  - .github/scripts/filter_test_configs.py
+  - .github/templates/common.yml.j2
+  - .github/templates/linux_binary_build_workflow.yml.j2
+  - .github/templates/macos_binary_build_workflow.yml.j2
+  - .github/templates/windows_binary_build_workflow.yml.j2
+  - .github/workflows/_binary-build-flash-attention-wheel-windows.yml
+  - .github/workflows/_binary-build-linux.yml
+  - .github/workflows/_binary-test-linux.yml
+  - .github/workflows/_binary-upload.yml
+  - .github/workflows/_build-triton-wheel-linux.yml
+  - .github/workflows/_docs.yml
+  - .github/workflows/_lint.yml
+  - .github/workflows/_linux-build.yml
+  - .github/workflows/_linux-test-stable-fa3.yml
+  - .github/workflows/_linux-test.yml
+  - .github/workflows/_mac-build.yml
+  - .github/workflows/_mac-test.yml
+  - .github/workflows/_rocm-test-no-dind.yml
+  - .github/workflows/_rocm-test.yml
+  - .github/workflows/_s390x-build.yml
+  - .github/workflows/_s390x-test.yml
+  - .github/workflows/_tpu-test.yml
+  - .github/workflows/_vllm-benchmark.yml
+  - .github/workflows/_vllm-build.yml
+  - .github/workflows/_win-build.yml
+  - .github/workflows/_win-test.yml
+  - .github/workflows/_xpu-test.yml
+  - .github/workflows/attention_op_microbenchmark.yml
+  - .github/workflows/b200-distributed.yml
+  - .github/workflows/b200-symm-mem.yml
+  - .github/workflows/better-benchmark-b200.yml
+  - .github/workflows/build-almalinux-images.yml
+  - .github/workflows/build-manywheel-images-s390x.yml
+  - .github/workflows/build-manywheel-images.yml
+  - .github/workflows/build-triton-wheel.yml
+  - .github/workflows/claude-autorevert-advisor.yml
+  - .github/workflows/claude-code.yml
+  - .github/workflows/claude-distributed-triage.yml
+  - .github/workflows/claude-issue-triage-run.yml
+  - .github/workflows/close-nonexistent-disable-issues.yml
+  - .github/workflows/docker-builds.yml
+  - .github/workflows/docker-cache-rocm.yml
+  - .github/workflows/docker-release.yml
+  - .github/workflows/docs-build.yml
+  - .github/workflows/dtensor.yml
+  - .github/workflows/dynamo-unittest.yml
+  - .github/workflows/generated-linux-aarch64-binary-manywheel-nightly.yml
+  - .github/workflows/generated-linux-binary-manywheel-nightly.yml
+  - .github/workflows/generated-linux-s390x-binary-manywheel-nightly.yml
+  - .github/workflows/generated-macos-arm64-binary-wheel-nightly.yml
+  - .github/workflows/generated-windows-arm64-binary-wheel-nightly.yml
+  - .github/workflows/generated-windows-binary-wheel-nightly.yml
+  - .github/workflows/h100-cutlass-backend.yml
+  - .github/workflows/h100-distributed.yml
+  - .github/workflows/h100-symm-mem.yml
+  - .github/workflows/inductor-micro-benchmark-x86.yml
+  - .github/workflows/inductor-micro-benchmark.yml
+  - .github/workflows/inductor-nightly.yml
+  - .github/workflows/inductor-pallas.yml
+  - .github/workflows/inductor-perf-compare.yml
+  - .github/workflows/inductor-perf-test-b200.yml
+  - .github/workflows/inductor-perf-test-nightly-aarch64.yml
+  - .github/workflows/inductor-perf-test-nightly-h100.yml
+  - .github/workflows/inductor-perf-test-nightly-rocm-mi300.yml
+  - .github/workflows/inductor-perf-test-nightly-rocm-mi350.yml
+  - .github/workflows/inductor-perf-test-nightly-x86-zen.yml
+  - .github/workflows/inductor-perf-test-nightly-x86.yml
+  - .github/workflows/inductor-perf-test-nightly-xpu.yml
+  - .github/workflows/inductor-perf-test-nightly.yml
+  - .github/workflows/inductor-periodic.yml
+  - .github/workflows/inductor-rocm-mi200.yml
+  - .github/workflows/inductor-rocm-mi300.yml
+  - .github/workflows/inductor-rocm-mi350.yml
+  - .github/workflows/inductor-unittest.yml
+  - .github/workflows/inductor.yml
+  - .github/workflows/lint-bc.yml
+  - .github/workflows/lint.yml
+  - .github/workflows/llm_td_retrieval.yml
+  - .github/workflows/native-aot.yml
+  - .github/workflows/nightly-s3-uploads.yml
+  - .github/workflows/nightly.yml
+  - .github/workflows/operator_benchmark.yml
+  - .github/workflows/operator_microbenchmark.yml
+  - .github/workflows/operator_microbenchmark_compare.yml
+  - .github/workflows/periodic-rocm-mi200.yml
+  - .github/workflows/periodic-rocm-mi300.yml
+  - .github/workflows/periodic-rocm-mi350.yml
+  - .github/workflows/periodic-strict.yml
+  - .github/workflows/periodic.yml
+  - .github/workflows/pull.yml
+  - .github/workflows/riscv64.yml
+  - .github/workflows/rocm-mi200.yml
+  - .github/workflows/rocm-mi300.yml
+  - .github/workflows/rocm-mi350.yml
+  - .github/workflows/rocm-preview.yml
+  - .github/workflows/rocm-rx7900.yml
+  - .github/workflows/slow-rocm-mi200.yml
+  - .github/workflows/slow.yml
+  - .github/workflows/target-determination-indexer.yml
+  - .github/workflows/target_determination.yml
+  - .github/workflows/td-holdout-unstable.yml
+  - .github/workflows/test-b200.yml
+  - .github/workflows/test-check-binary.yml
+  - .github/workflows/test-h100.yml
+  - .github/workflows/tools-unit-tests.yml
+  - .github/workflows/torchtitan.yml
+  - .github/workflows/trunk-rocm-sandbox.yml
+  - .github/workflows/trunk.yml
+  - .github/workflows/tsan.yml
+  - .github/workflows/unstable.yml
+  - .github/workflows/update-viablestrict.yml
+  - .github/workflows/update_pytorch_labels.yml
+  - .github/workflows/upload-test-stats-while-running.yml
+  - .github/workflows/upload-test-stats.yml
+  - .github/workflows/upload-torch-dynamo-perf-stats.yml
+  - .github/workflows/upload_test_stats_intermediate.yml
+  - .github/workflows/vllm-benchmark.yml
+  - .github/workflows/weekly.yml
+  - .github/workflows/xpu.yml
+  - scripts/release/cut-release-branch.sh
+  - tools/stats/import_test_stats.py
+- number: 193018
+  title: '[release 2.14] Apply Release only changes to 2.14 branch'
+  date: '2026-08-11'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 116 authoritative changed file(s)'
+  files_changed:
+  - .ci/pytorch/common_utils.sh
+  - .github/ci_commit_pins/xla.txt
+  - .github/scripts/filter_test_configs.py
+  - .github/templates/common.yml.j2
+  - .github/templates/linux_binary_build_workflow.yml.j2
+  - .github/templates/macos_binary_build_workflow.yml.j2
+  - .github/templates/windows_binary_build_workflow.yml.j2
+  - .github/workflows/_binary-build-flash-attention-wheel-windows.yml
+  - .github/workflows/_binary-build-linux.yml
+  - .github/workflows/_binary-test-linux.yml
+  - .github/workflows/_binary-upload.yml
+  - .github/workflows/_docs.yml
+  - .github/workflows/_lint.yml
+  - .github/workflows/_linux-build.yml
+  - .github/workflows/_linux-test-stable-fa3.yml
+  - .github/workflows/_linux-test.yml
+  - .github/workflows/_mac-build.yml
+  - .github/workflows/_mac-test.yml
+  - .github/workflows/_rocm-test.yml
+  - .github/workflows/_s390x-build.yml
+  - .github/workflows/_s390x-test.yml
+  - .github/workflows/_tpu-test.yml
+  - .github/workflows/_vllm-benchmark.yml
+  - .github/workflows/_vllm-build.yml
+  - .github/workflows/_win-build.yml
+  - .github/workflows/_win-test.yml
+  - .github/workflows/_xpu-test.yml
+  - .github/workflows/attention_op_microbenchmark.yml
+  - .github/workflows/b200-distributed.yml
+  - .github/workflows/b200-symm-mem.yml
+  - .github/workflows/better-benchmark-b200.yml
+  - .github/workflows/build-almalinux-images.yml
+  - .github/workflows/build-manywheel-images-s390x.yml
+  - .github/workflows/build-manywheel-images.yml
+  - .github/workflows/build-triton-wheel.yml
+  - .github/workflows/claude-autorevert-advisor.yml
+  - .github/workflows/claude-code.yml
+  - .github/workflows/claude-distributed-triage.yml
+  - .github/workflows/claude-issue-triage-run.yml
+  - .github/workflows/close-nonexistent-disable-issues.yml
+  - .github/workflows/docker-builds.yml
+  - .github/workflows/docker-cache-rocm.yml
+  - .github/workflows/docker-release.yml
+  - .github/workflows/docs-build.yml
+  - .github/workflows/dtensor.yml
+  - .github/workflows/dynamo-unittest.yml
+  - .github/workflows/generated-linux-aarch64-binary-manywheel-nightly.yml
+  - .github/workflows/generated-linux-binary-manywheel-nightly.yml
+  - .github/workflows/generated-linux-s390x-binary-manywheel-nightly.yml
+  - .github/workflows/generated-macos-arm64-binary-wheel-nightly.yml
+  - .github/workflows/generated-windows-binary-wheel-nightly.yml
+  - .github/workflows/h100-cutlass-backend.yml
+  - .github/workflows/h100-distributed.yml
+  - .github/workflows/h100-symm-mem.yml
+  - .github/workflows/inductor-micro-benchmark-x86.yml
+  - .github/workflows/inductor-micro-benchmark.yml
+  - .github/workflows/inductor-nightly.yml
+  - .github/workflows/inductor-pallas.yml
+  - .github/workflows/inductor-perf-compare.yml
+  - .github/workflows/inductor-perf-test-b200.yml
+  - .github/workflows/inductor-perf-test-nightly-aarch64.yml
+  - .github/workflows/inductor-perf-test-nightly-h100.yml
+  - .github/workflows/inductor-perf-test-nightly-rocm-mi300.yml
+  - .github/workflows/inductor-perf-test-nightly-rocm-mi350.yml
+  - .github/workflows/inductor-perf-test-nightly-x86-zen.yml
+  - .github/workflows/inductor-perf-test-nightly-x86.yml
+  - .github/workflows/inductor-perf-test-nightly-xpu.yml
+  - .github/workflows/inductor-perf-test-nightly.yml
+  - .github/workflows/inductor-periodic.yml
+  - .github/workflows/inductor-rocm-mi200.yml
+  - .github/workflows/inductor-rocm-mi300.yml
+  - .github/workflows/inductor-rocm-mi350.yml
+  - .github/workflows/inductor-unittest.yml
+  - .github/workflows/inductor.yml
+  - .github/workflows/lint-bc.yml
+  - .github/workflows/lint.yml
+  - .github/workflows/llm_td_retrieval.yml
+  - .github/workflows/nightly-s3-uploads.yml
+  - .github/workflows/nightly.yml
+  - .github/workflows/operator_benchmark.yml
+  - .github/workflows/operator_microbenchmark.yml
+  - .github/workflows/operator_microbenchmark_compare.yml
+  - .github/workflows/periodic-rocm-mi200.yml
+  - .github/workflows/periodic-rocm-mi300.yml
+  - .github/workflows/periodic-rocm-mi350.yml
+  - .github/workflows/periodic.yml
+  - .github/workflows/pull.yml
+  - .github/workflows/riscv64.yml
+  - .github/workflows/rocm-mi200.yml
+  - .github/workflows/rocm-mi300.yml
+  - .github/workflows/rocm-mi350.yml
+  - .github/workflows/rocm-navi31.yml
+  - .github/workflows/rocm-preview.yml
+  - .github/workflows/slow-rocm-mi200.yml
+  - .github/workflows/slow.yml
+  - .github/workflows/target-determination-indexer.yml
+  - .github/workflows/target_determination.yml
+  - .github/workflows/test-b200.yml
+  - .github/workflows/test-check-binary.yml
+  - .github/workflows/test-h100.yml
+  - .github/workflows/tools-unit-tests.yml
+  - .github/workflows/torchtitan.yml
+  - .github/workflows/trunk-rocm-sandbox.yml
+  - .github/workflows/trunk.yml
+  - .github/workflows/tsan.yml
+  - .github/workflows/unstable.yml
+  - .github/workflows/update-viablestrict.yml
+  - .github/workflows/update_pytorch_labels.yml
+  - .github/workflows/upload-test-stats-while-running.yml
+  - .github/workflows/upload-test-stats.yml
+  - .github/workflows/upload-torch-dynamo-perf-stats.yml
+  - .github/workflows/upload_test_stats_intermediate.yml
+  - .github/workflows/vllm-benchmark.yml
+  - .github/workflows/weekly.yml
+  - .github/workflows/xpu.yml
+  - tools/stats/import_test_stats.py
+- number: 186654
+  title: '[CD] Drop CPython 3.13t from binary build matrix (#182951)'
+  date: '2026-06-09'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 14 authoritative changed file(s)'
+  files_changed:
+  - .ci/docker/common/install_cpython.sh
+  - .ci/docker/manywheel/Dockerfile_2_28
+  - .ci/pytorch/smoke_test/check_gomp.py
+  - .ci/pytorch/windows/internal/install_python.bat
+  - .ci/pytorch/windows/internal/smoke_test.bat
+  - .ci/pytorch/windows/setup_build.bat
+  - .github/scripts/generate_binary_build_matrix.py
+  - .github/workflows/build-triton-wheel.yml
+  - .github/workflows/build-vllm-wheel.yml
+  - .github/workflows/generated-linux-aarch64-binary-manywheel-nightly.yml
+  - .github/workflows/generated-linux-binary-manywheel-nightly.yml
+  - .github/workflows/generated-linux-s390x-binary-manywheel-nightly.yml
+  - .github/workflows/generated-macos-arm64-binary-wheel-nightly.yml
+  - .github/workflows/generated-windows-binary-wheel-nightly.yml
+- number: 198644
+  title: '[release/2.14] [CD] Update to CUDA 13.2.2 for Linux binaries'
+  date: '2026-09-25'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 5 authoritative changed file(s)'
+  files_changed:
+  - .ci/docker/build.sh
+  - .ci/docker/common/install_cuda.sh
+  - .github/scripts/generate_binary_build_matrix.py
+  - .github/workflows/generated-linux-aarch64-binary-manywheel-nightly.yml
+  - .github/workflows/generated-linux-binary-manywheel-nightly.yml
+- number: 201426
+  title: Skip vectorized gather and scatter_add kernel for short rows
+  date: '2026-10-19'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - aten/src/ATen/native/cuda/IndexKernelUtils.h
+  - test/test_scatter_gather_ops.py
+  - torch/_native/ops/scatter_add/cutedsl_impl.py
+- number: 200923
+  title: '[release/2.15][CI] Pin pyarrow<26 in the torchtitan test'
+  date: '2026-10-14'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - .ci/pytorch/test.sh
+- number: 200896
+  title: '[c10d][nccl2] Fix nccl symmetric mempool registration for nccl2 backend'
+  date: '2026-10-14'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 6 authoritative changed file(s)'
+  files_changed:
+  - test/distributed/test_c10d_nccl2.py
+  - test/distributed/test_nccl.py
+  - torch/csrc/distributed/c10d/nccl2/NCCLCachingAllocatorHook.cpp
+  - torch/csrc/distributed/c10d/nccl2/NCCLCachingAllocatorHook.hpp
+  - torch/csrc/distributed/c10d/nccl2/ProcessGroupNCCL.hpp
+  - torch/csrc/distributed/c10d/nccl2/ProcessGroupNCCLUtils.cpp
+- number: 165144
+  title: Build libgomp (gcc-13) from src on AArch64
+  date: '2025-10-29'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - .ci/docker/common/install_libgomp.sh
+  - .ci/docker/manywheel/Dockerfile_2_28_aarch64
+- number: 166578
+  title: Bump uv from 0.9.5 to 0.9.6 in /.ci/lumen_cli
+  date: '2025-10-30'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - .ci/lumen_cli/pyproject.toml
+- number: 194374
+  title: '[release/2.14] Remove CUDA 13.4 from the binary build matrix'
+  date: '2026-08-21'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 5 authoritative changed file(s)'
+  files_changed:
+  - .github/scripts/generate_binary_build_matrix.py
+  - .github/workflows/build-almalinux-images.yml
+  - .github/workflows/build-manywheel-images.yml
+  - .github/workflows/generated-linux-aarch64-binary-manywheel-nightly.yml
+  - .github/workflows/generated-linux-binary-manywheel-nightly.yml
+- number: 193247
+  title: Bump cuDNN to 9.25.0.15 for CUDA 13.4rc1 wheels
+  date: '2026-08-13'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 4 authoritative changed file(s)'
+  files_changed:
+  - .ci/docker/common/install_cuda.sh
+  - .github/scripts/generate_binary_build_matrix.py
+  - .github/workflows/generated-linux-aarch64-binary-manywheel-nightly.yml
+  - .github/workflows/generated-linux-binary-manywheel-nightly.yml
+- number: 194137
+  title: '[profiler] Stop OVERHEAD activities from claiming device time'
+  date: '2026-08-21'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - test/profiler/test_profiler.py
+  - torch/autograd/profiler.py
+- number: 193836
+  title: '[pytorch][PR] Migrate fastAtomicAdd to headeronly (#193176) (#193604)'
+  date: '2026-08-19'
+  decision: include
+  reason: 'retain: CUDA/CuTe/PTX device implementation path(s): aten/src/ATen/cuda/Atomic.cuh, aten/src/ATen/cuda/detail/ROCmMacros.cuh, aten/src/ATen/native/cuda/KernelUtils.cuh'
+  files_changed:
+  - .ci/pytorch/smoke_test/check_binary_symbols.py
+  - .lintrunner.toml
+  - aten/src/ATen/cuda/Atomic.cuh
+  - aten/src/ATen/cuda/detail/ROCmMacros.cuh
+  - aten/src/ATen/native/cuda/KernelUtils.cuh
+  - test/cpp/aoti_abi_check/CMakeLists.txt
+  - test/cpp/aoti_abi_check/README.md
+  - test/cpp/aoti_abi_check/cuda/test_kernel_utils.cu
+  - tools/linter/adapters/header_only_linter.py
+  - torch/header_only_apis.txt
+  - torch/headeronly/CMakeLists.txt
+  - torch/headeronly/build.bzl
+  - torch/headeronly/cuda/Atomic.h
+  - torch/headeronly/cuda/KernelUtils.h
+  - torch/headeronly/cuda/detail/ROCmMacros.h
+  - torch/headeronly/ovrsource_defs.bzl
+- number: 188594
+  title: '[release/2.13] Restrict cuda-bindings to Python < 3.15 for CUDA 12.9 builds'
+  date: '2026-06-30'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - .github/scripts/generate_binary_build_matrix.py
+  - .github/workflows/generated-linux-aarch64-binary-manywheel-nightly.yml
+  - .github/workflows/generated-linux-binary-manywheel-nightly.yml
+- number: 194811
+  title: Fix docker-release validate job to use the channel matching the pushed image
+  date: '2026-08-25'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - .github/workflows/docker-release.yml
+- number: 188925
+  title: '[release/2.13] Strip +PTX from CUDA arch list on release/RC builds (#188914)'
+  date: '2026-07-03'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - .ci/manywheel/build_env_setup.py
+  - scripts/release/apply-release-changes.sh
+- number: 187099
+  title: '[CD] Bump 13.0 builds to 13.0.3'
+  date: '2026-06-16'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 5 authoritative changed file(s)'
+  files_changed:
+  - .github/scripts/generate_binary_build_matrix.py
+  - .github/workflows/generated-linux-aarch64-binary-manywheel-nightly.yml
+  - .github/workflows/generated-linux-binary-manywheel-nightly.yml
+  - .github/workflows/generated-macos-arm64-binary-wheel-nightly.yml
+  - .github/workflows/generated-windows-binary-wheel-nightly.yml
+- number: 193601
+  title: '[ROCm] Retry VecISA dlopen probe with import torch on cold load failure'
+  date: '2026-08-17'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - test/inductor/test_codecache.py
+  - torch/_inductor/cpu_vec_isa.py
+- number: 188197
+  title: '[release/2.13] Revert "dynamo: round-trip torch.cuda.stream ctx mgr across graph breaks (#184487)"'
+  date: '2026-06-25'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - test/dynamo/test_streams.py
+  - torch/_dynamo/variables/streams.py
+- number: 187055
+  title: Full git fetch on tag pushes so release manywheel builds detect the tag
+  date: '2026-06-11'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - .github/templates/linux_binary_build_workflow.yml.j2
+  - .github/workflows/generated-linux-aarch64-binary-manywheel-nightly.yml
+  - .github/workflows/generated-linux-binary-manywheel-nightly.yml
+- number: 183346
+  title: '[release] Dockerfile: skip torchaudio install when CUDA_PATH=cu132'
+  date: '2026-05-11'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - Dockerfile
+- number: 187058
+  title: Followup - Full git fetch on tag pushes so release manywheel builds detect the tag
+  date: '2026-06-11'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - .github/templates/linux_binary_build_workflow.yml.j2
+  - .github/workflows/generated-linux-aarch64-binary-manywheel-nightly.yml
+  - .github/workflows/generated-linux-binary-manywheel-nightly.yml
+- number: 182369
+  title: 'Fix stale PYTORCH_RELEASES_CODE_CC dict (fixes #182250)'
+  date: '2026-05-04'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - torch/cuda/__init__.py
+- number: 181577
+  title: '[CD] Remove cu132->cu130 wheel install fallback in Dockerfile '
+  date: '2026-04-27'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - .github/workflows/docker-release.yml
+  - Dockerfile
+- number: 186015
+  title: Revive CUDA 12.9 nightly binary builds
+  date: '2026-06-09'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 5 authoritative changed file(s)'
+  files_changed:
+  - .github/scripts/generate_binary_build_matrix.py
+  - .github/workflows/build-almalinux-images.yml
+  - .github/workflows/build-manywheel-images.yml
+  - .github/workflows/generated-linux-aarch64-binary-manywheel-nightly.yml
+  - .github/workflows/generated-linux-binary-manywheel-nightly.yml
+- number: 187417
+  title: '[xpu][fix] Include kernel_compile_result.h in aoti xpu.h header'
+  date: '2026-06-16'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - test/inductor/test_aot_inductor.py
+  - torch/csrc/inductor/aoti_include/xpu.h
+- number: 186959
+  title: '[release 2.13] Apply Release only changes to 2.13 branch'
+  date: '2026-06-10'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 119 authoritative changed file(s)'
+  files_changed:
+  - .ci/pytorch/common_utils.sh
+  - .github/ci_commit_pins/xla.txt
+  - .github/scripts/filter_test_configs.py
+  - .github/scripts/generate_binary_build_matrix.py
+  - .github/templates/common.yml.j2
+  - .github/templates/linux_binary_build_workflow.yml.j2
+  - .github/templates/macos_binary_build_workflow.yml.j2
+  - .github/templates/windows_binary_build_workflow.yml.j2
+  - .github/workflows/_binary-build-flash-attention-wheel-linux.yml
+  - .github/workflows/_binary-build-flash-attention-wheel-windows.yml
+  - .github/workflows/_binary-build-linux.yml
+  - .github/workflows/_binary-test-linux.yml
+  - .github/workflows/_binary-upload.yml
+  - .github/workflows/_docs.yml
+  - .github/workflows/_lint.yml
+  - .github/workflows/_linux-build.yml
+  - .github/workflows/_linux-test-stable-fa3.yml
+  - .github/workflows/_linux-test.yml
+  - .github/workflows/_mac-build.yml
+  - .github/workflows/_mac-test.yml
+  - .github/workflows/_rocm-test.yml
+  - .github/workflows/_runner-determinator.yml
+  - .github/workflows/_vllm-benchmark.yml
+  - .github/workflows/_win-build.yml
+  - .github/workflows/_win-test.yml
+  - .github/workflows/_xpu-test.yml
+  - .github/workflows/attention_op_microbenchmark.yml
+  - .github/workflows/b200-distributed.yml
+  - .github/workflows/b200-symm-mem.yml
+  - .github/workflows/build-almalinux-images.yml
+  - .github/workflows/build-manywheel-images-s390x.yml
+  - .github/workflows/build-manywheel-images.yml
+  - .github/workflows/build-triton-wheel.yml
+  - .github/workflows/build-vllm-wheel.yml
+  - .github/workflows/claude-autorevert-advisor.yml
+  - .github/workflows/claude-code.yml
+  - .github/workflows/claude-distributed-triage.yml
+  - .github/workflows/claude-issue-triage-run.yml
+  - .github/workflows/close-nonexistent-disable-issues.yml
+  - .github/workflows/create_release.yml
+  - .github/workflows/docker-builds.yml
+  - .github/workflows/docker-cache-rocm.yml
+  - .github/workflows/docker-release.yml
+  - .github/workflows/docs-build.yml
+  - .github/workflows/dtensor.yml
+  - .github/workflows/dynamo-unittest.yml
+  - .github/workflows/generated-linux-aarch64-binary-manywheel-nightly.yml
+  - .github/workflows/generated-linux-binary-manywheel-nightly.yml
+  - .github/workflows/generated-linux-s390x-binary-manywheel-nightly.yml
+  - .github/workflows/generated-macos-arm64-binary-wheel-nightly.yml
+  - .github/workflows/generated-windows-arm64-binary-libtorch-debug-nightly.yml
+  - .github/workflows/generated-windows-arm64-binary-wheel-nightly.yml
+  - .github/workflows/generated-windows-binary-libtorch-debug-nightly.yml
+  - .github/workflows/generated-windows-binary-wheel-nightly.yml
+  - .github/workflows/h100-cutlass-backend.yml
+  - .github/workflows/h100-distributed.yml
+  - .github/workflows/h100-symm-mem.yml
+  - .github/workflows/inductor-micro-benchmark-x86.yml
+  - .github/workflows/inductor-micro-benchmark.yml
+  - .github/workflows/inductor-nightly.yml
+  - .github/workflows/inductor-pallas.yml
+  - .github/workflows/inductor-perf-compare.yml
+  - .github/workflows/inductor-perf-test-b200.yml
+  - .github/workflows/inductor-perf-test-nightly-aarch64.yml
+  - .github/workflows/inductor-perf-test-nightly-h100.yml
+  - .github/workflows/inductor-perf-test-nightly-rocm-mi300.yml
+  - .github/workflows/inductor-perf-test-nightly-rocm-mi355.yml
+  - .github/workflows/inductor-perf-test-nightly-x86-zen.yml
+  - .github/workflows/inductor-perf-test-nightly-x86.yml
+  - .github/workflows/inductor-perf-test-nightly-xpu.yml
+  - .github/workflows/inductor-perf-test-nightly.yml
+  - .github/workflows/inductor-periodic.yml
+  - .github/workflows/inductor-rocm-mi200.yml
+  - .github/workflows/inductor-rocm-mi300.yml
+  - .github/workflows/inductor-rocm-mi355.yml
+  - .github/workflows/inductor-unittest.yml
+  - .github/workflows/inductor.yml
+  - .github/workflows/lint-bc.yml
+  - .github/workflows/lint.yml
+  - .github/workflows/llm_td_retrieval.yml
+  - .github/workflows/nightly-s3-uploads.yml
+  - .github/workflows/nightly.yml
+  - .github/workflows/operator_benchmark.yml
+  - .github/workflows/operator_microbenchmark.yml
+  - .github/workflows/operator_microbenchmark_compare.yml
+  - .github/workflows/periodic-rocm-mi200.yml
+  - .github/workflows/periodic-rocm-mi300.yml
+  - .github/workflows/periodic-rocm-mi355.yml
+  - .github/workflows/periodic.yml
+  - .github/workflows/pull.yml
+  - .github/workflows/riscv64.yml
+  - .github/workflows/rocm-mi200.yml
+  - .github/workflows/rocm-mi300.yml
+  - .github/workflows/rocm-mi355.yml
+  - .github/workflows/rocm-navi31.yml
+  - .github/workflows/rocm-nightly.yml
+  - .github/workflows/slow-rocm-mi200.yml
+  - .github/workflows/slow.yml
+  - .github/workflows/target-determination-indexer.yml
+  - .github/workflows/target_determination.yml
+  - .github/workflows/test-b200.yml
+  - .github/workflows/test-check-binary.yml
+  - .github/workflows/test-h100.yml
+  - .github/workflows/tools-unit-tests.yml
+  - .github/workflows/torchtitan.yml
+  - .github/workflows/trunk-rocm-sandbox.yml
+  - .github/workflows/trunk.yml
+  - .github/workflows/tsan.yml
+  - .github/workflows/unstable.yml
+  - .github/workflows/update-viablestrict.yml
+  - .github/workflows/update_pytorch_labels.yml
+  - .github/workflows/upload-test-stats-while-running.yml
+  - .github/workflows/upload-test-stats.yml
+  - .github/workflows/upload-torch-dynamo-perf-stats.yml
+  - .github/workflows/upload_test_stats_intermediate.yml
+  - .github/workflows/vllm-benchmark.yml
+  - .github/workflows/weekly.yml
+  - .github/workflows/xpu.yml
+  - tools/stats/import_test_stats.py
+- number: 188162
+  title: Revive CUDA 12.9 nightly binary builds (#186015)
+  date: '2026-06-25'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 5 authoritative changed file(s)'
+  files_changed:
+  - .github/scripts/generate_binary_build_matrix.py
+  - .github/workflows/build-almalinux-images.yml
+  - .github/workflows/build-manywheel-images.yml
+  - .github/workflows/generated-linux-aarch64-binary-manywheel-nightly.yml
+  - .github/workflows/generated-linux-binary-manywheel-nightly.yml
+- number: 187001
+  title: Fetch tags in unified manywheel build job so release tags are detected
+  date: '2026-06-11'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - .github/templates/linux_binary_build_workflow.yml.j2
+  - .github/workflows/generated-linux-aarch64-binary-manywheel-nightly.yml
+  - .github/workflows/generated-linux-binary-manywheel-nightly.yml
+- number: 194235
+  title: '[release/2.14] Update torch-xpu-ops commit pin'
+  date: '2026-08-24'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - third_party/xpu.txt
+- number: 187684
+  title: '[SDPA] Fix 32-bit offset overflow in mem-efficient attention forward with attn_bias'
+  date: '2026-06-22'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - aten/src/ATen/native/transformers/cuda/mem_eff_attention/kernel_forward.h
+  - test/test_transformers.py
+- number: 180809
+  title: '[NCCL][Symmetric Memory] Fix groupName in IntraNodeComm'
+  date: '2026-04-23'
+  decision: exclude
+  reason: 'remove: distributed-system topic matched ''Symmetric Memory'' in PR title'
+  files_changed:
+  - test/distributed/test_c10d_nccl.py
+  - torch/csrc/distributed/c10d/symm_mem/intra_node_comm.cu
+- number: 182178
+  title: Avoid raw stream name collisions in Inductor
+  date: '2026-05-04'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 5 authoritative changed file(s)'
+  files_changed:
+  - test/inductor/test_user_streams.py
+  - torch/_inductor/codegen/triton.py
+  - torch/_inductor/codegen/triton_combo_kernel.py
+  - torch/_inductor/codegen/wrapper.py
+  - torch/_inductor/stream_utils.py
+- number: 181940
+  title: '[dynamo] warn instead of error on fullgraph=True fallback to eager'
+  date: '2026-04-30'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - test/dynamo/test_compile.py
+  - test/dynamo/test_misc.py
+  - torch/_dynamo/eval_frame.py
+- number: 181019
+  title: '[dynamo] Fix cuda_stream pointer extraction for generic torch.Stream'
+  date: '2026-04-22'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - test/dynamo/test_streams.py
+  - torch/_dynamo/variables/streams.py
+- number: 190902
+  title: '[Inductor] Add FlyDSL template compilation infrastructure'
+  date: '2026-08-10'
+  decision: defer
+  reason: authoritative PR evidence unavailable; needs-triage
+  files_changed: []
+- number: 202168
+  title: '[release/2.15] Revert "[inductor] Prefetch Inductor cache keys at torch.compile() time (#198747)"'
+  date: '2026-10-27'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 4 authoritative changed file(s)'
+  files_changed:
+  - test/inductor/test_codecache.py
+  - torch/__init__.py
+  - torch/_dynamo/convert_frame.py
+  - torch/_inductor/codecache.py
+- number: 200157
+  title: '[ROCm] Remove stale exp/silu inductor_default xfails after Triton 3.9'
+  date: '2026-10-08'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - test/inductor/test_torchinductor_opinfo_properties.py
+- number: 201114
+  title: '[MPS] [Inductor] Fix int64 constants narrowing to 32-bit int'
+  date: '2026-10-19'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - test/inductor/test_torchinductor.py
+  - torch/_inductor/codegen/mps.py
+- number: 199988
+  title: '[inductor] cherry pick #199871 (Don''t pattern-match nodes that set undeclared non-default kwargs)'
+  date: '2026-10-08'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 5 authoritative changed file(s)'
+  files_changed:
+  - test/inductor/test_pattern_matcher.py
+  - torch/_inductor/fx_passes/joint_graph.py
+  - torch/_inductor/fx_passes/post_grad.py
+  - torch/_inductor/fx_passes/split_cat.py
+  - torch/_inductor/pattern_matcher.py
+- number: 201914
+  title: Bump setuptools from 78.1.1 to 84.1.0 in /.ci/docker
+  date: '2026-10-24'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - .ci/docker/common/requirements_tpu.txt
+  - .ci/docker/requirements-ci.txt
+- number: 200667
+  title: '[inductor] Compare auto_functionalized kwargs against the wrapped ops schema (#200442)'
+  date: '2026-10-12'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - test/inductor/test_pattern_matcher.py
+  - torch/_inductor/pattern_matcher.py
+- number: 200407
+  title: '[XPU] Report static launcher n_spills in dword-equivalents per lane'
+  date: '2026-10-09'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - test/inductor/test_static_triton_launcher.py
+  - torch/csrc/inductor/static_launcher/xpu.cpp
+- number: 199963
+  title: '[release/2.15] Revert "[aoti] Clone outputs that alias a constant through a fallback view op"'
+  date: '2026-10-06'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 4 authoritative changed file(s)'
+  files_changed:
+  - test/inductor/test_aot_inductor.py
+  - test/inductor/test_aot_inductor_arrayref.py
+  - torch/_inductor/codegen/cpp_wrapper_cpu.py
+  - torch/_inductor/codegen/cpp_wrapper_cpu_array_ref.py
+- number: 200320
+  title: '[CD] Depend on triton for Python 3.15 wheels and smoke-test torch.compile on 3.15 and XPU'
+  date: '2026-10-08'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - .ci/pytorch/binary_populate_env.sh
+  - .ci/pytorch/smoke_test/smoke_test.py
+- number: 194833
+  title: '[Cherry-pick][release/2.14] [inductor] Fix loop-local load CSE lifetime (#194786)'
+  date: '2026-08-26'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - test/inductor/test_indexing.py
+  - torch/_inductor/codegen/triton.py
+- number: 190194
+  title: '[Dependabot] Update(deps): Bump transformers from 5.13.0 to 5.14.1 in /.ci/docker/ci_commit_pins'
+  date: '2026-10-23'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - .ci/docker/ci_commit_pins/huggingface-requirements.txt
+- number: 194312
+  title: '[inductor] Disable batch_linear_lhs by default on XPU(fixes Qwen regression)'
+  date: '2026-08-21'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - test/inductor/test_group_batch_fusion.py
+  - torch/_inductor/config.py
+- number: 188277
+  title: '[release/2.13] Revert "Tighten generalized scatter graph target (#184075)"'
+  date: '2026-06-26'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 4 authoritative changed file(s)'
+  files_changed:
+  - test/inductor/test_inplacing_pass.py
+  - test/test_fx_experimental.py
+  - torch/_inductor/fx_passes/reinplace.py
+  - torch/fx/experimental/validator.py
+- number: 187666
+  title: Revert "Preserve FX graph cache guard provenance (#184193)"
+  date: '2026-06-22'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 5 authoritative changed file(s)'
+  files_changed:
+  - test/inductor/test_codecache.py
+  - test/test_dynamic_shapes.py
+  - torch/_inductor/codecache.py
+  - torch/_inductor/output_code.py
+  - torch/fx/experimental/symbolic_shapes.py
+- number: 193083
+  title: Add current_device_idx_expr to XPUDeviceOpOverrides
+  date: '2026-08-13'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - torch/_inductor/codegen/xpu/device_op_overrides.py
+- number: 188117
+  title: Add CUDAGraph cloning for live user outputs
+  date: '2026-06-24'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 9 authoritative changed file(s)'
+  files_changed:
+  - docs/source/user_guide/torch_compiler/torch.compiler_cudagraph_trees.md
+  - test/inductor/test_cudagraph_trees.py
+  - torch/_inductor/compile_fx.py
+  - torch/_inductor/config.py
+  - torch/_inductor/cudagraph_trees.py
+  - torch/_inductor/cudagraph_utils.py
+  - torch/_inductor/output_code.py
+  - torch/_inductor/scheduler.py
+  - torch/_inductor/utils.py
+- number: 193600
+  title: '[ROCm] Rewrite bundled-lib NEEDED entries after all libs are copied in'
+  date: '2026-08-17'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - .ci/manywheel/repair_wheel.py
+- number: 188161
+  title: Demote changing CUDAGraph-managed inputs to copied inputs
+  date: '2026-07-18'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 5 authoritative changed file(s)'
+  files_changed:
+  - test/inductor/test_cudagraph_trees.py
+  - torch/_C/__init__.pyi.in
+  - torch/_inductor/config.py
+  - torch/_inductor/cudagraph_trees.py
+  - torch/csrc/DeviceAccelerator.cpp
+- number: 188160
+  title: '[MPS] Migrate argmin/argmax from MPSGraph to Metal'
+  date: '2026-06-25'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 6 authoritative changed file(s)'
+  files_changed:
+  - aten/src/ATen/native/mps/kernels/ReduceOps.metal
+  - aten/src/ATen/native/mps/operations/ReduceOps.mm
+  - c10/metal/reduction_utils.h
+  - test/inductor/test_torchinductor.py
+  - test/inductor/test_torchinductor_dynamic_shapes.py
+  - torch/_inductor/codegen/mps.py
+- number: 194040
+  title: 'Add missing XPU: _safe_softmax_xpu dispatch for _safe_softmax'
+  date: '2026-08-19'
+  decision: defer
+  reason: authoritative PR evidence unavailable; needs-triage
+  files_changed: []
+- number: 181550
+  title: Add enable_gqa parameter to SDPA MPS meta registration
+  date: '2026-05-04'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - torch/_meta_registrations.py
+- number: 182311
+  title: '[MPS] Fix bool mask handling in 1-pass SDPA decode kernel (#182285)'
+  date: '2026-05-04'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 2 authoritative changed file(s)'
+  files_changed:
+  - aten/src/ATen/native/mps/kernels/Attention.metal
+  - test/test_mps.py
+- number: 181886
+  title: '[MPS] Fix SDPA wrong output for permuted q/k/v with B > 1'
+  date: '2026-05-04'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 3 authoritative changed file(s)'
+  files_changed:
+  - aten/src/ATen/native/mps/kernels/Attention.metal
+  - aten/src/ATen/native/mps/operations/Attention.mm
+  - test/test_mps.py
+- number: 201197
+  title: '[Pipeline] Use microbatched reference in test_schedule_releases_output_before_backward'
+  date: '2026-10-19'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - test/distributed/pipelining/test_stage.py
+- number: 3290
+  title: Symbolic representation for mm
+  date: '2017-10-26'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - torch/onnx/symbolic.py
+- number: 3325
+  title: Big batch of JIT and ONNX fixes
+  date: '2017-10-30'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 17 authoritative changed file(s)'
+  files_changed:
+  - setup.py
+  - torch/autograd/_functions/blas.py
+  - torch/autograd/_functions/tensor.py
+  - torch/csrc/jit/export.cpp
+  - torch/csrc/jit/init.cpp
+  - torch/csrc/jit/interned_strings.h
+  - torch/csrc/jit/ir.cpp
+  - torch/csrc/jit/ir.h
+  - torch/csrc/jit/passes/onnx.cpp
+  - torch/csrc/jit/passes/peephole.cpp
+  - torch/csrc/jit/passes/peephole.h
+  - torch/jit/__init__.py
+  - torch/nn/_functions/dropout.py
+  - torch/nn/_functions/padding.py
+  - torch/nn/_functions/thnn/pooling.py
+  - torch/onnx/__init__.py
+  - torch/onnx/symbolic.py
+- number: 4056
+  title: Assert MKL ld* conditions for ger, gemm, and gemv
+  date: '2017-12-18'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 5 authoritative changed file(s)'
+  files_changed:
+  - aten/src/TH/generic/THBlas.c
+  - aten/src/TH/generic/THTensorMath.c
+  - aten/src/THNN/generic/SpatialDilatedConvolution.c
+  - aten/src/THNN/generic/SpatialFullDilatedConvolution.c
+  - aten/src/THNN/generic/VolumetricDilatedConvolution.c
+- number: 6243
+  title: fix broadcast export to onnx
+  date: '2018-04-05'
+  decision: exclude
+  reason: 'remove: no positive device-kernel implementation in 1 authoritative changed file(s)'
+  files_changed:
+  - torch/csrc/jit/passes/onnx/peephole.cpp
