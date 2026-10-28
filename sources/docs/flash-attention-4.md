@@ -39,6 +39,14 @@ from flash_attn.cute import flash_attn_func, flash_attn_varlen_func
 out = flash_attn_func(q, k, v, causal=True)
 ```
 
+## Versioned pre-release line (checked 2026-10-27)
+
+The upstream repository publishes the CuTe implementation as a versioned
+pre-release line: `fa4-v4.0.0.beta32` … `fa4-v4.0.0.beta36` were visible on
+https://github.com/Dao-AILab/flash-attention/releases on 2026-10-27 (no stable
+4.0 tag yet; the classic stable line is separately versioned at v2.8.3.post2).
+The pinned commit above predates this tagging line.
+
 The implementation's `utils.py` contains the software exponential helper. The
 following is a contiguous excerpt; it is not a standalone kernel:
 

@@ -1,19 +1,32 @@
 schema_version: 1
-captured_at: "2026-08-18"
+captured_at: "2026-10-27"
 purpose: Exact offline receipt for the selected release-of-record rows in data/tool-versions.yaml; it does not discover releases published after captured_at.
+## 2026-10-27 partial re-receipt (Blackwell-scoped): triton and cutlass
+## rows re-captured from the GitHub releases API (exact published_at
+## timestamps) via the local proxy; cuda re-checked on the toolkit
+## release-notes + toolkit-archive pages. CUDA 13.4.x is current
+## upstream (archive: 13.4.3 October 2026, 13.4.2 September 2026) but
+## neither page publishes exact GA/update dates, so cuda keeps its
+## 2026-08-18 release rows and only advances upstream_checked_at.
 tools:
   triton:
-    upstream_checked_at: "2026-08-18"
+    upstream_checked_at: "2026-10-27"
     authoritative_index: https://api.github.com/repos/triton-lang/triton/releases
     releases:
+      - ["3.8.0", "2026-08-28"]
       - ["3.7.1", "2026-06-18"]
       - ["3.7.0", "2026-05-07"]
       - ["3.6.0", "2026-01-21"]
       - ["3.5.1", "2025-11-12"]
   cutlass:
-    upstream_checked_at: "2026-08-18"
+    upstream_checked_at: "2026-10-27"
     authoritative_index: https://api.github.com/repos/NVIDIA/cutlass/releases
     releases:
+      - ["4.8.1", "2026-10-21"]
+      - ["4.8.0", "2026-09-22"]
+      - ["4.8.0dev", "2026-08-27"]
+      - ["4.7.1", "2026-08-26"]
+      - ["4.6.3", "2026-08-26"]
       - ["4.7.0", "2026-08-13"]
       - ["4.6.2", "2026-08-08"]
       - ["4.6.1", "2026-07-15"]
@@ -24,7 +37,7 @@ tools:
       - ["4.3.0", "2025-11-24"]
       - ["3.8.0", "2025-02-21"]
   cuda:
-    upstream_checked_at: "2026-08-18"
+    upstream_checked_at: "2026-10-27"
     authoritative_index: https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/
     supplementary_date_source: https://developer.nvidia.com/nsight-compute-history
     releases:

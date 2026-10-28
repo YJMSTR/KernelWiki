@@ -8,8 +8,10 @@
 > https://github.com/mit-han-lab/kernel-design-agents
 
 > **Evidence boundaries:** the audited upstream PR corpus closes at 2026-05-20;
-> documentation, releases, and leaderboard snapshots were verified through
-> 2026-08-18 UTC.
+> documentation and leaderboard snapshots were verified through
+> 2026-08-18 UTC; tool-release snapshots (Triton, CUTLASS, CUDA) were
+> re-verified through 2026-10-27 UTC (see `research-2026-10-blackwell-refresh.md`
+> for the Blackwell-scoped upstream survey behind that recheck).
 
 A structured knowledge base of NVIDIA Blackwell (SM100, B200) and Hopper (SM90, H100) GPU kernel optimization, packaged as a Claude Code skill. The repository root **is** the skill directory — clone it directly into `~/.claude/skills/` and it works out of the box.
 

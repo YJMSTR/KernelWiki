@@ -22,8 +22,8 @@ claims:
   - id: vs-triton-3.6-blackwell-tcgen05
     tool: triton
     claim_valid_for: ">=3.6"
-    last_verified_release: "3.7.1"
-    last_verified_at: 2026-08-18
+    last_verified_release: "3.8.0"
+    last_verified_at: 2026-10-27
     applies_to:
       - wiki/languages/triton-blackwell.md
       - references/primer.md
@@ -44,4 +44,10 @@ claims:
       do not prove a particular instruction form or performance for every
       tl.dot shape. The 3.7.0 and 3.7.1 release records were checked on
       2026-08-18 for continuity; the capability provenance remains the 3.6
-      release where these features were introduced.
+      release where these features were introduced. Continuity was
+      re-checked on 2026-10-27 against 3.8.0 (published 2026-08-28):
+      the 3.8.0 notes extend multi-CTA support and Gluon TMEM handling
+      but do not change the 3.6 capability provenance. Two-CTA tl.dot /
+      dot_scaled MMA was still merging on mainline after 3.8.0
+      (PR #10676 merged 2026-10-26), so it is not part of this claim's
+      verified release surface.

@@ -25,6 +25,7 @@ Triton 3.6 includes compiler infrastructure for Blackwell TMEM and `tcgen05`, pl
 ## Verified boundary
 
 - The official 3.6 release notes establish the compiler/backend features.
+- Release-line continuity was rechecked on 2026-10-27: 3.7.0 (2026-05-07), 3.7.1 (2026-06-18), and 3.8.0 (2026-08-28) exist upstream per the GitHub releases list; 3.8.0 extends generic multi-CTA support and Gluon TMEM handling but the Blackwell capability provenance remains the 3.6 notes. Two-CTA `tl.dot`/`dot_scaled` MMA was still merging on mainline after 3.8.0 (upstream PR #10676, merged 2026-10-26), so it is not attributed to any tagged release on this page.
 - vLLM PR 34597 provides an inspectable downstream `@triton.jit` MLA decode kernel using `tl.dot` on a source page classified for SM100.
 - SGLang PR 22079 is another retained attention example with `tl.dot` on SM100/SM90.
 - SGLang PR 21019 is a memory-rearrangement Triton kernel and therefore must not be cited as evidence of tensor-core lowering.

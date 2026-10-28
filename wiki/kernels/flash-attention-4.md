@@ -59,7 +59,12 @@ This is a verbatim usage excerpt, not a self-contained benchmark. Shapes,
 dtypes, installation, and correctness checks still have to follow the pinned
 upstream implementation.
 
+## Versioned pre-release line
+
+The CuTe implementation is published as a versioned pre-release line on GitHub — `fa4-v4.0.0.beta32` through `fa4-v4.0.0.beta36` observed on the repository's releases page on 2026-10-27, ahead of a stable 4.0 tag. The classic (non-CuTe) FlashAttention stable line remains separate (v2.8.3.post2 latest at the same check). Version-specific behavior should be pinned to one of these tags rather than to a moving branch.
+
 ## Sources
 
 - [FlashAttention-4 paper](https://arxiv.org/abs/2603.05451)
 - [FlashAttention-4 author blog](https://tridao.me/blog/2026/flash4/)
+- [flash-attention releases (fa4-v4.0.0.beta pre-release line)](https://github.com/Dao-AILab/flash-attention/releases)

@@ -13,11 +13,42 @@
 ## replace them. The validator (task5) does not reject
 ## needs-verification entries, but check_version_freshness.py
 ## flags them as advisory warnings.
+##
+## 2026-10-27 partial extension (Blackwell-scoped): triton and cutlass
+## release rows re-receipted from the GitHub releases API (exact
+## published_at timestamps); cuda re-checked on the toolkit release-notes
+## and toolkit-archive pages, where 13.4.x is current but no exact GA or
+## update dates are published — cuda therefore gains no new dated rows
+## this round. CUDA 13.4 observation: archive page lists 13.4.3
+## (October 2026) as Latest Release with 13.4.2 (September 2026)
+## archived; Nsight Compute 2026.3.1.2 maps to CUDA 13.4; CUTLASS
+## v4.8.0dev (2026-08-27) already requires the CUDA 13.4 GA / R615
+## driver, bounding 13.4 GA at or before 2026-08-27.
 
 tools:
   - tool: triton
-    upstream_checked_at: "2026-08-18"
+    upstream_checked_at: "2026-10-27"
     releases:
+      - name: "3.8.0"
+        released_at: "2026-08-28"
+        channel: stable
+        release_notes_url: "https://github.com/triton-lang/triton/releases/tag/v3.8.0"
+        evidence_source_ids:
+          - doc-triton-3.6-blackwell
+        notes: |
+          Current stable release at the 2026-10-27 recheck (GitHub
+          published_at 2026-08-28T18:25:56Z). Blackwell-relevant items in
+          the release notes: MMAv5 and scaled-dot additions, generic
+          multi-CTA support extended to layout conversion, reductions,
+          gather/scatter, TMA and multicast, tma.store_wait read_only
+          argument, Gluon TMEM-copy predication and accumulator-release
+          fixes, and loop unrolling for Gluon warp-pipelined kernels.
+          Two-CTA tcgen05 MMA for tl.dot / dot_scaled was still landing
+          on mainline after this release (PR #10676 merged 2026-10-26,
+          #12436 open), so 3.8.0 itself does not yet ship user-visible
+          two-CTA tl.dot. Initial Rubin (SM107) backend work also lands
+          here (out of Blackwell scope). The Blackwell capability
+          boundary remains anchored to the 3.6 introduction notes.
       - name: "3.7.1"
         released_at: "2026-06-18"
         channel: stable
@@ -61,8 +92,70 @@ tools:
           release.
 
   - tool: cutlass
-    upstream_checked_at: "2026-08-18"
+    upstream_checked_at: "2026-10-27"
     releases:
+      - name: "4.8.1"
+        released_at: "2026-10-21"
+        channel: stable
+        release_notes_url: "https://github.com/NVIDIA/cutlass/releases/tag/v4.8.1"
+        evidence_source_ids:
+          - doc-cutlass-changelog-sm100
+        notes: |
+          Current stable release at the 2026-10-27 recheck (GitHub
+          published_at 2026-10-21T09:49:16Z). Blackwell-relevant fixes:
+          tensormap_replace keeps device-side TMA descriptor updates safe
+          when shrunk below the original extent (possible illegal memory
+          access on Blackwell), and cute.extern zero-argument type
+          signature fixes.
+      - name: "4.8.0"
+        released_at: "2026-09-22"
+        channel: stable
+        release_notes_url: "https://github.com/NVIDIA/cutlass/releases/tag/v4.8.0"
+        evidence_source_ids:
+          - doc-cutlass-changelog-sm100
+        notes: |
+          GitHub published_at 2026-09-22T03:37:45Z. Blackwell-relevant
+          items: CuTe DSL automatic CTA-V map inference, async atomic
+          TMA reduce-store, opt-in TMEM ping-pong accumulator planning;
+          new Blackwell CuTe-extension examples (dense and block-scaled
+          GEMM, GQA decode attention, back-to-back GEMM, CLC-scheduler
+          persistent GEMM); Operator API nvMatmulHeuristics-based
+          ranking. This line also introduces initial Rubin (SM107)
+          support (out of Blackwell scope but shipped in the same
+          release).
+      - name: "4.8.0dev"
+        released_at: "2026-08-27"
+        channel: dev
+        dev_branch_sha: cdcf8d86daa9b417840fd99875a1b1af685d389d
+        release_notes_url: "https://github.com/NVIDIA/cutlass/releases/tag/v4.8.0dev"
+        evidence_source_ids:
+          - doc-cutlass-changelog-sm100
+        notes: |
+          Dev-channel release on the 4.8 line (GitHub published_at
+          2026-08-27T07:28:38Z; dev_branch_sha is the release target
+          commit). First CUTLASS release requiring CUDA Toolkit 13.4 GA
+          (R615 driver) for its SM107 kernels; SM100 codebase carried
+          the UMMA traits and CuTe DSL groundwork for the 4.8 line.
+      - name: "4.7.1"
+        released_at: "2026-08-26"
+        channel: stable
+        release_notes_url: "https://github.com/NVIDIA/cutlass/releases/tag/v4.7.1"
+        evidence_source_ids:
+          - doc-cutlass-changelog-sm100
+        notes: |
+          Patch release on the 4.7 line. GitHub published_at
+          2026-08-26T09:26:16Z from the audited 2026-10-27
+          release-list receipt.
+      - name: "4.6.3"
+        released_at: "2026-08-26"
+        channel: stable
+        release_notes_url: "https://github.com/NVIDIA/cutlass/releases/tag/v4.6.3"
+        evidence_source_ids:
+          - doc-cutlass-changelog-sm100
+        notes: |
+          Patch release on the 4.6 line. GitHub published_at
+          2026-08-26T09:13:20Z from the audited 2026-10-27
+          release-list receipt.
       - name: "4.7.0"
         released_at: "2026-08-13"
         channel: stable
@@ -144,7 +237,7 @@ tools:
           2025-01-25.
 
   - tool: cuda
-    upstream_checked_at: "2026-08-18"
+    upstream_checked_at: "2026-10-27"
     releases:
       - name: "13.3 Update 1"
         released_at: "2026-06-29"
